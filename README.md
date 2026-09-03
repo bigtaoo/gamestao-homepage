@@ -252,7 +252,7 @@ Verified against live DNS on 2026-09-03, **after** SumQuest moved to Cloudflare:
 | Name | Current records | Serves |
 |---|---|---|
 | `gamestao.com` | four A records `185.199.108-111.153`, grey cloud (DNS only) | SumQuest, still GitHub Pages |
-| `www.gamestao.com` | CNAME to `bigtaoo.github.io` | SumQuest (301s to the apex) |
+| `www.gamestao.com` | **none** — CNAME deleted 2026-09-03, ahead of step 3 | nothing; NXDOMAIN |
 | `c.gamestao.com` | Cloudflare, proxied | **SumQuest, Worker `sumquest-client`** |
 | `sumquest.gamestao.com` | Cloudflare, proxied | **SumQuest, same Worker** |
 | `studio.gamestao.com` | none | — |
@@ -314,10 +314,15 @@ gh api repos/bigtaoo/PIXIJSGAME/pages --jq "{cname, html_url, status}"
 held for `gamestao.com` and `www.gamestao.com` is not needed any more; GitHub
 drops it on its own schedule and it does not block anything here.
 
-**3. Free the apex and www.** In Cloudflare DNS, delete the four A records on
-`gamestao.com` and the `www` CNAME. While they exist, provisioning either as a
-Worker custom domain fails on a record conflict and takes the whole deploy with
-it — not just that route.
+**3. Free the apex.** In Cloudflare DNS, delete the four A records on
+`gamestao.com`. While they exist, provisioning the apex as a Worker custom
+domain fails on a record conflict and takes the whole deploy with it — not just
+that route.
+
+`www` is already done: its CNAME was deleted on 2026-09-03, so that half of this
+step is spent and nothing conflicts with the `www` route in step 4. The cost of
+having done it early is that `www.gamestao.com` currently resolves to nothing,
+where it used to 301 to the apex — step 4 is what brings it back.
 
 From here until step 4 lands, the apex serves nothing. That is now a cosmetic
 outage rather than a real one: the game is reachable the whole time at
