@@ -1,0 +1,94 @@
+# Verify every push, and auto-publish main to Cloudflare.
+#
+# One file, two jobs, because this repo produces exactly one artifact and the
+# ordering between them matters:
+#
+#   check   — typecheck, the test suite, and a full build. Ungated, runs on
+#             every push and pull request. The locale suite is the one that
+#             earns its keep: it is the only thing checking that ten translated
+#             files still line up with English, and nobody reviews all eleven
+#             by eye.
+#   deploy  — builds again and ships to Cloudflare. `needs: check`, so a red
+#             gate cannot publish. Gated off until a repo variable exists (see
+#             "Turning CI on" in README.md).
+#
+# The earlier version of this had a single gated job, which meant a push with
+# SITE_DEPLOY_ENABLED unset skipped the tests as well as the deploy — the gates
+# were gates only for whoever remembered to run them locally. Same lesson as
+# bigtaoo/daydayup's check.yml.
+name: ci
+
+on:
+  push:
+    # A README-only commit rebuilds byte-identical pages; nothing to publish.
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Supersede in-flight runs on branches and PRs, but never on main: cancelling
+  # there could land mid-`wrangler deploy`. Pushes to main queue behind each
+  # other instead, which also means two deploys never overlap.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      # `npm test` builds only the SSR bundle. The prerenderer that turns that
+      # bundle into 44 pages is a separate step and can break on its own, so
+      # the build belongs in the gate rather than only in the deploy job.
+      - run: npm run build
+
+  deploy:
+    needs: check
+    # Both conditions matter. The ref check keeps branches and PRs from
+    # publishing (a pull_request event's ref is refs/pull/N/merge, so it fails
+    # this too). The variable is the on/off switch, kept unset so the first
+    # push cannot deploy before the Cloudflare secrets exist. Mirrors
+    # CLIENT_DEPLOY_ENABLED on bigtaoo/daydayup.
+    if: github.ref == 'refs/heads/main' && vars.SITE_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    env:
+      # Must match a custom_domain route in wrangler/site.jsonc. When the apex
+      # is taken over (README step 5), point this at gamestao.com.
+      SMOKE_HOST: studio.gamestao.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      # npx with a pinned version rather than cloudflare/wrangler-action, for
+      # the same two reasons as daydayup: wrangler's own errors come through
+      # unwrapped, and a wrangler release cannot change what this deploy does
+      # without a commit here. Keep the pin in step with package.json's
+      # `deploy` script.
+      - name: deploy to Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx -y wrangler@4.128.0 deploy -c wrangler/site.jsonc
+
+      # A successful upload is not a served page. `npm run smoke` is the same
+      # command README's apex runbook runs by hand after a manual deploy, so
+      # what CI calls a healthy deploy and what a person checks cannot drift.
+      # It waits out DNS and certificate provisioning on a new hostname.
+      - name: smoke test the deployed site
+        run: npm run smoke -- "https://$SMOKE_HOST"

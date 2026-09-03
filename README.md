@@ -123,52 +123,125 @@ Current state: **Nivara** has its real icon and Play feature graphic,
 
 ## Deploying
 
+`.github/workflows/ci.yml` is the whole pipeline: a `check` job (typecheck,
+tests, full build) that runs on every push and pull request, and a `deploy` job
+that `needs: check` and ships `dist/` to Cloudflare. So a red gate cannot
+publish, and a push is verified even while publishing is switched off.
+
 Nothing is published yet, and nothing publishes by accident. Four independent
 gates stand between a push and a live page:
 
 1. A commit is local; only a push reaches GitHub.
-2. The workflow job is guarded by `if: vars.SITE_DEPLOY_ENABLED == 'true'`, so
-   until that repo variable exists a push skips the whole job.
+2. The `deploy` job is guarded by `if: github.ref == 'refs/heads/main' &&
+   vars.SITE_DEPLOY_ENABLED == 'true'`, so until that repo variable exists a
+   push runs the checks and stops there.
 3. Without the two Cloudflare secrets, the deploy step fails rather than
    deploying.
 4. Even fully enabled, `wrangler/site.jsonc` routes only
    `studio.gamestao.com`. Taking `gamestao.com` needs someone to uncomment two
    lines, which is deliberately a separate act.
 
+After a deploy, CI curls the live host for four things — the home page returns
+200, `/de/` renders its German title, a wrong path is a real 404 and not a soft
+one, and the served `sitemap.xml` has as many URLs as the build just produced.
+These are the same checks the apex runbook below asks you to run by hand; a
+successful upload is not a served page. The first deploy of a new hostname
+waits on DNS and an edge certificate, so that step retries for five minutes
+before calling it a failure.
+
 ### Turning CI on
 
 Both on `bigtaoo/goodgoodstudy`:
 
 ```bash
-gh variable set SITE_DEPLOY_ENABLED --body true --repo bigtaoo/goodgoodstudy
 gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/goodgoodstudy
+```
+
+```bash
 gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/goodgoodstudy
 ```
 
-`gh secret set` prompts for the value on stdin, so the token is never typed
-into a shell history or a file. The account is `tao.wang.go@gmail.com`, account
-id `e64b61f1629ebcc49ee9b6eea2a95b82`. The same two values are already set on
-`bigtaoo/daydayup` — GitHub cannot read a secret back out, so they have to come
-from Cloudflare or wherever you keep them, but **no new token is needed**: the
-existing account-level token's "Edit Cloudflare Workers" permission already
-covers creating a new Worker.
+```bash
+gh variable set SITE_DEPLOY_ENABLED --body true --repo bigtaoo/goodgoodstudy
+```
+
+In that order — the variable is the switch, and the next push after it flips
+deploys for real. `gh secret set` prompts for the value on stdin, so the token
+is never typed into a shell history or a file. The account is
+`tao.wang.go@gmail.com`, account id `e64b61f1629ebcc49ee9b6eea2a95b82`.
+
+#### The API token
+
+GitHub cannot read a secret back out, so the value cannot be lifted off
+`bigtaoo/daydayup` even though the same two secrets are already set there.
+Make one at **dash.cloudflare.com → My Profile → API Tokens → Create Token**,
+then **Custom → Edit Cloudflare Workers** — the template Cloudflare's own
+GitHub Actions guide points at. It grants:
+
+| Scope | Permission |
+|---|---|
+| Account | Workers Scripts: Edit |
+| Account | Workers KV Storage: Edit |
+| Account | Workers R2 Storage: Edit |
+| Account | Workers Tail: Read |
+| Account | Account Settings: Read |
+| User | User Details: Read, Memberships: Read |
+| Zone | Workers Routes: Edit |
+
+Narrow **Zone Resources** to `gamestao.com` rather than all zones, and set a
+TTL if you want the token to expire. The value is shown once and starts with
+`cfut_`.
+
+What the template does **not** include is `Zone → DNS → Edit` or
+`Zone → Zone → Read`. That matters here specifically because these routes are
+`custom_domain: true`, and a custom domain is Cloudflare writing a DNS record
+and issuing a certificate on your behalf — not just attaching a script to an
+existing proxied record. Whether `Workers Routes: Edit` alone authorises that
+is not something the docs state either way.
+
+Rather than guess, let step 1 of the apex runbook below answer it: it
+provisions `studio.gamestao.com` as a custom domain on a brand-new Worker, so
+it exercises exactly the same operation as the apex will, on a hostname where
+nothing is live. If the deploy fails there on a permission error, add
+`Zone → DNS → Edit` and `Zone → Zone → Read` (still scoped to `gamestao.com`)
+and re-run. Adding them up front also works and costs one thing worth naming:
+a token in GitHub Actions that can rewrite every record on the zone, including
+the three game clients. Prefer finding out first.
 
 Check what landed, and that the guard is really open:
 
 ```bash
 gh variable list --repo bigtaoo/goodgoodstudy
+```
+
+```bash
 gh secret list --repo bigtaoo/goodgoodstudy
+```
+
+The remote is empty as of 2026-09-03, so the first `git push -u origin main`
+both creates `main` and is the first thing CI ever sees. With the variable
+still unset, that push runs `check` alone and publishes nothing. Watch it:
+
+```bash
+gh run watch --repo bigtaoo/goodgoodstudy
 ```
 
 ### Deploying by hand
 
-Needs a locally authenticated wrangler (`npx wrangler login` — browser OAuth,
-credentials land in `%APPDATA%\xdg.config\.wrangler\config`; as of 2026-09-03
-this machine has none):
+Needs a locally authenticated wrangler (browser OAuth; credentials land in
+`%APPDATA%\xdg.config\.wrangler\config` — as of 2026-09-03 this machine has
+none):
+
+```bash
+npx -y wrangler@4.128.0 login
+```
 
 ```bash
 npm run deploy
 ```
+
+The `deploy` script and CI pin the same wrangler version, so a wrangler release
+cannot change what a deploy does without a commit here. Bump the two together.
 
 ### Taking over the apex domain
 
@@ -202,14 +275,12 @@ checked-in route and the Worker is new, so this touches nothing live.
 npm run deploy
 ```
 
-Verify — a real page, a localised page, a 404 with a 404 status, and the
-sitemap:
+Verify — a real page, a localised page, a 404 with a 404 status, and a
+sitemap with as many URLs as the build just produced. Same check CI runs after
+its own deploys, so it reads the `dist/` you just built:
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" https://studio.gamestao.com/
-curl -s https://studio.gamestao.com/de/ | grep -o "<title>[^<]*</title>"
-curl -s -o /dev/null -w "%{http_code}\n" https://studio.gamestao.com/nope/
-curl -s https://studio.gamestao.com/sitemap.xml | grep -c "<url>"   # expect 44
+npm run smoke -- https://studio.gamestao.com
 ```
 
 **2. Add `c.gamestao.com`** as a CNAME to `bigtaoo.github.io` in Cloudflare DNS
@@ -251,10 +322,42 @@ the apex is down, so run them back to back.
 
 ```bash
 npm run deploy
-curl -s -o /dev/null -w "apex %{http_code}\n" https://gamestao.com/
-curl -s -o /dev/null -w "www  %{http_code}\n" https://www.gamestao.com/
-curl -s https://gamestao.com/ | grep -o "<title>[^<]*</title>"
 ```
+
+```bash
+npm run smoke -- https://gamestao.com
+```
+
+`www` only 301s to the apex, so it is not worth a full pass — one status
+code is enough:
+
+```bash
+curl -s -o /dev/null -w "www %{http_code}\n" -L https://www.gamestao.com/
+```
+
+Then point CI at the new home, so its post-deploy check watches what visitors
+actually hit: set `SMOKE_HOST` in `.github/workflows/ci.yml` to `gamestao.com`.
+
+What Cloudflare does on its side, so you can tell success from a half-finished
+state in the DNS tab: for each `custom_domain` route it writes the record for
+that hostname itself, pointing at the Worker and **proxied** (orange cloud) —
+not a record you create. The apex works the same way as the subdomain; CNAME
+flattening is what makes a root-level target legal. It also issues an Advanced
+Certificate per hostname. Do not hand-add an A or CNAME record for `gamestao.com`
+or `www` at any point: an existing record on the hostname is the conflict that
+blocks provisioning in the first place.
+
+Two settings on the zone are worth checking once, in **SSL/TLS**:
+
+- **Always Use HTTPS** on, so the apex does not serve plaintext.
+- The **encryption mode** does not matter for these two hostnames — a Worker
+  custom domain has no origin behind it, so there is no origin leg to encrypt.
+  It still matters for `c.gamestao.com`, which stays grey-cloud and therefore
+  bypasses Cloudflare entirely, with GitHub terminating its own TLS.
+
+One piece of cleanup Cloudflare will not do for you: removing a custom domain
+later does **not** delete the certificate it issued. That has to go by hand
+from the SSL/TLS dashboard.
 
 **6. Repoint the old links.** CrazyGames, itch.io, the App Store listing and
 social bios that say `gamestao.com` now land on the studio page rather than the

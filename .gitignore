@@ -3,3 +3,8 @@ dist/
 .ssr/
 *.local
 .DS_Store
+
+# `wrangler dev` local state and temp files. It writes one next to the config
+# it was given as well as one at the cwd, hence both paths.
+.wrangler/
+wrangler/.wrangler/

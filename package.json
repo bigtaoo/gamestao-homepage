@@ -13,7 +13,8 @@
     "preview": "vite preview --outDir dist",
     "typecheck": "tsc --noEmit",
     "test": "npm run build:ssr && node --test \"test/*.test.mjs\"",
-    "deploy": "npm run build && wrangler deploy -c wrangler/site.jsonc"
+    "smoke": "node scripts/smoke.mjs",
+    "deploy": "npm run build && npx -y wrangler@4.128.0 deploy -c wrangler/site.jsonc"
   },
   "dependencies": {
     "react": "^18.3.1",
