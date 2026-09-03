@@ -123,17 +123,48 @@ Current state: **Nivara** has its real icon and Play feature graphic,
 
 ## Deploying
 
-CI deploys on every push to `main` once it is switched on. Before the first
-deploy, on `bigtaoo/goodgoodstudy`:
+Nothing is published yet, and nothing publishes by accident. Four independent
+gates stand between a push and a live page:
 
-- **Secrets** `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. The existing
-  account-level token already has "Edit Cloudflare Workers", which covers a new
-  Worker — copy the same values used by `bigtaoo/daydayup`, no new token needed.
-  Account `tao.wang.go@gmail.com`.
-- **Variable** `SITE_DEPLOY_ENABLED = true`. The workflow is a no-op until it
-  is set, so pushing code cannot deploy before the secrets exist.
+1. A commit is local; only a push reaches GitHub.
+2. The workflow job is guarded by `if: vars.SITE_DEPLOY_ENABLED == 'true'`, so
+   until that repo variable exists a push skips the whole job.
+3. Without the two Cloudflare secrets, the deploy step fails rather than
+   deploying.
+4. Even fully enabled, `wrangler/site.jsonc` routes only
+   `studio.gamestao.com`. Taking `gamestao.com` needs someone to uncomment two
+   lines, which is deliberately a separate act.
 
-Manually, from the repo root:
+### Turning CI on
+
+Both on `bigtaoo/goodgoodstudy`:
+
+```bash
+gh variable set SITE_DEPLOY_ENABLED --body true --repo bigtaoo/goodgoodstudy
+gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/goodgoodstudy
+gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/goodgoodstudy
+```
+
+`gh secret set` prompts for the value on stdin, so the token is never typed
+into a shell history or a file. The account is `tao.wang.go@gmail.com`, account
+id `e64b61f1629ebcc49ee9b6eea2a95b82`. The same two values are already set on
+`bigtaoo/daydayup` — GitHub cannot read a secret back out, so they have to come
+from Cloudflare or wherever you keep them, but **no new token is needed**: the
+existing account-level token's "Edit Cloudflare Workers" permission already
+covers creating a new Worker.
+
+Check what landed, and that the guard is really open:
+
+```bash
+gh variable list --repo bigtaoo/goodgoodstudy
+gh secret list --repo bigtaoo/goodgoodstudy
+```
+
+### Deploying by hand
+
+Needs a locally authenticated wrangler (`npx wrangler login` — browser OAuth,
+credentials land in `%APPDATA%\xdg.config\.wrangler\config`; as of 2026-09-03
+this machine has none):
 
 ```bash
 npm run deploy
@@ -155,25 +186,81 @@ So **both** the apex and `www` are occupied, and GitHub Pages allows exactly
 SumQuest's Pages domain takes its current URL away the moment it is saved, so
 the Worker has to be deployed and verified *before* that happens, not after.
 
-1. **Deploy this site to a free subdomain.** `studio.gamestao.com` is the
-   checked-in route; the Worker is new, so this touches nothing live. Verify
-   the pages, the language switcher and a 404 there.
-2. **Add `c.gamestao.com`** as a CNAME to `bigtaoo.github.io` in Cloudflare
-   DNS. It resolves but 404s until step 3 — GitHub does not serve a host it has
-   not been told about.
-3. **Move SumQuest.** Set `c.gamestao.com` as the custom domain on
-   `bigtaoo/PIXIJSGAME`'s Pages settings. Its build pipeline does not change.
-   **Verify the game loads and is playable at `c.gamestao.com`.** From here
-   until step 5 the apex serves GitHub's "no site here" page, so keep going.
-4. **Free the apex and www.** Delete the four A records on `gamestao.com` and
-   the `www` CNAME. While they exist, provisioning either as a Worker custom
-   domain fails on a record conflict and takes the whole deploy with it.
-5. **Claim them.** Uncomment the `gamestao.com` and `www.gamestao.com` routes
-   in `wrangler/site.jsonc` and redeploy. Steps 4 and 5 are the only window
-   where the apex is down, so run them back to back.
-6. **Repoint the old links.** CrazyGames, itch.io, store listings and social
-   bios that say `gamestao.com` now land on the studio page rather than the
-   game; update them to `c.gamestao.com`.
+Re-check the starting state before beginning — if it no longer matches the
+table, stop and re-plan:
+
+```bash
+nslookup gamestao.com 1.1.1.1
+nslookup www.gamestao.com 1.1.1.1
+curl -sI https://gamestao.com | head -3
+```
+
+**1. Deploy this site to a free subdomain.** `studio.gamestao.com` is the
+checked-in route and the Worker is new, so this touches nothing live.
+
+```bash
+npm run deploy
+```
+
+Verify — a real page, a localised page, a 404 with a 404 status, and the
+sitemap:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" https://studio.gamestao.com/
+curl -s https://studio.gamestao.com/de/ | grep -o "<title>[^<]*</title>"
+curl -s -o /dev/null -w "%{http_code}\n" https://studio.gamestao.com/nope/
+curl -s https://studio.gamestao.com/sitemap.xml | grep -c "<url>"   # expect 44
+```
+
+**2. Add `c.gamestao.com`** as a CNAME to `bigtaoo.github.io` in Cloudflare DNS
+(proxy off — GitHub Pages terminates its own TLS for a custom domain). It
+resolves but 404s until step 3; GitHub does not serve a host it has not been
+told about.
+
+**3. Move SumQuest** off the apex, onto `c.gamestao.com`. Its current config,
+read back on 2026-09-03, is `cname: gamestao.com`, `build_type: workflow`,
+`https_enforced: true` — so the domain lives in Pages settings, not in a CNAME
+file in the repo, and its build pipeline does not change.
+
+```bash
+gh api -X PUT repos/bigtaoo/PIXIJSGAME/pages -f cname=c.gamestao.com
+gh api repos/bigtaoo/PIXIJSGAME/pages --jq '{cname, status, https_enforced}'
+```
+
+GitHub has to issue a fresh certificate for the new host, which takes a few
+minutes. `https_enforced` may come back `false` while that happens, and an
+HTTPS request can fail until the cert is ready — that is expected, not a
+misconfiguration. Re-enable it once the cert lands:
+
+```bash
+gh api -X PUT repos/bigtaoo/PIXIJSGAME/pages -F https_enforced=true
+```
+
+**Verify the game actually loads and is playable at `https://c.gamestao.com`
+before going on.** From here until step 5 the apex serves GitHub's "no site
+here" page, so do not stop in the middle.
+
+**4. Free the apex and www.** In Cloudflare DNS, delete the four A records on
+`gamestao.com` and the `www` CNAME. While they exist, provisioning either as a
+Worker custom domain fails on a record conflict and takes the whole deploy with
+it — not just that route.
+
+**5. Claim them.** Uncomment the `gamestao.com` and `www.gamestao.com` routes
+in `wrangler/site.jsonc`, then deploy. Steps 4 and 5 are the only window where
+the apex is down, so run them back to back.
+
+```bash
+npm run deploy
+curl -s -o /dev/null -w "apex %{http_code}\n" https://gamestao.com/
+curl -s -o /dev/null -w "www  %{http_code}\n" https://www.gamestao.com/
+curl -s https://gamestao.com/ | grep -o "<title>[^<]*</title>"
+```
+
+**6. Repoint the old links.** CrazyGames, itch.io, the App Store listing and
+social bios that say `gamestao.com` now land on the studio page rather than the
+game; update them to `c.gamestao.com`. While you are in the itch.io dashboard,
+grab its page URL and put it in `src/data/games.ts` — that platform is still
+marked `soon` only because no file in any repo records the slug.
 
 Free Universal SSL covers the apex and **one** level of subdomain, so every
 subdomain on this zone must stay single-level (`c.gamestao.com`, never
