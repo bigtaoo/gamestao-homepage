@@ -37,6 +37,8 @@ npm run build      # client bundle -> SSR renderer -> 44 pages into dist/
 npm run preview    # serve dist/ exactly as it will be served in production
 npm run typecheck
 npm test           # locale parity + route/head invariants
+npm run smoke -- https://gamestao.com   # check a LIVE host, not a build
+npm run deploy     # build + wrangler deploy; CI does this on every push to main
 ```
 
 `npm test` is worth running before any copy change. TypeScript guarantees every
@@ -128,33 +130,29 @@ tests, full build) that runs on every push and pull request, and a `deploy` job
 that `needs: check` and ships `dist/` to Cloudflare. So a red gate cannot
 publish, and a push is verified even while publishing is switched off.
 
-Nothing is published yet, and nothing publishes by accident. Of the four gates
-that stood between a push and a live page, two are now spent and two still
-hold — as of 2026-09-03:
+**The site is live at `https://gamestao.com`** as of 2026-09-03 — Worker
+`gamestao-site`, on the apex and `www`. Every push to `main` that touches
+anything but `README.md` builds it and publishes it.
 
-1. ~~A commit is local; only a push reaches GitHub.~~ **Spent.** `main` is
-   pushed and the `check` job has run green.
-2. ~~Without the two Cloudflare secrets, the deploy step fails rather than
-   deploying.~~ **Spent.** Both are set on `bigtaoo/goodgoodstudy`.
-3. **Holds.** The `deploy` job is guarded by `if: github.ref ==
-   'refs/heads/main' && vars.SITE_DEPLOY_ENABLED == 'true'`, and that repo
-   variable is deliberately unset, so a push runs the checks and stops there.
-   Setting it is what turns publishing on.
-4. **Holds.** Even fully enabled, `wrangler/site.jsonc` routes only
-   `studio.gamestao.com`. Taking `gamestao.com` needs someone to uncomment two
-   lines, which is deliberately a separate act.
+What still stands between a bad commit and a bad live page is the pipeline, not
+a switch: `deploy` needs `check`, so a failing typecheck, a failing locale test
+or a broken prerender stops the deploy rather than shipping. After the deploy,
+`npm run smoke` re-checks the live host and fails the run if the apex stopped
+answering, `/de/` stopped rendering German, a wrong path stopped being a 404 or
+the sitemap lost pages.
 
-After a deploy, CI curls the live host for four things — the home page returns
-200, `/de/` renders its German title, a wrong path is a real 404 and not a soft
-one, and the served `sitemap.xml` has as many URLs as the build just produced.
-These are the same checks the apex runbook below asks you to run by hand; a
-successful upload is not a served page. The first deploy of a new hostname
-waits on DNS and an edge certificate, so that step retries for five minutes
-before calling it a failure.
+To stop publishing without touching the code — while debugging, say — unset the
+switch, and pushes go back to running `check` only:
+
+```bash
+gh variable delete SITE_DEPLOY_ENABLED --repo bigtaoo/goodgoodstudy
+```
 
 ### Turning CI on
 
-Both on `bigtaoo/goodgoodstudy`:
+**Already on** — both secrets and `SITE_DEPLOY_ENABLED` are set on
+`bigtaoo/goodgoodstudy` as of 2026-09-03. This is here for rotating the token
+or setting up another repo. Both on `bigtaoo/goodgoodstudy`:
 
 ```bash
 gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/goodgoodstudy
@@ -245,186 +243,98 @@ npm run deploy
 The `deploy` script and CI pin the same wrangler version, so a wrangler release
 cannot change what a deploy does without a commit here. Bump the two together.
 
-### Taking over the apex domain
+### The apex, and how it was taken over
 
-Verified against live DNS on 2026-09-03, **after** SumQuest moved to Cloudflare:
+Done on 2026-09-03. Kept because the hostname layout is not guessable from the
+code, and because two of the failures on the way are the kind that look like
+something else entirely.
 
-| Name | Current records | Serves |
+| Host | Serves | Where it is configured |
 |---|---|---|
-| `gamestao.com` | four A records `185.199.108-111.153`, grey cloud (DNS only) | SumQuest, still GitHub Pages |
-| `www.gamestao.com` | **none** — CNAME deleted 2026-09-03, ahead of step 3 | nothing; NXDOMAIN |
-| `c.gamestao.com` | Cloudflare, proxied | **SumQuest, Worker `sumquest-client`** |
-| `sumquest.gamestao.com` | Cloudflare, proxied | **SumQuest, same Worker** |
-| `studio.gamestao.com` | none | — |
+| `gamestao.com` | this site | `wrangler/site.jsonc`, Worker `gamestao-site` |
+| `www.gamestao.com` | this site, same content — **not** a redirect | same |
+| `c.gamestao.com` | SumQuest | `bigtaoo/PIXIJSGAME`, `wrangler/client.jsonc` |
+| `sumquest.gamestao.com` | SumQuest, brand host for store listings | same |
+| `a.` / `nivara.gamestao.com` | Nivara | `bigtaoo/funny` |
+| `b.gamestao.com` | DayDayUp | `bigtaoo/daydayup` |
 
-The awkward part of this is already done. SumQuest used to exist *only* at the
-apex on GitHub Pages, and Pages allows exactly one custom domain per repo — so
-freeing the apex meant taking the game offline in the same breath. It now
-serves from Cloudflare at `c.gamestao.com` and `sumquest.gamestao.com`
-(`bigtaoo/PIXIJSGAME`, `wrangler/client.jsonc`), which means the apex can be
-released without the game going anywhere.
+Cloudflare writes and owns the DNS record for every one of these — each is a
+Worker custom domain, proxied, with a certificate Cloudflare issues. Never
+hand-add an A or CNAME for a hostname that appears in a `routes` list.
 
-Both pipelines still run in that repo: `client-deploy.yml` to Cloudflare and
-the older `deploy.yml` to Pages. That is deliberate until the apex move is
-finished — after step 3 the Pages one has no domain left to serve and can be
-deleted.
+**What made the order awkward, and why it no longer applies.** SumQuest used to
+serve *only* from `gamestao.com` on GitHub Pages, and Pages allows exactly one
+custom domain per repo — so freeing the apex would have taken the game offline
+in the same act. It was moved to Cloudflare first (`c.` and `sumquest.`,
+verified playable in a browser), which turned the apex changeover into a
+cosmetic outage: nothing a player uses depended on it.
 
-Re-check the starting state before beginning — if it no longer matches the
-table, stop and re-plan:
+Then: delete the four GitHub Pages A records (`185.199.108-111.153`) from
+Cloudflare DNS, push the uncommented apex routes, and release the domain on the
+Pages side afterwards (`gh api -X PUT repos/bigtaoo/PIXIJSGAME/pages -f
+cname=""`). Releasing Pages *last* matters — doing it first would have left the
+A records pointing at a GitHub that no longer recognised the host, breaking the
+apex earlier than necessary for no gain, since Cloudflare never consults
+GitHub's config.
 
-```bash
-nslookup gamestao.com 1.1.1.1
-```
+#### Two failures that lie about their cause
 
-```bash
-curl -sI https://gamestao.com | head -3
-```
-
-**1. Deploy this site to a free subdomain.** `studio.gamestao.com` is the
-checked-in route and the Worker is new, so this touches nothing live.
-
-```bash
-npm run deploy
-```
-
-Verify — a real page, a localised page, a 404 with a 404 status, and a
-sitemap with as many URLs as the build just produced. Same check CI runs after
-its own deploys, so it reads the `dist/` you just built:
-
-```bash
-npm run smoke -- https://studio.gamestao.com
-```
-
-**2. Free the apex.** In Cloudflare DNS, delete the four A records on
-`gamestao.com`. While they exist, provisioning the apex as a Worker custom
-domain fails on a record conflict and takes the whole deploy with it — not just
-that route.
-
-`www` is already done: its CNAME was deleted on 2026-09-03, so that half of this
-step is spent and nothing conflicts with the `www` route in step 3. The cost of
-having done it early is that `www.gamestao.com` currently resolves to nothing,
-where it used to 301 to the apex — step 3 is what brings it back.
-
-From here until step 3 lands, the apex serves nothing. That is now a cosmetic
-outage rather than a real one: the game is reachable the whole time at
-`c.gamestao.com`.
-
-**3. Claim them.** Uncomment the `gamestao.com` and `www.gamestao.com` routes
-in `wrangler/site.jsonc` and deploy. Steps 2 and 3 are the only window where
-the apex is down, so **stage this commit before doing step 2** and push it the
-moment the records are gone.
-
-CI is the deploy path now that `SITE_DEPLOY_ENABLED` is set — a push to `main`
-touching this file builds and deploys on its own, and no local wrangler
-credential is needed:
-
-```bash
-git push origin main
-```
-
-```bash
-gh run watch --repo bigtaoo/goodgoodstudy
-```
-
-Expect a few minutes of apex downtime beyond the push: a brand-new custom
-domain has to get its DNS record and an edge certificate, and `c.gamestao.com`
-took several minutes to answer on 2026-09-03. CI's own smoke step waits this
-out. The game is unaffected the whole time.
-
-If step 2 was not actually saved, this is what the deploy says — verbatim, from
-a real attempt on 2026-09-03:
+**A record conflict fails the whole deploy, not just that route.** Pushing the
+apex routes before the A records were actually deleted produced:
 
 ```
 Hostname 'gamestao.com' already has externally managed DNS records (A, CNAME,
 etc). Delete them first or try a different hostname. [code: 100117]
 ```
 
-Two things to know about that failure. The custom domains go up in **one**
-batched API call, so a conflict on the apex rejects `www` and
-`studio.gamestao.com` along with it and nothing changes — which is why that
-attempt broke nothing and the apex kept serving from Pages. But wrangler also
-prints `Successful trigger changes were not rolled back`, so a partial failure
-is possible in principle: after any failed deploy, check which hostnames
-actually resolve before assuming the state is clean.
+The custom domains go up in one batched API call, so that conflict rejected
+`www` and `studio` with it and nothing changed — the apex kept serving from
+Pages throughout. But wrangler also prints `Successful trigger changes were not
+rolled back`, so a partial failure is possible in principle: after a failed
+deploy, check what actually resolves rather than assuming the state is clean.
 
-Re-running needs no new commit, only the records gone:
+**A stale negative DNS cache is indistinguishable from a failed deploy.** This
+zone's SOA TTL is 1800s, so any resolver that asks for a hostname *before* the
+record exists caches the NXDOMAIN for up to 30 minutes. A new custom domain
+takes a few minutes to provision, so querying it in that window poisons your
+own resolver — and a browser then shows `DNS_PROBE_FINISHED_NXDOMAIN` long after
+the deploy succeeded. It happened twice here, both times self-inflicted by
+checking too eagerly, and once the resolver holding it was the router rather
+than the machine, where `ipconfig /flushdns` is no help.
+
+So: after claiming a hostname, do not visit it until CI's smoke step has passed.
+To check without poisoning anything, bypass the local resolver:
 
 ```bash
-gh workflow run ci.yml --repo bigtaoo/goodgoodstudy --ref main
+nslookup gamestao.com 1.1.1.1
 ```
 
 ```bash
-npm run smoke -- https://gamestao.com
+curl -sI --resolve gamestao.com:443:104.21.75.158 https://gamestao.com/
 ```
 
-`www` does **not** 301 any more. Under GitHub Pages it did; a Worker custom
-domain answers with the content instead, so `www.gamestao.com` serves the same
-44 pages and every page has two URLs. The canonical tags all name the apex, so
-this is SEO-safe rather than ideal. If you want a real redirect, the way to get
-one on this zone is a Cloudflare **Redirect Rule** against a proxied
-placeholder record — the AAAA `100::` trick already in use for
-`privacy.gamestao.com` and `support.gamestao.com` — which means dropping the
-`www` route from `site.jsonc`. Worth doing separately, not during a takeover.
+#### Still worth doing
 
-Either way it is worth one status code:
-
-```bash
-curl -s -o /dev/null -w "www %{http_code}\n" -L https://www.gamestao.com/
-```
-
-`SMOKE_HOST` in `.github/workflows/ci.yml` is already `gamestao.com`, set in
-the same commit as these routes — so the deploy that claims the apex is also
-the one that verifies it.
-
-What Cloudflare does on its side, so you can tell success from a half-finished
-state in the DNS tab: for each `custom_domain` route it writes the record for
-that hostname itself, pointing at the Worker and **proxied** (orange cloud) —
-not a record you create. The apex works the same way as the subdomain; CNAME
-flattening is what makes a root-level target legal. It also issues an Advanced
-Certificate per hostname. Do not hand-add an A or CNAME record for `gamestao.com`
-or `www` at any point: an existing record on the hostname is the conflict that
-blocks provisioning in the first place.
-
-Two settings on the zone are worth checking once, in **SSL/TLS**:
-
-- **Always Use HTTPS** on, so the apex does not serve plaintext.
-- The **encryption mode** does not matter for any hostname on this zone that is
-  a Worker custom domain — and since SumQuest moved, `c.gamestao.com` and
-  `sumquest.gamestao.com` are Workers too. A Worker custom domain has no origin
-  behind it, so there is no origin leg to encrypt. The only record here with a
-  real origin is `api.gamestao.com` (Nivara's server, grey-cloud).
-
-One piece of cleanup Cloudflare will not do for you: removing a custom domain
-later does **not** delete the certificate it issued. That has to go by hand
-from the SSL/TLS dashboard.
-
-**4. Release the apex from GitHub Pages.** Cleanup, deliberately *after* the
-takeover rather than before it. Doing it first would break the apex earlier than
-necessary: the A records would still point at GitHub, which would no longer
-recognise the host and would answer "no site here" for as long as steps 2 and 3
-took. Cloudflare never consults GitHub's config, so nothing about the takeover
-needs this done first — only tidiness does.
-
-```bash
-gh api -X PUT repos/bigtaoo/PIXIJSGAME/pages -f cname=""
-```
-
-```bash
-gh api repos/bigtaoo/PIXIJSGAME/pages --jq "{cname, html_url, status}"
-```
-
-`cname` should come back `null`. Pages then serves only
-`bigtaoo.github.io/PIXIJSGAME/`, which nothing links to. The certificate it
-held for `gamestao.com` and `www.gamestao.com` is not needed any more; GitHub
-drops it on its own schedule and it does not block anything here.
-
-**5. Repoint the old links.** CrazyGames, itch.io, the App Store listing and
-social bios that say `gamestao.com` now land on the studio page rather than the
-game. Point them at **`sumquest.gamestao.com`** rather than `c.gamestao.com` —
-the same Worker answers both, but one of them is readable in a store listing
-and survives the letters being reshuffled later. While you are in the itch.io
-dashboard, grab its page URL and put it in `src/data/games.ts` — that platform
-is still marked `soon` only because no file in any repo records the slug.
+- **`www` does not redirect.** It serves the same pages, so every page has two
+  URLs. The canonicals all name the apex, so crawlers consolidate and this is
+  SEO-safe rather than ideal. A real 301 means dropping the `www` route here and
+  using a Cloudflare Redirect Rule against a proxied placeholder record — the
+  AAAA `100::` pattern this zone already uses for `privacy` and `support`. Its
+  own change, not a takeover afterthought.
+- **`studio.gamestao.com`'s certificate.** The route is gone, so Cloudflare has
+  removed its DNS record, but removing a custom domain does **not** delete the
+  certificate it issued. That one has to go by hand from **SSL/TLS → Edge
+  Certificates**.
+- **Store and portal links.** CrazyGames, itch.io, the App Store listing and
+  social bios that point at `gamestao.com` now land on this site rather than the
+  game. Point them at `sumquest.gamestao.com` rather than `c.gamestao.com` —
+  same Worker, but one of the two is legible in a listing. While in the itch.io
+  dashboard, grab the page URL and put it in `src/data/games.ts`; that platform
+  reads `soon` only because no file in any repo records the slug.
+- **The mobile hot-update host moved.** Shipped iOS and Android builds fetch
+  their payload from `gamestao.com/mobile/latest/`, which is now this site and
+  answers 404. It lives at `c.gamestao.com/mobile/latest/`. The plan is a forced
+  update rather than a redirect.
 
 Free Universal SSL covers the apex and **one** level of subdomain, so every
 subdomain on this zone must stay single-level (`c.gamestao.com`, never

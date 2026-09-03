@@ -45,24 +45,17 @@
     // placeholder record - the same AAAA 100:: trick already used for
     // privacy.gamestao.com and support.gamestao.com - which means dropping
     // this route. Deliberately not done in the same change as the takeover.
-    { "pattern": "www.gamestao.com", "custom_domain": true },
+    { "pattern": "www.gamestao.com", "custom_domain": true }
 
-    // This was the safe first deploy target while the apex was still GitHub
-    // Pages: somewhere to prove the Worker served all 44 pages before claiming
-    // anything live. That job is done.
+    // Cloudflare writes its own proxied record for each custom domain, so never
+    // hand-add an A or CNAME for these hostnames: an existing record on a
+    // hostname is a conflict that fails the WHOLE deploy, not just that route.
+    // That is exactly what happened on 2026-09-03 when the apex routes went in
+    // before the old GitHub Pages A records were deleted.
     //
-    // It is NOT a staging environment, and an earlier version of this comment
-    // wrongly called it one. Same Worker, same deployment, same version - one
-    // deploy updates all of these hostnames at once, so this shows exactly
-    // what the apex shows and isolates nothing. It is kept only because the
-    // apex takeover is still in flight and this is the one URL that works
-    // while that happens. Once the apex is serving, delete this line.
-    { "pattern": "studio.gamestao.com", "custom_domain": true }
-
-    // Prerequisite, checked on 2026-09-03 before this was uncommented: the four
-    // GitHub Pages A records on gamestao.com and the www CNAME are gone. An
-    // existing record on either hostname is a conflict that fails the WHOLE
-    // deploy, not just that route. Cloudflare writes its own proxied record for
-    // each custom domain - never hand-add one.
+    // studio.gamestao.com used to be here as the safe first deploy target while
+    // the apex was still GitHub Pages. Removed once the apex was serving: it was
+    // never a staging environment, since one deploy updates every hostname on
+    // this Worker at the same version.
   ]
 }
