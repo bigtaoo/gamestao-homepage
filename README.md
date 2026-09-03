@@ -295,46 +295,41 @@ its own deploys, so it reads the `dist/` you just built:
 npm run smoke -- https://studio.gamestao.com
 ```
 
-**2. Release the apex from GitHub Pages.** SumQuest is already served from
-Cloudflare, so this only takes away a hostname it no longer needs. Confirm the
-game actually plays at `https://c.gamestao.com` in a browser first — CI checks
-for HTTP 200, which cannot tell you the canvas came up, the assets loaded or
-the audio plays.
-
-```bash
-gh api -X PUT repos/bigtaoo/PIXIJSGAME/pages -f cname=""
-```
-
-```bash
-gh api repos/bigtaoo/PIXIJSGAME/pages --jq "{cname, html_url, status}"
-```
-
-`cname` should come back `null`. Pages then serves only
-`bigtaoo.github.io/PIXIJSGAME/`, which nothing links to. The certificate it
-held for `gamestao.com` and `www.gamestao.com` is not needed any more; GitHub
-drops it on its own schedule and it does not block anything here.
-
-**3. Free the apex.** In Cloudflare DNS, delete the four A records on
+**2. Free the apex.** In Cloudflare DNS, delete the four A records on
 `gamestao.com`. While they exist, provisioning the apex as a Worker custom
 domain fails on a record conflict and takes the whole deploy with it — not just
 that route.
 
 `www` is already done: its CNAME was deleted on 2026-09-03, so that half of this
-step is spent and nothing conflicts with the `www` route in step 4. The cost of
+step is spent and nothing conflicts with the `www` route in step 3. The cost of
 having done it early is that `www.gamestao.com` currently resolves to nothing,
-where it used to 301 to the apex — step 4 is what brings it back.
+where it used to 301 to the apex — step 3 is what brings it back.
 
-From here until step 4 lands, the apex serves nothing. That is now a cosmetic
+From here until step 3 lands, the apex serves nothing. That is now a cosmetic
 outage rather than a real one: the game is reachable the whole time at
 `c.gamestao.com`.
 
-**4. Claim them.** Uncomment the `gamestao.com` and `www.gamestao.com` routes
-in `wrangler/site.jsonc`, then deploy. Steps 3 and 4 are the only window where
-the apex is down, so run them back to back.
+**3. Claim them.** Uncomment the `gamestao.com` and `www.gamestao.com` routes
+in `wrangler/site.jsonc` and deploy. Steps 2 and 3 are the only window where
+the apex is down, so **stage this commit before doing step 2** and push it the
+moment the records are gone.
+
+CI is the deploy path now that `SITE_DEPLOY_ENABLED` is set — a push to `main`
+touching this file builds and deploys on its own, and no local wrangler
+credential is needed:
 
 ```bash
-npm run deploy
+git push origin main
 ```
+
+```bash
+gh run watch --repo bigtaoo/goodgoodstudy
+```
+
+Expect a few minutes of apex downtime beyond the push: a brand-new custom
+domain has to get its DNS record and an edge certificate, and `c.gamestao.com`
+took several minutes to answer on 2026-09-03. CI's own smoke step waits this
+out. The game is unaffected the whole time.
 
 ```bash
 npm run smoke -- https://gamestao.com
@@ -347,8 +342,9 @@ code is enough:
 curl -s -o /dev/null -w "www %{http_code}\n" -L https://www.gamestao.com/
 ```
 
-Then point CI at the new home, so its post-deploy check watches what visitors
-actually hit: set `SMOKE_HOST` in `.github/workflows/ci.yml` to `gamestao.com`.
+`SMOKE_HOST` in `.github/workflows/ci.yml` is already `gamestao.com`, set in
+the same commit as these routes — so the deploy that claims the apex is also
+the one that verifies it.
 
 What Cloudflare does on its side, so you can tell success from a half-finished
 state in the DNS tab: for each `custom_domain` route it writes the record for
@@ -362,14 +358,35 @@ blocks provisioning in the first place.
 Two settings on the zone are worth checking once, in **SSL/TLS**:
 
 - **Always Use HTTPS** on, so the apex does not serve plaintext.
-- The **encryption mode** does not matter for these two hostnames — a Worker
-  custom domain has no origin behind it, so there is no origin leg to encrypt.
-  It still matters for `c.gamestao.com`, which stays grey-cloud and therefore
-  bypasses Cloudflare entirely, with GitHub terminating its own TLS.
+- The **encryption mode** does not matter for any hostname on this zone that is
+  a Worker custom domain — and since SumQuest moved, `c.gamestao.com` and
+  `sumquest.gamestao.com` are Workers too. A Worker custom domain has no origin
+  behind it, so there is no origin leg to encrypt. The only record here with a
+  real origin is `api.gamestao.com` (Nivara's server, grey-cloud).
 
 One piece of cleanup Cloudflare will not do for you: removing a custom domain
 later does **not** delete the certificate it issued. That has to go by hand
 from the SSL/TLS dashboard.
+
+**4. Release the apex from GitHub Pages.** Cleanup, deliberately *after* the
+takeover rather than before it. Doing it first would break the apex earlier than
+necessary: the A records would still point at GitHub, which would no longer
+recognise the host and would answer "no site here" for as long as steps 2 and 3
+took. Cloudflare never consults GitHub's config, so nothing about the takeover
+needs this done first — only tidiness does.
+
+```bash
+gh api -X PUT repos/bigtaoo/PIXIJSGAME/pages -f cname=""
+```
+
+```bash
+gh api repos/bigtaoo/PIXIJSGAME/pages --jq "{cname, html_url, status}"
+```
+
+`cname` should come back `null`. Pages then serves only
+`bigtaoo.github.io/PIXIJSGAME/`, which nothing links to. The certificate it
+held for `gamestao.com` and `www.gamestao.com` is not needed any more; GitHub
+drops it on its own schedule and it does not block anything here.
 
 **5. Repoint the old links.** CrazyGames, itch.io, the App Store listing and
 social bios that say `gamestao.com` now land on the studio page rather than the

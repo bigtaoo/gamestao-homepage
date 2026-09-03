@@ -29,22 +29,25 @@
   },
 
   "routes": [
-    // A free subdomain, so the first deploy of a brand-new Worker touches
-    // nothing that is already live. Keep it afterwards as a staging alias.
+    // The apex is the point of this site: ORIGIN in src/lib/routes.ts is
+    // https://gamestao.com, and that one constant is baked into 44 canonical
+    // tags, every hreflang alternate, the sitemap and robots.txt. Serving it
+    // anywhere else would have every page name a canonical URL that resolves
+    // to something other than itself.
+    { "pattern": "gamestao.com", "custom_domain": true },
+    { "pattern": "www.gamestao.com", "custom_domain": true },
+
+    // Kept as a staging alias. It was the first deploy target while the apex
+    // was still GitHub Pages, and it stays useful for exactly that: somewhere
+    // to look at a build without touching what visitors hit. Note its pages
+    // still declare the apex as canonical, which is the correct behaviour for
+    // a staging host - crawlers are pointed away from it.
     { "pattern": "studio.gamestao.com", "custom_domain": true }
 
-    // The apex and www are deliberately NOT here yet.
-    //
-    // Verified against live DNS on 2026-09-03: gamestao.com is four grey-cloud
-    // GitHub Pages A records (185.199.108-111.153) and www.gamestao.com is a
-    // CNAME to bigtaoo.github.io. BOTH currently serve SumQuest, so both
-    // conflict with a Worker custom domain until their records are removed —
-    // and a conflict fails the whole deploy, not just that route.
-    //
-    // See "Taking over the apex domain" in README.md for the ordered move.
-    // When step 4 is reached, add:
-    //
-    // , { "pattern": "gamestao.com", "custom_domain": true }
-    // , { "pattern": "www.gamestao.com", "custom_domain": true }
+    // Prerequisite, checked on 2026-09-03 before this was uncommented: the four
+    // GitHub Pages A records on gamestao.com and the www CNAME are gone. An
+    // existing record on either hostname is a conflict that fails the WHOLE
+    // deploy, not just that route. Cloudflare writes its own proxied record for
+    // each custom domain - never hand-add one.
   ]
 }

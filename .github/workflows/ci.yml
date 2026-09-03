@@ -63,9 +63,10 @@ jobs:
     if: github.ref == 'refs/heads/main' && vars.SITE_DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
     env:
-      # Must match a custom_domain route in wrangler/site.jsonc. When the apex
-      # is taken over (README step 5), point this at gamestao.com.
-      SMOKE_HOST: studio.gamestao.com
+      # Must match a custom_domain route in wrangler/site.jsonc. The apex, not
+      # studio.gamestao.com, because this should watch what visitors actually
+      # hit — and because the apex is what every page names as its canonical.
+      SMOKE_HOST: gamestao.com
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
