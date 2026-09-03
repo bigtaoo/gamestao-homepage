@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "tagline": "Independent game studio",
+    "homeTitle": "gamestao — Independent game studio",
+    "homeDescription": "Three cross-platform games from a one-person studio: Nivara, a hand-drawn strategy game; DayDayUp, a weapon-driven roguelite; and SumQuest, a number puzzle. Every one of them plays in your browser.",
+    "gameTitle": "{game} — gamestao",
+    "gameDescription": "{tagline} Play {game} in your browser, from the gamestao studio."
+  },
+  "nav": {
+    "games": "Games",
+    "about": "Studio",
+    "contact": "Contact",
+    "home": "Home",
+    "language": "Language",
+    "menu": "Menu"
+  },
+  "hero": {
+    "kicker": "Independent game studio",
+    "title": "Games that start the moment you click.",
+    "lead": "gamestao is a one-person studio building cross-platform games in TypeScript: a hand-drawn strategy game, a weapon-hoarding roguelite, and a number puzzle. No installer, no launcher — each of them runs in the browser first.",
+    "ctaGames": "See the games",
+    "ctaAbout": "About the studio"
+  },
+  "stats": {
+    "games": "games",
+    "languages": "languages",
+    "installs": "installs required"
+  },
+  "games": {
+    "title": "Three games",
+    "lead": "Different genres, one technical foundation — and all of them a click away.",
+    "details": "Read more",
+    "entries": {
+      "nivara": {
+        "genre": "Turn-based strategy",
+        "tagline": "A hand-drawn card battle over a base you have to tear down.",
+        "summary": "Two bases, a hand of six rotating cards, and ink to spend. Deploy infantry, raise barracks and arrow towers, and break through to the enemy base before the match clock forces a draw.",
+        "intro": "Nivara is a hand-drawn 1v1 strategy game played out on a sheet of notebook paper. You hold six cards that refresh themselves, spend ink to put units and buildings on the field, and push column by column toward the opposing base. Around that battle sits a full meta layer: an open world to campaign in, families and sects to join, and an auction house run entirely by players.",
+        "features": [
+          "A six-card hand that rotates itself — an unused card refreshes after 30 seconds, so you are never stuck holding a dead draw",
+          "Infantry, shield bearers and archers, plus barracks and arrow towers that keep working long after you played them",
+          "Spells that swing a lane: Haste Charge to rush a push, Meteor Strike to erase a 2x2 block",
+          "Upgrade your base up to three times to raise ink regeneration and out-scale your opponent",
+          "An escalating clock — ink accelerates at 3, 6 and 10 minutes, every attack doubles at 13, and the match is drawn at 17",
+          "An open world, families and sects, gacha, equipment, and a player-driven auction house"
+        ],
+        "howTo": [
+          "Spend ink to play cards from your hand of six.",
+          "Units advance up their own column, then cross along the enemy building row.",
+          "Destroy the enemy base before the clock runs the match to a draw."
+        ]
+      },
+      "daydayup": {
+        "genre": "Roguelite shooter",
+        "tagline": "Hoard weapons. Deflect bullets with a sword. Run it again.",
+        "summary": "A top-down roguelite built around its weapons. Guns do what you expect; melee weapons block and deflect incoming fire, which turns every corridor into a question of which hand to use.",
+        "intro": "DayDayUp is a 2D top-down roguelite where the weapon rack is the whole game. Guns, blades, and everything in between — and because melee weapons can block and deflect bullets, a sword is a defensive option rather than a slow gun. Characters are skins: what defines a run is what you picked up in it. Play solo, or bring friends in over the co-op server.",
+        "features": [
+          "A weapon system rather than a weapon list — ranged and melee behave differently enough to change how you move",
+          "Melee blocks and deflects bullets, so closing the distance is a real answer to being shot at",
+          "Characters are cosmetic; a run is defined by what you find, not who you picked",
+          "A deterministic simulation core — which is what makes co-op and replay recording possible at all",
+          "Co-op over a frame-broadcast server, with matchmaking",
+          "A PvP arena, The Seven Districts, alongside the PvE dungeon floors"
+        ],
+        "howTo": [
+          "Move and aim; fire with your ranged weapon, swing or block with your melee.",
+          "Block at the right moment to deflect incoming bullets instead of dodging them.",
+          "Clear the floor, take what dropped, and go one deeper."
+        ]
+      },
+      "sumquest": {
+        "genre": "Number puzzle",
+        "tagline": "Tap two numbers that add up to the target. Beat the clock.",
+        "summary": "A pure, language-free matching puzzle. The board shows a target; find two tiles that sum to it and they vanish. Nineteen hand-tuned levels take the target from 6 all the way to 99.",
+        "intro": "SumQuest is built around a single idea: find two numbers on the board that add up to the target, tap them, and watch them go. There is no tutorial and no wall of text — the rules explain themselves in seconds, in any language. Nineteen hand-tuned levels climb from a target of 6 to a target of 99, and the Daily Challenge hands everyone the same board to fight over.",
+        "features": [
+          "19 hand-tuned levels, with the target climbing from 6 to 99",
+          "Beat the clock — every new target tops your timer back up by 30 seconds",
+          "Three lives and one comeback: watch a short ad to revive once",
+          "Up to three stars a level, so clearing it is never quite the end of it",
+          "A Daily Challenge on a shared seed — the same board for everyone, no lives, pure score",
+          "Zero text by design, and it plays in portrait or landscape, on a desktop or a phone"
+        ],
+        "howTo": [
+          "Read the target number shown above the board.",
+          "Tap two tiles whose values add up to it — they clear.",
+          "Empty the board before the timer reaches zero."
+        ]
+      }
+    }
+  },
+  "platforms": {
+    "web": "Play in browser",
+    "ios": "App Store",
+    "android": "Google Play",
+    "wechat": "WeChat Mini Game",
+    "crazygames": "CrazyGames",
+    "itch": "itch.io"
+  },
+  "platformSoon": "Coming soon",
+  "gamePage": {
+    "availableOn": "Available on",
+    "features": "What is in it",
+    "howTo": "How to play",
+    "screenshots": "Screenshots",
+    "playNow": "Play now",
+    "otherGames": "More from gamestao",
+    "backToGames": "All games"
+  },
+  "about": {
+    "title": "About the studio",
+    "lead": "One developer, three games, and a stack picked so that nothing gets in the way of shipping.",
+    "body": [
+      "gamestao is the studio of Tao Wang, an independent developer. Every game here is built and maintained by one person — design, code, art pipeline, and the servers behind them.",
+      "All three games share a technical foundation: TypeScript and PixiJS on WebGL. That is a deliberate choice. One codebase reaches the browser, iOS, Android and WeChat Mini Games without a rewrite per platform, and a browser build means a game is one click away from being played rather than one download.",
+      "Where a game needs a real backend it has one — authoritative match servers, matchmaking, deterministic simulation, player-driven economies. Nothing here is a prototype left online to rot."
+    ]
+  },
+  "contact": {
+    "title": "Get in touch",
+    "lead": "Bug reports, refund requests, press enquiries, or just to tell me a level was too hard — this address reaches me directly.",
+    "email": "Email the studio"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "lead": "That address does not exist on this site. It may have moved, or it may never have been here.",
+    "cta": "Back to the studio"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "refunds": "Refund Policy",
+    "support": "Support",
+    "rights": "© {year} gamestao. All rights reserved."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "screenshotAlt": "{game} screenshot {n}"
+  }
+}

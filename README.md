@@ -1,0 +1,206 @@
+# gamestao.com
+
+The studio site for [gamestao](https://gamestao.com) — one page per game, plus
+an about and contact section, in eleven languages.
+
+React + TypeScript, **prerendered at build time** into 44 static documents and
+served from Cloudflare Workers static assets. No server runs at request time.
+
+| | |
+|---|---|
+| Games | [Nivara](https://nivara.gamestao.com) · [DayDayUp](https://b.gamestao.com) · [SumQuest](https://c.gamestao.com) |
+| Languages | en · zh · de · fr · it · nl · es · pt · ja · ko · ru |
+| Pages built | 11 locales x (1 home + 3 game pages) = 44, plus `404.html` |
+| Hosting | Cloudflare Worker `gamestao-site`, zone `gamestao.com` |
+
+---
+
+## Why it is prerendered
+
+Client-side translation would leave ten of the eleven language versions
+invisible to a search engine: a crawler sees the English shell and never runs
+the code that swaps the copy. For a marketing site, being found *is* the
+product, so every locale gets a real HTML file with its own `<title>`,
+description, `hreflang` set and JSON-LD.
+
+The React app is still React — it hydrates and the language menu remembers your
+choice — but everything the site actually needs works before, and without,
+JavaScript: navigation, the language menu (a `<details>` element), and the
+screenshot strip (CSS scroll-snap).
+
+## Commands
+
+```bash
+npm install
+npm run dev        # vite dev server; renders client-side, route taken from the URL
+npm run build      # client bundle -> SSR renderer -> 44 pages into dist/
+npm run preview    # serve dist/ exactly as it will be served in production
+npm run typecheck
+npm test           # locale parity + route/head invariants
+```
+
+`npm test` is worth running before any copy change. TypeScript guarantees every
+key exists in all eleven locale files, but only the test suite catches a bullet
+dropped from a translated list, a `{game}` placeholder lost in translation, a
+locale left as a verbatim English copy, or a stray word from the wrong script.
+
+## Layout
+
+```
+src/
+  lib/routes.ts        The route space: locales, games, path <-> route. One source
+                       of truth for the prerenderer and the client.
+  lib/head.ts          Builds each page's <head> as a string: canonical, hreflang,
+                       Open Graph, JSON-LD, and the first-visit language redirect.
+  lib/serialize.ts     Escaping for data embedded in a <script>.
+  lib/page.tsx         PageData + the context every component reads.
+  data/games.ts        The three games: names, accent colours, platform links.
+  data/asset-sizes.json  GENERATED. Intrinsic size of every committed image.
+  data/asset-provenance.json  GENERATED. Which art is real, so the generator
+                       will not overwrite it.
+  i18n/types.ts        The copy contract. Every locale file is checked against it.
+  i18n/locales/*.json  Eleven files, one per language.
+  pages/, components/  The UI.
+  entry-server.tsx     Renders a route to HTML. The build-time surface; also what
+                       the tests import.
+  main.tsx             Hydrates in the browser.
+scripts/
+  prerender.mjs        Shell + renderer -> dist/**/index.html, 404.html, sitemap.xml
+  placeholders.mjs     Generates brand marks and stand-in game artwork
+  import-shots.mjs     Imports a game's real icon, cover and screenshots
+  lib/asset-sizes.mjs  Shared image bookkeeping for both of the above
+wrangler/site.jsonc    Cloudflare Worker config
+```
+
+## Adding or changing things
+
+**Copy** lives only in `src/i18n/locales/*.json`. Add a key to
+`src/i18n/types.ts` first; `npm run typecheck` then names every locale file that
+still needs it.
+
+**A game's platform going live** is one edit in `src/data/games.ts`: change
+`status: 'soon'` to `status: 'live'` and add its `url`. The card badges, the
+game page's download row and the JSON-LD `gamePlatform` all read that table, so
+nothing else needs touching. The type makes `live` require a URL, so a platform
+cannot be advertised as playable without somewhere to send people.
+
+**A new language** is `LOCALES` in `src/lib/routes.ts` plus an `HREFLANG` entry,
+an endonym in `LOCALE_NAMES`, and a locale file. The build picks it up and emits
+four more pages.
+
+**Artwork.** Each game shows a store icon, a cover and four screenshots.
+Real art replaces the generated stand-ins one kind at a time:
+
+```bash
+node scripts/import-shots.mjs nivara   --icon "D:/funny/art/store/icons/ios_appicon_1024.png"   --cover "D:/funny/art/store/icons/play_feature_1024x500.png" --cover-fit contain
+```
+
+Sources are passed on the command line, never listed in this repo — the
+originals live in each game's own checkout and a build here must not depend on a
+sibling working copy. Use `--cover-fit contain` for a composed feature graphic
+(cropping one cuts through its own typography) and the default `cover` for a
+photo or screenshot.
+
+The script records two things besides the images: each file's real pixel size
+in `asset-sizes.json`, so the markup reserves the right box and nothing shifts
+on load; and the fact that the art is real, in `asset-provenance.json`.
+
+```bash
+npm run build:ssr                                     # the generator reads the game table from it
+node scripts/placeholders.mjs                         # fill in whatever is missing
+node scripts/placeholders.mjs --regenerate cover,og   # rebuild one kind
+```
+
+Regeneration is per kind (`icon`, `cover`, `shot`, `og`, `brand`) and never
+touches art marked real, even when `--regenerate` names its kind — `--overwrite-real`
+is the only way to replace imported art with a stand-in. That guard exists
+because the earlier blanket `--force` destroyed SumQuest's imported cover and
+four real screenshots on its first use.
+
+Current state: **Nivara** has its real icon and Play feature graphic,
+**SumQuest** its real icon, marketing cover and four App Store screenshots, and
+**DayDayUp** is entirely on generated stand-ins — it has no store art yet.
+
+## Deploying
+
+CI deploys on every push to `main` once it is switched on. Before the first
+deploy, on `bigtaoo/goodgoodstudy`:
+
+- **Secrets** `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. The existing
+  account-level token already has "Edit Cloudflare Workers", which covers a new
+  Worker — copy the same values used by `bigtaoo/daydayup`, no new token needed.
+  Account `tao.wang.go@gmail.com`.
+- **Variable** `SITE_DEPLOY_ENABLED = true`. The workflow is a no-op until it
+  is set, so pushing code cannot deploy before the secrets exist.
+
+Manually, from the repo root:
+
+```bash
+npm run deploy
+```
+
+### Taking over the apex domain
+
+Verified against live DNS on 2026-09-03:
+
+| Name | Current records | Serves |
+|---|---|---|
+| `gamestao.com` | four A records `185.199.108-111.153`, grey cloud (DNS only) | SumQuest, GitHub Pages |
+| `www.gamestao.com` | CNAME to `bigtaoo.github.io` | SumQuest (301s to the apex) |
+| `c.gamestao.com` | none | — |
+| `studio.gamestao.com` | none | — |
+
+So **both** the apex and `www` are occupied, and GitHub Pages allows exactly
+**one** custom domain per repo. That is what fixes the order below: changing
+SumQuest's Pages domain takes its current URL away the moment it is saved, so
+the Worker has to be deployed and verified *before* that happens, not after.
+
+1. **Deploy this site to a free subdomain.** `studio.gamestao.com` is the
+   checked-in route; the Worker is new, so this touches nothing live. Verify
+   the pages, the language switcher and a 404 there.
+2. **Add `c.gamestao.com`** as a CNAME to `bigtaoo.github.io` in Cloudflare
+   DNS. It resolves but 404s until step 3 — GitHub does not serve a host it has
+   not been told about.
+3. **Move SumQuest.** Set `c.gamestao.com` as the custom domain on
+   `bigtaoo/PIXIJSGAME`'s Pages settings. Its build pipeline does not change.
+   **Verify the game loads and is playable at `c.gamestao.com`.** From here
+   until step 5 the apex serves GitHub's "no site here" page, so keep going.
+4. **Free the apex and www.** Delete the four A records on `gamestao.com` and
+   the `www` CNAME. While they exist, provisioning either as a Worker custom
+   domain fails on a record conflict and takes the whole deploy with it.
+5. **Claim them.** Uncomment the `gamestao.com` and `www.gamestao.com` routes
+   in `wrangler/site.jsonc` and redeploy. Steps 4 and 5 are the only window
+   where the apex is down, so run them back to back.
+6. **Repoint the old links.** CrazyGames, itch.io, store listings and social
+   bios that say `gamestao.com` now land on the studio page rather than the
+   game; update them to `c.gamestao.com`.
+
+Free Universal SSL covers the apex and **one** level of subdomain, so every
+subdomain on this zone must stay single-level (`c.gamestao.com`, never
+`a.b.gamestao.com`).
+
+## Notes worth knowing
+
+- **The accent colours are not decorative choices.** Nivara's and SumQuest's
+  come from the dominant colour of their real store icons, DayDayUp's from the
+  locked element palette in its own `design/13-worldview-art-direction.md`. All
+  three clear 4.5:1 as small text and as a button background, and sit at least
+  54 degrees apart in hue so the three cards stay distinct. `src/data/games.ts`
+  records the reasoning per game.
+- **No web fonts.** The studio ships WeChat Mini Games and so has players in
+  China, where `fonts.googleapis.com` is blocked and would stall the first paint
+  until it times out. System font stacks, with a separate one for CJK.
+- **Language routing.** `hreflang` tags tell search engines about the eleven
+  versions. A small inlined script handles the first visit: it reads
+  `navigator.languages` and redirects, but only when the visitor has no stored
+  choice — the switcher writes `gamestao.lang` to `localStorage`, and an
+  explicit choice always wins. Without that check, someone whose browser is set
+  to German but who deliberately clicked English would be bounced back to German
+  on every click.
+- **Legal pages are not duplicated here.** The studio has one privacy policy,
+  one ToS and one refund policy; they are served by the Nivara client and linked
+  from the footer. Contact for everything is `support@gamestao.com`.
+- **`404.html` is not one of the routes.** It has no URL of its own, carries
+  `noindex`, is absent from the sitemap, and deliberately omits the language
+  redirect — bouncing a mistyped URL to a localised home page would hide the
+  error rather than report it.

@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "tagline": "Studio di videogiochi indipendente",
+    "homeTitle": "gamestao — Studio di videogiochi indipendente",
+    "homeDescription": "Tre giochi multipiattaforma da uno studio di una sola persona: Nivara, uno strategico disegnato a mano, DayDayUp, un roguelite costruito sulle sue armi, e SumQuest, un rompicapo di numeri. Tutti e tre si giocano direttamente nel browser.",
+    "gameTitle": "{game} — gamestao",
+    "gameDescription": "{tagline} Gioca a {game} direttamente nel browser, dallo studio gamestao."
+  },
+  "nav": {
+    "games": "Giochi",
+    "about": "Studio",
+    "contact": "Contatti",
+    "home": "Home",
+    "language": "Lingua",
+    "menu": "Menu"
+  },
+  "hero": {
+    "kicker": "Studio di videogiochi indipendente",
+    "title": "Giochi che partono nel momento in cui clicchi.",
+    "lead": "gamestao è uno studio di una sola persona che costruisce giochi multipiattaforma in TypeScript: uno strategico disegnato a mano, un roguelite in cui si accumulano armi e un rompicapo di numeri. Nessun installer, nessun launcher — ognuno di loro gira prima di tutto nel browser.",
+    "ctaGames": "Guarda i giochi",
+    "ctaAbout": "Sullo studio"
+  },
+  "stats": {
+    "games": "giochi",
+    "languages": "lingue",
+    "installs": "installazioni richieste"
+  },
+  "games": {
+    "title": "Tre giochi",
+    "lead": "Generi diversi, un'unica base tecnica — e tutti a un clic di distanza.",
+    "details": "Scopri di più",
+    "entries": {
+      "nivara": {
+        "genre": "Strategico a turni",
+        "tagline": "Un duello di carte disegnato a mano, per una base da abbattere.",
+        "summary": "Due basi, una mano di sei carte che ruotano e inchiostro da spendere. Schiera fanteria, alza caserme e torri d'arcieri e sfonda fino alla base nemica prima che l'orologio imponga il pari.",
+        "intro": "Nivara è uno strategico 1 contro 1 disegnato a mano, giocato interamente su un foglio di quaderno. Tieni sei carte che si rinnovano da sole, spendi inchiostro per mettere unità ed edifici in campo e spingi colonna per colonna verso la base avversaria. Attorno a quel duello c'è un intero strato meta: un mondo aperto in cui fare campagna, famiglie e sette a cui unirsi e una casa d'aste retta interamente dai giocatori.",
+        "features": [
+          "Una mano di sei carte che ruota da sé — una carta non giocata si rinnova dopo 30 secondi, così non resti mai bloccato con una mano morta",
+          "Fanteria, portatori di scudo e arcieri, più caserme e torri d'arcieri che continuano a lavorare molto dopo essere state giocate",
+          "Incantesimi che ribaltano una corsia: Carica Rapida per accelerare una spinta, Pioggia di Meteore per cancellare un blocco 2x2",
+          "Potenzia la base fino a tre volte per aumentare la rigenerazione di inchiostro e scalare più dell'avversario",
+          "Un orologio che si accende — l'inchiostro accelera a 3, 6 e 10 minuti, ogni attacco raddoppia a 13 e la partita finisce pari a 17",
+          "Un mondo aperto, famiglie e sette, gacha, equipaggiamento e una casa d'aste retta dai giocatori"
+        ],
+        "howTo": [
+          "Spendi inchiostro per giocare carte dalla tua mano di sei.",
+          "Le unità avanzano lungo la propria colonna, poi percorrono la fila di edifici nemica.",
+          "Distruggi la base nemica prima che l'orologio porti la partita al pari."
+        ]
+      },
+      "daydayup": {
+        "genre": "Roguelite sparatutto",
+        "tagline": "Accumula armi. Respingi i proiettili con la spada. Rifallo.",
+        "summary": "Un roguelite dall'alto costruito attorno alle sue armi. Le armi da fuoco fanno quello che ti aspetti; quelle da mischia parano e deviano il fuoco in arrivo, e questo trasforma ogni corridoio in una domanda: quale mano usare?",
+        "intro": "DayDayUp è un roguelite 2D dall'alto in cui la rastrelliera delle armi è tutto il gioco. Armi da fuoco, lame e ogni cosa nel mezzo — e poiché le armi da mischia possono parare e deviare i proiettili, una spada è un'opzione difensiva e non una pistola lenta. I personaggi sono skin: ciò che definisce una partita è quello che vi hai raccolto. Gioca da solo, o porta gli amici tramite il server cooperativo.",
+        "features": [
+          "Un sistema di armi, non un elenco di armi — distanza e mischia si comportano in modo abbastanza diverso da cambiare come ti muovi",
+          "La mischia para e devia i proiettili, quindi accorciare la distanza è una risposta concreta al venire colpito",
+          "I personaggi sono solo estetica; una partita è definita da ciò che trovi, non da chi hai scelto",
+          "Un nucleo di simulazione deterministico — è ciò che rende possibili la cooperativa e la registrazione dei replay",
+          "Cooperativa su un server a diffusione di frame, con matchmaking",
+          "Un'arena PvP, I Sette Distretti, accanto ai piani di dungeon in PvE"
+        ],
+        "howTo": [
+          "Muoviti e mira; spara con l'arma a distanza, colpisci o para con quella da mischia.",
+          "Para al momento giusto per deviare i proiettili invece di schivarli.",
+          "Ripulisci il piano, prendi quello che è caduto e scendi di uno."
+        ]
+      },
+      "sumquest": {
+        "genre": "Rompicapo di numeri",
+        "tagline": "Tocca due numeri la cui somma dà l'obiettivo. Batti il tempo.",
+        "summary": "Un puro rompicapo di abbinamenti che non ha bisogno di lingua. La griglia mostra un obiettivo; trova due tessere la cui somma lo dà e svaniscono. Diciannove livelli calibrati a mano portano l'obiettivo da 6 fino a 99.",
+        "intro": "SumQuest è costruito su una sola idea: trova sulla griglia due numeri la cui somma dà l'obiettivo, toccali e guardali sparire. Non c'è tutorial né muro di testo — le regole si spiegano da sole in pochi secondi, in qualsiasi lingua. Diciannove livelli calibrati a mano salgono da un obiettivo di 6 a uno di 99, e la Sfida Giornaliera consegna a tutti la stessa griglia da contendersi.",
+        "features": [
+          "19 livelli calibrati a mano, con l'obiettivo che sale da 6 a 99",
+          "Contro il tempo — ogni nuovo obiettivo ricarica il timer di 30 secondi",
+          "Tre vite e un ritorno: una breve pubblicità ti fa rivivere una volta",
+          "Fino a tre stelle per livello, così superarlo non è mai davvero la fine",
+          "Una Sfida Giornaliera su seme condiviso — la stessa griglia per tutti, senza vite, solo punteggio",
+          "Zero testo per scelta, e si gioca in verticale o in orizzontale, su computer o su telefono"
+        ],
+        "howTo": [
+          "Leggi il numero obiettivo mostrato sopra la griglia.",
+          "Tocca due tessere i cui valori lo danno — si cancellano.",
+          "Svuota la griglia prima che il timer arrivi a zero."
+        ]
+      }
+    }
+  },
+  "platforms": {
+    "web": "Gioca nel browser",
+    "ios": "App Store",
+    "android": "Google Play",
+    "wechat": "Mini gioco WeChat",
+    "crazygames": "CrazyGames",
+    "itch": "itch.io"
+  },
+  "platformSoon": "Prossimamente",
+  "gamePage": {
+    "availableOn": "Disponibile su",
+    "features": "Cosa contiene",
+    "howTo": "Come si gioca",
+    "screenshots": "Immagini",
+    "playNow": "Gioca ora",
+    "otherGames": "Altro da gamestao",
+    "backToGames": "Tutti i giochi"
+  },
+  "about": {
+    "title": "Sullo studio",
+    "lead": "Uno sviluppatore, tre giochi e uno stack scelto perché niente si metta fra il lavoro e la pubblicazione.",
+    "body": [
+      "gamestao è lo studio di Tao Wang, sviluppatore indipendente. Ogni gioco qui è costruito e mantenuto da una sola persona — design, codice, pipeline artistica e i server che ci stanno dietro.",
+      "Tutti e tre i giochi condividono una base tecnica: TypeScript e PixiJS su WebGL. È una scelta deliberata. Una sola base di codice raggiunge browser, iOS, Android e i mini giochi WeChat senza riscritture per piattaforma, e una build per browser significa che un gioco è a un clic dall'essere giocato invece che a un download.",
+      "Dove un gioco ha bisogno di un vero backend, ce l'ha — server di partita autoritativi, matchmaking, simulazione deterministica, economie rette dai giocatori. Qui non c'è nulla che sia un prototipo lasciato online a marcire."
+    ]
+  },
+  "contact": {
+    "title": "Mettiti in contatto",
+    "lead": "Segnalazioni di bug, richieste di rimborso, domande dalla stampa, o solo per dirmi che un livello era troppo difficile — questo indirizzo arriva direttamente a me.",
+    "email": "Scrivi allo studio"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "lead": "Questo indirizzo non esiste su questo sito. Potrebbe essersi spostato, o non esserci mai stato.",
+    "cta": "Torna allo studio"
+  },
+  "footer": {
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini di servizio",
+    "refunds": "Politica di rimborso",
+    "support": "Assistenza",
+    "rights": "© {year} gamestao. Tutti i diritti riservati."
+  },
+  "a11y": {
+    "skipToContent": "Vai al contenuto",
+    "screenshotAlt": "{game} immagine {n}"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "gamestao-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "gamestao studio homepage — static, prerendered, 11 locales",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run build:client && npm run build:ssr && npm run prerender",
+    "build:client": "vite build --outDir dist",
+    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir .ssr",
+    "prerender": "node scripts/prerender.mjs",
+    "preview": "vite preview --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build:ssr && node --test \"test/*.test.mjs\"",
+    "deploy": "npm run build && wrangler deploy -c wrangler/site.jsonc"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "sharp": "^0.33.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true,
+    "sharp@0.33.5": true
+  }
+}

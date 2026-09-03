@@ -1,0 +1,50 @@
+{
+  // Static hosting (Cloudflare Workers static assets) for the gamestao studio
+  // site. Same Cloudflare account and gamestao.com zone as the three game
+  // clients — mirrors the pattern in funny's design/product/deploy-cloudflare.md.
+  //
+  // Build (outputs dist/, 44 prerendered pages + 404.html + sitemap.xml):
+  //   npm run build
+  // Deploy (from repo root, reads this file):
+  //   npx wrangler deploy -c wrangler/site.jsonc
+  //
+  // routes[].custom_domain=true auto-provisions DNS + edge cert on first deploy.
+  "name": "gamestao-site",
+  "compatibility_date": "2026-09-02",
+
+  "assets": {
+    "directory": "../dist",
+
+    // NOT "single-page-application", which is what the three game clients use.
+    // This site is 44 separate documents, not an SPA: SPA handling would serve
+    // the English home page with a 200 for every mistyped URL, which is a soft
+    // 404 on every wrong path and real damage to how the site is indexed.
+    // "404-page" serves dist/404.html with an actual 404 status.
+    "not_found_handling": "404-page",
+
+    // Serves /de/ from /de/index.html and redirects /de/index.html back to
+    // /de/, so each page has exactly one URL rather than two that both work
+    // and split its ranking.
+    "html_handling": "auto-trailing-slash"
+  },
+
+  "routes": [
+    // A free subdomain, so the first deploy of a brand-new Worker touches
+    // nothing that is already live. Keep it afterwards as a staging alias.
+    { "pattern": "studio.gamestao.com", "custom_domain": true }
+
+    // The apex and www are deliberately NOT here yet.
+    //
+    // Verified against live DNS on 2026-09-03: gamestao.com is four grey-cloud
+    // GitHub Pages A records (185.199.108-111.153) and www.gamestao.com is a
+    // CNAME to bigtaoo.github.io. BOTH currently serve SumQuest, so both
+    // conflict with a Worker custom domain until their records are removed —
+    // and a conflict fails the whole deploy, not just that route.
+    //
+    // See "Taking over the apex domain" in README.md for the ordered move.
+    // When step 4 is reached, add:
+    //
+    // , { "pattern": "gamestao.com", "custom_domain": true }
+    // , { "pattern": "www.gamestao.com", "custom_domain": true }
+  ]
+}

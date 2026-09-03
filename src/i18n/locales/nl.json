@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "tagline": "Onafhankelijke gamestudio",
+    "homeTitle": "gamestao — Onafhankelijke gamestudio",
+    "homeDescription": "Drie platformonafhankelijke games uit een eenmansstudio: Nivara, een met de hand getekend strategiespel, DayDayUp, een roguelite die om zijn wapens is gebouwd, en SumQuest, een cijferpuzzel. Alle drie spelen direct in de browser.",
+    "gameTitle": "{game} — gamestao",
+    "gameDescription": "{tagline} Speel {game} direct in je browser, van studio gamestao."
+  },
+  "nav": {
+    "games": "Games",
+    "about": "Studio",
+    "contact": "Contact",
+    "home": "Home",
+    "language": "Taal",
+    "menu": "Menu"
+  },
+  "hero": {
+    "kicker": "Onafhankelijke gamestudio",
+    "title": "Games die beginnen zodra je klikt.",
+    "lead": "gamestao is een eenmansstudio die platformonafhankelijke games bouwt in TypeScript: een met de hand getekend strategiespel, een roguelite waarin je wapens verzamelt, en een cijferpuzzel. Geen installatie, geen launcher — ze draaien allemaal eerst in de browser.",
+    "ctaGames": "Bekijk de games",
+    "ctaAbout": "Over de studio"
+  },
+  "stats": {
+    "games": "games",
+    "languages": "talen",
+    "installs": "installaties nodig"
+  },
+  "games": {
+    "title": "Drie games",
+    "lead": "Verschillende genres, één technische basis — en alle drie op één klik afstand.",
+    "details": "Lees meer",
+    "entries": {
+      "nivara": {
+        "genre": "Turn-based strategie",
+        "tagline": "Een met de hand getekend kaartduel om een basis die eraan moet.",
+        "summary": "Twee bases, een hand van zes roterende kaarten, en inkt om te besteden. Zet infanterie neer, bouw kazernes en boogtorens, en breek door naar de vijandelijke basis voordat de klok een gelijkspel afdwingt.",
+        "intro": "Nivara is een met de hand getekend 1-tegen-1 strategiespel dat zich volledig op een blaadje schriftpapier afspeelt. Je houdt zes kaarten vast die zichzelf verversen, je besteedt inkt om eenheden en gebouwen op het veld te zetten, en je duwt kolom voor kolom naar de basis van de tegenstander. Rond dat duel ligt een hele metalaag: een open wereld om campagne in te voeren, families en sekten om je bij aan te sluiten, en een veilinghuis dat volledig door spelers wordt gedragen.",
+        "features": [
+          "Een hand van zes kaarten die zichzelf doorrolt — een ongebruikte kaart ververst na 30 seconden, dus je zit nooit vast met een dode hand",
+          "Infanterie, schilddragers en boogschutters, plus kazernes en boogtorens die nog lang doorwerken nadat je ze hebt gespeeld",
+          "Spreuken die een baan kunnen kantelen: Haastcharge om een aanval te versnellen, Meteoorinslag om een blok van 2x2 te wissen",
+          "Waardeer je basis tot drie keer op om je inktregeneratie te verhogen en je tegenstander voorbij te schalen",
+          "Een klok die oploopt — inkt versnelt op 3, 6 en 10 minuten, elke aanval verdubbelt op 13, en op 17 eindigt de partij in remise",
+          "Een open wereld, families en sekten, gacha, uitrusting, en een veilinghuis dat door spelers wordt gedragen"
+        ],
+        "howTo": [
+          "Besteed inkt om kaarten uit je hand van zes te spelen.",
+          "Eenheden lopen hun eigen kolom op en gaan daarna langs de vijandelijke gebouwenrij.",
+          "Vernietig de vijandelijke basis voordat de klok de partij op remise zet."
+        ]
+      },
+      "daydayup": {
+        "genre": "Roguelite shooter",
+        "tagline": "Hamster wapens. Kaats kogels terug met een zwaard. Nog een run.",
+        "summary": "Een top-down roguelite die om zijn wapens is gebouwd. Vuurwapens doen wat je verwacht; meleewapens blokkeren en kaatsen inkomend vuur terug, en daarmee wordt elke gang een vraag: welke hand nu?",
+        "intro": "DayDayUp is een 2D top-down roguelite waarin het wapenrek het hele spel is. Vuurwapens, klingen, en alles daartussenin — en omdat meleewapens kogels kunnen blokkeren en terugkaatsen, is een zwaard een verdedigende optie en geen langzaam pistool. Personages zijn skins: wat een run bepaalt, is wat je erin hebt opgepakt. Speel alleen, of haal vrienden erbij via de coöpserver.",
+        "features": [
+          "Een wapensysteem, geen wapenlijst — afstand en melee gedragen zich verschillend genoeg om je manier van bewegen te veranderen",
+          "Melee blokkeert en kaatst kogels terug, dus de afstand verkleinen is een echt antwoord op beschoten worden",
+          "Personages zijn puur cosmetisch; een run wordt bepaald door wat je vindt, niet door wie je koos",
+          "Een deterministische simulatiekern — die maakt coöp en het opnemen van replays überhaupt mogelijk",
+          "Coöp via een frame-broadcastserver, met matchmaking",
+          "Een PvP-arena, De Zeven Districten, naast de PvE-kerkerverdiepingen"
+        ],
+        "howTo": [
+          "Beweeg en mik; vuur met je afstandswapen, sla of blokkeer met je melee.",
+          "Blokkeer op het juiste moment om kogels terug te kaatsen in plaats van ze te ontwijken.",
+          "Ruim de verdieping leeg, pak op wat is gevallen, en ga er één dieper in."
+        ]
+      },
+      "sumquest": {
+        "genre": "Cijferpuzzel",
+        "tagline": "Tik twee getallen aan die samen het doel vormen. Versla de klok.",
+        "summary": "Een pure koppelpuzzel die geen taal nodig heeft. Het bord toont een doelgetal; vind twee tegels die samen dat getal vormen en ze verdwijnen. Negentien handmatig afgestemde levels tillen het doel van 6 tot 99.",
+        "intro": "SumQuest is om één idee gebouwd: vind twee getallen op het bord die samen het doelgetal vormen, tik ze aan, en kijk hoe ze verdwijnen. Er is geen tutorial en geen muur van tekst — de regels leggen zichzelf in seconden uit, in elke taal. Negentien handmatig afgestemde levels klimmen van een doel van 6 naar een doel van 99, en de Dagelijkse Uitdaging geeft iedereen hetzelfde bord om over te strijden.",
+        "features": [
+          "19 handmatig afgestemde levels, met een doel dat van 6 naar 99 klimt",
+          "Tegen de klok — elk nieuw doel vult je timer weer met 30 seconden aan",
+          "Drie levens en één comeback: een korte advertentie brengt je eenmalig terug",
+          "Tot drie sterren per level, dus een gehaald level is nooit helemaal klaar",
+          "Een Dagelijkse Uitdaging op een gedeelde seed — hetzelfde bord voor iedereen, geen levens, alleen score",
+          "Bewust nul tekst, en speelbaar in staand of liggend, op desktop of telefoon"
+        ],
+        "howTo": [
+          "Lees het doelgetal boven het bord.",
+          "Tik twee tegels aan waarvan de waarden dat getal vormen — ze verdwijnen.",
+          "Maak het bord leeg voordat de timer nul bereikt."
+        ]
+      }
+    }
+  },
+  "platforms": {
+    "web": "Speel in de browser",
+    "ios": "App Store",
+    "android": "Google Play",
+    "wechat": "WeChat Mini Game",
+    "crazygames": "CrazyGames",
+    "itch": "itch.io"
+  },
+  "platformSoon": "Binnenkort",
+  "gamePage": {
+    "availableOn": "Beschikbaar op",
+    "features": "Wat erin zit",
+    "howTo": "Hoe je speelt",
+    "screenshots": "Schermafbeeldingen",
+    "playNow": "Nu spelen",
+    "otherGames": "Meer van gamestao",
+    "backToGames": "Alle games"
+  },
+  "about": {
+    "title": "Over de studio",
+    "lead": "Eén ontwikkelaar, drie games, en een stack die zo is gekozen dat niets het uitbrengen in de weg staat.",
+    "body": [
+      "gamestao is de studio van Tao Wang, een onafhankelijke ontwikkelaar. Elke game hier wordt door één persoon gebouwd en onderhouden — ontwerp, code, artpipeline, en de servers erachter.",
+      "Alle drie de games delen één technische basis: TypeScript en PixiJS op WebGL. Dat is een bewuste keuze. Eén codebase bereikt de browser, iOS, Android en WeChat Mini Games zonder per platform te herschrijven, en een browserbuild betekent dat een game één klik van gespeeld worden af staat in plaats van één download.",
+      "Waar een game een echte backend nodig heeft, heeft hij die — autoritatieve matchservers, matchmaking, deterministische simulatie, economieën die door spelers worden gedragen. Niets hier is een prototype dat online is achtergelaten."
+    ]
+  },
+  "contact": {
+    "title": "Neem contact op",
+    "lead": "Bugmeldingen, verzoeken om terugbetaling, persvragen, of gewoon om me te vertellen dat een level te moeilijk was — dit adres komt direct bij mij aan.",
+    "email": "Mail de studio"
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "lead": "Dit adres bestaat niet op deze site. Misschien is het verhuisd, misschien was het er nooit.",
+    "cta": "Terug naar de studio"
+  },
+  "footer": {
+    "privacy": "Privacybeleid",
+    "terms": "Servicevoorwaarden",
+    "refunds": "Terugbetalingsbeleid",
+    "support": "Ondersteuning",
+    "rights": "© {year} gamestao. Alle rechten voorbehouden."
+  },
+  "a11y": {
+    "skipToContent": "Naar de inhoud",
+    "screenshotAlt": "{game} schermafbeelding {n}"
+  }
+}

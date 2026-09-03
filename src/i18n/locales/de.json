@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "tagline": "Unabhängiges Spielestudio",
+    "homeTitle": "gamestao — Unabhängiges Spielestudio",
+    "homeDescription": "Drei plattformübergreifende Spiele aus einem Ein-Personen-Studio: Nivara, ein handgezeichnetes Strategiespiel, DayDayUp, ein waffengetriebenes Roguelite, und SumQuest, ein Zahlenpuzzle. Alle drei laufen direkt im Browser.",
+    "gameTitle": "{game} — gamestao",
+    "gameDescription": "{tagline} Spiele {game} direkt im Browser, aus dem Studio gamestao."
+  },
+  "nav": {
+    "games": "Spiele",
+    "about": "Studio",
+    "contact": "Kontakt",
+    "home": "Start",
+    "language": "Sprache",
+    "menu": "Menü"
+  },
+  "hero": {
+    "kicker": "Unabhängiges Spielestudio",
+    "title": "Spiele, die mit dem Klick beginnen.",
+    "lead": "gamestao ist ein Ein-Personen-Studio, das plattformübergreifende Spiele in TypeScript baut: ein handgezeichnetes Strategiespiel, ein Roguelite voller Waffen und ein Zahlenpuzzle. Kein Installer, kein Launcher — jedes davon läuft zuerst im Browser.",
+    "ctaGames": "Zu den Spielen",
+    "ctaAbout": "Über das Studio"
+  },
+  "stats": {
+    "games": "Spiele",
+    "languages": "Sprachen",
+    "installs": "Installationen nötig"
+  },
+  "games": {
+    "title": "Drei Spiele",
+    "lead": "Verschiedene Genres, ein technisches Fundament — und alle nur einen Klick entfernt.",
+    "details": "Mehr erfahren",
+    "entries": {
+      "nivara": {
+        "genre": "Rundenbasierte Strategie",
+        "tagline": "Ein handgezeichnetes Kartenduell um eine Basis, die fallen muss.",
+        "summary": "Zwei Basen, eine Hand aus sechs rotierenden Karten und Tinte, die man einteilen muss. Schicke Infanterie los, baue Kasernen und Bogentürme und brich zur feindlichen Basis durch, bevor die Spieluhr ein Remis erzwingt.",
+        "intro": "Nivara ist ein handgezeichnetes 1-gegen-1-Strategiespiel, das sich vollständig auf einem Blatt Notizpapier abspielt. Du hältst sechs Karten, die sich selbst erneuern, gibst Tinte aus, um Einheiten und Gebäude aufs Feld zu setzen, und schiebst Spalte für Spalte auf die gegnerische Basis zu. Um dieses Duell liegt eine ganze Meta-Ebene: eine offene Welt für Feldzüge, Familien und Sekten zum Beitreten und ein Auktionshaus, das komplett von Spielern getragen wird.",
+        "features": [
+          "Eine Sechs-Karten-Hand, die sich selbst dreht — eine ungenutzte Karte erneuert sich nach 30 Sekunden, du sitzt also nie auf einem toten Blatt fest",
+          "Infanterie, Schildträger und Bogenschützen, dazu Kasernen und Bogentürme, die lange weiterarbeiten, nachdem du sie ausgespielt hast",
+          "Zauber, die eine Spur kippen: Eiliger Ansturm für den schnellen Vorstoß, Meteoreinschlag löscht ein 2x2-Feld aus",
+          "Baue deine Basis bis zu dreimal aus, um die Tintenregeneration zu erhöhen und den Gegner zu überskalieren",
+          "Eine Uhr, die eskaliert — Tinte beschleunigt bei 3, 6 und 10 Minuten, bei 13 verdoppelt sich jeder Angriff, bei 17 endet die Partie im Remis",
+          "Eine offene Welt, Familien und Sekten, Gacha, Ausrüstung und ein von Spielern getragenes Auktionshaus"
+        ],
+        "howTo": [
+          "Gib Tinte aus, um Karten aus deiner Hand von sechs zu spielen.",
+          "Einheiten ziehen ihre eigene Spalte hoch und wandern dann die feindliche Gebäudereihe entlang.",
+          "Zerstöre die feindliche Basis, bevor die Uhr die Partie ins Remis laufen lässt."
+        ]
+      },
+      "daydayup": {
+        "genre": "Roguelite-Shooter",
+        "tagline": "Waffen sammeln. Kugeln mit dem Schwert zurückschlagen. Nochmal.",
+        "summary": "Ein Top-down-Roguelite, das um seine Waffen herum gebaut ist. Schusswaffen tun, was man erwartet; Nahkampfwaffen blocken und lenken einfallendes Feuer um — womit jeder Korridor zur Frage wird, welche Hand jetzt dran ist.",
+        "intro": "DayDayUp ist ein 2D-Top-down-Roguelite, in dem das Waffenregal das ganze Spiel ist. Schusswaffen, Klingen und alles dazwischen — und weil Nahkampfwaffen Kugeln blocken und umlenken können, ist ein Schwert eine defensive Option und keine langsame Pistole. Figuren sind Skins: Was einen Durchgang prägt, ist das, was du in ihm gefunden hast. Spiele allein oder hole Freunde über den Koop-Server dazu.",
+        "features": [
+          "Ein Waffensystem, keine Waffenliste — Fernkampf und Nahkampf verhalten sich unterschiedlich genug, um deine Bewegung zu verändern",
+          "Nahkampf blockt und lenkt Kugeln um, damit ist das Verkürzen der Distanz eine echte Antwort auf Beschuss",
+          "Figuren sind rein kosmetisch; ein Durchgang wird davon bestimmt, was du findest, nicht davon, wen du gewählt hast",
+          "Ein deterministischer Simulationskern — erst er macht Koop und Replay-Aufzeichnung überhaupt möglich",
+          "Koop über einen Frame-Broadcast-Server, mit Matchmaking",
+          "Eine PvP-Arena, Die Sieben Bezirke, neben den PvE-Dungeonebenen"
+        ],
+        "howTo": [
+          "Bewegen und zielen; mit der Fernkampfwaffe feuern, mit dem Nahkampf zuschlagen oder blocken.",
+          "Blocke im richtigen Moment, um Kugeln umzulenken, statt ihnen auszuweichen.",
+          "Räume die Ebene, nimm mit, was gefallen ist, und geh eine tiefer."
+        ]
+      },
+      "sumquest": {
+        "genre": "Zahlenpuzzle",
+        "tagline": "Tippe zwei Zahlen, die die Zielzahl ergeben. Schlage die Uhr.",
+        "summary": "Ein reines Zuordnungspuzzle, das ohne Sprache funktioniert. Das Feld zeigt eine Zielzahl; finde zwei Kacheln, die sie in der Summe ergeben, und sie verschwinden. 19 handjustierte Level treiben die Zielzahl von 6 bis hinauf auf 99.",
+        "intro": "SumQuest ist um eine einzige Idee gebaut: Finde zwei Zahlen auf dem Feld, die zusammen die Zielzahl ergeben, tippe sie an und sieh zu, wie sie gehen. Es gibt kein Tutorial und keine Textwand — die Regeln erklären sich in Sekunden, in jeder Sprache. 19 handjustierte Level klettern von einer Zielzahl 6 auf eine Zielzahl 99, und die Tagesherausforderung gibt allen dasselbe Feld zum Kämpfen.",
+        "features": [
+          "19 handjustierte Level, mit einer Zielzahl, die von 6 auf 99 klettert",
+          "Gegen die Uhr — jede neue Zielzahl füllt deinen Timer wieder um 30 Sekunden auf",
+          "Drei Leben und eine Rückkehr: ein kurzer Werbespot belebt dich einmal wieder",
+          "Bis zu drei Sterne pro Level, ein geschaffter Level ist also nie ganz erledigt",
+          "Eine Tagesherausforderung auf gemeinsamem Seed — dasselbe Feld für alle, keine Leben, nur Punkte",
+          "Bewusst ohne Text, spielbar im Hoch- wie im Querformat, am Rechner wie am Handy"
+        ],
+        "howTo": [
+          "Lies die Zielzahl über dem Spielfeld ab.",
+          "Tippe zwei Kacheln an, deren Werte sie ergeben — sie lösen sich auf.",
+          "Räume das Feld, bevor der Timer auf null fällt."
+        ]
+      }
+    }
+  },
+  "platforms": {
+    "web": "Im Browser spielen",
+    "ios": "App Store",
+    "android": "Google Play",
+    "wechat": "WeChat Mini Game",
+    "crazygames": "CrazyGames",
+    "itch": "itch.io"
+  },
+  "platformSoon": "Bald verfügbar",
+  "gamePage": {
+    "availableOn": "Verfügbar auf",
+    "features": "Was drin ist",
+    "howTo": "So wird gespielt",
+    "screenshots": "Screenshots",
+    "playNow": "Jetzt spielen",
+    "otherGames": "Mehr von gamestao",
+    "backToGames": "Alle Spiele"
+  },
+  "about": {
+    "title": "Über das Studio",
+    "lead": "Ein Entwickler, drei Spiele und ein Stack, der so gewählt ist, dass nichts dem Veröffentlichen im Weg steht.",
+    "body": [
+      "gamestao ist das Studio von Tao Wang, einem unabhängigen Entwickler. Jedes Spiel hier wird von einer Person gebaut und gepflegt — Design, Code, Art-Pipeline und die Server dahinter.",
+      "Alle drei Spiele teilen ein technisches Fundament: TypeScript und PixiJS auf WebGL. Das ist eine bewusste Entscheidung. Eine Codebasis erreicht Browser, iOS, Android und WeChat Mini Games ohne Neuschreiben pro Plattform, und ein Browser-Build heißt, dass ein Spiel einen Klick vom Gespieltwerden entfernt ist statt einen Download.",
+      "Wo ein Spiel ein echtes Backend braucht, hat es eines — autoritative Match-Server, Matchmaking, deterministische Simulation, von Spielern getragene Ökonomien. Nichts hier ist ein Prototyp, den man online vergessen hat."
+    ]
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "lead": "Fehlerberichte, Rückerstattungen, Presseanfragen — oder einfach, um mir zu sagen, dass ein Level zu schwer war. Diese Adresse erreicht mich direkt.",
+    "email": "Studio anschreiben"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "lead": "Diese Adresse gibt es auf dieser Seite nicht. Vielleicht ist sie umgezogen, vielleicht war sie nie hier.",
+    "cta": "Zurück zum Studio"
+  },
+  "footer": {
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "refunds": "Rückerstattungsrichtlinie",
+    "support": "Support",
+    "rights": "© {year} gamestao. Alle Rechte vorbehalten."
+  },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen",
+    "screenshotAlt": "{game} Screenshot {n}"
+  }
+}

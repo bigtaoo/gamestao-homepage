@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "tagline": "Studio de jeux indépendant",
+    "homeTitle": "gamestao — Studio de jeux indépendant",
+    "homeDescription": "Trois jeux multiplateformes signés par un studio d'une seule personne : Nivara, un jeu de stratégie dessiné à la main, DayDayUp, un roguelite bâti sur ses armes, et SumQuest, un casse-tête de chiffres. Les trois se jouent directement dans le navigateur.",
+    "gameTitle": "{game} — gamestao",
+    "gameDescription": "{tagline} Jouez à {game} directement dans votre navigateur, par le studio gamestao."
+  },
+  "nav": {
+    "games": "Jeux",
+    "about": "Studio",
+    "contact": "Contact",
+    "home": "Accueil",
+    "language": "Langue",
+    "menu": "Menu"
+  },
+  "hero": {
+    "kicker": "Studio de jeux indépendant",
+    "title": "Des jeux qui démarrent dès le clic.",
+    "lead": "gamestao est un studio d'une seule personne qui fabrique des jeux multiplateformes en TypeScript : un jeu de stratégie dessiné à la main, un roguelite où l'on accumule les armes, et un casse-tête de chiffres. Pas d'installateur, pas de lanceur — chacun tourne d'abord dans le navigateur.",
+    "ctaGames": "Voir les jeux",
+    "ctaAbout": "À propos du studio"
+  },
+  "stats": {
+    "games": "jeux",
+    "languages": "langues",
+    "installs": "installation requise"
+  },
+  "games": {
+    "title": "Trois jeux",
+    "lead": "Des genres différents, une seule base technique — et tous à un clic.",
+    "details": "En savoir plus",
+    "entries": {
+      "nivara": {
+        "genre": "Stratégie au tour par tour",
+        "tagline": "Un duel de cartes dessiné à la main, autour d'une base à démolir.",
+        "summary": "Deux bases, une main de six cartes qui tournent, et de l'encre à dépenser. Déployez de l'infanterie, dressez casernes et tours d'archers, et percez jusqu'à la base adverse avant que l'horloge n'impose le match nul.",
+        "intro": "Nivara est un jeu de stratégie en 1 contre 1 dessiné à la main, qui se déroule entièrement sur une feuille de cahier. Vous tenez six cartes qui se renouvellent d'elles-mêmes, vous dépensez de l'encre pour poser unités et bâtiments sur le terrain, et vous poussez colonne par colonne vers la base adverse. Autour de ce duel se déploie toute une méta : un monde ouvert où mener campagne, des familles et des sectes à rejoindre, et un hôtel des ventes entièrement tenu par les joueurs.",
+        "features": [
+          "Une main de six cartes qui tourne toute seule — une carte non jouée se renouvelle au bout de 30 secondes, vous ne restez donc jamais coincé sur une main morte",
+          "Infanterie, porteurs de bouclier et archers, plus des casernes et des tours d'archers qui continuent de travailler longtemps après avoir été posées",
+          "Des sorts qui font basculer une voie : Charge rapide pour précipiter une poussée, Pluie de météores pour effacer un carré de 2x2",
+          "Améliorez votre base jusqu'à trois fois pour accélérer la régénération d'encre et prendre l'ascendant",
+          "Une horloge qui s'emballe — l'encre accélère à 3, 6 et 10 minutes, chaque attaque double à 13, et la partie est déclarée nulle à 17",
+          "Un monde ouvert, des familles et des sectes, du gacha, de l'équipement, et un hôtel des ventes tenu par les joueurs"
+        ],
+        "howTo": [
+          "Dépensez de l'encre pour jouer des cartes depuis votre main de six.",
+          "Les unités avancent dans leur propre colonne, puis longent la rangée de bâtiments adverse.",
+          "Détruisez la base adverse avant que l'horloge ne mène la partie au nul."
+        ]
+      },
+      "daydayup": {
+        "genre": "Roguelite de tir",
+        "tagline": "Amassez des armes. Renvoyez les balles à l'épée. Recommencez.",
+        "summary": "Un roguelite en vue de dessus bâti sur ses armes. Les armes à feu font ce qu'on attend d'elles ; les armes de mêlée bloquent et renvoient les tirs, ce qui transforme chaque couloir en une question : quelle main utiliser ?",
+        "intro": "DayDayUp est un roguelite 2D en vue de dessus où le râtelier d'armes est tout le jeu. Des armes à feu, des lames, et tout ce qu'il y a entre les deux — et comme les armes de mêlée peuvent bloquer et renvoyer les balles, une épée est une option défensive et non un pistolet lent. Les personnages sont des habillages : ce qui définit une partie, c'est ce que vous y avez ramassé. Jouez en solo, ou faites venir des amis via le serveur coopératif.",
+        "features": [
+          "Un système d'armes, pas une liste d'armes — la distance et la mêlée se comportent assez différemment pour changer vos déplacements",
+          "La mêlée bloque et renvoie les balles : réduire la distance devient une vraie réponse au fait d'être pris pour cible",
+          "Les personnages sont purement cosmétiques ; une partie se définit par ce que vous trouvez, pas par qui vous avez choisi",
+          "Un cœur de simulation déterministe — c'est lui qui rend possibles la coopération et l'enregistrement des parties",
+          "Coopération via un serveur de diffusion de trames, avec matchmaking",
+          "Une arène PvP, Les Sept Districts, à côté des étages de donjon en PvE"
+        ],
+        "howTo": [
+          "Déplacez-vous et visez ; tirez avec votre arme à distance, frappez ou bloquez avec votre arme de mêlée.",
+          "Bloquez au bon moment pour renvoyer les balles au lieu de les esquiver.",
+          "Nettoyez l'étage, prenez ce qui est tombé, et descendez d'un cran."
+        ]
+      },
+      "sumquest": {
+        "genre": "Casse-tête de chiffres",
+        "tagline": "Touchez deux nombres dont la somme fait la cible. Battez l'horloge.",
+        "summary": "Un casse-tête d'association pur, qui se passe de langue. Le plateau affiche une cible ; trouvez deux tuiles dont la somme la donne et elles disparaissent. Dix-neuf niveaux réglés à la main portent la cible de 6 jusqu'à 99.",
+        "intro": "SumQuest est bâti sur une seule idée : trouver sur le plateau deux nombres dont la somme fait la cible, les toucher, et les regarder partir. Pas de tutoriel, pas de mur de texte — les règles s'expliquent en quelques secondes, dans n'importe quelle langue. Dix-neuf niveaux réglés à la main grimpent d'une cible de 6 à une cible de 99, et le Défi quotidien donne à tout le monde le même plateau à disputer.",
+        "features": [
+          "19 niveaux réglés à la main, avec une cible qui grimpe de 6 à 99",
+          "Contre l'horloge — chaque nouvelle cible remonte votre minuteur de 30 secondes",
+          "Trois vies et un retour : une courte publicité vous ressuscite une fois",
+          "Jusqu'à trois étoiles par niveau, un niveau franchi n'est donc jamais tout à fait fini",
+          "Un Défi quotidien sur une graine partagée — le même plateau pour tous, sans vies, au score pur",
+          "Zéro texte par choix, et jouable en portrait comme en paysage, sur ordinateur comme sur téléphone"
+        ],
+        "howTo": [
+          "Lisez le nombre cible affiché au-dessus du plateau.",
+          "Touchez deux tuiles dont les valeurs le donnent — elles s'effacent.",
+          "Videz le plateau avant que le minuteur n'atteigne zéro."
+        ]
+      }
+    }
+  },
+  "platforms": {
+    "web": "Jouer dans le navigateur",
+    "ios": "App Store",
+    "android": "Google Play",
+    "wechat": "Mini-jeu WeChat",
+    "crazygames": "CrazyGames",
+    "itch": "itch.io"
+  },
+  "platformSoon": "Bientôt disponible",
+  "gamePage": {
+    "availableOn": "Disponible sur",
+    "features": "Ce qu'il contient",
+    "howTo": "Comment jouer",
+    "screenshots": "Captures d'écran",
+    "playNow": "Jouer maintenant",
+    "otherGames": "Plus de gamestao",
+    "backToGames": "Tous les jeux"
+  },
+  "about": {
+    "title": "À propos du studio",
+    "lead": "Un développeur, trois jeux, et une pile technique choisie pour que rien ne freine la sortie.",
+    "body": [
+      "gamestao est le studio de Tao Wang, développeur indépendant. Chaque jeu présenté ici est construit et maintenu par une seule personne — conception, code, chaîne graphique, et les serveurs qui les font tourner.",
+      "Les trois jeux partagent une même base technique : TypeScript et PixiJS sur WebGL. C'est un choix délibéré. Une seule base de code atteint le navigateur, iOS, Android et les mini-jeux WeChat sans réécriture par plateforme, et une version navigateur signifie qu'un jeu est à un clic d'être joué plutôt qu'à un téléchargement.",
+      "Là où un jeu a besoin d'un vrai serveur, il en a un — serveurs de partie autoritaires, matchmaking, simulation déterministe, économies tenues par les joueurs. Rien ici n'est un prototype laissé en ligne à l'abandon."
+    ]
+  },
+  "contact": {
+    "title": "Prendre contact",
+    "lead": "Rapports de bug, demandes de remboursement, questions de presse, ou simplement pour me dire qu'un niveau était trop dur — cette adresse me joint directement.",
+    "email": "Écrire au studio"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "lead": "Cette adresse n'existe pas sur ce site. Elle a peut-être changé de place, ou n'a jamais existé.",
+    "cta": "Retour au studio"
+  },
+  "footer": {
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "refunds": "Politique de remboursement",
+    "support": "Assistance",
+    "rights": "© {year} gamestao. Tous droits réservés."
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu",
+    "screenshotAlt": "{game} capture d'écran {n}"
+  }
+}

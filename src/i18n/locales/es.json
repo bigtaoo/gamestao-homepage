@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "tagline": "Estudio de videojuegos independiente",
+    "homeTitle": "gamestao — Estudio de videojuegos independiente",
+    "homeDescription": "Tres juegos multiplataforma de un estudio de una sola persona: Nivara, una estrategia dibujada a mano; DayDayUp, un roguelite construido sobre sus armas; y SumQuest, un rompecabezas numérico. Los tres se juegan directamente en el navegador.",
+    "gameTitle": "{game} — gamestao",
+    "gameDescription": "{tagline} Juega a {game} directamente en tu navegador, del estudio gamestao."
+  },
+  "nav": {
+    "games": "Juegos",
+    "about": "Estudio",
+    "contact": "Contacto",
+    "home": "Inicio",
+    "language": "Idioma",
+    "menu": "Menú"
+  },
+  "hero": {
+    "kicker": "Estudio de videojuegos independiente",
+    "title": "Juegos que arrancan en el momento del clic.",
+    "lead": "gamestao es un estudio de una sola persona que construye juegos multiplataforma en TypeScript: una estrategia dibujada a mano, un roguelite en el que se acumulan armas y un rompecabezas numérico. Sin instalador y sin lanzador: cada uno corre primero en el navegador.",
+    "ctaGames": "Ver los juegos",
+    "ctaAbout": "Sobre el estudio"
+  },
+  "stats": {
+    "games": "juegos",
+    "languages": "idiomas",
+    "installs": "instalaciones necesarias"
+  },
+  "games": {
+    "title": "Tres juegos",
+    "lead": "Géneros distintos, una sola base técnica, y todos a un clic de distancia.",
+    "details": "Saber más",
+    "entries": {
+      "nivara": {
+        "genre": "Estrategia por turnos",
+        "tagline": "Un duelo de cartas dibujado a mano por una base que hay que derribar.",
+        "summary": "Dos bases, una mano de seis cartas que rotan y tinta que gastar. Despliega infantería, levanta cuarteles y torres de arqueros, y abre paso hasta la base enemiga antes de que el reloj fuerce el empate.",
+        "intro": "Nivara es un juego de estrategia 1 contra 1 dibujado a mano que se desarrolla por completo sobre una hoja de cuaderno. Sostienes seis cartas que se renuevan solas, gastas tinta para poner unidades y edificios en el campo, y empujas columna a columna hacia la base rival. Alrededor de ese duelo hay toda una capa meta: un mundo abierto donde hacer campaña, familias y sectas a las que unirse, y una casa de subastas sostenida por completo por los jugadores.",
+        "features": [
+          "Una mano de seis cartas que rota sola: una carta sin usar se renueva a los 30 segundos, así que nunca te quedas atascado con una mano muerta",
+          "Infantería, portadores de escudo y arqueros, más cuarteles y torres de arqueros que siguen trabajando mucho después de haberlos jugado",
+          "Hechizos que voltean un carril: Carga Veloz para acelerar un avance, Lluvia de Meteoros para borrar un bloque de 2x2",
+          "Mejora tu base hasta tres veces para aumentar la regeneración de tinta y escalar por encima del rival",
+          "Un reloj que se acelera: la tinta sube a los 3, 6 y 10 minutos, cada ataque se duplica a los 13, y a los 17 la partida acaba en empate",
+          "Un mundo abierto, familias y sectas, gacha, equipo y una casa de subastas movida por los jugadores"
+        ],
+        "howTo": [
+          "Gasta tinta para jugar cartas de tu mano de seis.",
+          "Las unidades avanzan por su propia columna y luego recorren la fila de edificios enemiga.",
+          "Destruye la base enemiga antes de que el reloj lleve la partida al empate."
+        ]
+      },
+      "daydayup": {
+        "genre": "Roguelite de disparos",
+        "tagline": "Acumula armas. Devuelve las balas con la espada. Otra partida.",
+        "summary": "Un roguelite de vista superior construido alrededor de sus armas. Las armas de fuego hacen lo que esperas; las de cuerpo a cuerpo bloquean y desvían el fuego entrante, y eso convierte cada pasillo en una pregunta: ¿qué mano usar?",
+        "intro": "DayDayUp es un roguelite 2D de vista superior en el que el armero es todo el juego. Armas de fuego, filos y todo lo que hay en medio; y como las armas de cuerpo a cuerpo pueden bloquear y desviar balas, una espada es una opción defensiva y no una pistola lenta. Los personajes son aspectos: lo que define una partida es lo que has recogido en ella. Juega en solitario o trae amigos a través del servidor cooperativo.",
+        "features": [
+          "Un sistema de armas, no una lista de armas: la distancia y el cuerpo a cuerpo se comportan de forma lo bastante distinta para cambiar cómo te mueves",
+          "El cuerpo a cuerpo bloquea y desvía balas, así que acortar la distancia es una respuesta real a que te disparen",
+          "Los personajes son puramente estéticos; una partida la define lo que encuentras, no a quién elegiste",
+          "Un núcleo de simulación determinista: es lo que hace posibles el cooperativo y la grabación de repeticiones",
+          "Cooperativo sobre un servidor de difusión de fotogramas, con emparejamiento",
+          "Una arena PvP, Los Siete Distritos, junto a los pisos de mazmorra en PvE"
+        ],
+        "howTo": [
+          "Muévete y apunta; dispara con el arma a distancia, golpea o bloquea con la de cuerpo a cuerpo.",
+          "Bloquea en el momento justo para desviar las balas en lugar de esquivarlas.",
+          "Limpia el piso, coge lo que haya caído y baja uno más."
+        ]
+      },
+      "sumquest": {
+        "genre": "Rompecabezas numérico",
+        "tagline": "Toca dos números que sumen el objetivo. Vence al reloj.",
+        "summary": "Un rompecabezas de emparejar puro, que no necesita idioma. El tablero muestra un objetivo; encuentra dos fichas que lo sumen y desaparecen. Diecinueve niveles ajustados a mano llevan el objetivo desde 6 hasta 99.",
+        "intro": "SumQuest está construido sobre una sola idea: encuentra en el tablero dos números que sumen el objetivo, tócalos y míralos desaparecer. No hay tutorial ni muros de texto: las reglas se explican solas en segundos, en cualquier idioma. Diecinueve niveles ajustados a mano suben de un objetivo de 6 a uno de 99, y el Reto Diario da a todo el mundo el mismo tablero por el que competir.",
+        "features": [
+          "19 niveles ajustados a mano, con un objetivo que sube de 6 a 99",
+          "Contra el reloj: cada objetivo nuevo te devuelve 30 segundos al temporizador",
+          "Tres vidas y una vuelta: un anuncio corto te revive una vez",
+          "Hasta tres estrellas por nivel, así que superarlo nunca es del todo el final",
+          "Un Reto Diario con semilla compartida: el mismo tablero para todos, sin vidas, solo puntuación",
+          "Cero texto por diseño, y se juega en vertical o en horizontal, en ordenador o en móvil"
+        ],
+        "howTo": [
+          "Lee el número objetivo que aparece sobre el tablero.",
+          "Toca dos fichas cuyos valores lo sumen: se eliminan.",
+          "Vacía el tablero antes de que el temporizador llegue a cero."
+        ]
+      }
+    }
+  },
+  "platforms": {
+    "web": "Jugar en el navegador",
+    "ios": "App Store",
+    "android": "Google Play",
+    "wechat": "Minijuego de WeChat",
+    "crazygames": "CrazyGames",
+    "itch": "itch.io"
+  },
+  "platformSoon": "Muy pronto",
+  "gamePage": {
+    "availableOn": "Disponible en",
+    "features": "Qué incluye",
+    "howTo": "Cómo se juega",
+    "screenshots": "Capturas",
+    "playNow": "Jugar ahora",
+    "otherGames": "Más de gamestao",
+    "backToGames": "Todos los juegos"
+  },
+  "about": {
+    "title": "Sobre el estudio",
+    "lead": "Un desarrollador, tres juegos y una pila técnica elegida para que nada se interponga en el camino de publicar.",
+    "body": [
+      "gamestao es el estudio de Tao Wang, desarrollador independiente. Cada juego que hay aquí lo construye y lo mantiene una sola persona: diseño, código, canalización de arte y los servidores que hay detrás.",
+      "Los tres juegos comparten una misma base técnica: TypeScript y PixiJS sobre WebGL. Es una decisión deliberada. Un solo código llega al navegador, a iOS, a Android y a los minijuegos de WeChat sin reescribir nada por plataforma, y una versión para navegador significa que un juego está a un clic de ser jugado en lugar de a una descarga.",
+      "Donde un juego necesita un servidor de verdad, lo tiene: servidores de partida autoritativos, emparejamiento, simulación determinista, economías movidas por los jugadores. Aquí no hay ningún prototipo abandonado en línea."
+    ]
+  },
+  "contact": {
+    "title": "Ponte en contacto",
+    "lead": "Informes de errores, solicitudes de reembolso, consultas de prensa, o simplemente para decirme que un nivel era demasiado difícil: esta dirección llega directamente a mí.",
+    "email": "Escribir al estudio"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "lead": "Esa dirección no existe en este sitio. Puede que se haya movido, o que nunca haya estado aquí.",
+    "cta": "Volver al estudio"
+  },
+  "footer": {
+    "privacy": "Política de privacidad",
+    "terms": "Términos del servicio",
+    "refunds": "Política de reembolsos",
+    "support": "Soporte",
+    "rights": "© {year} gamestao. Todos los derechos reservados."
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido",
+    "screenshotAlt": "{game} captura {n}"
+  }
+}

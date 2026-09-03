@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "tagline": "Estúdio de jogos independente",
+    "homeTitle": "gamestao — Estúdio de jogos independente",
+    "homeDescription": "Três jogos multiplataforma de um estúdio de uma só pessoa: Nivara, uma estratégia desenhada à mão; DayDayUp, um roguelite construído em torno das suas armas; e SumQuest, um quebra-cabeça de números. Todos os três rodam direto no navegador.",
+    "gameTitle": "{game} — gamestao",
+    "gameDescription": "{tagline} Jogue {game} direto no navegador, do estúdio gamestao."
+  },
+  "nav": {
+    "games": "Jogos",
+    "about": "Estúdio",
+    "contact": "Contato",
+    "home": "Início",
+    "language": "Idioma",
+    "menu": "Menu"
+  },
+  "hero": {
+    "kicker": "Estúdio de jogos independente",
+    "title": "Jogos que começam no instante do clique.",
+    "lead": "O gamestao é um estúdio de uma só pessoa que constrói jogos multiplataforma em TypeScript: uma estratégia desenhada à mão, um roguelite em que se acumulam armas e um quebra-cabeça de números. Sem instalador, sem launcher — cada um deles roda primeiro no navegador.",
+    "ctaGames": "Ver os jogos",
+    "ctaAbout": "Sobre o estúdio"
+  },
+  "stats": {
+    "games": "jogos",
+    "languages": "idiomas",
+    "installs": "instalações necessárias"
+  },
+  "games": {
+    "title": "Três jogos",
+    "lead": "Gêneros diferentes, uma só base técnica — e todos a um clique de distância.",
+    "details": "Saiba mais",
+    "entries": {
+      "nivara": {
+        "genre": "Estratégia por turnos",
+        "tagline": "Um duelo de cartas desenhado à mão por uma base que precisa cair.",
+        "summary": "Duas bases, uma mão de seis cartas que giram e tinta para gastar. Mande a infantaria, levante quartéis e torres de arqueiros, e abra caminho até a base inimiga antes que o relógio force o empate.",
+        "intro": "Nivara é um jogo de estratégia 1 contra 1 desenhado à mão, disputado inteiramente sobre uma folha de caderno. Você segura seis cartas que se renovam sozinhas, gasta tinta para pôr unidades e construções em campo, e avança coluna por coluna até a base do adversário. Em volta desse duelo há uma camada meta completa: um mundo aberto para campanhas, famílias e seitas para entrar, e uma casa de leilões sustentada inteiramente pelos jogadores.",
+        "features": [
+          "Uma mão de seis cartas que gira sozinha — uma carta não usada se renova depois de 30 segundos, então você nunca fica preso a uma mão morta",
+          "Infantaria, portadores de escudo e arqueiros, mais quartéis e torres de arqueiros que continuam trabalhando muito depois de você tê-los jogado",
+          "Feitiços que viram uma faixa: Carga Veloz para acelerar um avanço, Chuva de Meteoros para apagar um bloco de 2x2",
+          "Melhore sua base até três vezes para aumentar a regeneração de tinta e escalar acima do adversário",
+          "Um relógio que acelera — a tinta ganha ritmo aos 3, 6 e 10 minutos, todo ataque dobra aos 13, e aos 17 a partida termina empatada",
+          "Um mundo aberto, famílias e seitas, gacha, equipamento e uma casa de leilões movida pelos jogadores"
+        ],
+        "howTo": [
+          "Gaste tinta para jogar cartas da sua mão de seis.",
+          "As unidades avançam pela própria coluna e depois percorrem a fileira de construções inimiga.",
+          "Destrua a base inimiga antes que o relógio leve a partida ao empate."
+        ]
+      },
+      "daydayup": {
+        "genre": "Roguelite de tiro",
+        "tagline": "Acumule armas. Rebata balas com a espada. De novo.",
+        "summary": "Um roguelite de visão superior construído em torno das suas armas. As armas de fogo fazem o que você espera; as de corpo a corpo bloqueiam e desviam o tiro que vem, e isso transforma cada corredor numa pergunta: qual mão usar?",
+        "intro": "DayDayUp é um roguelite 2D de visão superior em que o arsenal é o jogo inteiro. Armas de fogo, lâminas e tudo que há no meio — e como as armas de corpo a corpo podem bloquear e desviar balas, uma espada é uma opção defensiva e não uma pistola lenta. Os personagens são skins: o que define uma run é o que você pegou nela. Jogue sozinho, ou traga amigos pelo servidor cooperativo.",
+        "features": [
+          "Um sistema de armas, não uma lista de armas — distância e corpo a corpo se comportam de forma diferente o bastante para mudar como você se move",
+          "O corpo a corpo bloqueia e desvia balas, então encurtar a distância é uma resposta real a estar sob fogo",
+          "Personagens são puramente cosméticos; uma run é definida pelo que você encontra, não por quem você escolheu",
+          "Um núcleo de simulação determinístico — é ele que torna possíveis o cooperativo e a gravação de replays",
+          "Cooperativo sobre um servidor de difusão de quadros, com matchmaking",
+          "Uma arena PvP, Os Sete Distritos, ao lado dos andares de masmorra em PvE"
+        ],
+        "howTo": [
+          "Mova-se e mire; atire com a arma de distância, golpeie ou bloqueie com a de corpo a corpo.",
+          "Bloqueie no momento certo para desviar as balas em vez de esquivar delas.",
+          "Limpe o andar, pegue o que caiu, e desça mais um."
+        ]
+      },
+      "sumquest": {
+        "genre": "Quebra-cabeça de números",
+        "tagline": "Toque dois números que somem o alvo. Vença o relógio.",
+        "summary": "Um quebra-cabeça de pares puro, que dispensa idioma. O tabuleiro mostra um alvo; encontre duas peças que o somem e elas desaparecem. Dezenove fases ajustadas à mão levam o alvo de 6 até 99.",
+        "intro": "O SumQuest é construído sobre uma única ideia: encontrar no tabuleiro dois números que somem o alvo, tocá-los e vê-los sair. Não há tutorial nem parede de texto — as regras se explicam em segundos, em qualquer idioma. Dezenove fases ajustadas à mão sobem de um alvo de 6 para um alvo de 99, e o Desafio Diário entrega a todos o mesmo tabuleiro para disputar.",
+        "features": [
+          "19 fases ajustadas à mão, com o alvo subindo de 6 até 99",
+          "Contra o relógio — cada novo alvo devolve 30 segundos ao seu cronômetro",
+          "Três vidas e uma volta: um anúncio curto revive você uma vez",
+          "Até três estrelas por fase, então passar dela nunca é bem o fim",
+          "Um Desafio Diário com semente compartilhada — o mesmo tabuleiro para todos, sem vidas, só pontuação",
+          "Zero texto por decisão de projeto, e joga em retrato ou paisagem, no computador ou no celular"
+        ],
+        "howTo": [
+          "Leia o número alvo mostrado acima do tabuleiro.",
+          "Toque duas peças cujos valores o somem — elas são eliminadas.",
+          "Esvazie o tabuleiro antes que o cronômetro chegue a zero."
+        ]
+      }
+    }
+  },
+  "platforms": {
+    "web": "Jogar no navegador",
+    "ios": "App Store",
+    "android": "Google Play",
+    "wechat": "Minijogo do WeChat",
+    "crazygames": "CrazyGames",
+    "itch": "itch.io"
+  },
+  "platformSoon": "Em breve",
+  "gamePage": {
+    "availableOn": "Disponível em",
+    "features": "O que tem nele",
+    "howTo": "Como jogar",
+    "screenshots": "Capturas de tela",
+    "playNow": "Jogar agora",
+    "otherGames": "Mais do gamestao",
+    "backToGames": "Todos os jogos"
+  },
+  "about": {
+    "title": "Sobre o estúdio",
+    "lead": "Um desenvolvedor, três jogos e uma pilha técnica escolhida para que nada fique no caminho de publicar.",
+    "body": [
+      "O gamestao é o estúdio de Tao Wang, desenvolvedor independente. Todo jogo aqui é construído e mantido por uma só pessoa — design, código, pipeline de arte e os servidores por trás deles.",
+      "Os três jogos compartilham uma mesma base técnica: TypeScript e PixiJS sobre WebGL. É uma escolha deliberada. Um único código alcança o navegador, o iOS, o Android e os minijogos do WeChat sem reescrever nada por plataforma, e uma build de navegador significa que um jogo está a um clique de ser jogado, não a um download.",
+      "Onde um jogo precisa de um backend de verdade, ele tem — servidores de partida autoritativos, matchmaking, simulação determinística, economias movidas pelos jogadores. Nada aqui é protótipo deixado no ar para apodrecer."
+    ]
+  },
+  "contact": {
+    "title": "Entre em contato",
+    "lead": "Relatos de bug, pedidos de reembolso, contatos de imprensa, ou só para me dizer que uma fase estava difícil demais — este endereço chega direto a mim.",
+    "email": "Escrever ao estúdio"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "lead": "Esse endereço não existe neste site. Pode ter mudado de lugar, ou nunca ter estado aqui.",
+    "cta": "Voltar ao estúdio"
+  },
+  "footer": {
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço",
+    "refunds": "Política de Reembolso",
+    "support": "Suporte",
+    "rights": "© {year} gamestao. Todos os direitos reservados."
+  },
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo",
+    "screenshotAlt": "{game} captura {n}"
+  }
+}

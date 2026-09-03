@@ -1,0 +1,20 @@
+# Cloudflare Workers static-assets response headers (see wrangler/site.jsonc).
+
+# Vite puts a content hash in every filename under /assets/, so these can be
+# cached forever — a new build produces new names rather than new contents.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  # HTML must revalidate, or a deploy stays invisible behind an edge cache for
+  # as long as the TTL. The documents are small; the assets are what has bulk.
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  # 'unsafe-inline' for scripts is unavoidable: the first-visit language
+  # redirect and the hydration payload are inlined per page, so their hashes
+  # differ across all 44 documents and cannot be pinned in one static rule.
+  # It still buys the restrictions that matter here — no third-party script
+  # origin, no framing, no plugin content — on a site that takes no user input.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'

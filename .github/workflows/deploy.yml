@@ -1,0 +1,44 @@
+name: Deploy site to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# A later push supersedes an in-flight deploy; there is no value in racing two
+# builds of the same static site to the same Worker.
+concurrency:
+  group: site-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    # Off until the repo variable is set, so the first push cannot deploy
+    # before the Cloudflare secrets exist. Mirrors CLIENT_DEPLOY_ENABLED on
+    # bigtaoo/daydayup.
+    if: vars.SITE_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Both gates run before the build. The locale suite is the one that
+      # matters most here: it is the only thing checking that ten translated
+      # files still line up with English, and nobody reviews all eleven by eye.
+      - run: npm run typecheck
+      - run: npm test
+
+      - run: npm run build
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy -c wrangler/site.jsonc
