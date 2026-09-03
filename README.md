@@ -357,8 +357,16 @@ gh workflow run ci.yml --repo bigtaoo/goodgoodstudy --ref main
 npm run smoke -- https://gamestao.com
 ```
 
-`www` only 301s to the apex, so it is not worth a full pass — one status
-code is enough:
+`www` does **not** 301 any more. Under GitHub Pages it did; a Worker custom
+domain answers with the content instead, so `www.gamestao.com` serves the same
+44 pages and every page has two URLs. The canonical tags all name the apex, so
+this is SEO-safe rather than ideal. If you want a real redirect, the way to get
+one on this zone is a Cloudflare **Redirect Rule** against a proxied
+placeholder record — the AAAA `100::` trick already in use for
+`privacy.gamestao.com` and `support.gamestao.com` — which means dropping the
+`www` route from `site.jsonc`. Worth doing separately, not during a takeover.
+
+Either way it is worth one status code:
 
 ```bash
 curl -s -o /dev/null -w "www %{http_code}\n" -L https://www.gamestao.com/

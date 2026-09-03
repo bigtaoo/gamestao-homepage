@@ -35,13 +35,28 @@
     // anywhere else would have every page name a canonical URL that resolves
     // to something other than itself.
     { "pattern": "gamestao.com", "custom_domain": true },
+
+    // www serves the site directly here - it does NOT redirect. Under GitHub
+    // Pages it 301'd to the apex, which is no longer what happens: a Worker
+    // custom domain answers with the content. So every page has two URLs. The
+    // canonical tags all name the apex, so crawlers consolidate on it and this
+    // is SEO-safe, but a real 301 would be cleaner. The idiomatic way to get
+    // one on this zone is a Cloudflare Redirect Rule against a proxied
+    // placeholder record - the same AAAA 100:: trick already used for
+    // privacy.gamestao.com and support.gamestao.com - which means dropping
+    // this route. Deliberately not done in the same change as the takeover.
     { "pattern": "www.gamestao.com", "custom_domain": true },
 
-    // Kept as a staging alias. It was the first deploy target while the apex
-    // was still GitHub Pages, and it stays useful for exactly that: somewhere
-    // to look at a build without touching what visitors hit. Note its pages
-    // still declare the apex as canonical, which is the correct behaviour for
-    // a staging host - crawlers are pointed away from it.
+    // This was the safe first deploy target while the apex was still GitHub
+    // Pages: somewhere to prove the Worker served all 44 pages before claiming
+    // anything live. That job is done.
+    //
+    // It is NOT a staging environment, and an earlier version of this comment
+    // wrongly called it one. Same Worker, same deployment, same version - one
+    // deploy updates all of these hostnames at once, so this shows exactly
+    // what the apex shows and isolates nothing. It is kept only because the
+    // apex takeover is still in flight and this is the one URL that works
+    // while that happens. Once the apex is serving, delete this line.
     { "pattern": "studio.gamestao.com", "custom_domain": true }
 
     // Prerequisite, checked on 2026-09-03 before this was uncommented: the four
