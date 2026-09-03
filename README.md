@@ -331,6 +331,28 @@ domain has to get its DNS record and an edge certificate, and `c.gamestao.com`
 took several minutes to answer on 2026-09-03. CI's own smoke step waits this
 out. The game is unaffected the whole time.
 
+If step 2 was not actually saved, this is what the deploy says — verbatim, from
+a real attempt on 2026-09-03:
+
+```
+Hostname 'gamestao.com' already has externally managed DNS records (A, CNAME,
+etc). Delete them first or try a different hostname. [code: 100117]
+```
+
+Two things to know about that failure. The custom domains go up in **one**
+batched API call, so a conflict on the apex rejects `www` and
+`studio.gamestao.com` along with it and nothing changes — which is why that
+attempt broke nothing and the apex kept serving from Pages. But wrangler also
+prints `Successful trigger changes were not rolled back`, so a partial failure
+is possible in principle: after any failed deploy, check which hostnames
+actually resolve before assuming the state is clean.
+
+Re-running needs no new commit, only the records gone:
+
+```bash
+gh workflow run ci.yml --repo bigtaoo/goodgoodstudy --ref main
+```
+
 ```bash
 npm run smoke -- https://gamestao.com
 ```
