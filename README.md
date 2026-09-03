@@ -315,6 +315,37 @@ curl -sI --resolve gamestao.com:443:104.21.75.158 https://gamestao.com/
 
 #### Still worth doing
 
+- **`privacy.gamestao.com` and `support.gamestao.com` are dead ends.** Both are
+  proxied placeholders with a Redirect Rule, and both 301 to
+  `bigtaoo.github.io/legal/sumquest/…`, which returns GitHub's *Site not found*:
+  `bigtaoo/legal` is private and has never had Pages enabled (`has_pages:
+  false`). Nothing in any repo links to these two hostnames, which is the tell —
+  they exist because they were typed into a store submission form by hand. That
+  matters right now: SumQuest's iOS build is in review, and App Store Connect's
+  privacy-policy and support URLs are fields a human reviewer opens.
+
+  Working equivalents are already live at `nivara.gamestao.com/privacy`,
+  `/terms`, `/refunds` and `/support` (200, verified 2026-09-03). The DNS side
+  needs no work — the `AAAA 100::` placeholders are already there — so this is
+  one panel edit each:
+
+  1. **Rules → Redirect Rules**, open the rule matching
+     `privacy.gamestao.com`. Change the target URL to
+     `https://nivara.gamestao.com/privacy`, keep 301.
+  2. Same for the `support.gamestao.com` rule →
+     `https://nivara.gamestao.com/support`.
+  3. Confirm both end at a 200 rather than another redirect:
+
+  ```bash
+  curl -sSL -o /dev/null -w '%{http_code} %{url_effective}\n' https://privacy.gamestao.com/
+  ```
+
+  One thing to weigh rather than fix blindly: those pages are titled *"Privacy
+  Policy — Nivara"*. They are the studio's single policy set, but a reviewer
+  following SumQuest's privacy link lands on another game's branding. Pointing
+  the hostnames at working documents is strictly better than pointing them at a
+  404 today; a studio-branded set is the real answer.
+
 - **`www` does not redirect — deliberately, for now.** It serves the same pages
   from the same Worker, so every page has two URLs. Every canonical tag names
   the apex (`ORIGIN` in `src/lib/routes.ts`), so crawlers consolidate on it:
@@ -359,13 +390,37 @@ curl -sI --resolve gamestao.com:443:104.21.75.158 https://gamestao.com/
 - **Store and portal links.** CrazyGames, itch.io, the App Store listing and
   social bios that point at `gamestao.com` now land on this site rather than the
   game. Point them at `sumquest.gamestao.com` rather than `c.gamestao.com` —
-  same Worker, but one of the two is legible in a listing. While in the itch.io
-  dashboard, grab the page URL and put it in `src/data/games.ts`; that platform
-  reads `soon` only because no file in any repo records the slug.
-- **The mobile hot-update host moved.** Shipped iOS and Android builds fetch
-  their payload from `gamestao.com/mobile/latest/`, which is now this site and
-  answers 404. It lives at `c.gamestao.com/mobile/latest/`. The plan is a forced
-  update rather than a redirect.
+  same Worker, but one of the two is legible in a listing, and this site's own
+  play link now uses it for the same reason. While in the itch.io dashboard,
+  grab the page URL and put it in `src/data/games.ts`; that platform reads
+  `soon` only because no file in any repo records the slug — searched across
+  this repo and all three game repos, there is no itch URL anywhere to copy.
+  CrazyGames and iOS read `soon` correctly: both are genuinely still in review
+  (`D:\number\docs\distribution.md`).
+- **The mobile hot-update channel was stranded, and it did not look broken.**
+  This bullet used to say shipped builds fetch from `gamestao.com/mobile/latest/`
+  and get a 404. Both halves were wrong. `SumQuest`'s client hardcodes
+  `bigtaoo.github.io/PIXIJSGAME/mobile/latest/manifest.json`, and that URL still
+  answers **200** — GitHub Pages stays enabled for the repo after `cname=""`
+  releases the custom domain. But the Pages *pipeline* was retired
+  (`bigtaoo/PIXIJSGAME@55fbe03`), so the tree behind it is frozen at the build
+  before it while releases go to Cloudflare. Every installed app kept polling a
+  manifest that could never change again: no error, no log, nothing to notice.
+
+  Fixed in `bigtaoo/PIXIJSGAME@fbef34a` — the constant now points at
+  `c.gamestao.com/mobile/latest/manifest.json`, and because Pages sent
+  `Access-Control-Allow-Origin: *` implicitly while Workers static assets sends
+  no CORS headers at all, the deploy also stages a `_headers` file and *verifies
+  the served header*: the fetch is cross-origin from the Capacitor WebView
+  through plain `fetch`, so a 200 on the manifest was never proof the app could
+  read it. What remains is that the URL is baked into the native bundle, so only
+  a build compiled after that commit is fixed — anything already installed, and
+  the binary in App Store review, still points at the frozen host. The installed
+  base is near zero today (iOS in review, Android without a keystore), which is
+  the entire reason to do it now. If it ever isn't, the escape hatch is to
+  publish one last hot-update *through the old channel* carrying the new URL, so
+  installed apps migrate themselves — Pages is still enabled on that repo, just
+  no longer built by a workflow.
 
 Free Universal SSL covers the apex and **one** level of subdomain, so every
 subdomain on this zone must stay single-level (`c.gamestao.com`, never
@@ -391,7 +446,11 @@ subdomain on this zone must stay single-level (`c.gamestao.com`, never
   on every click.
 - **Legal pages are not duplicated here.** The studio has one privacy policy,
   one ToS and one refund policy; they are served by the Nivara client and linked
-  from the footer. Contact for everything is `support@gamestao.com`.
+  from the footer, extensionless (`/privacy`, not `/privacy.html`, which only
+  307s to it). Contact for everything is `support@gamestao.com`. The zone also
+  carries `privacy.` and `support.` hostnames for store forms — those are
+  redirect rules, not pages, and they currently point at nothing; see **Still
+  worth doing**.
 - **`404.html` is not one of the routes.** It has no URL of its own, carries
   `noindex`, is absent from the sitemap, and deliberately omits the language
   redirect — bouncing a mistyped URL to a localised home page would hide the

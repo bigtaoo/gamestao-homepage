@@ -77,8 +77,12 @@ export const GAMES: Game[] = [
     accent: '#fe9205',
     screenshots: 4,
     links: [
-      // Moves off the apex domain when this site takes gamestao.com over.
-      { platform: 'web', status: 'live', url: 'https://c.gamestao.com' },
+      // sumquest., not c.: both are custom domains on the same Worker and serve
+      // the identical build, but this URL is read by people — in a shared link,
+      // a hover, a store listing — and only one of the two says what it opens.
+      // c.gamestao.com stays the machine-facing host (CI smoke checks, the
+      // mobile hot-update payload under /mobile/latest/).
+      { platform: 'web', status: 'live', url: 'https://sumquest.gamestao.com' },
       // itch.io IS live, but no repo file records the page URL. Fill it in and
       // flip to 'live' — deliberately left `soon` rather than guessing a slug
       // that would 404.
@@ -117,9 +121,13 @@ export const SUPPORT_EMAIL = 'support@gamestao.com';
  * Legal pages are served by the Nivara client and shared across all three
  * games — the studio has one privacy policy, one ToS, one refund policy.
  * Linked, never duplicated here.
+ *
+ * Extensionless on purpose: the Nivara client 307s `/privacy.html` to
+ * `/privacy`, so the `.html` form these used to carry cost every footer on all
+ * 44 pages an extra round trip to reach the same document.
  */
 export const LEGAL_URLS = {
-  privacy: 'https://nivara.gamestao.com/privacy.html',
-  terms: 'https://nivara.gamestao.com/terms.html',
-  refunds: 'https://nivara.gamestao.com/refunds.html',
+  privacy: 'https://nivara.gamestao.com/privacy',
+  terms: 'https://nivara.gamestao.com/terms',
+  refunds: 'https://nivara.gamestao.com/refunds',
 } as const;
