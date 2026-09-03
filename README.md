@@ -315,12 +315,43 @@ curl -sI --resolve gamestao.com:443:104.21.75.158 https://gamestao.com/
 
 #### Still worth doing
 
-- **`www` does not redirect.** It serves the same pages, so every page has two
-  URLs. The canonicals all name the apex, so crawlers consolidate and this is
-  SEO-safe rather than ideal. A real 301 means dropping the `www` route here and
-  using a Cloudflare Redirect Rule against a proxied placeholder record — the
-  AAAA `100::` pattern this zone already uses for `privacy` and `support`. Its
-  own change, not a takeover afterthought.
+- **`www` does not redirect — deliberately, for now.** It serves the same pages
+  from the same Worker, so every page has two URLs. Every canonical tag names
+  the apex (`ORIGIN` in `src/lib/routes.ts`), so crawlers consolidate on it:
+  this is SEO-safe rather than ideal, and nothing is bleeding while it stays
+  this way. A real 301 is three steps that must happen in this order, and `www`
+  is down between the first and the last — which is why it is its own change
+  and not a takeover afterthought.
+
+  1. **Drop the `www` route** from the `routes` list in `wrangler/site.jsonc`
+     and deploy. Cloudflare deletes the custom domain *and* the proxied record
+     it wrote for it, so `www` goes NXDOMAIN here. Do this from the repo, not
+     from **Workers & Pages → gamestao-site → Domains & Routes**: removing the
+     custom domain in the dashboard while the route is still in the config
+     means the next deploy re-creates it, collides with the placeholder record
+     added in step 2, and fails the whole deploy with `code: 100117` — the same
+     failure as the apex takeover, and it takes the apex down with it.
+  2. **Add the placeholder record.** **DNS → Records → Add record**: type
+     `AAAA`, name `www`, address `100::`, **proxied**. That is the discard
+     prefix, so it never receives traffic; its only job is to get `www` into
+     Cloudflare's edge so a rule can match it. Same trick as `privacy` and
+     `support` on this zone. `www` now resolves but has no route behind it, so
+     it answers with an edge error until step 3 lands.
+  3. **Add the Redirect Rule.** **Rules → Redirect Rules → Create rule**, with
+     a dynamic redirect: match `http.host eq "www.gamestao.com"`, expression
+     `concat("https://gamestao.com", http.request.uri.path)`, status **301**,
+     **preserve query string** on. Dynamic redirects run at the edge ahead of
+     the Worker, so the response never reaches this site's code.
+
+  Nothing in `src/` changes: the canonicals, `hreflang` alternates, sitemap and
+  `robots.txt` already name the apex and would be unchanged by the redirect.
+  Two cautions. The window in the middle is not seconds — a new record still
+  takes a few minutes to provision, and **the 1800s negative-cache trap above
+  applies to `www` exactly as it did to the apex**, so do not check it from a
+  browser between steps; use `nslookup www.gamestao.com 1.1.1.1`. And before
+  starting, confirm nothing outward-facing still points at `www` — a 301 is
+  fine for crawlers and browsers, but a shipped client following a hardcoded
+  `www` URL is a different question.
 - **`studio.gamestao.com`'s certificate.** The route is gone, so Cloudflare has
   removed its DNS record, but removing a custom domain does **not** delete the
   certificate it issued. That one has to go by hand from **SSL/TLS → Edge

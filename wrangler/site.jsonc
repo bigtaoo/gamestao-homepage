@@ -44,7 +44,12 @@
     // one on this zone is a Cloudflare Redirect Rule against a proxied
     // placeholder record - the same AAAA 100:: trick already used for
     // privacy.gamestao.com and support.gamestao.com - which means dropping
-    // this route. Deliberately not done in the same change as the takeover.
+    // this route. Deliberately not done in the same change as the takeover:
+    // the exact three-step order, and the www outage in the middle of it, are
+    // written out in README, "Still worth doing". Drop the route HERE when the
+    // time comes - removing the custom domain from the dashboard while this
+    // line survives makes the next deploy re-create it, hit the placeholder
+    // record, and fail with code 100117, taking the apex with it.
     { "pattern": "www.gamestao.com", "custom_domain": true }
 
     // Cloudflare writes its own proxied record for each custom domain, so never
