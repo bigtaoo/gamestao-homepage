@@ -145,10 +145,10 @@ edit in here: [docs/assets.md](docs/assets.md).
   307s to it). The address in them is `support@gamestao.com`, which is also the
   player-facing one on this site; `contact@gamestao.com` is the second inbox,
   for publishing, investment and press, and appears nowhere in the policies.
-  Both are Cloudflare Email Routing addresses on this zone. The zone also
-  carries `privacy.` and `support.` hostnames for store forms — those are
-  redirect rules, not pages, and they currently point at nothing; see
-  [docs/todo.md](docs/todo.md).
+  Both are Cloudflare Email Routing addresses on this zone. The zone used to
+  carry `privacy.` and `support.` hostnames for store forms; both were deleted
+  on 2026-09-15 and store listings name the Nivara-served pages directly
+  ([docs/dns.md](docs/dns.md)).
 - **`404.html` is not one of the routes.** It has no URL of its own, carries
   `noindex`, is absent from the sitemap, and deliberately omits the language
   redirect — bouncing a mistyped URL to a localised home page would hide the

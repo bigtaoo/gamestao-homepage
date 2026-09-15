@@ -23,8 +23,21 @@ Free Universal SSL covers the apex and **one** level of subdomain, so every
 subdomain on this zone must stay single-level (`c.gamestao.com`, never
 `a.b.gamestao.com`).
 
-`privacy.` and `support.` also exist on the zone, as redirect rules rather than
-Workers, and they currently point at nothing: see [todo.md](todo.md).
+`privacy.` and `support.` used to exist here too — proxied `AAAA 100::`
+placeholders with a Redirect Rule each, 301ing to `bigtaoo.github.io/legal/…`,
+which had returned GitHub's *Site not found* since `bigtaoo/legal` was made
+private. They were never referenced by any code in any repo; they existed
+because someone typed them into SumQuest's App Store submission by hand, which
+is why nothing broke visibly when their target died. **Both were deleted on
+2026-09-15**, once that review finished: the two Redirect Rules first, then the
+two DNS records. The studio's legal pages live at `nivara.gamestao.com/privacy`,
+`/terms`, `/refunds` and `/support`, and store listings should name those.
+
+Deleting the rule without the record is a state worth recognising, because the
+symptom does not name its cause: the hostname still resolves, the request
+reaches a proxied record pointing at the discard prefix, and Cloudflare answers
+**522** — which reads as "the site is down" rather than "this hostname was
+retired". Both halves go, or neither.
 
 ## How the apex was taken over
 

@@ -42,8 +42,9 @@
     // canonical tags all name the apex, so crawlers consolidate on it and this
     // is SEO-safe, but a real 301 would be cleaner. The idiomatic way to get
     // one on this zone is a Cloudflare Redirect Rule against a proxied
-    // placeholder record - the same AAAA 100:: trick already used for
-    // privacy.gamestao.com and support.gamestao.com - which means dropping
+    // placeholder record - an AAAA pointing at the discard prefix 100::, which
+    // is how privacy.gamestao.com and support.gamestao.com worked until both
+    // were deleted on 2026-09-15 - which means dropping
     // this route. Deliberately not done in the same change as the takeover:
     // the exact three-step order, and the www outage in the middle of it, are
     // written out in docs/todo.md. Drop the route HERE when the time

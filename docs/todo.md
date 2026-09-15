@@ -5,49 +5,20 @@ this repo — each item is a Cloudflare panel edit, a store form, or a decision
 that belongs to someone with a login. Kept here so none of it is rediscovered
 the hard way.
 
-## `contact@gamestao.com` needs a routing rule before anyone writes to it
+## The legal pages wear one game's branding
 
-The site prints that address on every page footer, in the home page's contact
-block and at the top of `/press/`. The zone's MX records point at Cloudflare
-Email Routing (`route1-3.mx.cloudflare.net`, verified 2026-09-15), so the
-mechanism is there — but whether this particular address has a destination is
-only visible from the dashboard, and an unrouted address bounces rather than
-failing quietly.
+The studio has one privacy policy, one ToS and one refund policy, and they are
+served by the Nivara client: `nivara.gamestao.com/privacy`, `/terms`, `/refunds`
+and `/support` (200, zero redirects, verified 2026-09-15). Every store listing
+and every footer on this site points at them.
 
-**Email → Email Routing → Routing rules**: add `contact@gamestao.com` with the
-same destination as `support@`, or a different one if business mail should land
-elsewhere. Then send one test message to it from an outside account and confirm
-it arrives — a rule that exists and a rule that delivers are not the same thing.
-
-## `privacy.gamestao.com` and `support.gamestao.com` are dead ends
-
-Both are proxied placeholders with a Redirect Rule, and both 301 to
-`bigtaoo.github.io/legal/sumquest/…`, which returns GitHub's *Site not found*:
-`bigtaoo/legal` is private and has never had Pages enabled (`has_pages: false`).
-Nothing in any repo links to these two hostnames, which is the tell — they exist
-because they were typed into a store submission form by hand. That matters right
-now: SumQuest's iOS build is in review, and App Store Connect's privacy-policy
-and support URLs are fields a human reviewer opens.
-
-Working equivalents are already live at `nivara.gamestao.com/privacy`, `/terms`,
-`/refunds` and `/support` (200, verified 2026-09-03). The DNS side needs no work
-— the `AAAA 100::` placeholders are already there — so this is one panel edit
-each:
-
-1. **Rules → Redirect Rules**, open the rule matching `privacy.gamestao.com`.
-   Change the target URL to `https://nivara.gamestao.com/privacy`, keep 301.
-2. Same for the `support.gamestao.com` rule → `https://nivara.gamestao.com/support`.
-3. Confirm both end at a 200 rather than another redirect:
-
-```bash
-curl -sSL -o /dev/null -w '%{http_code} %{url_effective}\n' https://privacy.gamestao.com/
-```
-
-One thing to weigh rather than fix blindly: those pages are titled *"Privacy
-Policy — Nivara"*. They are the studio's single policy set, but a reviewer
-following SumQuest's privacy link lands on another game's branding. Pointing the
-hostnames at working documents is strictly better than pointing them at a 404
-today; a studio-branded set is the real answer.
+They are titled *"Privacy Policy — Nivara"*. So someone following SumQuest's
+privacy link — an App Store reviewer, a publisher doing diligence — lands on
+another game's branding and has to work out whether they are still looking at
+the right company. Nothing is broken; it just reads as sloppier than the studio
+is. A studio-branded set, served from this site rather than from a game client,
+is the real answer, and it is a decision about where the canonical policy lives
+rather than a panel edit.
 
 ## `www` does not redirect — deliberately, for now
 
@@ -69,10 +40,12 @@ own change and not a takeover afterthought.
 2. **Add the placeholder record.** **DNS → Records → Add record**: type `AAAA`,
    name `www`, address `100::`, **proxied**. That is the discard prefix, so it
    never receives traffic; its only job is to get `www` into Cloudflare's edge so
-   a rule can match it. Same trick as `privacy` and `support` on this zone. `www`
-   now resolves but has no route behind it, so it answers with an edge error
-   until step 3 lands.
-3. **Add the Redirect Rule.** **Rules → Redirect Rules → Create rule**, with a
+   a rule can match it. Same trick `privacy` and `support` used until they were
+   deleted on 2026-09-15 ([dns.md](dns.md)). `www` now resolves but has no route
+   behind it, so it answers **522** until step 3 lands — that is the expected
+   middle of this change, not a sign it went wrong.
+3. **Add the Redirect Rule.** The sidebar has no entry for these: they live
+   under **Rules → Overview**, in the *Redirect Rules* card. **Create rule**,
    dynamic redirect: match `http.host eq "www.gamestao.com"`, expression
    `concat("https://gamestao.com", http.request.uri.path)`, status **301**,
    **preserve query string** on. Dynamic redirects run at the edge ahead of the
