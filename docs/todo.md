@@ -20,12 +20,6 @@ is. A studio-branded set, served from this site rather than from a game client,
 is the real answer, and it is a decision about where the canonical policy lives
 rather than a panel edit.
 
-## `studio.gamestao.com`'s certificate
-
-The route is gone, so Cloudflare has removed its DNS record, but removing a
-custom domain does **not** delete the certificate it issued. That one has to go
-by hand from **SSL/TLS → Edge Certificates**.
-
 ## Store and portal links
 
 CrazyGames, itch.io, the App Store listing and social bios that point at

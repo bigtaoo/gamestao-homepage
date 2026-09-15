@@ -49,9 +49,24 @@ Verified end to end: `/` and deep paths 301 with the path intact, the query
 string survives, HTTP on port 80 lands on HTTPS apex in a single hop, and every
 redirect ends at a 200 rather than another redirect.
 
+### Certificates clean themselves up
+
+Each Worker custom domain gets its own **Advanced (Managed)** certificate,
+covering that hostname plus a wildcard below it and the apex — one row per
+hostname under **SSL/TLS → Edge Certificates**, alongside the zone's Universal
+certificate and its backup.
+
+This file used to warn that removing a custom domain leaves its certificate
+behind to be deleted by hand. That is wrong, and it was carried as a to-do for
+twelve days on nothing but the assumption. Checked on 2026-09-15, after
+`studio.gamestao.com` had been gone for a fortnight: sixteen certificates on
+the zone and not one of them mentions that hostname. Cloudflare took it with
+the custom domain. Nothing to do here, for `studio` or for `www`.
+
 Free Universal SSL covers the apex and **one** level of subdomain, so every
 subdomain on this zone must stay single-level (`c.gamestao.com`, never
-`a.b.gamestao.com`).
+`a.b.gamestao.com`). The per-hostname Advanced certificates do not change that
+rule — they are issued for hostnames that already satisfy it.
 
 `privacy.` and `support.` used to exist here too — proxied `AAAA 100::`
 placeholders with a Redirect Rule each, 301ing to `bigtaoo.github.io/legal/…`,
