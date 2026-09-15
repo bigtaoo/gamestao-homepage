@@ -1,4 +1,4 @@
-import { LEGAL_URLS, SUPPORT_EMAIL } from '../data/games';
+import { BUSINESS_EMAIL, LEGAL_URLS, SUPPORT_EMAIL } from '../data/games';
 import { interpolate } from '../i18n';
 import { usePage } from '../lib/page';
 import { GAME_IDS, routePath } from '../lib/routes';
@@ -36,6 +36,12 @@ export function Footer() {
           <ul>
             <li>
               <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a>
+            </li>
+            <li>
+              <a href={`mailto:${BUSINESS_EMAIL}`}>{BUSINESS_EMAIL}</a>
+            </li>
+            <li>
+              <a href={routePath({ locale: route.locale, page: 'press' })}>{t.footer.press}</a>
             </li>
             {/* One policy set covers all three games; these live with the
                 Nivara client rather than being duplicated per site. */}

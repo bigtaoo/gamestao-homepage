@@ -34,6 +34,7 @@ export type Messages = {
     games: string;
     about: string;
     contact: string;
+    press: string;
     home: string;
     language: string;
     menu: string;
@@ -75,7 +76,40 @@ export type Messages = {
   contact: {
     title: string;
     lead: string;
-    email: string;
+    /** Heading over the player-support address. */
+    playersTitle: string;
+    /** Heading over the publishing, investment and press address. */
+    businessTitle: string;
+    businessLead: string;
+    /** Link through to the press page, from the business block. */
+    pressCta: string;
+  };
+  press: {
+    title: string;
+    lead: string;
+    /** Page description for `<title>`/`<meta>`; `{studio}` is not used. */
+    metaDescription: string;
+    factsTitle: string;
+    facts: {
+      studio: string;
+      games: string;
+      languages: string;
+      playableOn: string;
+      tech: string;
+      site: string;
+      contact: string;
+    };
+    brandTitle: string;
+    brandLead: string;
+    gamesTitle: string;
+    assetsTitle: string;
+    screensTitle: string;
+    /** Accessible label on a download link; `{file}` is substituted. */
+    downloadAlt: string;
+    /** Said of a game whose art is not published yet; `{game}` is substituted. */
+    none: string;
+    usageTitle: string;
+    usage: string;
   };
   notFound: {
     title: string;
@@ -87,6 +121,7 @@ export type Messages = {
     terms: string;
     refunds: string;
     support: string;
+    press: string;
     rights: string;
   };
   a11y: {

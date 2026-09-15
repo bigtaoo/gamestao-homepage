@@ -4,7 +4,7 @@
  * These run against the built SSR bundle (`.ssr/entry-server.js`, which
  * `npm test` builds first) rather than the TypeScript sources: that bundle is
  * exactly what the prerenderer consumes, so a test passing here means the
- * thing that actually generates the 44 pages behaves as described.
+ * thing that actually generates the 55 pages behaves as described.
  */
 
 import assert from 'node:assert/strict';
@@ -32,6 +32,10 @@ const {
   LEGAL_URLS,
   SCHEMA_PLATFORM,
   SUPPORT_EMAIL,
+  BUSINESS_EMAIL,
+  pressAssets,
+  splitAssets,
+  STUDIO_MARK,
   interpolate,
   MESSAGES,
   escapeForScript,
@@ -41,7 +45,8 @@ const {
 
 test('the build emits one page per locale per view, all distinct', () => {
   const routes = allRoutes();
-  assert.equal(routes.length, LOCALES.length * (1 + GAME_IDS.length));
+  // home + press + one page per game, in every locale.
+  assert.equal(routes.length, LOCALES.length * (2 + GAME_IDS.length));
 
   const paths = routes.map(routePath);
   assert.equal(new Set(paths).size, paths.length, 'two routes resolve to the same path');
@@ -52,6 +57,10 @@ test('English lives at the root and every other locale under its own directory',
   assert.equal(routePath({ locale: 'de', page: 'home' }), '/de/');
   assert.equal(routePath({ locale: 'en', page: 'game', gameId: 'nivara' }), '/nivara/');
   assert.equal(routePath({ locale: 'ja', page: 'game', gameId: 'sumquest' }), '/ja/sumquest/');
+  // The press URL is the one handed out in pitch emails: same segment in
+  // every language, so a link copied from the German page opens for everyone.
+  assert.equal(routePath({ locale: 'en', page: 'press' }), '/press/');
+  assert.equal(routePath({ locale: 'de', page: 'press' }), '/de/press/');
 });
 
 test('every path parses back to the route that produced it', () => {
@@ -145,8 +154,63 @@ test('getGame refuses an unknown id instead of returning undefined', () => {
 
 test('the studio contact and legal links are absolute and consistent', () => {
   assert.match(SUPPORT_EMAIL, /^[^@\s]+@gamestao\.com$/);
+  assert.match(BUSINESS_EMAIL, /^[^@\s]+@gamestao\.com$/);
+  // Two inboxes with one address between them would be the same inbox.
+  assert.notEqual(BUSINESS_EMAIL, SUPPORT_EMAIL);
   for (const [name, url] of Object.entries(LEGAL_URLS)) {
     assert.match(url, /^https:\/\//, `${name} legal url is not absolute`);
+  }
+});
+
+test('every press download exists and is described accurately', () => {
+  const files = [...STUDIO_MARK.map((mark) => mark.file), ...GAME_IDS.flatMap((id) => pressAssets(id).map((a) => a.file))];
+
+  for (const file of files) {
+    assert.ok(
+      existsSync(path.join(ROOT, 'public', file.replace(/^\//, ''))),
+      `the press page offers ${file}, which is not in public/`,
+    );
+  }
+  assert.equal(new Set(files).size, files.length, 'two press downloads share a path');
+
+  for (const id of GAME_IDS) {
+    for (const asset of pressAssets(id)) {
+      assert.ok(asset.width > 0 && asset.height > 0, `${asset.file} has no recorded size`);
+      assert.ok(asset.bytes > 0, `${asset.file} has no recorded byte count`);
+    }
+  }
+});
+
+test('a press screenshot has the site thumbnail it is shown behind', () => {
+  // The press page pairs download <n> with the game's own shot-<n>.webp. A
+  // game that exported five originals but ships four web shots would silently
+  // render the wrong thumbnail over the last download.
+  for (const game of GAMES) {
+    const { screens } = splitAssets(game.id);
+    if (screens.length === 0) continue;
+    assert.equal(
+      screens.length,
+      game.screenshots,
+      `${game.id} has ${screens.length} press screenshots but ${game.screenshots} on the site`,
+    );
+  }
+});
+
+test('the press page states the studio facts it can prove', () => {
+  const { body } = render({ locale: 'en', page: 'press' });
+
+  assert.ok(body.includes(BUSINESS_EMAIL), 'the press page does not carry the business address');
+  for (const game of GAMES) {
+    assert.ok(body.includes(game.name), `the press page omits ${game.name}`);
+  }
+  // DayDayUp has no published art; the page must say so rather than render an
+  // empty download list under its name.
+  const missing = GAMES.filter((game) => pressAssets(game.id).length === 0);
+  for (const game of missing) {
+    assert.ok(
+      body.includes(interpolate(MESSAGES.en.press.none, { game: game.name })),
+      `${game.id} has no press assets and no line explaining that`,
+    );
   }
 });
 

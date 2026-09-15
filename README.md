@@ -1,16 +1,17 @@
 # gamestao.com
 
-The studio site for [gamestao](https://gamestao.com) — one page per game, plus
-an about and contact section, in eleven languages.
+The studio site for [gamestao](https://gamestao.com) — one page per game, a
+press kit, and an about and contact section, in eleven languages.
 
-React + TypeScript, **prerendered at build time** into 44 static documents and
+React + TypeScript, **prerendered at build time** into 55 static documents and
 served from Cloudflare Workers static assets. No server runs at request time.
 
 | | |
 |---|---|
 | Games | [Nivara](https://nivara.gamestao.com) · [DayDayUp](https://b.gamestao.com) · [SumQuest](https://c.gamestao.com) |
 | Languages | en · zh · de · fr · it · nl · es · pt · ja · ko · ru |
-| Pages built | 11 locales x (1 home + 3 game pages) = 44, plus `404.html` |
+| Pages built | 11 locales x (home + press + 3 game pages) = 55, plus `404.html` |
+| Contact | `support@gamestao.com` (players) · `contact@gamestao.com` (publishing, investment, press) |
 | Hosting | Cloudflare Worker `gamestao-site`, zone `gamestao.com` |
 
 ---
@@ -33,7 +34,7 @@ screenshot strip (CSS scroll-snap).
 ```bash
 npm install
 npm run dev        # vite dev server; renders client-side, route taken from the URL
-npm run build      # client bundle -> SSR renderer -> 44 pages into dist/
+npm run build      # client bundle -> SSR renderer -> 55 pages into dist/
 npm run preview    # serve dist/ exactly as it will be served in production
 npm run typecheck
 npm test           # locale parity + route/head invariants
@@ -56,7 +57,10 @@ src/
                        Open Graph, JSON-LD, and the first-visit language redirect.
   lib/serialize.ts     Escaping for data embedded in a <script>.
   lib/page.tsx         PageData + the context every component reads.
-  data/games.ts        The three games: names, accent colours, platform links.
+  data/games.ts        The three games: names, accent colours, platform links,
+                       and the two contact addresses.
+  data/press.ts        The press kit's downloads, read from the manifest below.
+  data/press-assets.json  GENERATED. Every press download: kind, size, bytes.
   data/asset-sizes.json  GENERATED. Intrinsic size of every committed image.
   data/asset-provenance.json  GENERATED. Which art is real, so the generator
                        will not overwrite it.
@@ -70,7 +74,8 @@ scripts/
   prerender.mjs        Shell + renderer -> dist/**/index.html, 404.html, sitemap.xml
   placeholders.mjs     Generates brand marks and stand-in game artwork
   import-shots.mjs     Imports a game's real icon, cover and screenshots
-  lib/asset-sizes.mjs  Shared image bookkeeping for both of the above
+  import-press.mjs     Imports the full-resolution press-kit downloads
+  lib/asset-sizes.mjs  Shared image bookkeeping for the two generators above
 wrangler/site.jsonc    Cloudflare Worker config
 ```
 
@@ -88,7 +93,7 @@ cannot be advertised as playable without somewhere to send people.
 
 **A new language** is `LOCALES` in `src/lib/routes.ts` plus an `HREFLANG` entry,
 an endonym in `LOCALE_NAMES`, and a locale file. The build picks it up and emits
-four more pages.
+five more pages.
 
 **Artwork.** Each game shows a store icon, a cover and four screenshots.
 Real art replaces the generated stand-ins one kind at a time:
@@ -106,6 +111,25 @@ photo or screenshot.
 The script records two things besides the images: each file's real pixel size
 in `asset-sizes.json`, so the markup reserves the right box and nothing shifts
 on load; and the fact that the art is real, in `asset-provenance.json`.
+
+**The press kit** (`/press/`, in all eleven languages) is the same art at full
+resolution, imported separately because what the site renders and what a
+journalist downloads are not the same file:
+
+```bash
+node scripts/import-press.mjs nivara   --logo    "D:/funny/art/logo/derived/logo-1024.png"   --icon    "D:/funny/art/store/icons/ios_appicon_1024.png"   --feature "D:/funny/art/store/icons/play_feature_1024x500.png"   --screens "D:/funny/art/store/en/battle__android_9x16.png" ...
+```
+
+Pass the **same screenshots, in the same order**, as `import-shots.mjs` got:
+the press page pairs download `n` with the site's own `shot-<n>.webp` as its
+thumbnail, and a test fails if the two counts diverge. A PNG source is copied
+byte-for-byte — re-encoding these inflated every one of them. Everything the
+page says about a file (pixel size, byte count) comes from the manifest the
+script writes, so nothing there can go stale without the file changing.
+
+A game with no entry in the manifest is not hidden: its section says the art is
+not published yet. That is DayDayUp today — it has no logo, no store icon and
+no captured screenshots anywhere in `D:\daydayup`.
 
 ```bash
 npm run build:ssr                                     # the generator reads the game table from it
@@ -315,6 +339,20 @@ curl -sI --resolve gamestao.com:443:104.21.75.158 https://gamestao.com/
 
 #### Still worth doing
 
+- **`contact@gamestao.com` needs a routing rule before anyone writes to it.**
+  The site now prints that address on every page footer, in the home page's
+  contact block and at the top of `/press/`. The zone's MX records point at
+  Cloudflare Email Routing (`route1-3.mx.cloudflare.net`, verified
+  2026-09-15), so the mechanism is there — but whether this particular address
+  has a destination is only visible from the dashboard, and an unrouted address
+  bounces rather than failing quietly.
+
+  **Email → Email Routing → Routing rules**: add `contact@gamestao.com` with
+  the same destination as `support@`, or a different one if business mail
+  should land elsewhere. Then send one test message to it from an outside
+  account and confirm it arrives — a rule that exists and a rule that delivers
+  are not the same thing.
+
 - **`privacy.gamestao.com` and `support.gamestao.com` are dead ends.** Both are
   proxied placeholders with a Redirect Rule, and both 301 to
   `bigtaoo.github.io/legal/sumquest/…`, which returns GitHub's *Site not found*:
@@ -447,7 +485,10 @@ subdomain on this zone must stay single-level (`c.gamestao.com`, never
 - **Legal pages are not duplicated here.** The studio has one privacy policy,
   one ToS and one refund policy; they are served by the Nivara client and linked
   from the footer, extensionless (`/privacy`, not `/privacy.html`, which only
-  307s to it). Contact for everything is `support@gamestao.com`. The zone also
+  307s to it). The address in them is `support@gamestao.com`, which is also the
+  player-facing one on this site; `contact@gamestao.com` is the second inbox,
+  for publishing, investment and press, and appears nowhere in the policies.
+  Both are Cloudflare Email Routing addresses on this zone. The zone also
   carries `privacy.` and `support.` hostnames for store forms — those are
   redirect rules, not pages, and they currently point at nothing; see **Still
   worth doing**.

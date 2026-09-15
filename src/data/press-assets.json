@@ -1,0 +1,97 @@
+{
+  "nivara": [
+    {
+      "kind": "logo",
+      "file": "/assets/press/nivara/nivara-logo.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 1937640
+    },
+    {
+      "kind": "icon",
+      "file": "/assets/press/nivara/nivara-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 418088
+    },
+    {
+      "kind": "feature",
+      "file": "/assets/press/nivara/nivara-feature.png",
+      "width": 1024,
+      "height": 500,
+      "bytes": 85148
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/nivara/nivara-screenshot-1.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 298269
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/nivara/nivara-screenshot-2.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 241160
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/nivara/nivara-screenshot-3.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 1408893
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/nivara/nivara-screenshot-4.png",
+      "width": 1080,
+      "height": 1920,
+      "bytes": 320500
+    }
+  ],
+  "sumquest": [
+    {
+      "kind": "icon",
+      "file": "/assets/press/sumquest/sumquest-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 908047
+    },
+    {
+      "kind": "feature",
+      "file": "/assets/press/sumquest/sumquest-feature.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 1218965
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/sumquest/sumquest-screenshot-1.png",
+      "width": 1290,
+      "height": 2796,
+      "bytes": 832013
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/sumquest/sumquest-screenshot-2.png",
+      "width": 1290,
+      "height": 2796,
+      "bytes": 1074041
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/sumquest/sumquest-screenshot-3.png",
+      "width": 1290,
+      "height": 2796,
+      "bytes": 1909395
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/sumquest/sumquest-screenshot-4.png",
+      "width": 1290,
+      "height": 2796,
+      "bytes": 755468
+    }
+  ]
+}

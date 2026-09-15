@@ -467,17 +467,57 @@ dl {
 }
 
 .contact {
-  text-align: center;
-  max-width: 52ch;
-  margin: 0 auto;
   display: grid;
-  justify-items: center;
-  gap: 1.1rem;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  /* Exactly two, because there are exactly two inboxes. `auto-fit` here left a
+     collapsed third track and its gutter hanging off the end of the row. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 44rem) {
+  .contact {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__route {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.contact__who {
+  font-size: 1.05rem;
+}
+
+.contact__lead {
+  color: var(--text-dim);
+  font-size: 0.97rem;
 }
 
 .contact__address {
+  font-weight: 650;
+  color: var(--accent);
+  /* An email is short, but "publishing, investment and press" is not, and the
+     narrow card is exactly where an unbreakable address would push the layout
+     sideways. */
+  overflow-wrap: anywhere;
+}
+
+.contact__press {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.9rem;
   color: var(--text-faint);
+}
+
+.contact__press:hover {
+  color: var(--text);
 }
 
 /* ----------------------------------------------------------------- cards --- */
@@ -991,4 +1031,195 @@ dl {
 
 .game__hero-copy .gameicon {
   margin-bottom: 1.1rem;
+}
+
+/* ------------------------------------------------------------------ press --- */
+
+/* The hero is the home page's, minus its bottom padding: the fact sheet that
+   follows carries its own. */
+.press__hero {
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.facts {
+  display: grid;
+  gap: 0;
+  max-width: 62rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.facts__row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 14rem) 1fr;
+  gap: 1rem;
+  padding: 0.9rem clamp(1rem, 2.5vw, 1.5rem);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.facts__row:first-child {
+  border-top: 0;
+}
+
+.facts__row dt {
+  color: var(--text-faint);
+  font-size: 0.9rem;
+}
+
+.facts__row dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 34rem) {
+  .facts__row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+.downloads {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.downloads__item a {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.95rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.downloads__item a:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.downloads__name {
+  font-size: 0.93rem;
+  overflow-wrap: anywhere;
+}
+
+.downloads__meta {
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.press__brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.press__mark {
+  border-radius: 24%;
+  box-shadow: 0 0 0 1px var(--border-hi);
+}
+
+.press__brand .downloads {
+  flex: 1 1 22rem;
+}
+
+.press__games {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.press__game {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.press__game-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.press__game-name {
+  font-size: 1.35rem;
+}
+
+.press__game-tagline {
+  margin-top: 0.3rem;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.press__game-link {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.press__game-body {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.press__label {
+  font-size: 0.76rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 650;
+  margin-bottom: 0.85rem;
+}
+
+.press__none {
+  margin-top: 1.5rem;
+  color: var(--text-dim);
+  max-width: 60ch;
+}
+
+.press__shots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.press__shots a {
+  display: grid;
+  gap: 0.45rem;
+  justify-items: center;
+}
+
+.press__shots img {
+  width: auto;
+  height: 15rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.press__shots a:hover img {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.press__shot-meta {
+  font-size: 0.78rem;
+  color: var(--text-faint);
 }

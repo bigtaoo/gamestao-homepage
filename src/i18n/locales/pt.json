@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Estúdio de jogos independente",
     "homeTitle": "gamestao — Estúdio de jogos independente",
-    "homeDescription": "Três jogos multiplataforma de um estúdio de uma só pessoa: Nivara, uma estratégia desenhada à mão; DayDayUp, um roguelite construído em torno das suas armas; e SumQuest, um quebra-cabeça de números. Todos os três rodam direto no navegador.",
+    "homeDescription": "Três jogos multiplataforma do gamestao: Nivara, uma estratégia desenhada à mão; DayDayUp, um roguelite construído em torno das suas armas; e SumQuest, um quebra-cabeça de números. Todos os três rodam direto no navegador.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Jogue {game} direto no navegador, do estúdio gamestao."
   },
@@ -10,6 +10,7 @@
     "games": "Jogos",
     "about": "Estúdio",
     "contact": "Contato",
+    "press": "Imprensa",
     "home": "Início",
     "language": "Idioma",
     "menu": "Menu"
@@ -17,7 +18,7 @@
   "hero": {
     "kicker": "Estúdio de jogos independente",
     "title": "Jogos que começam no instante do clique.",
-    "lead": "O gamestao é um estúdio de uma só pessoa que constrói jogos multiplataforma em TypeScript: uma estratégia desenhada à mão, um roguelite em que se acumulam armas e um quebra-cabeça de números. Sem instalador, sem launcher — cada um deles roda primeiro no navegador.",
+    "lead": "O gamestao é um estúdio independente que constrói jogos multiplataforma em TypeScript: uma estratégia desenhada à mão, um roguelite em que se acumulam armas e um quebra-cabeça de números. Sem instalador, sem launcher — cada um deles roda primeiro no navegador.",
     "ctaGames": "Ver os jogos",
     "ctaAbout": "Sobre o estúdio"
   },
@@ -32,9 +33,9 @@
     "details": "Saiba mais",
     "entries": {
       "nivara": {
-        "genre": "Estratégia por turnos",
+        "genre": "Tower defense em tempo real",
         "tagline": "Um duelo de cartas desenhado à mão por uma base que precisa cair.",
-        "summary": "Duas bases, uma mão de seis cartas que giram e tinta para gastar. Mande a infantaria, levante quartéis e torres de arqueiros, e abra caminho até a base inimiga antes que o relógio force o empate.",
+        "summary": "Um duelo 1c1 em tempo real: duas bases, uma mão de seis cartas que giram e tinta para gastar enquanto o relógio corre. Envie infantaria, erga quartéis e torres de arqueiros e abra caminho até a base inimiga antes do empate.",
         "intro": "Nivara é um jogo de estratégia 1 contra 1 desenhado à mão, disputado inteiramente sobre uma folha de caderno. Você segura seis cartas que se renovam sozinhas, gasta tinta para pôr unidades e construções em campo, e avança coluna por coluna até a base do adversário. Em volta desse duelo há uma camada meta completa: um mundo aberto para campanhas, famílias e seitas para entrar, e uma casa de leilões sustentada inteiramente pelos jogadores.",
         "features": [
           "Uma mão de seis cartas que gira sozinha — uma carta não usada se renova depois de 30 segundos, então você nunca fica preso a uma mão morta",
@@ -110,17 +111,44 @@
   },
   "about": {
     "title": "Sobre o estúdio",
-    "lead": "Um desenvolvedor, três jogos e uma pilha técnica escolhida para que nada fique no caminho de publicar.",
+    "lead": "Três jogos e uma pilha técnica escolhida para que nada fique no caminho de publicar.",
     "body": [
-      "O gamestao é o estúdio de Tao Wang, desenvolvedor independente. Todo jogo aqui é construído e mantido por uma só pessoa — design, código, pipeline de arte e os servidores por trás deles.",
+      "O gamestao é um estúdio de jogos independente. Tudo o que está aqui é construído e mantido internamente — design, código, pipeline de arte e os servidores por trás deles.",
       "Os três jogos compartilham uma mesma base técnica: TypeScript e PixiJS sobre WebGL. É uma escolha deliberada. Um único código alcança o navegador, o iOS, o Android e os minijogos do WeChat sem reescrever nada por plataforma, e uma build de navegador significa que um jogo está a um clique de ser jogado, não a um download.",
       "Onde um jogo precisa de um backend de verdade, ele tem — servidores de partida autoritativos, matchmaking, simulação determinística, economias movidas pelos jogadores. Nada aqui é protótipo deixado no ar para apodrecer."
     ]
   },
   "contact": {
     "title": "Entre em contato",
-    "lead": "Relatos de bug, pedidos de reembolso, contatos de imprensa, ou só para me dizer que uma fase estava difícil demais — este endereço chega direto a mim.",
-    "email": "Escrever ao estúdio"
+    "lead": "Relatos de bug, pedidos de reembolso, ou só para nos dizer que uma fase estava difícil demais — este endereço chega direto ao estúdio.",
+    "playersTitle": "Jogadores",
+    "businessTitle": "Publicação, investimento e imprensa",
+    "businessLead": "Parcerias, financiamento e contatos de imprensa vão para uma caixa separada, onde quem responde é uma pessoa e não um formulário.",
+    "pressCta": "Kit de imprensa"
+  },
+  "press": {
+    "title": "Kit de imprensa",
+    "lead": "Logotipos, ícones e capturas em resolução total, com os dados que costumam ser pedidos primeiro.",
+    "metaDescription": "Kit de imprensa do gamestao: dados do estúdio, logotipos, ícones e capturas em resolução total de Nivara, DayDayUp e SumQuest, e um contato direto para publicação e investimento.",
+    "factsTitle": "O estúdio em resumo",
+    "facts": {
+      "studio": "Estúdio",
+      "games": "Jogos",
+      "languages": "Idiomas",
+      "playableOn": "Joga-se em",
+      "tech": "Feito com",
+      "site": "Site",
+      "contact": "Contato"
+    },
+    "brandTitle": "Marca do estúdio",
+    "brandLead": "A marca que o próprio site usa. Mantenha as proporções e não mude as cores.",
+    "gamesTitle": "Os jogos",
+    "assetsTitle": "Logotipos e ícones",
+    "screensTitle": "Capturas de tela",
+    "downloadAlt": "Baixar {file}",
+    "none": "{game} ainda está em desenvolvimento e não tem arte publicada. Fale com a gente e enviamos o que existe.",
+    "usageTitle": "Como usar",
+    "usage": "Artigos, vídeos e páginas de loja sobre os jogos podem usar estes arquivos como estão. Não altere os logotipos nem apresente uma captura como algo diferente do que ela mostra."
   },
   "notFound": {
     "title": "Página não encontrada",
@@ -132,6 +160,7 @@
     "terms": "Termos de Serviço",
     "refunds": "Política de Reembolso",
     "support": "Suporte",
+    "press": "Kit de imprensa",
     "rights": "© {year} gamestao. Todos os direitos reservados."
   },
   "a11y": {

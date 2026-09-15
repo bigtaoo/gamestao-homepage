@@ -55,7 +55,15 @@ export type GameId = (typeof GAME_IDS)[number];
 
 export type Route =
   | { locale: Locale; page: 'home' }
+  | { locale: Locale; page: 'press' }
   | { locale: Locale; page: 'game'; gameId: GameId };
+
+/**
+ * The press page's URL segment. Untranslated, like the game ids: the link is
+ * handed out in pitch emails and store submissions, and one address that
+ * resolves in every language beats eleven that each work in one.
+ */
+export const PRESS_SEGMENT = 'press';
 
 /** Canonical origin. Every absolute URL in a `<head>` is built from this. */
 export const ORIGIN = 'https://gamestao.com';
@@ -69,6 +77,7 @@ export const ORIGIN = 'https://gamestao.com';
 export function routePath(route: Route): string {
   const segments: string[] = [];
   if (route.locale !== DEFAULT_LOCALE) segments.push(route.locale);
+  if (route.page === 'press') segments.push(PRESS_SEGMENT);
   if (route.page === 'game') segments.push(route.gameId);
   return segments.length === 0 ? '/' : `/${segments.join('/')}/`;
 }
@@ -79,14 +88,16 @@ export function routeUrl(route: Route): string {
 
 /** The same page in another language — what the switcher links to. */
 export function translateRoute(route: Route, locale: Locale): Route {
-  return route.page === 'home' ? { locale, page: 'home' } : { locale, page: 'game', gameId: route.gameId };
+  if (route.page === 'game') return { locale, page: 'game', gameId: route.gameId };
+  return { locale, page: route.page };
 }
 
-/** Every page the build emits: 11 locales x (1 home + 3 game pages) = 44. */
+/** Every page the build emits: 11 locales x (home + press + 3 game pages) = 55. */
 export function allRoutes(): Route[] {
   const routes: Route[] = [];
   for (const locale of LOCALES) {
     routes.push({ locale, page: 'home' });
+    routes.push({ locale, page: 'press' });
     for (const gameId of GAME_IDS) routes.push({ locale, page: 'game', gameId });
   }
   return routes;
@@ -107,6 +118,8 @@ export function parsePath(pathname: string): Route | null {
   }
 
   if (segments.length === 0) return { locale, page: 'home' };
+
+  if (segments.length === 1 && segments[0] === PRESS_SEGMENT) return { locale, page: 'press' };
 
   if (segments.length === 1 && (GAME_IDS as readonly string[]).includes(segments[0])) {
     return { locale, page: 'game', gameId: segments[0] as GameId };

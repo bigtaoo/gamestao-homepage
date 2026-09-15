@@ -118,6 +118,14 @@ export function getGame(id: GameId): Game {
 export const SUPPORT_EMAIL = 'support@gamestao.com';
 
 /**
+ * Publishing, investment and press. Deliberately a second address rather than
+ * a second label on the first: the studio inbox and the player inbox have
+ * different urgency, and anyone evaluating the studio should never land in the
+ * same queue as a refund request.
+ */
+export const BUSINESS_EMAIL = 'contact@gamestao.com';
+
+/**
  * Legal pages are served by the Nivara client and shared across all three
  * games — the studio has one privacy policy, one ToS, one refund policy.
  * Linked, never duplicated here.

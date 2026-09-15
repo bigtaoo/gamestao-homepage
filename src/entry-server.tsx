@@ -87,7 +87,15 @@ export {
   LOCALE_NAMES,
   ORIGIN,
 } from './lib/routes';
-export { GAMES, getGame, LEGAL_URLS, SCHEMA_PLATFORM, SUPPORT_EMAIL } from './data/games';
+export {
+  BUSINESS_EMAIL,
+  GAMES,
+  getGame,
+  LEGAL_URLS,
+  SCHEMA_PLATFORM,
+  SUPPORT_EMAIL,
+} from './data/games';
+export { pressAssets, splitAssets, STUDIO_MARK } from './data/press';
 export { assetSize } from './data/assetSizes';
 export { interpolate, MESSAGES } from './i18n';
 export { escapeAttr, escapeForScript } from './lib/serialize';

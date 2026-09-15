@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Onafhankelijke gamestudio",
     "homeTitle": "gamestao — Onafhankelijke gamestudio",
-    "homeDescription": "Drie platformonafhankelijke games uit een eenmansstudio: Nivara, een met de hand getekend strategiespel, DayDayUp, een roguelite die om zijn wapens is gebouwd, en SumQuest, een cijferpuzzel. Alle drie spelen direct in de browser.",
+    "homeDescription": "Drie platformonafhankelijke games van gamestao: Nivara, een met de hand getekend strategiespel, DayDayUp, een roguelite die om zijn wapens is gebouwd, en SumQuest, een cijferpuzzel. Alle drie spelen direct in de browser.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Speel {game} direct in je browser, van studio gamestao."
   },
@@ -10,6 +10,7 @@
     "games": "Games",
     "about": "Studio",
     "contact": "Contact",
+    "press": "Pers",
     "home": "Home",
     "language": "Taal",
     "menu": "Menu"
@@ -17,7 +18,7 @@
   "hero": {
     "kicker": "Onafhankelijke gamestudio",
     "title": "Games die beginnen zodra je klikt.",
-    "lead": "gamestao is een eenmansstudio die platformonafhankelijke games bouwt in TypeScript: een met de hand getekend strategiespel, een roguelite waarin je wapens verzamelt, en een cijferpuzzel. Geen installatie, geen launcher — ze draaien allemaal eerst in de browser.",
+    "lead": "gamestao is een onafhankelijke studio die platformonafhankelijke games bouwt in TypeScript: een met de hand getekend strategiespel, een roguelite waarin je wapens verzamelt, en een cijferpuzzel. Geen installatie, geen launcher — ze draaien allemaal eerst in de browser.",
     "ctaGames": "Bekijk de games",
     "ctaAbout": "Over de studio"
   },
@@ -32,9 +33,9 @@
     "details": "Lees meer",
     "entries": {
       "nivara": {
-        "genre": "Turn-based strategie",
+        "genre": "Realtime tower defense",
         "tagline": "Een met de hand getekend kaartduel om een basis die eraan moet.",
-        "summary": "Twee bases, een hand van zes roterende kaarten, en inkt om te besteden. Zet infanterie neer, bouw kazernes en boogtorens, en breek door naar de vijandelijke basis voordat de klok een gelijkspel afdwingt.",
+        "summary": "Een realtime 1v1: twee bases, een hand van zes roterende kaarten, en inkt om uit te geven terwijl de klok loopt. Zet infanterie in, bouw kazernes en boogtorens, en breek door naar de vijandelijke basis voordat de partij op remise loopt.",
         "intro": "Nivara is een met de hand getekend 1-tegen-1 strategiespel dat zich volledig op een blaadje schriftpapier afspeelt. Je houdt zes kaarten vast die zichzelf verversen, je besteedt inkt om eenheden en gebouwen op het veld te zetten, en je duwt kolom voor kolom naar de basis van de tegenstander. Rond dat duel ligt een hele metalaag: een open wereld om campagne in te voeren, families en sekten om je bij aan te sluiten, en een veilinghuis dat volledig door spelers wordt gedragen.",
         "features": [
           "Een hand van zes kaarten die zichzelf doorrolt — een ongebruikte kaart ververst na 30 seconden, dus je zit nooit vast met een dode hand",
@@ -110,17 +111,44 @@
   },
   "about": {
     "title": "Over de studio",
-    "lead": "Eén ontwikkelaar, drie games, en een stack die zo is gekozen dat niets het uitbrengen in de weg staat.",
+    "lead": "Drie games, en een stack die zo is gekozen dat niets het uitbrengen in de weg staat.",
     "body": [
-      "gamestao is de studio van Tao Wang, een onafhankelijke ontwikkelaar. Elke game hier wordt door één persoon gebouwd en onderhouden — ontwerp, code, artpipeline, en de servers erachter.",
+      "gamestao is een onafhankelijke gamestudio. Alles wat hier staat wordt in eigen huis gebouwd en onderhouden — ontwerp, code, artpipeline, en de servers erachter.",
       "Alle drie de games delen één technische basis: TypeScript en PixiJS op WebGL. Dat is een bewuste keuze. Eén codebase bereikt de browser, iOS, Android en WeChat Mini Games zonder per platform te herschrijven, en een browserbuild betekent dat een game één klik van gespeeld worden af staat in plaats van één download.",
       "Waar een game een echte backend nodig heeft, heeft hij die — autoritatieve matchservers, matchmaking, deterministische simulatie, economieën die door spelers worden gedragen. Niets hier is een prototype dat online is achtergelaten."
     ]
   },
   "contact": {
     "title": "Neem contact op",
-    "lead": "Bugmeldingen, verzoeken om terugbetaling, persvragen, of gewoon om me te vertellen dat een level te moeilijk was — dit adres komt direct bij mij aan.",
-    "email": "Mail de studio"
+    "lead": "Bugmeldingen, verzoeken om terugbetaling, of gewoon om ons te vertellen dat een level te moeilijk was — dit adres komt direct bij de studio aan.",
+    "playersTitle": "Spelers",
+    "businessTitle": "Publishing, investering en pers",
+    "businessLead": "Samenwerking, financiering en persvragen gaan naar een eigen inbox, waar een mens antwoordt en geen formulier.",
+    "pressCta": "Perskit"
+  },
+  "press": {
+    "title": "Perskit",
+    "lead": "Logo's, iconen en schermafbeeldingen op volle resolutie, met de feiten waar het eerst naar gevraagd wordt.",
+    "metaDescription": "Perskit van gamestao: feiten over de studio, logo's, iconen en schermafbeeldingen op volle resolutie van Nivara, DayDayUp en SumQuest, en een direct contact voor publishing en investering.",
+    "factsTitle": "De studio in het kort",
+    "facts": {
+      "studio": "Studio",
+      "games": "Games",
+      "languages": "Talen",
+      "playableOn": "Speelbaar op",
+      "tech": "Gebouwd met",
+      "site": "Website",
+      "contact": "Contact"
+    },
+    "brandTitle": "Studiomerk",
+    "brandLead": "Het merkteken dat de site zelf gebruikt. Houd de verhoudingen aan en verkleur het niet.",
+    "gamesTitle": "De games",
+    "assetsTitle": "Logo's en iconen",
+    "screensTitle": "Schermafbeeldingen",
+    "downloadAlt": "{file} downloaden",
+    "none": "{game} is nog in ontwikkeling en heeft nog geen gepubliceerde beelden. Vraag het ons, dan sturen we wat er is.",
+    "usageTitle": "Gebruik",
+    "usage": "Artikelen, video's en winkelpagina's over de games mogen deze bestanden ongewijzigd gebruiken. Pas de logo's niet aan en presenteer een schermafbeelding niet als iets anders dan wat die toont."
   },
   "notFound": {
     "title": "Pagina niet gevonden",
@@ -132,6 +160,7 @@
     "terms": "Servicevoorwaarden",
     "refunds": "Terugbetalingsbeleid",
     "support": "Ondersteuning",
+    "press": "Perskit",
     "rights": "© {year} gamestao. Alle rechten voorbehouden."
   },
   "a11y": {

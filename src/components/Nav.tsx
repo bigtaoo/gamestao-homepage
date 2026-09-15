@@ -17,6 +17,9 @@ export function Nav() {
     { href: `${home}#games`, label: t.nav.games },
     { href: `${home}#about`, label: t.nav.about },
     { href: `${home}#contact`, label: t.nav.contact },
+    // A page of its own, not an anchor: this is the link that gets pasted
+    // into a pitch email, and it has to resolve on its own.
+    { href: routePath({ locale: route.locale, page: 'press' }), label: t.nav.press },
   ];
 
   return (

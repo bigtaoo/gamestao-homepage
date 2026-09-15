@@ -1,4 +1,4 @@
-import { getGame, GAMES, SCHEMA_PLATFORM } from '../data/games';
+import { BUSINESS_EMAIL, getGame, GAMES, SCHEMA_PLATFORM, SUPPORT_EMAIL } from '../data/games';
 import { interpolate } from '../i18n';
 import type { Messages } from '../i18n/types';
 import {
@@ -16,11 +16,13 @@ import { escapeAttr, escapeForScript } from './serialize';
 
 export function pageTitle(route: Route, messages: Messages): string {
   if (route.page === 'home') return messages.meta.homeTitle;
+  if (route.page === 'press') return `${messages.press.title} — gamestao`;
   return interpolate(messages.meta.gameTitle, { game: getGame(route.gameId).name });
 }
 
 export function pageDescription(route: Route, messages: Messages): string {
   if (route.page === 'home') return messages.meta.homeDescription;
+  if (route.page === 'press') return messages.press.metaDescription;
   const game = getGame(route.gameId);
   return interpolate(messages.meta.gameDescription, {
     game: game.name,
@@ -29,9 +31,9 @@ export function pageDescription(route: Route, messages: Messages): string {
 }
 
 function ogImage(route: Route): string {
-  return route.page === 'home'
-    ? `${ORIGIN}/assets/brand/og.png`
-    : `${ORIGIN}/assets/games/${route.gameId}/og.png`;
+  return route.page === 'game'
+    ? `${ORIGIN}/assets/games/${route.gameId}/og.png`
+    : `${ORIGIN}/assets/brand/og.png`;
 }
 
 /**
@@ -40,15 +42,23 @@ function ogImage(route: Route): string {
  * bare blue link in front of someone searching the game by name.
  */
 function structuredData(route: Route, messages: Messages): string {
-  if (route.page === 'home') {
+  if (route.page === 'home' || route.page === 'press') {
     return escapeForScript({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'gamestao',
       url: `${ORIGIN}/`,
-      description: messages.meta.homeDescription,
+      description:
+        route.page === 'press' ? messages.press.metaDescription : messages.meta.homeDescription,
       logo: `${ORIGIN}/assets/brand/icon-512.png`,
-      email: 'support@gamestao.com',
+      email: SUPPORT_EMAIL,
+      // Two inboxes, described as what they are. A single `email` field had
+      // publishers and players landing in the same queue, which is the thing
+      // the second address exists to stop.
+      contactPoint: [
+        { '@type': 'ContactPoint', contactType: 'customer support', email: SUPPORT_EMAIL },
+        { '@type': 'ContactPoint', contactType: 'business', email: BUSINESS_EMAIL },
+      ],
       makesOffer: GAMES.map((game) => ({
         '@type': 'Offer',
         itemOffered: {
@@ -110,7 +120,7 @@ if(want&&want!==cur&&map[want])location.replace(map[want])}catch(e){}})();`;
 /**
  * The whole `<head>` for one prerendered page, as a string. Built here rather
  * than with a helmet-style library so the tags exist in the emitted HTML with
- * no client-side step — which is the entire point of prerendering 44 pages.
+ * no client-side step — which is the entire point of prerendering 55 pages.
  */
 export function renderHead(route: Route, messages: Messages): string {
   const title = pageTitle(route, messages);

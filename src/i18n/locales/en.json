@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Independent game studio",
     "homeTitle": "gamestao — Independent game studio",
-    "homeDescription": "Three cross-platform games from a one-person studio: Nivara, a hand-drawn strategy game; DayDayUp, a weapon-driven roguelite; and SumQuest, a number puzzle. Every one of them plays in your browser.",
+    "homeDescription": "Three cross-platform games from gamestao: Nivara, a hand-drawn strategy game; DayDayUp, a weapon-driven roguelite; and SumQuest, a number puzzle. Every one of them plays in your browser.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Play {game} in your browser, from the gamestao studio."
   },
@@ -10,6 +10,7 @@
     "games": "Games",
     "about": "Studio",
     "contact": "Contact",
+    "press": "Press",
     "home": "Home",
     "language": "Language",
     "menu": "Menu"
@@ -17,7 +18,7 @@
   "hero": {
     "kicker": "Independent game studio",
     "title": "Games that start the moment you click.",
-    "lead": "gamestao is a one-person studio building cross-platform games in TypeScript: a hand-drawn strategy game, a weapon-hoarding roguelite, and a number puzzle. No installer, no launcher — each of them runs in the browser first.",
+    "lead": "gamestao is an independent studio building cross-platform games in TypeScript: a hand-drawn strategy game, a weapon-hoarding roguelite, and a number puzzle. No installer, no launcher — each of them runs in the browser first.",
     "ctaGames": "See the games",
     "ctaAbout": "About the studio"
   },
@@ -32,10 +33,10 @@
     "details": "Read more",
     "entries": {
       "nivara": {
-        "genre": "Turn-based strategy",
+        "genre": "Real-time tower defense",
         "tagline": "A hand-drawn card battle over a base you have to tear down.",
-        "summary": "Two bases, a hand of six rotating cards, and ink to spend. Deploy infantry, raise barracks and arrow towers, and break through to the enemy base before the match clock forces a draw.",
-        "intro": "Nivara is a hand-drawn 1v1 strategy game played out on a sheet of notebook paper. You hold six cards that refresh themselves, spend ink to put units and buildings on the field, and push column by column toward the opposing base. Around that battle sits a full meta layer: an open world to campaign in, families and sects to join, and an auction house run entirely by players.",
+        "summary": "A real-time 1v1 duel: two bases, a hand of six rotating cards, and ink to spend while the clock runs. Deploy infantry, raise barracks and arrow towers, and break through to the enemy base before the match is drawn.",
+        "intro": "Nivara is a hand-drawn real-time 1v1 strategy game played out on a sheet of notebook paper. You hold six cards that refresh themselves, spend ink to put units and buildings on the field, and push column by column toward the opposing base. Around that battle sits a full meta layer: an open world to campaign in, families and sects to join, and an auction house run entirely by players.",
         "features": [
           "A six-card hand that rotates itself — an unused card refreshes after 30 seconds, so you are never stuck holding a dead draw",
           "Infantry, shield bearers and archers, plus barracks and arrow towers that keep working long after you played them",
@@ -110,17 +111,44 @@
   },
   "about": {
     "title": "About the studio",
-    "lead": "One developer, three games, and a stack picked so that nothing gets in the way of shipping.",
+    "lead": "Three games, and a stack picked so that nothing gets in the way of shipping.",
     "body": [
-      "gamestao is the studio of Tao Wang, an independent developer. Every game here is built and maintained by one person — design, code, art pipeline, and the servers behind them.",
+      "gamestao is an independent game studio. Everything here is built and maintained in house — design, code, art pipeline, and the servers behind them.",
       "All three games share a technical foundation: TypeScript and PixiJS on WebGL. That is a deliberate choice. One codebase reaches the browser, iOS, Android and WeChat Mini Games without a rewrite per platform, and a browser build means a game is one click away from being played rather than one download.",
       "Where a game needs a real backend it has one — authoritative match servers, matchmaking, deterministic simulation, player-driven economies. Nothing here is a prototype left online to rot."
     ]
   },
   "contact": {
     "title": "Get in touch",
-    "lead": "Bug reports, refund requests, press enquiries, or just to tell me a level was too hard — this address reaches me directly.",
-    "email": "Email the studio"
+    "lead": "Bug reports, refund requests, or just to tell us a level was too hard — this address reaches the studio directly.",
+    "playersTitle": "Players",
+    "businessTitle": "Publishing, investment and press",
+    "businessLead": "Partnership, funding and press enquiries go to their own inbox, where a person answers rather than a form.",
+    "pressCta": "Press kit"
+  },
+  "press": {
+    "title": "Press kit",
+    "lead": "Logos, icons and full-resolution screenshots, with the facts people ask for first.",
+    "metaDescription": "Press kit for gamestao: studio facts, logos, icons and full-resolution screenshots for Nivara, DayDayUp and SumQuest, and a direct contact for publishing and investment.",
+    "factsTitle": "The studio at a glance",
+    "facts": {
+      "studio": "Studio",
+      "games": "Games",
+      "languages": "Languages",
+      "playableOn": "Playable on",
+      "tech": "Built with",
+      "site": "Website",
+      "contact": "Contact"
+    },
+    "brandTitle": "Studio mark",
+    "brandLead": "The mark the site itself uses. Please keep its proportions and do not recolour it.",
+    "gamesTitle": "The games",
+    "assetsTitle": "Logos and icons",
+    "screensTitle": "Screenshots",
+    "downloadAlt": "Download {file}",
+    "none": "{game} is still in development and has no published art yet. Ask, and we will send what exists.",
+    "usageTitle": "Using these",
+    "usage": "Articles, videos and store listings about the games may use these files as they are. Please do not alter the logos, or present a screenshot as something other than what it shows."
   },
   "notFound": {
     "title": "Page not found",
@@ -132,6 +160,7 @@
     "terms": "Terms of Service",
     "refunds": "Refund Policy",
     "support": "Support",
+    "press": "Press kit",
     "rights": "© {year} gamestao. All rights reserved."
   },
   "a11y": {
