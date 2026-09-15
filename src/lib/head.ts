@@ -1,3 +1,4 @@
+import type { LegalDoc } from '../data/legal/types';
 import { BUSINESS_EMAIL, getGame, GAMES, SCHEMA_PLATFORM, SUPPORT_EMAIL } from '../data/games';
 import { interpolate } from '../i18n';
 import type { Messages } from '../i18n/types';
@@ -14,15 +15,23 @@ import {
 } from './routes';
 import { escapeAttr, escapeForScript } from './serialize';
 
-export function pageTitle(route: Route, messages: Messages): string {
+export function pageTitle(route: Route, messages: Messages, legal?: LegalDoc): string {
   if (route.page === 'home') return messages.meta.homeTitle;
   if (route.page === 'press') return `${messages.press.title} — gamestao`;
+  // A legal page's own heading, in its own language: these two pages carry
+  // their copy in `legal` rather than in `messages`, so the head has to be
+  // handed the same document the body renders.
+  if (route.page === 'privacy' || route.page === 'terms') return `${legal?.title ?? ''} — gamestao`;
   return interpolate(messages.meta.gameTitle, { game: getGame(route.gameId).name });
 }
 
-export function pageDescription(route: Route, messages: Messages): string {
+export function pageDescription(route: Route, messages: Messages, legal?: LegalDoc): string {
   if (route.page === 'home') return messages.meta.homeDescription;
   if (route.page === 'press') return messages.press.metaDescription;
+  // The document's own opening line, which already says what it covers and
+  // what it does not — a purpose-written meta description would only be a
+  // second thing to keep in step with it.
+  if (route.page === 'privacy' || route.page === 'terms') return legal?.lead ?? '';
   const game = getGame(route.gameId);
   return interpolate(messages.meta.gameDescription, {
     game: game.name,
@@ -42,12 +51,15 @@ function ogImage(route: Route): string {
  * bare blue link in front of someone searching the game by name.
  */
 function structuredData(route: Route, messages: Messages): string {
-  if (route.page === 'home' || route.page === 'press') {
+  if (route.page === 'home' || route.page === 'press' || route.page === 'privacy' || route.page === 'terms') {
     return escapeForScript({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'gamestao',
       url: `${ORIGIN}/`,
+      // The studio's description, not the page's: on the legal pages the page
+      // describes a privacy notice, which is not what this Organization node
+      // is for.
       description:
         route.page === 'press' ? messages.press.metaDescription : messages.meta.homeDescription,
       logo: `${ORIGIN}/assets/brand/icon-512.png`,
@@ -122,9 +134,9 @@ if(want&&want!==cur&&map[want])location.replace(map[want])}catch(e){}})();`;
  * than with a helmet-style library so the tags exist in the emitted HTML with
  * no client-side step — which is the entire point of prerendering 55 pages.
  */
-export function renderHead(route: Route, messages: Messages): string {
-  const title = pageTitle(route, messages);
-  const description = pageDescription(route, messages);
+export function renderHead(route: Route, messages: Messages, legal?: LegalDoc): string {
+  const title = pageTitle(route, messages, legal);
+  const description = pageDescription(route, messages, legal);
   const canonical = routeUrl(route);
   const image = ogImage(route);
 

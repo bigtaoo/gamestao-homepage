@@ -1,16 +1,17 @@
 # gamestao.com
 
 The studio site for [gamestao](https://gamestao.com) — one page per game, a
-press kit, and an about and contact section, in eleven languages.
+press kit, the studio's own privacy notice and terms, and an about and contact
+section, in eleven languages.
 
-React + TypeScript, **prerendered at build time** into 55 static documents and
+React + TypeScript, **prerendered at build time** into 77 static documents and
 served from Cloudflare Workers static assets. No server runs at request time.
 
 | | |
 |---|---|
 | Games | [Nivara](https://nivara.gamestao.com) · [DayDayUp](https://b.gamestao.com) · [SumQuest](https://c.gamestao.com) |
 | Languages | en · zh · de · fr · it · nl · es · pt · ja · ko · ru |
-| Pages built | 11 locales x (home + press + 3 game pages) = 55, plus `404.html` |
+| Pages built | 11 locales x (home + press + privacy + terms + 3 game pages) = 77, plus `404.html` |
 | Contact | `support@gamestao.com` (players) · `contact@gamestao.com` (publishing, investment, press) |
 | Hosting | Cloudflare Worker `gamestao-site`, zone `gamestao.com` |
 
@@ -45,7 +46,7 @@ screenshot strip (CSS scroll-snap).
 ```bash
 npm install
 npm run dev        # vite dev server; renders client-side, route taken from the URL
-npm run build      # client bundle -> SSR renderer -> 55 pages into dist/
+npm run build      # client bundle -> SSR renderer -> 77 pages into dist/
 npm run preview    # serve dist/ exactly as it will be served in production
 npm run typecheck
 npm test           # locale parity + route/head invariants
@@ -71,6 +72,9 @@ src/
   data/games.ts        The three games: names, accent colours, platform links,
                        and the two contact addresses.
   data/press.ts        The press kit's downloads, read from the manifest below.
+  data/legal/          The privacy notice and terms, one file per locale. Read
+                       by entry-server.tsx alone, so eleven languages of legal
+                       text never enter the client bundle — see its types.ts.
   data/press-assets.json  GENERATED. Every press download: kind, size, bytes.
   data/asset-sizes.json  GENERATED. Intrinsic size of every committed image.
   data/assetSizes.ts   Reads that file; throws rather than render an image
@@ -114,8 +118,9 @@ nothing else needs touching. The type makes `live` require a URL, so a platform
 cannot be advertised as playable without somewhere to send people.
 
 **A new language** is `LOCALES` in `src/lib/routes.ts` plus an `HREFLANG` entry,
-an endonym in `LOCALE_NAMES`, and a locale file. The build picks it up and emits
-five more pages.
+an endonym in `LOCALE_NAMES`, a locale file, and a file in `src/data/legal/`.
+The build picks it up and emits seven more pages; `npm run typecheck` names both
+files it still needs.
 
 **Artwork and the press kit** have a runbook of their own, because importing
 real art is a command with paths into another game's checkout rather than an
@@ -139,15 +144,21 @@ edit in here: [docs/assets.md](docs/assets.md).
   explicit choice always wins. Without that check, someone whose browser is set
   to German but who deliberately clicked English would be bounced back to German
   on every click.
-- **Legal pages are not duplicated here.** The studio has one privacy policy,
-  one ToS and one refund policy; they are served by the Nivara client and linked
-  from the footer, extensionless (`/privacy`, not `/privacy.html`, which only
-  307s to it). The address in them is `support@gamestao.com`, which is also the
-  player-facing one on this site; `contact@gamestao.com` is the second inbox,
-  for publishing, investment and press, and appears nowhere in the policies.
-  Both are Cloudflare Email Routing addresses on this zone. The zone used to
-  carry `privacy.` and `support.` hostnames for store forms; both were deleted
-  on 2026-09-15 and store listings name the Nivara-served pages directly
+- **The legal pages are about this site, and only this site.** They used to be
+  the Nivara client's, linked from the footer as though one policy set covered
+  the studio. It described accounts, purchases, matchmaking and chat — a fair
+  description of a game, and a wrong one for a brochure that takes no input at
+  all. Since 2026-09-15 this site serves its own privacy notice and terms from
+  `src/data/legal/`, and every game keeps its own set, linked from the game.
+
+  There is no refund policy here: nothing is sold on this site, and a document
+  about a transaction that cannot happen is a liability rather than a courtesy.
+
+  Every factual claim in the privacy notice is checkable against this repo — no
+  cookies, no analytics, no third-party requests, one `localStorage` key — which
+  is why it names `gamestao.lang` outright and why a test asserts that all
+  eleven translations still do. The zone used to carry `privacy.` and `support.`
+  hostnames for store forms; both were deleted on 2026-09-15
   ([docs/dns.md](docs/dns.md)).
 - **`404.html` is not one of the routes.** It has no URL of its own, carries
   `noindex`, is absent from the sitemap, and deliberately omits the language

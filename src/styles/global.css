@@ -1224,3 +1224,68 @@ dl {
   font-size: 0.78rem;
   color: var(--text-faint);
 }
+
+/* ---------------------------------------------------------------- legal --
+   The two studio documents. Measured for reading rather than for scanning:
+   one column at 68 characters, no accent colour, no card. Everything else on
+   this site is trying to hold your attention; a page someone opened to check
+   one fact should get out of the way and let them find it. */
+
+.legal {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 5rem) var(--gutter) clamp(4rem, 8vw, 6rem);
+}
+
+.legal__doc {
+  max-width: 68ch;
+}
+
+.legal__head {
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+/* Above the lead rather than below it: the date is the first thing a reader
+   checking whether a policy is current goes looking for. */
+.legal__updated {
+  margin-top: 0.75rem;
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.legal__lead {
+  margin-top: 1.25rem;
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.legal__section {
+  margin-top: clamp(2rem, 4vw, 2.75rem);
+}
+
+.legal__section h2 {
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.legal__section p {
+  margin-top: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+
+/* Long prose in Chinese, Japanese and Korean needs the extra leading more
+   than Latin text does — the same reason `.cjk` exists for the rest of the
+   site, applied where the paragraphs are longest. */
+.cjk .legal__section p,
+.cjk .legal__lead {
+  line-height: 1.95;
+}

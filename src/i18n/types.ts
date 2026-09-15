@@ -119,7 +119,6 @@ export type Messages = {
   footer: {
     privacy: string;
     terms: string;
-    refunds: string;
     support: string;
     press: string;
     rights: string;

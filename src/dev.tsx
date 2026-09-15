@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
+import { LEGAL } from './data/legal';
 import { MESSAGES } from './i18n';
 import { renderHead } from './lib/head';
 import { CJK_LOCALES, DEFAULT_LOCALE, HREFLANG, parsePath, type Route } from './lib/routes';
@@ -21,6 +22,9 @@ export function startDev(root: HTMLElement): void {
     route,
     messages: MESSAGES[route.locale],
     year: new Date().getFullYear(),
+    ...(route.page === 'privacy' || route.page === 'terms'
+      ? { legal: LEGAL[route.locale][route.page] }
+      : {}),
   };
 
   // Both of the things the prerenderer puts on <html>, so CJK typography can
@@ -32,7 +36,7 @@ export function startDev(root: HTMLElement): void {
   // insertAdjacentHTML does not execute inserted scripts, which is why the
   // first-visit language redirect stays inert here — convenient, since it
   // would otherwise bounce you out of whichever locale you are working on.
-  document.head.insertAdjacentHTML('beforeend', renderHead(route, page.messages));
+  document.head.insertAdjacentHTML('beforeend', renderHead(route, page.messages, page.legal));
 
   createRoot(root).render(<App page={page} />);
 }

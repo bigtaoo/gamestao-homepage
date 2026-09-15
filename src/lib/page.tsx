@@ -1,4 +1,5 @@
 import { createContext, useContext, type ReactNode } from 'react';
+import type { LegalDoc } from '../data/legal/types';
 import type { Messages } from '../i18n/types';
 import type { Route } from './routes';
 
@@ -20,6 +21,13 @@ export type PageData = {
    * flips this to swap the body.
    */
   notFound?: true;
+  /**
+   * Set only on `/privacy/` and `/terms/`, and carrying only that page's own
+   * document in that page's own language. Legal text is long and nobody reads
+   * it twice, so it travels with the two pages that show it rather than in
+   * `messages`, which every page inlines in full — see `data/legal/types.ts`.
+   */
+  legal?: LegalDoc;
 };
 
 /** The global the prerenderer writes and `main.tsx` reads. */

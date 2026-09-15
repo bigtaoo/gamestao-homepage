@@ -1,5 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { App } from './App';
+import { LEGAL } from './data/legal';
 import { MESSAGES } from './i18n';
 import { htmlAttrs, renderHead, renderNotFoundHead } from './lib/head';
 import { PAGE_DATA_GLOBAL, type PageData } from './lib/page';
@@ -30,6 +31,12 @@ export function render(route: Route): RenderedPage {
     route,
     messages: MESSAGES[route.locale],
     year: BUILD_YEAR,
+    // Only the document this route shows, only in this route's language. This
+    // is the one place the legal text is read, which is what keeps eleven
+    // languages of it out of the client bundle and out of the other 75 pages.
+    ...(route.page === 'privacy' || route.page === 'terms'
+      ? { legal: LEGAL[route.locale][route.page] }
+      : {}),
   };
 
   const body = renderToString(<App page={page} />);
@@ -39,7 +46,7 @@ export function render(route: Route): RenderedPage {
   const serialized = escapeForScript(page);
 
   return {
-    head: renderHead(route, page.messages),
+    head: renderHead(route, page.messages, page.legal),
     htmlAttrs: htmlAttrs(route.locale),
     body,
     pageDataScript: `<script>window.${PAGE_DATA_GLOBAL}=${serialized}</script>`,
@@ -87,14 +94,8 @@ export {
   LOCALE_NAMES,
   ORIGIN,
 } from './lib/routes';
-export {
-  BUSINESS_EMAIL,
-  GAMES,
-  getGame,
-  LEGAL_URLS,
-  SCHEMA_PLATFORM,
-  SUPPORT_EMAIL,
-} from './data/games';
+export { BUSINESS_EMAIL, GAMES, getGame, SCHEMA_PLATFORM, SUPPORT_EMAIL } from './data/games';
+export { LEGAL, LEGAL_PAGES, LEGAL_UPDATED } from './data/legal';
 export { pressAssets, splitAssets, STUDIO_MARK } from './data/press';
 export { assetSize } from './data/assetSizes';
 export { interpolate, MESSAGES } from './i18n';

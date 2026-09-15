@@ -1,4 +1,4 @@
-import { BUSINESS_EMAIL, LEGAL_URLS, SUPPORT_EMAIL } from '../data/games';
+import { BUSINESS_EMAIL, SUPPORT_EMAIL } from '../data/games';
 import { interpolate } from '../i18n';
 import { usePage } from '../lib/page';
 import { GAME_IDS, routePath } from '../lib/routes';
@@ -43,16 +43,19 @@ export function Footer() {
             <li>
               <a href={routePath({ locale: route.locale, page: 'press' })}>{t.footer.press}</a>
             </li>
-            {/* One policy set covers all three games; these live with the
-                Nivara client rather than being duplicated per site. */}
+            {/* This site's own documents, about this site. They used to be the
+                Nivara client's, which described a game with accounts, purchases
+                and chat — none of which exists here, and all of which a visitor
+                would reasonably have read as a description of this site. Each
+                game still carries its own set, linked from the game.
+
+                No refund policy: nothing is sold here. One would be a document
+                about a transaction that cannot happen. */}
             <li>
-              <a href={LEGAL_URLS.privacy}>{t.footer.privacy}</a>
+              <a href={routePath({ locale: route.locale, page: 'privacy' })}>{t.footer.privacy}</a>
             </li>
             <li>
-              <a href={LEGAL_URLS.terms}>{t.footer.terms}</a>
-            </li>
-            <li>
-              <a href={LEGAL_URLS.refunds}>{t.footer.refunds}</a>
+              <a href={routePath({ locale: route.locale, page: 'terms' })}>{t.footer.terms}</a>
             </li>
           </ul>
         </nav>

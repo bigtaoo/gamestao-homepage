@@ -29,7 +29,9 @@ const {
   ORIGIN,
   GAMES,
   getGame,
-  LEGAL_URLS,
+  LEGAL,
+  LEGAL_PAGES,
+  LEGAL_UPDATED,
   SCHEMA_PLATFORM,
   SUPPORT_EMAIL,
   BUSINESS_EMAIL,
@@ -45,8 +47,8 @@ const {
 
 test('the build emits one page per locale per view, all distinct', () => {
   const routes = allRoutes();
-  // home + press + one page per game, in every locale.
-  assert.equal(routes.length, LOCALES.length * (2 + GAME_IDS.length));
+  // home + press + privacy + terms + one page per game, in every locale.
+  assert.equal(routes.length, LOCALES.length * (2 + LEGAL_PAGES.length + GAME_IDS.length));
 
   const paths = routes.map(routePath);
   assert.equal(new Set(paths).size, paths.length, 'two routes resolve to the same path');
@@ -152,13 +154,88 @@ test('getGame refuses an unknown id instead of returning undefined', () => {
   assert.throws(() => getGame('nope'), /Unknown game id/);
 });
 
-test('the studio contact and legal links are absolute and consistent', () => {
+test('the studio contact addresses are distinct and on the zone', () => {
   assert.match(SUPPORT_EMAIL, /^[^@\s]+@gamestao\.com$/);
   assert.match(BUSINESS_EMAIL, /^[^@\s]+@gamestao\.com$/);
   // Two inboxes with one address between them would be the same inbox.
   assert.notEqual(BUSINESS_EMAIL, SUPPORT_EMAIL);
-  for (const [name, url] of Object.entries(LEGAL_URLS)) {
-    assert.match(url, /^https:\/\//, `${name} legal url is not absolute`);
+});
+
+test('every locale has both legal documents, with the same sections', () => {
+  const shape = (docs, page) => docs[page].sections.map((section) => section.heading.length > 0);
+
+  for (const page of LEGAL_PAGES) {
+    const expected = shape(LEGAL[DEFAULT_LOCALE], page).length;
+    assert.ok(expected > 0, `${page} has no sections in ${DEFAULT_LOCALE}`);
+
+    for (const locale of LOCALES) {
+      const doc = LEGAL[locale]?.[page];
+      assert.ok(doc, `${locale} has no ${page} document`);
+      assert.ok(doc.title.trim(), `${locale}/${page} has no title`);
+      assert.ok(doc.lead.trim(), `${locale}/${page} has no lead`);
+      assert.ok(doc.updatedLabel.trim(), `${locale}/${page} has no "last updated" label`);
+      // A translation that quietly drops a section drops an obligation with
+      // it, and nobody on the team reads all eleven.
+      assert.equal(
+        doc.sections.length,
+        expected,
+        `${locale}/${page} has ${doc.sections.length} sections, ${DEFAULT_LOCALE} has ${expected}`,
+      );
+      for (const section of doc.sections) {
+        assert.ok(section.heading.trim(), `${locale}/${page} has an unheaded section`);
+        assert.ok(section.body.length > 0, `${locale}/${page}: "${section.heading}" has no text`);
+        for (const paragraph of section.body) {
+          assert.ok(paragraph.trim(), `${locale}/${page}: "${section.heading}" has an empty line`);
+        }
+      }
+    }
+  }
+
+  assert.match(LEGAL_UPDATED, /^\d{4}-\d{2}-\d{2}$/);
+});
+
+test('the legal pages say what this site does, not what a game does', () => {
+  for (const locale of LOCALES) {
+    const privacy = LEGAL[locale].privacy;
+    const text = [privacy.lead, ...privacy.sections.flatMap((s) => s.body)].join(' ');
+    // The one storage key this site writes, and the two inboxes it prints:
+    // named in every language, because a privacy notice that cannot be
+    // checked against the code is one nobody can falsify.
+    assert.ok(text.includes('gamestao.lang'), `${locale} privacy never names the storage key`);
+    assert.ok(text.includes(BUSINESS_EMAIL), `${locale} privacy never gives ${BUSINESS_EMAIL}`);
+    assert.ok(text.includes('Cloudflare'), `${locale} privacy never names the host`);
+  }
+});
+
+test('a legal page renders its own document and head', () => {
+  for (const page of LEGAL_PAGES) {
+    const route = { locale: 'de', page };
+    const html = render(route);
+    const doc = LEGAL.de[page];
+
+    assert.ok(html.body.includes(doc.title), `${page} does not render its title`);
+    assert.ok(html.body.includes(LEGAL_UPDATED), `${page} does not show when it was updated`);
+    for (const section of doc.sections) {
+      assert.ok(html.body.includes(section.heading), `${page} drops "${section.heading}"`);
+    }
+    assert.ok(html.head.includes(`${doc.title} — gamestao`), `${page} has the wrong <title>`);
+  }
+});
+
+test('legal text travels only with the pages that show it', () => {
+  // The whole of a locale's Messages is inlined into every page, so legal text
+  // living there would be carried by all 77. It lives in PageData instead, and
+  // this is the check that keeps it there.
+  const marker = LEGAL.en.privacy.sections[0].body[0].slice(0, 40);
+
+  assert.ok(render({ locale: 'en', page: 'privacy' }).body.includes(marker));
+  for (const page of ['home', 'press']) {
+    const html = render({ locale: 'en', page });
+    assert.ok(!html.body.includes(marker), `the ${page} page carries the privacy notice`);
+    assert.ok(
+      !html.pageDataScript.includes(marker),
+      `the ${page} page's hydration payload carries the privacy notice`,
+    );
   }
 });
 

@@ -5,20 +5,26 @@ this repo — each item is a Cloudflare panel edit, a store form, or a decision
 that belongs to someone with a login. Kept here so none of it is rediscovered
 the hard way.
 
-## The legal pages wear one game's branding
+## SumQuest's store listing still points at Nivara's policy
 
-The studio has one privacy policy, one ToS and one refund policy, and they are
-served by the Nivara client: `nivara.gamestao.com/privacy`, `/terms`, `/refunds`
-and `/support` (200, zero redirects, verified 2026-09-15). Every store listing
-and every footer on this site points at them.
+Settled for this site on 2026-09-15: the studio site serves its own privacy
+notice and terms, about itself, and each game keeps its own set. That is a code
+change and it is done — `/privacy/` and `/terms/`, eleven languages each.
 
-They are titled *"Privacy Policy — Nivara"*. So someone following SumQuest's
-privacy link — an App Store reviewer, a publisher doing diligence — lands on
-another game's branding and has to work out whether they are still looking at
-the right company. Nothing is broken; it just reads as sloppier than the studio
-is. A studio-branded set, served from this site rather than from a game client,
-is the real answer, and it is a decision about where the canonical policy lives
-rather than a panel edit.
+What is not done is outside this repo. Nivara's documents are the only ones that
+actually exist: `nivara.gamestao.com/privacy`, `/terms`, `/refunds` and
+`/support` (200, zero redirects, verified 2026-09-15), and they are titled
+*"Privacy Policy — Nivara"*. SumQuest is published, and whatever URL went into
+its App Store submission points at one of two things — a hostname that was
+deleted, or a document with another game's name at the top. Someone doing
+diligence on the studio follows that link.
+
+Two ways out, and they are not the same amount of work. The store listings could
+point at this site's `/privacy/` and `/terms/`, which are studio-level and
+honest about covering the website — but they do not describe a game with
+accounts and purchases, so they are the wrong document for a store form. Or
+SumQuest gets its own pair, the way Nivara has, served by its own client. The
+second is right; the first is not a shortcut to it.
 
 ## Store and portal links
 

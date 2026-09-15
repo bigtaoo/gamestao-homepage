@@ -132,17 +132,13 @@ export const SUPPORT_EMAIL = 'support@gamestao.com';
  */
 export const BUSINESS_EMAIL = 'contact@gamestao.com';
 
-/**
- * Legal pages are served by the Nivara client and shared across all three
- * games — the studio has one privacy policy, one ToS, one refund policy.
- * Linked, never duplicated here.
+/*
+ * There is no LEGAL_URLS table here any more.
  *
- * Extensionless on purpose: the Nivara client 307s `/privacy.html` to
- * `/privacy`, so the `.html` form these used to carry cost every footer on all
- * 44 pages an extra round trip to reach the same document.
+ * The footer used to link the Nivara client's privacy policy, terms and refund
+ * policy as though they were the studio's, which put a document describing
+ * accounts, purchases, matchmaking and chat behind a link on a site that has
+ * none of those. This site now serves its own two documents, about itself, in
+ * `data/legal/`; each game keeps its own set, linked from the game, where the
+ * reader is someone the policy actually describes.
  */
-export const LEGAL_URLS = {
-  privacy: 'https://nivara.gamestao.com/privacy',
-  terms: 'https://nivara.gamestao.com/terms',
-  refunds: 'https://nivara.gamestao.com/refunds',
-} as const;

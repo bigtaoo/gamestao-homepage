@@ -56,6 +56,8 @@ export type GameId = (typeof GAME_IDS)[number];
 export type Route =
   | { locale: Locale; page: 'home' }
   | { locale: Locale; page: 'press' }
+  | { locale: Locale; page: 'privacy' }
+  | { locale: Locale; page: 'terms' }
   | { locale: Locale; page: 'game'; gameId: GameId };
 
 /**
@@ -64,6 +66,14 @@ export type Route =
  * resolves in every language beats eleven that each work in one.
  */
 export const PRESS_SEGMENT = 'press';
+
+/**
+ * The studio's own legal pages, about this website rather than about a game.
+ * Untranslated segments for the same reason as `press`: these URLs are handed
+ * to store review forms and quoted in email, where one address that resolves
+ * everywhere beats eleven that each work in one language.
+ */
+export const LEGAL_SEGMENT = { privacy: 'privacy', terms: 'terms' } as const;
 
 /** Canonical origin. Every absolute URL in a `<head>` is built from this. */
 export const ORIGIN = 'https://gamestao.com';
@@ -78,6 +88,7 @@ export function routePath(route: Route): string {
   const segments: string[] = [];
   if (route.locale !== DEFAULT_LOCALE) segments.push(route.locale);
   if (route.page === 'press') segments.push(PRESS_SEGMENT);
+  if (route.page === 'privacy' || route.page === 'terms') segments.push(LEGAL_SEGMENT[route.page]);
   if (route.page === 'game') segments.push(route.gameId);
   return segments.length === 0 ? '/' : `/${segments.join('/')}/`;
 }
@@ -92,12 +103,14 @@ export function translateRoute(route: Route, locale: Locale): Route {
   return { locale, page: route.page };
 }
 
-/** Every page the build emits: 11 locales x (home + press + 3 game pages) = 55. */
+/** Every page: 11 locales x (home + press + privacy + terms + 3 games) = 77. */
 export function allRoutes(): Route[] {
   const routes: Route[] = [];
   for (const locale of LOCALES) {
     routes.push({ locale, page: 'home' });
     routes.push({ locale, page: 'press' });
+    routes.push({ locale, page: 'privacy' });
+    routes.push({ locale, page: 'terms' });
     for (const gameId of GAME_IDS) routes.push({ locale, page: 'game', gameId });
   }
   return routes;
@@ -120,6 +133,9 @@ export function parsePath(pathname: string): Route | null {
   if (segments.length === 0) return { locale, page: 'home' };
 
   if (segments.length === 1 && segments[0] === PRESS_SEGMENT) return { locale, page: 'press' };
+
+  if (segments.length === 1 && segments[0] === LEGAL_SEGMENT.privacy) return { locale, page: 'privacy' };
+  if (segments.length === 1 && segments[0] === LEGAL_SEGMENT.terms) return { locale, page: 'terms' };
 
   if (segments.length === 1 && (GAME_IDS as readonly string[]).includes(segments[0])) {
     return { locale, page: 'game', gameId: segments[0] as GameId };
