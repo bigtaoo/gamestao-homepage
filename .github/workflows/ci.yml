@@ -10,7 +10,7 @@
 #             by eye.
 #   deploy  — builds again and ships to Cloudflare. `needs: check`, so a red
 #             gate cannot publish. Gated off until a repo variable exists (see
-#             "Turning CI on" in README.md).
+#             "Turning CI on" in docs/deploy.md).
 #
 # The earlier version of this had a single gated job, which meant a push with
 # SITE_DEPLOY_ENABLED unset skipped the tests as well as the deploy — the gates
@@ -20,9 +20,10 @@ name: ci
 
 on:
   push:
-    # A README-only commit rebuilds byte-identical pages; nothing to publish.
+    # A docs-only commit rebuilds byte-identical pages; nothing to publish.
     paths-ignore:
       - 'README.md'
+      - 'docs/**'
   pull_request:
   workflow_dispatch:
 
@@ -49,7 +50,7 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       # `npm test` builds only the SSR bundle. The prerenderer that turns that
-      # bundle into 44 pages is a separate step and can break on its own, so
+      # bundle into 55 pages is a separate step and can break on its own, so
       # the build belongs in the gate rather than only in the deploy job.
       - run: npm run build
 
@@ -89,7 +90,7 @@ jobs:
         run: npx -y wrangler@4.128.0 deploy -c wrangler/site.jsonc
 
       # A successful upload is not a served page. `npm run smoke` is the same
-      # command README's apex runbook runs by hand after a manual deploy, so
+      # command docs/deploy.md has you run by hand after a manual deploy, so
       # what CI calls a healthy deploy and what a person checks cannot drift.
       # It waits out DNS and certificate provisioning on a new hostname.
       - name: smoke test the deployed site

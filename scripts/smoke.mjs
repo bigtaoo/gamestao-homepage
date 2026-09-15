@@ -3,9 +3,9 @@
  * means the assets uploaded; these are the four things that tell you the site
  * is actually being served the way `wrangler/site.jsonc` says it should be.
  *
- *   npm run smoke -- https://studio.gamestao.com
+ *   npm run smoke -- https://gamestao.com
  *
- * CI runs it after every deploy, and the apex runbook in README.md runs it by
+ * CI runs it after every deploy, and the runbook in docs/deploy.md runs it by
  * hand after a manual one. Same command either way, so what CI considers a
  * healthy deploy and what a person checks cannot drift apart.
  *

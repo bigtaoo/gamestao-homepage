@@ -14,6 +14,17 @@ served from Cloudflare Workers static assets. No server runs at request time.
 | Contact | `support@gamestao.com` (players) · `contact@gamestao.com` (publishing, investment, press) |
 | Hosting | Cloudflare Worker `gamestao-site`, zone `gamestao.com` |
 
+This file covers the code: how to run it, where things live, how to change
+them. The operational side is next door, one file per thing you would go
+looking for.
+
+| | |
+|---|---|
+| [docs/assets.md](docs/assets.md) | Game art and the press kit — importing real art, the stand-in generator, what is real today |
+| [docs/deploy.md](docs/deploy.md) | The CI pipeline, the deploy switch, the Cloudflare token, deploying by hand |
+| [docs/dns.md](docs/dns.md) | Which hostname serves what, how the apex was taken over, and two failures that lie about their cause |
+| [docs/todo.md](docs/todo.md) | What is still unfinished on the zone and in the store listings |
+
 ---
 
 ## Why it is prerendered
@@ -62,21 +73,32 @@ src/
   data/press.ts        The press kit's downloads, read from the manifest below.
   data/press-assets.json  GENERATED. Every press download: kind, size, bytes.
   data/asset-sizes.json  GENERATED. Intrinsic size of every committed image.
+  data/assetSizes.ts   Reads that file; throws rather than render an image
+                       without a reserved box.
   data/asset-provenance.json  GENERATED. Which art is real, so the generator
                        will not overwrite it.
   i18n/types.ts        The copy contract. Every locale file is checked against it.
+  i18n/index.ts        The eleven bundles, each typed against that contract.
   i18n/locales/*.json  Eleven files, one per language.
   pages/, components/  The UI.
   entry-server.tsx     Renders a route to HTML. The build-time surface; also what
                        the tests import.
   main.tsx             Hydrates in the browser.
+  dev.tsx              Stands in for the prerenderer under `vite dev`, where there
+                       is no prerendered markup to hydrate. Dev builds only.
 scripts/
   prerender.mjs        Shell + renderer -> dist/**/index.html, 404.html, sitemap.xml
   placeholders.mjs     Generates brand marks and stand-in game artwork
   import-shots.mjs     Imports a game's real icon, cover and screenshots
   import-press.mjs     Imports the full-resolution press-kit downloads
+  smoke.mjs            Checks a live host rather than a build; see docs/deploy.md
   lib/asset-sizes.mjs  Shared image bookkeeping for the two generators above
-wrangler/site.jsonc    Cloudflare Worker config
+test/
+  locales.test.mjs     The eleven locale files against each other
+  site.test.mjs        Route space, head invariants, and the press kit against
+                       the same entry point the build renders
+wrangler/site.jsonc       Cloudflare Worker config
+.github/workflows/ci.yml  The whole pipeline; see docs/deploy.md
 ```
 
 ## Adding or changing things
@@ -95,374 +117,9 @@ cannot be advertised as playable without somewhere to send people.
 an endonym in `LOCALE_NAMES`, and a locale file. The build picks it up and emits
 five more pages.
 
-**Artwork.** Each game shows a store icon, a cover and four screenshots.
-Real art replaces the generated stand-ins one kind at a time:
-
-```bash
-node scripts/import-shots.mjs nivara   --icon "D:/funny/art/store/icons/ios_appicon_1024.png"   --cover "D:/funny/art/store/icons/play_feature_1024x500.png" --cover-fit contain
-```
-
-Sources are passed on the command line, never listed in this repo — the
-originals live in each game's own checkout and a build here must not depend on a
-sibling working copy. Use `--cover-fit contain` for a composed feature graphic
-(cropping one cuts through its own typography) and the default `cover` for a
-photo or screenshot.
-
-The script records two things besides the images: each file's real pixel size
-in `asset-sizes.json`, so the markup reserves the right box and nothing shifts
-on load; and the fact that the art is real, in `asset-provenance.json`.
-
-**The press kit** (`/press/`, in all eleven languages) is the same art at full
-resolution, imported separately because what the site renders and what a
-journalist downloads are not the same file:
-
-```bash
-node scripts/import-press.mjs nivara   --logo    "D:/funny/art/logo/derived/logo-1024.png"   --icon    "D:/funny/art/store/icons/ios_appicon_1024.png"   --feature "D:/funny/art/store/icons/play_feature_1024x500.png"   --screens "D:/funny/art/store/en/battle__android_9x16.png" ...
-```
-
-Pass the **same screenshots, in the same order**, as `import-shots.mjs` got:
-the press page pairs download `n` with the site's own `shot-<n>.webp` as its
-thumbnail, and a test fails if the two counts diverge. A PNG source is copied
-byte-for-byte — re-encoding these inflated every one of them. Everything the
-page says about a file (pixel size, byte count) comes from the manifest the
-script writes, so nothing there can go stale without the file changing.
-
-A game with no entry in the manifest is not hidden: its section says the art is
-not published yet. That is DayDayUp today — it has no logo, no store icon and
-no captured screenshots anywhere in `D:\daydayup`.
-
-```bash
-npm run build:ssr                                     # the generator reads the game table from it
-node scripts/placeholders.mjs                         # fill in whatever is missing
-node scripts/placeholders.mjs --regenerate cover,og   # rebuild one kind
-```
-
-Regeneration is per kind (`icon`, `cover`, `shot`, `og`, `brand`) and never
-touches art marked real, even when `--regenerate` names its kind — `--overwrite-real`
-is the only way to replace imported art with a stand-in. That guard exists
-because the earlier blanket `--force` destroyed SumQuest's imported cover and
-four real screenshots on its first use.
-
-Current state: **Nivara** has its real icon and Play feature graphic,
-**SumQuest** its real icon, marketing cover and four App Store screenshots, and
-**DayDayUp** is entirely on generated stand-ins — it has no store art yet.
-
-## Deploying
-
-`.github/workflows/ci.yml` is the whole pipeline: a `check` job (typecheck,
-tests, full build) that runs on every push and pull request, and a `deploy` job
-that `needs: check` and ships `dist/` to Cloudflare. So a red gate cannot
-publish, and a push is verified even while publishing is switched off.
-
-**The site is live at `https://gamestao.com`** as of 2026-09-03 — Worker
-`gamestao-site`, on the apex and `www`. Every push to `main` that touches
-anything but `README.md` builds it and publishes it.
-
-What still stands between a bad commit and a bad live page is the pipeline, not
-a switch: `deploy` needs `check`, so a failing typecheck, a failing locale test
-or a broken prerender stops the deploy rather than shipping. After the deploy,
-`npm run smoke` re-checks the live host and fails the run if the apex stopped
-answering, `/de/` stopped rendering German, a wrong path stopped being a 404 or
-the sitemap lost pages.
-
-To stop publishing without touching the code — while debugging, say — unset the
-switch, and pushes go back to running `check` only:
-
-```bash
-gh variable delete SITE_DEPLOY_ENABLED --repo bigtaoo/goodgoodstudy
-```
-
-### Turning CI on
-
-**Already on** — both secrets and `SITE_DEPLOY_ENABLED` are set on
-`bigtaoo/goodgoodstudy` as of 2026-09-03. This is here for rotating the token
-or setting up another repo. Both on `bigtaoo/goodgoodstudy`:
-
-```bash
-gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/goodgoodstudy
-```
-
-```bash
-gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/goodgoodstudy
-```
-
-```bash
-gh variable set SITE_DEPLOY_ENABLED --body true --repo bigtaoo/goodgoodstudy
-```
-
-In that order — the variable is the switch, and the next push after it flips
-deploys for real. `gh secret set` prompts for the value on stdin, so the token
-is never typed into a shell history or a file. The account is
-`tao.wang.go@gmail.com`, account id `e64b61f1629ebcc49ee9b6eea2a95b82`.
-
-#### The API token
-
-GitHub cannot read a secret back out, so the value cannot be lifted off
-`bigtaoo/daydayup` even though the same two secrets are already set there.
-Make one at **dash.cloudflare.com → My Profile → API Tokens → Create Token**,
-then **Custom → Edit Cloudflare Workers** — the template Cloudflare's own
-GitHub Actions guide points at. It grants:
-
-| Scope | Permission |
-|---|---|
-| Account | Workers Scripts: Edit |
-| Account | Workers KV Storage: Edit |
-| Account | Workers R2 Storage: Edit |
-| Account | Workers Tail: Read |
-| Account | Account Settings: Read |
-| User | User Details: Read, Memberships: Read |
-| Zone | Workers Routes: Edit |
-
-Narrow **Zone Resources** to `gamestao.com` rather than all zones, and set a
-TTL if you want the token to expire. The value is shown once and starts with
-`cfut_`.
-
-What the template does **not** include is `Zone → DNS → Edit` or
-`Zone → Zone → Read`, which matters here because these routes are
-`custom_domain: true` — a custom domain is Cloudflare writing a DNS record and
-issuing a certificate on your behalf, not just attaching a script to an
-existing proxied record. The docs do not say either way whether
-`Workers Routes: Edit` alone authorises that.
-
-**It does — measured, not assumed.** On 2026-09-03 a token created from this
-template with nothing added provisioned two brand-new custom domains
-(`c.gamestao.com` and `sumquest.gamestao.com`, on `bigtaoo/PIXIJSGAME`),
-writing the DNS records and getting valid certificates, from GitHub Actions.
-So do not widen this token: adding `DNS → Edit` would let anything running in
-CI rewrite every record on the zone, the three game clients included, and it
-buys nothing.
-
-Check what landed, and that the guard is really open:
-
-```bash
-gh variable list --repo bigtaoo/goodgoodstudy
-```
-
-```bash
-gh secret list --repo bigtaoo/goodgoodstudy
-```
-
-The remote is empty as of 2026-09-03, so the first `git push -u origin main`
-both creates `main` and is the first thing CI ever sees. With the variable
-still unset, that push runs `check` alone and publishes nothing. Watch it:
-
-```bash
-gh run watch --repo bigtaoo/goodgoodstudy
-```
-
-### Deploying by hand
-
-Needs a locally authenticated wrangler (browser OAuth; credentials land in
-`%APPDATA%\xdg.config\.wrangler\config` — as of 2026-09-03 this machine has
-none):
-
-```bash
-npx -y wrangler@4.128.0 login
-```
-
-```bash
-npm run deploy
-```
-
-The `deploy` script and CI pin the same wrangler version, so a wrangler release
-cannot change what a deploy does without a commit here. Bump the two together.
-
-### The apex, and how it was taken over
-
-Done on 2026-09-03. Kept because the hostname layout is not guessable from the
-code, and because two of the failures on the way are the kind that look like
-something else entirely.
-
-| Host | Serves | Where it is configured |
-|---|---|---|
-| `gamestao.com` | this site | `wrangler/site.jsonc`, Worker `gamestao-site` |
-| `www.gamestao.com` | this site, same content — **not** a redirect | same |
-| `c.gamestao.com` | SumQuest | `bigtaoo/PIXIJSGAME`, `wrangler/client.jsonc` |
-| `sumquest.gamestao.com` | SumQuest, brand host for store listings | same |
-| `a.` / `nivara.gamestao.com` | Nivara | `bigtaoo/funny` |
-| `b.gamestao.com` | DayDayUp | `bigtaoo/daydayup` |
-
-Cloudflare writes and owns the DNS record for every one of these — each is a
-Worker custom domain, proxied, with a certificate Cloudflare issues. Never
-hand-add an A or CNAME for a hostname that appears in a `routes` list.
-
-**What made the order awkward, and why it no longer applies.** SumQuest used to
-serve *only* from `gamestao.com` on GitHub Pages, and Pages allows exactly one
-custom domain per repo — so freeing the apex would have taken the game offline
-in the same act. It was moved to Cloudflare first (`c.` and `sumquest.`,
-verified playable in a browser), which turned the apex changeover into a
-cosmetic outage: nothing a player uses depended on it.
-
-Then: delete the four GitHub Pages A records (`185.199.108-111.153`) from
-Cloudflare DNS, push the uncommented apex routes, and release the domain on the
-Pages side afterwards (`gh api -X PUT repos/bigtaoo/PIXIJSGAME/pages -f
-cname=""`). Releasing Pages *last* matters — doing it first would have left the
-A records pointing at a GitHub that no longer recognised the host, breaking the
-apex earlier than necessary for no gain, since Cloudflare never consults
-GitHub's config.
-
-#### Two failures that lie about their cause
-
-**A record conflict fails the whole deploy, not just that route.** Pushing the
-apex routes before the A records were actually deleted produced:
-
-```
-Hostname 'gamestao.com' already has externally managed DNS records (A, CNAME,
-etc). Delete them first or try a different hostname. [code: 100117]
-```
-
-The custom domains go up in one batched API call, so that conflict rejected
-`www` and `studio` with it and nothing changed — the apex kept serving from
-Pages throughout. But wrangler also prints `Successful trigger changes were not
-rolled back`, so a partial failure is possible in principle: after a failed
-deploy, check what actually resolves rather than assuming the state is clean.
-
-**A stale negative DNS cache is indistinguishable from a failed deploy.** This
-zone's SOA TTL is 1800s, so any resolver that asks for a hostname *before* the
-record exists caches the NXDOMAIN for up to 30 minutes. A new custom domain
-takes a few minutes to provision, so querying it in that window poisons your
-own resolver — and a browser then shows `DNS_PROBE_FINISHED_NXDOMAIN` long after
-the deploy succeeded. It happened twice here, both times self-inflicted by
-checking too eagerly, and once the resolver holding it was the router rather
-than the machine, where `ipconfig /flushdns` is no help.
-
-So: after claiming a hostname, do not visit it until CI's smoke step has passed.
-To check without poisoning anything, bypass the local resolver:
-
-```bash
-nslookup gamestao.com 1.1.1.1
-```
-
-```bash
-curl -sI --resolve gamestao.com:443:104.21.75.158 https://gamestao.com/
-```
-
-#### Still worth doing
-
-- **`contact@gamestao.com` needs a routing rule before anyone writes to it.**
-  The site now prints that address on every page footer, in the home page's
-  contact block and at the top of `/press/`. The zone's MX records point at
-  Cloudflare Email Routing (`route1-3.mx.cloudflare.net`, verified
-  2026-09-15), so the mechanism is there — but whether this particular address
-  has a destination is only visible from the dashboard, and an unrouted address
-  bounces rather than failing quietly.
-
-  **Email → Email Routing → Routing rules**: add `contact@gamestao.com` with
-  the same destination as `support@`, or a different one if business mail
-  should land elsewhere. Then send one test message to it from an outside
-  account and confirm it arrives — a rule that exists and a rule that delivers
-  are not the same thing.
-
-- **`privacy.gamestao.com` and `support.gamestao.com` are dead ends.** Both are
-  proxied placeholders with a Redirect Rule, and both 301 to
-  `bigtaoo.github.io/legal/sumquest/…`, which returns GitHub's *Site not found*:
-  `bigtaoo/legal` is private and has never had Pages enabled (`has_pages:
-  false`). Nothing in any repo links to these two hostnames, which is the tell —
-  they exist because they were typed into a store submission form by hand. That
-  matters right now: SumQuest's iOS build is in review, and App Store Connect's
-  privacy-policy and support URLs are fields a human reviewer opens.
-
-  Working equivalents are already live at `nivara.gamestao.com/privacy`,
-  `/terms`, `/refunds` and `/support` (200, verified 2026-09-03). The DNS side
-  needs no work — the `AAAA 100::` placeholders are already there — so this is
-  one panel edit each:
-
-  1. **Rules → Redirect Rules**, open the rule matching
-     `privacy.gamestao.com`. Change the target URL to
-     `https://nivara.gamestao.com/privacy`, keep 301.
-  2. Same for the `support.gamestao.com` rule →
-     `https://nivara.gamestao.com/support`.
-  3. Confirm both end at a 200 rather than another redirect:
-
-  ```bash
-  curl -sSL -o /dev/null -w '%{http_code} %{url_effective}\n' https://privacy.gamestao.com/
-  ```
-
-  One thing to weigh rather than fix blindly: those pages are titled *"Privacy
-  Policy — Nivara"*. They are the studio's single policy set, but a reviewer
-  following SumQuest's privacy link lands on another game's branding. Pointing
-  the hostnames at working documents is strictly better than pointing them at a
-  404 today; a studio-branded set is the real answer.
-
-- **`www` does not redirect — deliberately, for now.** It serves the same pages
-  from the same Worker, so every page has two URLs. Every canonical tag names
-  the apex (`ORIGIN` in `src/lib/routes.ts`), so crawlers consolidate on it:
-  this is SEO-safe rather than ideal, and nothing is bleeding while it stays
-  this way. A real 301 is three steps that must happen in this order, and `www`
-  is down between the first and the last — which is why it is its own change
-  and not a takeover afterthought.
-
-  1. **Drop the `www` route** from the `routes` list in `wrangler/site.jsonc`
-     and deploy. Cloudflare deletes the custom domain *and* the proxied record
-     it wrote for it, so `www` goes NXDOMAIN here. Do this from the repo, not
-     from **Workers & Pages → gamestao-site → Domains & Routes**: removing the
-     custom domain in the dashboard while the route is still in the config
-     means the next deploy re-creates it, collides with the placeholder record
-     added in step 2, and fails the whole deploy with `code: 100117` — the same
-     failure as the apex takeover, and it takes the apex down with it.
-  2. **Add the placeholder record.** **DNS → Records → Add record**: type
-     `AAAA`, name `www`, address `100::`, **proxied**. That is the discard
-     prefix, so it never receives traffic; its only job is to get `www` into
-     Cloudflare's edge so a rule can match it. Same trick as `privacy` and
-     `support` on this zone. `www` now resolves but has no route behind it, so
-     it answers with an edge error until step 3 lands.
-  3. **Add the Redirect Rule.** **Rules → Redirect Rules → Create rule**, with
-     a dynamic redirect: match `http.host eq "www.gamestao.com"`, expression
-     `concat("https://gamestao.com", http.request.uri.path)`, status **301**,
-     **preserve query string** on. Dynamic redirects run at the edge ahead of
-     the Worker, so the response never reaches this site's code.
-
-  Nothing in `src/` changes: the canonicals, `hreflang` alternates, sitemap and
-  `robots.txt` already name the apex and would be unchanged by the redirect.
-  Two cautions. The window in the middle is not seconds — a new record still
-  takes a few minutes to provision, and **the 1800s negative-cache trap above
-  applies to `www` exactly as it did to the apex**, so do not check it from a
-  browser between steps; use `nslookup www.gamestao.com 1.1.1.1`. And before
-  starting, confirm nothing outward-facing still points at `www` — a 301 is
-  fine for crawlers and browsers, but a shipped client following a hardcoded
-  `www` URL is a different question.
-- **`studio.gamestao.com`'s certificate.** The route is gone, so Cloudflare has
-  removed its DNS record, but removing a custom domain does **not** delete the
-  certificate it issued. That one has to go by hand from **SSL/TLS → Edge
-  Certificates**.
-- **Store and portal links.** CrazyGames, itch.io, the App Store listing and
-  social bios that point at `gamestao.com` now land on this site rather than the
-  game. Point them at `sumquest.gamestao.com` rather than `c.gamestao.com` —
-  same Worker, but one of the two is legible in a listing, and this site's own
-  play link now uses it for the same reason. While in the itch.io dashboard,
-  grab the page URL and put it in `src/data/games.ts`; that platform reads
-  `soon` only because no file in any repo records the slug — searched across
-  this repo and all three game repos, there is no itch URL anywhere to copy.
-  CrazyGames and iOS read `soon` correctly: both are genuinely still in review
-  (`D:\number\docs\distribution.md`).
-- **The mobile hot-update channel was stranded, and it did not look broken.**
-  This bullet used to say shipped builds fetch from `gamestao.com/mobile/latest/`
-  and get a 404. Both halves were wrong. `SumQuest`'s client hardcodes
-  `bigtaoo.github.io/PIXIJSGAME/mobile/latest/manifest.json`, and that URL still
-  answers **200** — GitHub Pages stays enabled for the repo after `cname=""`
-  releases the custom domain. But the Pages *pipeline* was retired
-  (`bigtaoo/PIXIJSGAME@55fbe03`), so the tree behind it is frozen at the build
-  before it while releases go to Cloudflare. Every installed app kept polling a
-  manifest that could never change again: no error, no log, nothing to notice.
-
-  Fixed in `bigtaoo/PIXIJSGAME@fbef34a` — the constant now points at
-  `c.gamestao.com/mobile/latest/manifest.json`, and because Pages sent
-  `Access-Control-Allow-Origin: *` implicitly while Workers static assets sends
-  no CORS headers at all, the deploy also stages a `_headers` file and *verifies
-  the served header*: the fetch is cross-origin from the Capacitor WebView
-  through plain `fetch`, so a 200 on the manifest was never proof the app could
-  read it. What remains is that the URL is baked into the native bundle, so only
-  a build compiled after that commit is fixed — anything already installed, and
-  the binary in App Store review, still points at the frozen host. The installed
-  base is near zero today (iOS in review, Android without a keystore), which is
-  the entire reason to do it now. If it ever isn't, the escape hatch is to
-  publish one last hot-update *through the old channel* carrying the new URL, so
-  installed apps migrate themselves — Pages is still enabled on that repo, just
-  no longer built by a workflow.
-
-Free Universal SSL covers the apex and **one** level of subdomain, so every
-subdomain on this zone must stay single-level (`c.gamestao.com`, never
-`a.b.gamestao.com`).
+**Artwork and the press kit** have a runbook of their own, because importing
+real art is a command with paths into another game's checkout rather than an
+edit in here: [docs/assets.md](docs/assets.md).
 
 ## Notes worth knowing
 
@@ -490,8 +147,8 @@ subdomain on this zone must stay single-level (`c.gamestao.com`, never
   for publishing, investment and press, and appears nowhere in the policies.
   Both are Cloudflare Email Routing addresses on this zone. The zone also
   carries `privacy.` and `support.` hostnames for store forms — those are
-  redirect rules, not pages, and they currently point at nothing; see **Still
-  worth doing**.
+  redirect rules, not pages, and they currently point at nothing; see
+  [docs/todo.md](docs/todo.md).
 - **`404.html` is not one of the routes.** It has no URL of its own, carries
   `noindex`, is absent from the sitemap, and deliberately omits the language
   redirect — bouncing a mistyped URL to a localised home page would hide the
