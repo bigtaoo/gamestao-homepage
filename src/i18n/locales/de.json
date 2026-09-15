@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Unabhängiges Spielestudio",
     "homeTitle": "gamestao — Unabhängiges Spielestudio",
-    "homeDescription": "Drei plattformübergreifende Spiele von gamestao: Nivara, ein handgezeichnetes Strategiespiel, DayDayUp, ein waffengetriebenes Roguelite, und SumQuest, ein Zahlenpuzzle. Alle drei laufen direkt im Browser.",
+    "homeDescription": "Echtzeit-Wettkampfspiele von gamestao: Nivara, ein handgezeichnetes Duell gegen die Uhr; DayDayUp, eine Roguelite-Arena, die die Ausrüstung stellt; und SumQuest, ein Zahlenpuzzle. Alle drei laufen direkt im Browser.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Spiele {game} direkt im Browser, aus dem Studio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Unabhängiges Spielestudio",
     "title": "Spiele, die mit dem Klick beginnen.",
-    "lead": "gamestao ist ein unabhängiges Studio, das plattformübergreifende Spiele in TypeScript baut: ein handgezeichnetes Strategiespiel, ein Roguelite voller Waffen und ein Zahlenpuzzle. Kein Installer, kein Launcher — jedes davon läuft zuerst im Browser.",
+    "lead": "gamestao ist ein unabhängiges Spielestudio, das Echtzeit-Wettkampfspiele baut: ein handgezeichnetes Duell gegen die Uhr, eine Roguelite-Arena, die die Ausrüstung stellt, und ein Zahlenpuzzle, das ganz ohne Gegner auskommt. Kein Installer, kein Launcher — jedes davon läuft zuerst im Browser.",
     "ctaGames": "Zu den Spielen",
     "ctaAbout": "Über das Studio"
   },
@@ -111,11 +111,11 @@
   },
   "about": {
     "title": "Über das Studio",
-    "lead": "Drei Spiele und ein Stack, der so gewählt ist, dass nichts dem Veröffentlichen im Weg steht.",
+    "lead": "Echtzeit-Wettkampf — und ein Stack, der so gewählt ist, dass ihm nichts im Weg steht.",
     "body": [
-      "gamestao ist ein unabhängiges Spielestudio. Alles hier entsteht und bleibt im Haus — Design, Code, Art-Pipeline und die Server dahinter.",
-      "Alle drei Spiele teilen ein technisches Fundament: TypeScript und PixiJS auf WebGL. Das ist eine bewusste Entscheidung. Eine Codebasis erreicht Browser, iOS, Android und WeChat Mini Games ohne Neuschreiben pro Plattform, und ein Browser-Build heißt, dass ein Spiel einen Klick vom Gespieltwerden entfernt ist statt einen Download.",
-      "Wo ein Spiel ein echtes Backend braucht, hat es eines — autoritative Match-Server, Matchmaking, deterministische Simulation, von Spielern getragene Ökonomien. Nichts hier ist ein Prototyp, den man online vergessen hat."
+      "gamestao ist ein unabhängiges Spielestudio, und die Linie heißt Echtzeit-Wettkampf. Nivara ist ein 1-gegen-1, in dem eine Uhr ein Ergebnis erzwingt. DayDayUp setzt Spieler in eine Arena, die die Ausrüstung stellt, statt sie mitbringen zu lassen — eine Partie entscheidet sich am Spiel und nicht daran, wer länger gegrindet hat. Das Zahlenpuzzle SumQuest ist die Ausnahme, und zwar mit Absicht: Nicht jede Idee braucht einen Gegner.",
+      "Echtzeit-Wettkampf ist zuerst ein Serverproblem und erst danach ein Designproblem. Die Wettkampfspiele laufen auf einem deterministischen Simulationskern mit autoritativen Servern dahinter. Das ist die Grundlage für Matchmaking, Koop, Replay-Aufzeichnung und ein Ergebnis, dem man trauen kann — und der Teil, den man nicht nachrüsten kann.",
+      "Alles davon teilt ein technisches Fundament: TypeScript und PixiJS auf WebGL. Eine Codebasis erreicht Browser, iOS, Android und WeChat Mini Games ohne Neuschreiben pro Plattform, und ein Browser-Build heißt, dass ein Spiel einen Klick vom Gespieltwerden entfernt ist statt einen Download. Nichts hier ist ein Prototyp, den man online vergessen hat."
     ]
   },
   "contact": {
