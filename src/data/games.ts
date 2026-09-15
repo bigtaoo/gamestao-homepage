@@ -88,7 +88,14 @@ export const GAMES: Game[] = [
       // that would 404.
       { platform: 'itch', status: 'soon' },
       { platform: 'crazygames', status: 'soon' },
-      { platform: 'ios', status: 'soon' },
+      // No storefront in the path on purpose. `apps.apple.com/app/id<id>`
+      // redirects each visitor to their own country's store; the URL Apple
+      // hands you (`/us/app/sumquest/id…`) pins everyone to the US one, which
+      // is the wrong default on a site that ships in eleven languages. The id
+      // is the stable half — the slug in Apple's URL is decoration. The App
+      // Store lists it as "SumQuest+"; the game is SumQuest everywhere else,
+      // and this table names the game.
+      { platform: 'ios', status: 'live', url: 'https://apps.apple.com/app/id6775219433' },
       { platform: 'android', status: 'soon' },
       { platform: 'wechat', status: 'soon' },
     ],
