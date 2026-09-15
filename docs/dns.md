@@ -9,15 +9,18 @@ way are the kind that look like something else entirely.
 | Host | Serves | Where it is configured |
 |---|---|---|
 | `gamestao.com` | this site | `wrangler/site.jsonc`, Worker `gamestao-site` |
-| `www.gamestao.com` | this site, same content — **not** a redirect | same |
+| `www.gamestao.com` | 301 to the apex, nothing else | Redirect Rule + an `AAAA 100::` placeholder, both in the panel |
 | `c.gamestao.com` | SumQuest | `bigtaoo/PIXIJSGAME`, `wrangler/client.jsonc` |
 | `sumquest.gamestao.com` | SumQuest, brand host for store listings | same |
 | `a.` / `nivara.gamestao.com` | Nivara | `bigtaoo/funny` |
 | `b.gamestao.com` | DayDayUp | `bigtaoo/daydayup` |
 
-Cloudflare writes and owns the DNS record for every one of these — each is a
-Worker custom domain, proxied, with a certificate Cloudflare issues. Never
-hand-add an A or CNAME for a hostname that appears in a `routes` list.
+Cloudflare writes and owns the DNS record for every one of these except `www` —
+each of the rest is a Worker custom domain, proxied, with a certificate
+Cloudflare issues. Never hand-add an A or CNAME for a hostname that appears in a
+`routes` list. `www` is the opposite case: it is a hand-added placeholder
+*because* it is no longer in any `routes` list, and putting it back in one would
+collide with that record and fail the deploy.
 
 Free Universal SSL covers the apex and **one** level of subdomain, so every
 subdomain on this zone must stay single-level (`c.gamestao.com`, never

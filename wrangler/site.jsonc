@@ -34,24 +34,20 @@
     // tags, every hreflang alternate, the sitemap and robots.txt. Serving it
     // anywhere else would have every page name a canonical URL that resolves
     // to something other than itself.
-    { "pattern": "gamestao.com", "custom_domain": true },
+    { "pattern": "gamestao.com", "custom_domain": true }
 
-    // www serves the site directly here - it does NOT redirect. Under GitHub
-    // Pages it 301'd to the apex, which is no longer what happens: a Worker
-    // custom domain answers with the content. So every page has two URLs. The
-    // canonical tags all name the apex, so crawlers consolidate on it and this
-    // is SEO-safe, but a real 301 would be cleaner. The idiomatic way to get
-    // one on this zone is a Cloudflare Redirect Rule against a proxied
-    // placeholder record - an AAAA pointing at the discard prefix 100::, which
-    // is how privacy.gamestao.com and support.gamestao.com worked until both
-    // were deleted on 2026-09-15 - which means dropping
-    // this route. Deliberately not done in the same change as the takeover:
-    // the exact three-step order, and the www outage in the middle of it, are
-    // written out in docs/todo.md. Drop the route HERE when the time
-    // comes - removing the custom domain from the dashboard while this
-    // line survives makes the next deploy re-create it, hit the placeholder
-    // record, and fail with code 100117, taking the apex with it.
-    { "pattern": "www.gamestao.com", "custom_domain": true }
+    // www is deliberately NOT here any more, and must not come back. It used to
+    // be a second custom domain on this Worker, which meant it served the same
+    // pages from a second set of URLs; every canonical tag names the apex, so
+    // that was SEO-safe rather than right. Deploying this file without the route
+    // is step 1 of turning it into a real 301: Cloudflare deletes the custom
+    // domain and the proxied record it wrote for it, and www goes NXDOMAIN until
+    // an AAAA 100:: placeholder and a Redirect Rule take over at the edge. The
+    // full order, and the 522 in the middle of it, are in docs/todo.md.
+    //
+    // Re-adding this line is how you break the redirect: the deploy would
+    // re-create the custom domain, collide with the placeholder record, and fail
+    // with code 100117 - which fails the WHOLE deploy, apex included.
 
     // Cloudflare writes its own proxied record for each custom domain, so never
     // hand-add an A or CNAME for these hostnames: an existing record on a
