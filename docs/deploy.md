@@ -34,25 +34,30 @@ To stop publishing without touching the code — while debugging, say — unset 
 switch, and pushes go back to running `check` only:
 
 ```bash
-gh variable delete SITE_DEPLOY_ENABLED --repo bigtaoo/goodgoodstudy
+gh variable delete SITE_DEPLOY_ENABLED --repo bigtaoo/gamestao-homepage
 ```
 
 ## Turning CI on
 
 **Already on** — both secrets and `SITE_DEPLOY_ENABLED` are set on
-`bigtaoo/goodgoodstudy` as of 2026-09-03. This is here for rotating the token
-or setting up another repo. Both on `bigtaoo/goodgoodstudy`:
+`bigtaoo/gamestao-homepage` as of 2026-09-03. This is here for rotating the
+token or setting up another repo. Both on `bigtaoo/gamestao-homepage`:
+
+The repo was renamed from `goodgoodstudy` on 2026-09-15; the local checkout is
+still in `D:\goodgoodstudy`. GitHub redirects the old name, so a push or a `gh`
+command against it keeps working and gives no reason to notice the difference —
+which is why the name is worth getting right here rather than rediscovering.
 
 ```bash
-gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/goodgoodstudy
+gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/gamestao-homepage
 ```
 
 ```bash
-gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/goodgoodstudy
+gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/gamestao-homepage
 ```
 
 ```bash
-gh variable set SITE_DEPLOY_ENABLED --body true --repo bigtaoo/goodgoodstudy
+gh variable set SITE_DEPLOY_ENABLED --body true --repo bigtaoo/gamestao-homepage
 ```
 
 In that order — the variable is the switch, and the next push after it flips
@@ -100,11 +105,11 @@ buys nothing.
 ### Checking what landed
 
 ```bash
-gh variable list --repo bigtaoo/goodgoodstudy
+gh variable list --repo bigtaoo/gamestao-homepage
 ```
 
 ```bash
-gh secret list --repo bigtaoo/goodgoodstudy
+gh secret list --repo bigtaoo/gamestao-homepage
 ```
 
 With `SITE_DEPLOY_ENABLED` unset, a push runs `check` alone and publishes
@@ -112,7 +117,7 @@ nothing — which is what the first push to this repo did, before the switch wen
 on. Watch a run either way:
 
 ```bash
-gh run watch --repo bigtaoo/goodgoodstudy
+gh run watch --repo bigtaoo/gamestao-homepage
 ```
 
 ## Deploying by hand
