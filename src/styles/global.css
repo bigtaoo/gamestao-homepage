@@ -179,13 +179,14 @@ dl {
 }
 
 /* The wordmark's only graphic: three stacked bars, one per game. */
+/* The one place the mark is drawn is `public/assets/brand/mark.svg`. This used
+   to be a CSS gradient square, which meant the tab and the header showed two
+   different logos and neither knew about the other. */
 .nav__mark {
   width: 1.5rem;
   height: 1.5rem;
   flex: none;
-  border-radius: 7px;
-  background: linear-gradient(150deg, #3d8bff 0%, #9ccc65 55%, #fe9205 100%);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14) inset;
+  background: url('/assets/brand/mark.svg') center / contain no-repeat;
 }
 
 .nav__links {

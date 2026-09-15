@@ -38,12 +38,18 @@ export function splitAssets(gameId: GameId): { brand: PressAsset[]; screens: Pre
 }
 
 /**
- * The studio mark. Not in the manifest and not imported from anywhere: this is
- * the same file the site serves as its favicon, so the press kit hands out the
+ * The studio mark. Not in the manifest and not imported from anywhere: these
+ * are the same files the site itself renders, so the press kit hands out the
  * mark people actually see rather than a second copy that could drift from it.
+ *
+ * Both colourways are offered because the mark is monochrome by design, and a
+ * publication laying it on white should not have to invert one themselves.
  */
 export const STUDIO_MARK = [
-  { file: '/assets/brand/favicon.svg', format: 'SVG' },
+  // Labelled by filename rather than by prose: this list renders in eleven
+  // languages and "for dark backgrounds" would be English on all of them.
+  { file: '/assets/brand/mark.svg', format: 'SVG · on dark' },
+  { file: '/assets/brand/mark-ink.svg', format: 'SVG · on light' },
   { file: '/assets/brand/icon-512.png', format: '512x512 PNG' },
 ] as const;
 

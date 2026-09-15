@@ -64,6 +64,22 @@ const REGENERATE = (() => {
 const BG = '#0b0e14';
 const BG_DEEP = '#070a0f';
 const TEXT = '#e9edf5';
+/**
+ * The mark is drawn in the site's own text colour, not a colour of its own.
+ *
+ * It was a warm off-white (#ece7dc) first, left over from an earlier concept
+ * built around paper and ink. When that concept was dropped the colour should
+ * have gone with it: against the cool near-black of this site, and beside a
+ * wordmark set in #e9edf5, the beige read as a grubby version of white rather
+ * than as a decision. Sharing the text colour also makes mark and wordmark one
+ * object instead of two things that nearly match.
+ *
+ * Pure white was the other candidate. It works, but it makes the studio mark
+ * the brightest thing in a row that also contains three game icons, and the
+ * studio is the one element there that should not be shouting.
+ */
+const MARK_FG = TEXT;
+const MARK_FG_DARK = '#12161f';
 const MUTED = '#8593ad';
 const FONT =
   "'Segoe UI', ui-sans-serif, system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif";
@@ -126,23 +142,81 @@ function panel({ width, height, accent, title, subtitle, note, titleSize, iconBo
 </svg>`);
 }
 
-/** The studio wordmark: three bars, one per game, in the three accents. */
-function brandMark(size) {
-  const r = Math.round(size * 0.22);
-  return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#3d8bff"/>
-      <stop offset="55%" stop-color="#9ccc65"/>
-      <stop offset="100%" stop-color="#fe9205"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="${(r / size) * 64}" fill="${BG_DEEP}"/>
-  <rect x="6" y="6" width="52" height="52" rx="${(r / size) * 52}" fill="url(#mark)"/>
-  <rect x="16" y="20" width="32" height="6" rx="3" fill="#070a0f" fill-opacity="0.55"/>
-  <rect x="16" y="30" width="24" height="6" rx="3" fill="#070a0f" fill-opacity="0.55"/>
-  <rect x="16" y="40" width="16" height="6" rx="3" fill="#070a0f" fill-opacity="0.55"/>
-</svg>`);
+/**
+ * The studio mark: two congruent halves, one the other rotated 180 degrees,
+ * held apart by a seam that turns once. Rotate the whole thing half a turn and
+ * it is unchanged — which is the idea, for a studio whose games are 1v1: both
+ * players are looking at the same shape from their own side. The seam is the
+ * path between them.
+ *
+ * Three numbers define it, and every coordinate below is derived from them:
+ *
+ *   x1  where the seam turns. 22 is a deliberately deep interlock — the halves
+ *       wrap around each other rather than sitting side by side. The golden
+ *       section of this box would be 26.33, which was tried and looked weaker.
+ *   g   half the seam width.
+ *   r   the tile's corner radius.
+ *
+ * x1 and g are chosen so that every vertical edge — 20, 24, 40, 44 — is a
+ * multiple of 4, which is one pixel at a 16px favicon.
+ */
+const MARK = { inset: 8, x1: 22, g: 2, r: 16 };
+
+/**
+ * A second master, for the favicon only, because 16 pixels is not a small
+ * version of a logo — it is a different drawing problem.
+ *
+ * Two changes, both measured rather than guessed (three constructions were
+ * rendered at 16px and compared):
+ *
+ *   - No inset. The tab already frames the icon, so the padding was spending
+ *     a quarter of the width on nothing and leaving the mark 12 pixels wide.
+ *   - A seam of 8 units, not 4. At full bleed a 16px icon is 4 units per
+ *     pixel, and a seam centred on the middle can only land on pixel
+ *     boundaries if it is two whole pixels wide. At 4 units it renders as a
+ *     row of greys; at 8 it is a hard black line.
+ *
+ * Everything else — 20, 24, 40, 44, and the jog at 28 and 36 — is a multiple
+ * of 4, so this drawing has no antialiased edges at 16px at all. Optically
+ * heavier seam, visibly sharper icon; that trade only makes sense down here,
+ * which is why it is a separate master and not the one.
+ */
+const MARK_SMALL = { inset: 0, x1: 20, g: 4, r: 20 };
+
+function markShape(fill, geo = MARK, id = 'm') {
+  const { inset, x1, g, r } = geo;
+  const far = 64 - inset;
+  const side = 64 - inset * 2;
+  const a = x1 - g;
+  const b = 64 - x1 - g;
+  const c = 64 - x1 + g;
+  const d = x1 + g;
+
+  return `<clipPath id="${id}"><rect x="${inset}" y="${inset}" width="${side}" height="${side}" rx="${r}"/></clipPath>
+  <g clip-path="url(#${id})" fill="${fill}">
+    <polygon points="${inset},${inset} ${a},${inset} ${a},${32 + g} ${b},${32 + g} ${b},${far} ${inset},${far}"/>
+    <polygon points="${far},${far} ${c},${far} ${c},${32 - g} ${d},${32 - g} ${d},${inset} ${far},${inset}"/>
+  </g>`;
+}
+
+/**
+ * `bleed` fills the whole square behind the mark, for the icons iOS and
+ * Android mask themselves; `rounded` rounds that background, for the favicon,
+ * which nothing masks; `bare` leaves it transparent, for the mark on a surface
+ * whose colour the page already owns.
+ */
+function brandMark(size, { background = 'rounded', fill = MARK_FG, geo = MARK } = {}) {
+  const backdrop =
+    background === 'bare'
+      ? ''
+      : `<rect width="64" height="64"${background === 'rounded' ? ' rx="14"' : ''} fill="${BG_DEEP}"/>`;
+
+  return Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">
+  ${backdrop}
+  ${markShape(fill, geo)}
+</svg>`,
+  );
 }
 
 /** A stand-in game icon: the game's initial on its own accent. */
@@ -318,25 +392,57 @@ for (const game of GAMES) {
 
 const brand = path.join(ASSETS, 'brand');
 
-await emit(
-  'brand',
-  path.join(brand, 'og.png'),
-  () =>
-    png(
+// The social card carries the mark itself rather than a game's accent colour:
+// a studio card tinted Nivara blue read as a Nivara card.
+await emit('brand', path.join(brand, 'og.png'), async () => {
+  const width = 1200;
+  const height = 630;
+  const markSize = Math.round(height * 0.3);
+  const iconBox = { size: markSize, y: Math.round(height * 0.19) };
+
+  return sharp(
     panel({
-      width: 1200,
-      height: 630,
-      accent: '#3d8bff',
+      width,
+      height,
+      accent: MARK_FG,
       title: 'gamestao',
       subtitle: 'Independent game studio',
       note: 'Nivara  ·  DayDayUp  ·  SumQuest',
+      iconBox,
     }),
-  ),
+  )
+    .composite([
+      {
+        input: await sharp(brandMark(markSize, { background: 'bare' })).png().toBuffer(),
+        top: iconBox.y,
+        left: Math.round((width - markSize) / 2),
+      },
+    ])
+    .png({ compressionLevel: 9 })
+    .toBuffer();
+});
+
+// Full bleed: iOS and Android apply their own mask, and a rounded backdrop
+// inside a masked icon shows as a dark ring around the shape.
+await emit('brand', path.join(brand, 'icon-192.png'), () =>
+  png(brandMark(192, { background: 'bleed' })),
+);
+await emit('brand', path.join(brand, 'icon-512.png'), () =>
+  png(brandMark(512, { background: 'bleed' })),
+);
+await emit('brand', path.join(brand, 'favicon.svg'), () =>
+  brandMark(64, { background: 'bleed', geo: MARK_SMALL }),
 );
 
-await emit('brand', path.join(brand, 'icon-192.png'), () => png(brandMark(192)));
-await emit('brand', path.join(brand, 'icon-512.png'), () => png(brandMark(512)));
-await emit('brand', path.join(brand, 'favicon.svg'), () => brandMark(64));
+// The mark on its own, both ways round. These are what the site's nav uses and
+// what the press kit hands out — no baked-in backdrop, so they sit on whatever
+// surface they land on.
+await emit('brand', path.join(brand, 'mark.svg'), () =>
+  brandMark(512, { background: 'bare' }),
+);
+await emit('brand', path.join(brand, 'mark-ink.svg'), () =>
+  brandMark(512, { background: 'bare', fill: MARK_FG_DARK }),
+);
 
 await writeSizes(sizes);
 
