@@ -21,6 +21,15 @@ or a broken prerender stops the deploy rather than shipping. After the deploy,
 answering, `/de/` stopped rendering German, a wrong path stopped being a 404 or
 the sitemap lost pages.
 
+**It retries for 90 seconds before calling any of that a failure**, because a
+deploy does not land everywhere at once. On 2026-09-15 the run for `8284fd0`
+went red on `sitemap urls: 55 (expected 77)` thirty seconds after a deploy that
+had worked: the assets were up, the edge was still handing out the previous
+sitemap, and a manual `npm run smoke` a few minutes later passed. The deploy
+step is not what failed there — the check was, by measuring the edge's timing
+instead of the deploy. A deploy that genuinely ships the wrong thing still goes
+red; it takes a minute and a half to say so.
+
 To stop publishing without touching the code — while debugging, say — unset the
 switch, and pushes go back to running `check` only:
 
