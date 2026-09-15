@@ -20,48 +20,6 @@ is. A studio-branded set, served from this site rather than from a game client,
 is the real answer, and it is a decision about where the canonical policy lives
 rather than a panel edit.
 
-## `www` does not redirect — deliberately, for now
-
-It serves the same pages from the same Worker, so every page has two URLs. Every
-canonical tag names the apex (`ORIGIN` in `src/lib/routes.ts`), so crawlers
-consolidate on it: this is SEO-safe rather than ideal, and nothing is bleeding
-while it stays this way. A real 301 is three steps that must happen in this
-order, and `www` is down between the first and the last — which is why it is its
-own change and not a takeover afterthought.
-
-1. **Drop the `www` route** from the `routes` list in `wrangler/site.jsonc` and
-   deploy. Cloudflare deletes the custom domain *and* the proxied record it
-   wrote for it, so `www` goes NXDOMAIN here. Do this from the repo, not from
-   **Workers & Pages → gamestao-site → Domains & Routes**: removing the custom
-   domain in the dashboard while the route is still in the config means the next
-   deploy re-creates it, collides with the placeholder record added in step 2,
-   and fails the whole deploy with `code: 100117` — the same failure as the apex
-   takeover, and it takes the apex down with it.
-2. **Add the placeholder record.** **DNS → Records → Add record**: type `AAAA`,
-   name `www`, address `100::`, **proxied**. That is the discard prefix, so it
-   never receives traffic; its only job is to get `www` into Cloudflare's edge so
-   a rule can match it. Same trick `privacy` and `support` used until they were
-   deleted on 2026-09-15 ([dns.md](dns.md)). `www` now resolves but has no route
-   behind it, so it answers **522** until step 3 lands — that is the expected
-   middle of this change, not a sign it went wrong.
-3. **Add the Redirect Rule.** The sidebar has no entry for these: they live
-   under **Rules → Overview**, in the *Redirect Rules* card. **Create rule**,
-   dynamic redirect: match `http.host eq "www.gamestao.com"`, expression
-   `concat("https://gamestao.com", http.request.uri.path)`, status **301**,
-   **preserve query string** on. Dynamic redirects run at the edge ahead of the
-   Worker, so the response never reaches this site's code.
-
-Nothing in `src/` changes: the canonicals, `hreflang` alternates, sitemap and
-`robots.txt` already name the apex and would be unchanged by the redirect.
-
-Two cautions. The window in the middle is not seconds — a new record still takes
-a few minutes to provision, and **the 1800s negative-cache trap applies to `www`
-exactly as it did to the apex** ([dns.md](dns.md)), so do not check it from a
-browser between steps; use `nslookup www.gamestao.com 1.1.1.1`. And before
-starting, confirm nothing outward-facing still points at `www` — a 301 is fine
-for crawlers and browsers, but a shipped client following a hardcoded `www` URL
-is a different question.
-
 ## `studio.gamestao.com`'s certificate
 
 The route is gone, so Cloudflare has removed its DNS record, but removing a

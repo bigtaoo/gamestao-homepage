@@ -6,8 +6,13 @@ that `needs: check` and ships `dist/` to Cloudflare. So a red gate cannot
 publish, and a push is verified even while publishing is switched off.
 
 **The site is live at `https://gamestao.com`** as of 2026-09-03 — Worker
-`gamestao-site`, on the apex and `www`. Every push to `main` that touches
-anything but `README.md` builds it and publishes it.
+`gamestao-site`, on the apex alone since 2026-09-15, when `www` became a 301
+([dns.md](dns.md)). Every push to `main` that touches anything but `README.md`
+and `docs/` builds it and publishes it.
+
+A run can take a couple of minutes to appear after the push. It is queued, not
+missing — do not conclude the trigger is broken and dispatch a second one, which
+is how `3fffe81` ended up deployed twice.
 
 What still stands between a bad commit and a bad live page is the pipeline, not
 a switch: `deploy` needs `check`, so a failing typecheck, a failing locale test

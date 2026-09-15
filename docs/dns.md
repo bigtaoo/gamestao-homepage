@@ -22,6 +22,33 @@ Cloudflare issues. Never hand-add an A or CNAME for a hostname that appears in a
 *because* it is no longer in any `routes` list, and putting it back in one would
 collide with that record and fail the deploy.
 
+### The `www` redirect, written down because it lives in the panel
+
+Done 2026-09-15. Nothing in this repo produces it, so this is the only copy —
+if the rule is ever deleted or edited into uselessness, restore it from here.
+**Rules → Overview**, the *Redirect Rules* card (the sidebar has no entry of
+its own for it, which is why searching for one lands on Page Rules instead):
+
+| | |
+|---|---|
+| Name | `www.gamestao.com` |
+| If | **Custom filter expression**, `http.host eq "www.gamestao.com"` |
+| Then | URL redirect, type **Dynamic** |
+| Expression | `concat("https://gamestao.com", http.request.uri.path)` |
+| Status | **301** |
+| Preserve query string | on |
+
+The two traps, both of which accept what you type without complaining. The
+match is **Custom filter expression**, not **Wildcard pattern** — paste the
+expression into the wildcard builder and it becomes a literal string that no
+request can ever equal, so the rule sits there Active and never fires. And a
+**Static** redirect would drop the path, sending `www…/zh/press/` to the apex
+home page; only **Dynamic** with that `concat` carries the path across.
+
+Verified end to end: `/` and deep paths 301 with the path intact, the query
+string survives, HTTP on port 80 lands on HTTPS apex in a single hop, and every
+redirect ends at a 200 rather than another redirect.
+
 Free Universal SSL covers the apex and **one** level of subdomain, so every
 subdomain on this zone must stay single-level (`c.gamestao.com`, never
 `a.b.gamestao.com`).
