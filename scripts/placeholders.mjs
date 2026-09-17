@@ -143,60 +143,157 @@ function panel({ width, height, accent, title, subtitle, note, titleSize, iconBo
 }
 
 /**
- * The studio mark: two congruent halves, one the other rotated 180 degrees,
- * held apart by a seam that turns once. Rotate the whole thing half a turn and
- * it is unchanged — which is the idea, for a studio whose games are 1v1: both
- * players are looking at the same shape from their own side. The seam is the
- * path between them.
+ * The studio mark: one brush dot — a dense head with a tail whipped off it.
  *
- * Three numbers define it, and every coordinate below is derived from them:
+ * Constructed, not drawn. A curved spine runs from the tail's tip to the
+ * head's centre; each side of it gets its own width profile; the head is the
+ * round cap that closes them. What the shape is trying to be is the moment a
+ * loaded brush is set down and lifted away.
  *
- *   x1  where the seam turns. 22 is a deliberately deep interlock — the halves
- *       wrap around each other rather than sitting side by side. The golden
- *       section of this box would be 26.33, which was tried and looked weaker.
- *   g   half the seam width.
- *   r   the tile's corner radius.
+ * WEIGHT, which took several tries to locate, is not size and not bulk. A
+ * large dot is just large; a uniformly fat one reads as a balloon, which is
+ * the opposite of heavy. It is CONTRAST: nearly all the ink packed into the
+ * head, reached by a tail that stays a fraction of its width. `taper` is what
+ * buys that — at 1.7 the tail is still under a third of the head's width at
+ * the halfway point.
  *
- * x1 and g are chosen so that every vertical edge — 20, 24, 40, 44 — is a
- * multiple of 4, which is one pixel at a 16px favicon.
+ * LIFE is in the spine. A straight spine gives a tapered wedge, which is inert
+ * however fine you make it; the curve is what makes the tail read as thrown
+ * rather than merely narrow.
+ *
+ * The two tapers are the last piece. The inner edge is fine and late (`taper`)
+ * and the outer edge is early and full (`taperFar`), so the outer one sweeps
+ * out in a single convex arc from the tip into the head instead of running
+ * straight in. Giving each edge its own profile, rather than adding a bulge on
+ * top of a shared one, is what keeps that arc clean: both reach the head's
+ * radius with zero slope at the end, so each meets the cap without a corner
+ * and neither has to come back in. A bulge does have to come back in, and that
+ * return shows up as a waist above the head.
  */
-const MARK = { inset: 8, x1: 22, g: 2, r: 16 };
+const SPINE = [
+  [16, 12],
+  [28, 18],
+  [35, 30],
+  [42, 43],
+];
+const MARK = { spine: SPINE, head: 13, taper: 1.7, taperFar: 1, pad: 5 };
 
 /**
- * A second master, for the favicon only, because 16 pixels is not a small
- * version of a logo — it is a different drawing problem.
+ * The favicon's master, which is the same drawing with more of the tile.
  *
- * Two changes, both measured rather than guessed (three constructions were
- * rendered at 16px and compared):
- *
- *   - No inset. The tab already frames the icon, so the padding was spending
- *     a quarter of the width on nothing and leaving the mark 12 pixels wide.
- *   - A seam of 8 units, not 4. At full bleed a 16px icon is 4 units per
- *     pixel, and a seam centred on the middle can only land on pixel
- *     boundaries if it is two whole pixels wide. At 4 units it renders as a
- *     row of greys; at 8 it is a hard black line.
- *
- * Everything else — 20, 24, 40, 44, and the jog at 28 and 36 — is a multiple
- * of 4, so this drawing has no antialiased edges at 16px at all. Optically
- * heavier seam, visibly sharper icon; that trade only makes sense down here,
- * which is why it is a separate master and not the one.
+ * It used to be a different drawing. A finer tail (`taper` 3) made a better
+ * mark at size but could not survive 16px — most of its length fell under one
+ * pixel and it rendered as a grey smudge trailing off the head — so the small
+ * master traded the contrast away for legibility. Then the fatter tail turned
+ * out to be the better mark at every size, which retired the trade and left
+ * only the padding: the tab already frames the icon, so the mark can have more
+ * of the square there than it can sitting beside a wordmark.
  */
-const MARK_SMALL = { inset: 0, x1: 20, g: 4, r: 20 };
+const MARK_SMALL = { ...MARK, pad: 4 };
 
-function markShape(fill, geo = MARK, id = 'm') {
-  const { inset, x1, g, r } = geo;
-  const far = 64 - inset;
-  const side = 64 - inset * 2;
-  const a = x1 - g;
-  const b = 64 - x1 - g;
-  const c = 64 - x1 + g;
-  const d = x1 + g;
+const bezier = (P, t) => {
+  const u = 1 - t;
+  return [0, 1].map(
+    (i) => u ** 3 * P[0][i] + 3 * u * u * t * P[1][i] + 3 * u * t * t * P[2][i] + t ** 3 * P[3][i],
+  );
+};
 
-  return `<clipPath id="${id}"><rect x="${inset}" y="${inset}" width="${side}" height="${side}" rx="${r}"/></clipPath>
-  <g clip-path="url(#${id})" fill="${fill}">
-    <polygon points="${inset},${inset} ${a},${inset} ${a},${32 + g} ${b},${32 + g} ${b},${far} ${inset},${far}"/>
-    <polygon points="${far},${far} ${c},${far} ${c},${32 - g} ${d},${32 - g} ${d},${inset} ${far},${inset}"/>
-  </g>`;
+const tangent = (P, t) => {
+  const u = 1 - t;
+  const v = [0, 1].map(
+    (i) =>
+      3 * u * u * (P[1][i] - P[0][i]) +
+      6 * u * t * (P[2][i] - P[1][i]) +
+      3 * t * t * (P[3][i] - P[2][i]),
+  );
+  const n = Math.hypot(v[0], v[1]) || 1;
+  return [v[0] / n, v[1] / n];
+};
+
+/** Smoothstep. Flat at both ends, which is what the width profiles need. */
+const smooth = (u) => u * u * (3 - 2 * u);
+
+/**
+ * The mark's outline as points.
+ *
+ * 24 samples an edge. Measured against a 400-sample outline rasterised at
+ * 512px, that is within 0.08% of inked area on both masters — well under a
+ * pixel at the largest size anything here emits.
+ */
+function markOutline({ spine, head, taper, taperFar }, steps = 24) {
+  // Zero value and zero slope at both ends: the tail keeps a true point, and
+  // both edges arrive at the head running parallel to the spine, which is the
+  // direction the cap leaves in.
+  const width = (t, k) => head * smooth(t ** k);
+
+  const inner = [];
+  const outer = [];
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const c = bezier(spine, t);
+    const [dx, dy] = tangent(spine, t);
+    const n = [-dy, dx];
+    const a = width(t, taper);
+    const b = width(t, taperFar);
+    inner.push([c[0] + n[0] * a, c[1] + n[1] * a]);
+    outer.push([c[0] - n[0] * b, c[1] - n[1] * b]);
+  }
+
+  // The head: the round cap that closes the two edges.
+  const end = bezier(spine, 1);
+  const [dx, dy] = tangent(spine, 1);
+  const n = [-dy, dx];
+  const cap = [];
+  const ARC = steps * 2;
+  for (let i = 1; i < ARC; i++) {
+    const a = (Math.PI * i) / ARC;
+    cap.push([
+      end[0] + n[0] * Math.cos(a) * head + dx * Math.sin(a) * head,
+      end[1] + n[1] * Math.cos(a) * head + dy * Math.sin(a) * head,
+    ]);
+  }
+
+  const ring = [...inner, ...cap, ...outer.reverse()];
+  // The points stacked at the tail's tip, where the edges meet, would
+  // otherwise leave the smoothing interpolating through a pile of duplicates.
+  return ring.filter((p, i) => {
+    const q = ring[(i - 1 + ring.length) % ring.length];
+    return Math.hypot(p[0] - q[0], p[1] - q[1]) > 0.0005;
+  });
+}
+
+/** Centres an outline in the 64-unit box at a given padding, keeping its proportions. */
+function fitToBox(pts, pad) {
+  const xs = pts.map((p) => p[0]);
+  const ys = pts.map((p) => p[1]);
+  const [x0, x1] = [Math.min(...xs), Math.max(...xs)];
+  const [y0, y1] = [Math.min(...ys), Math.max(...ys)];
+  const k = Math.min((64 - pad * 2) / (x1 - x0), (64 - pad * 2) / (y1 - y0));
+  return pts.map(([x, y]) => [
+    x * k + (64 - (x1 - x0) * k) / 2 - x0 * k,
+    y * k + (64 - (y1 - y0) * k) / 2 - y0 * k,
+  ]);
+}
+
+/**
+ * The mark as one closed path, smoothed through the sampled outline with
+ * Catmull-Rom converted to cubics. The construction above is the drawing; this
+ * is only how it gets written down.
+ */
+function markShape(fill, geo = MARK) {
+  const pts = fitToBox(markOutline(geo), geo.pad);
+  const r = (v) => Number(v.toFixed(2));
+  const n = pts.length;
+
+  let d = `M${r(pts[0][0])} ${r(pts[0][1])}`;
+  for (let i = 0; i < n; i++) {
+    const [p0, p1, p2, p3] = [pts[(i - 1 + n) % n], pts[i], pts[(i + 1) % n], pts[(i + 2) % n]];
+    d +=
+      `C${r(p1[0] + (p2[0] - p0[0]) / 6)} ${r(p1[1] + (p2[1] - p0[1]) / 6)}` +
+      ` ${r(p2[0] - (p3[0] - p1[0]) / 6)} ${r(p2[1] - (p3[1] - p1[1]) / 6)}` +
+      ` ${r(p2[0])} ${r(p2[1])}`;
+  }
+  return `<path d="${d}Z" fill="${fill}"/>`;
 }
 
 /**
@@ -430,8 +527,12 @@ await emit('brand', path.join(brand, 'icon-192.png'), () =>
 await emit('brand', path.join(brand, 'icon-512.png'), () =>
   png(brandMark(512, { background: 'bleed' })),
 );
+// Rounded, because nothing rounds it for us. The old mark filled its whole
+// tile and so carried its own corners; a stroke sitting in the middle of the
+// square does not, and full bleed would put a hard-cornered black chip in the
+// tab strip.
 await emit('brand', path.join(brand, 'favicon.svg'), () =>
-  brandMark(64, { background: 'bleed', geo: MARK_SMALL }),
+  brandMark(64, { background: 'rounded', geo: MARK_SMALL }),
 );
 
 // The mark on its own, both ways round. These are what the site's nav uses and
