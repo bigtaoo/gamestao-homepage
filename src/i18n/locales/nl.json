@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Onafhankelijke gamestudio",
     "homeTitle": "gamestao — Onafhankelijke gamestudio",
-    "homeDescription": "Realtime competitieve games van gamestao: Nivara, een met de hand getekend duel tegen de klok; Hexfront Rush, een frontlinie die beweegt terwijl je kijkt; Holy Kicker, een monnik met een magische bal. Twaalf games, stuk voor stuk gebouwd om in een browser te openen.",
+    "homeDescription": "Realtime competitieve games van gamestao: Nivara, een met de hand getekend duel tegen de klok; Hexfront Rush, een frontlinie die beweegt terwijl je kijkt; Holy Kicker, een monnik met een magische bal. Tien games, stuk voor stuk gebouwd om in een browser te openen.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Speel {game} direct in je browser, van studio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Onafhankelijke gamestudio",
     "title": "Games die beginnen zodra je klikt.",
-    "lead": "gamestao is een onafhankelijke gamestudio die realtime competitieve games maakt: een met de hand getekend duel tegen de klok, een hexfront dat beweegt terwijl je kijkt, een ring die één held met één tik overeind houdt. Twaalf games inmiddels, en geen installer of launcher ertussen — elk is gebouwd om eerst in de browser te draaien.",
+    "lead": "gamestao is een onafhankelijke gamestudio die realtime competitieve games maakt: een met de hand getekend duel tegen de klok, een hexfront dat beweegt terwijl je kijkt, een ring die één held met één tik overeind houdt. Tien games inmiddels, en geen installer of launcher ertussen — elk is gebouwd om eerst in de browser te draaien.",
     "ctaGames": "Bekijk de games",
     "ctaAbout": "Over de studio"
   },
@@ -28,8 +28,8 @@
     "installs": "installaties nodig"
   },
   "games": {
-    "title": "Twaalf games",
-    "lead": "Een dozijn genres op één technisch fundament — en de meeste al één klik ver.",
+    "title": "Tien games",
+    "lead": "Tien genres op één technisch fundament — en de meeste al één klik ver.",
     "details": "Lees meer",
     "entries": {
       "nivara": {
@@ -221,44 +221,6 @@
           "Mijnen betalen, kazernes duwen, torens houden — lees wat het front nodig heeft.",
           "Pak zoveel grond dat hun productie de jouwe niet meer kan beantwoorden."
         ]
-      },
-      "sudoku": {
-        "genre": "Getallenpuzzel",
-        "tagline": "Sudoku met hints, notities en elke dag een nieuwe puzzel.",
-        "summary": "Een opgeruimd sudokubord dat meteen opent en zonder verbinding werkt: potloodnotities, een hint voor als de volgende stap niet komt, en elke dag een verse puzzel.",
-        "intro": "Sudoku is het eenvoudigste wat de studio maakt, en dat met opzet. Het opent rechtstreeks op een bord, houdt geen account bij en vraagt niet om aanmelden, onthoudt waar je gebleven was, en zit je verder niet in de weg: notities voor de kandidaten die je anders uit je hoofd zou bijhouden, een hint voor de stap die echt niet komt, en elke dag een nieuwe puzzel om voor terug te komen.",
-        "features": [
-          "Elke dag een nieuwe puzzel, en daartussen zoveel gegenereerde als je wilt",
-          "Potloodnotities voor de kandidaten die je anders uit je hoofd bijhoudt",
-          "Een hint voor de stap die niet komt, geen oplosser die de puzzel afmaakt",
-          "Geen account en geen aanmelden: het bord staat op je eigen apparaat",
-          "Rechtstreeks vanuit de browser te installeren, en volledig offline te spelen",
-          "Licht en donker, naar wat het systeem ingesteld heeft"
-        ],
-        "howTo": [
-          "Kies een vakje en daarna het cijfer dat erin hoort.",
-          "Schakel naar notities om kandidaten in te vullen zonder je vast te leggen.",
-          "Neem een hint als de volgende stap niet komt, en maak het rooster af."
-        ]
-      },
-      "pata": {
-        "genre": "Huisdier- en kamersimulatie",
-        "tagline": "Houd een klein wezen, en een kleine kamer om in te wonen.",
-        "summary": "Zorg voor een huisdier en richt de kamer in waarin het woont. Dat is één lus en geen twee: een behaaglijke kamer tilt zijn humeur op, het humeur levert de munten, de munten kopen meer meubels.",
-        "intro": "Pata is de rustige. In een isometrische kamer zit een klein wezen, en jij voert het, wast het, speelt met het en aait het — over alle vier heeft het een mening. De kamer is van jou om in te richten met vierenzestig stukken in negen sets, met de hand op hun plek gesleept en gedraaid. Inrichten is hier geen bijzaak: het comfort bepaalt het plafond van het humeur, en uit het humeur komen de munten.",
-        "features": [
-          "Vier behoeften — gevoed, schoon, uitgerust, blij — en vier manieren om ze te beantwoorden",
-          "Een kamer van acht bij acht en vierenzestig meubelstukken in negen sets, met de hand geplaatst",
-          "Comfort tilt het humeurplafond op, humeur levert munten, munten kopen de meubels",
-          "Dagelijkse taken en blijvende prestaties, die met de kalenderdag opnieuw beginnen",
-          "Vriendencodes: ga langs in andermans kamer en voer hun huisdier meteen even",
-          "Offline-inkomsten terwijl je weg bent, met een plafond van acht uur"
-        ],
-        "howTo": [
-          "Tik het huisdier aan voor een aai; voeren, wassen en spelen gaan vanuit de kamer.",
-          "Houd een meubelstuk vast om het te slepen, en laat los om het neer te zetten.",
-          "Werk de taken van de dag af, schrijf het dagboek, en geef uit wat je verdiende."
-        ]
       }
     }
   },
@@ -301,7 +263,7 @@
   "press": {
     "title": "Perskit",
     "lead": "Logo's, iconen en schermafbeeldingen op volle resolutie, met de feiten waar het eerst naar gevraagd wordt.",
-    "metaDescription": "Perskit van gamestao: feiten over de studio, logo's, iconen en screenshots op volle resolutie voor twaalf games, en een direct contact voor publishing en investering.",
+    "metaDescription": "Perskit van gamestao: feiten over de studio, logo's, iconen en screenshots op volle resolutie voor tien games, en een direct contact voor publishing en investering.",
     "factsTitle": "De studio in het kort",
     "facts": {
       "studio": "Studio",

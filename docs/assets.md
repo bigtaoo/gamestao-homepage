@@ -26,20 +26,21 @@ table; it is written by the import scripts and is what stops
 | Blightbloom | all generated stand-ins | nothing published |
 | Brushblade | all generated stand-ins | nothing published |
 | Swarm Orbit | all generated stand-ins | nothing published |
-| Sudoku | all generated stand-ins | nothing published |
-| Pata | all generated stand-ins | nothing published |
 
-Anything not named above is a generated stand-in. Five games have no store
+Anything not named above is a generated stand-in. Three games have no store
 art to import at all — Blightbloom (`D:\daydayup`) has no logo, no store icon
-and no captured screenshots; Brushblade (`D:\dnf`) and Swarm Orbit
-(`D:\jump`) have only concept sheets and model renders, which are not
-screenshots and must not be passed off as them; Sudoku and Pata have no local
-checkout at all. Potion Siege (`D:\fang`) has a real app icon but its
-`art/shots/` holds backdrop plates and sprite renders rather than captured
+and no captured screenshots; Brushblade (`D:\dnf`) and Swarm Orbit (`D:\jump`)
+have only concept sheets and model renders, which are not screenshots and must
+not be passed off as them. Potion Siege (`D:\fang`) has a real app icon but
+its `art/shots/` holds backdrop plates and sprite renders rather than captured
 play, so only the icon was imported. The press section of a game with no entry
 in the manifest is still listed, marked as not published yet.
 
-The honest way to finish those six is to run each game and capture real
+Sudoku and Pata used to be two more rows here. They came off the site on
+2026-11-21 — not being worked on any further — so their stand-ins stopped
+being a debt, and their folders under `public/assets/games/` went with them.
+
+The honest way to finish those four is to run each game and capture real
 screenshots; nothing here will do it for you, and `--regenerate` will not
 invent them.
 

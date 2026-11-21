@@ -40,10 +40,10 @@ records the slug — searched across this repo and every game checkout on this
 machine, there is no itch URL anywhere to copy. CrazyGames and iOS read
 `soon` correctly: both are genuinely still in review (`D:\number\docs\distribution.md`).
 
-## Six games are still showing generated stand-in art
+## Four games are still showing generated stand-in art
 
-Blightbloom, Brushblade, Swarm Orbit, Sudoku and Pata have no importable store
-art at all, and Potion Siege has only its app icon — the rest of its
+Blightbloom, Brushblade and Swarm Orbit have no importable store art at all,
+and Potion Siege has only its app icon — the rest of its
 `art/shots/` is backdrop plates and sprite renders rather than captured play.
 Their cards and galleries are the accent-coloured stand-ins the generator
 makes, which is honest (`asset-provenance.json` records it, and the press page
@@ -51,8 +51,8 @@ says the kit is not published) but it is the weakest thing on the site.
 
 The fix is to run each game and capture real screenshots, then
 `import-shots.mjs` and `import-press.mjs` with the same scenes in the same
-order. Sudoku and Pata additionally have no checkout on this machine; they
-would have to be cloned from `bigtaoo/sudoku` and `bigtaoo/e.gamestao` first.
+order. This used to list Sudoku and Pata as well; both came off the site on
+2026-11-21 instead, so their stand-ins are no longer owed.
 
 ## The mobile hot-update channel: fixed at HEAD, stale in installed builds
 

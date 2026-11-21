@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Studio di videogiochi indipendente",
     "homeTitle": "gamestao — Studio di videogiochi indipendente",
-    "homeDescription": "Giochi competitivi in tempo reale da gamestao: Nivara, un duello disegnato a mano contro il cronometro; Hexfront Rush, una linea del fronte che si muove mentre la guardi; Holy Kicker, un monaco con una sfera magica. Dodici giochi, ognuno pensato per aprirsi in un browser.",
+    "homeDescription": "Giochi competitivi in tempo reale da gamestao: Nivara, un duello disegnato a mano contro il cronometro; Hexfront Rush, una linea del fronte che si muove mentre la guardi; Holy Kicker, un monaco con una sfera magica. Dieci giochi, ognuno pensato per aprirsi in un browser.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Gioca a {game} direttamente nel browser, dallo studio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Studio di videogiochi indipendente",
     "title": "Giochi che partono nel momento in cui clicchi.",
-    "lead": "gamestao è uno studio di giochi indipendente che fa competizione in tempo reale: un duello disegnato a mano contro il cronometro, un fronte esagonale che si muove mentre lo guardi, un anello tenuto da un eroe e da un tocco. Dodici giochi, a oggi, e fra questi nessun installer e nessun launcher — ognuno è fatto per girare prima di tutto nel browser.",
+    "lead": "gamestao è uno studio di giochi indipendente che fa competizione in tempo reale: un duello disegnato a mano contro il cronometro, un fronte esagonale che si muove mentre lo guardi, un anello tenuto da un eroe e da un tocco. Dieci giochi, a oggi, e fra questi nessun installer e nessun launcher — ognuno è fatto per girare prima di tutto nel browser.",
     "ctaGames": "Guarda i giochi",
     "ctaAbout": "Sullo studio"
   },
@@ -28,8 +28,8 @@
     "installs": "installazioni richieste"
   },
   "games": {
-    "title": "Dodici giochi",
-    "lead": "Una dozzina di generi su un'unica base tecnica — e quasi tutti già a un clic di distanza.",
+    "title": "Dieci giochi",
+    "lead": "Dieci generi su un'unica base tecnica — e quasi tutti già a un clic di distanza.",
     "details": "Scopri di più",
     "entries": {
       "nivara": {
@@ -221,44 +221,6 @@
           "Le miniere pagano, le caserme spingono, le torri tengono — leggi cosa serve al fronte.",
           "Prendi abbastanza terreno perché la loro produzione non possa rispondere alla tua."
         ]
-      },
-      "sudoku": {
-        "genre": "Rompicapo numerico",
-        "tagline": "Sudoku con suggerimenti, appunti e uno schema nuovo ogni giorno.",
-        "summary": "Una griglia di sudoku pulita che si apre subito e funziona senza connessione: appunti a matita, un suggerimento per quando la mossa dopo non arriva, e uno schema nuovo al giorno.",
-        "intro": "Sudoku è la cosa più semplice che lo studio faccia, e lo è di proposito. Si apre direttamente su una griglia, non tiene alcun account e non chiede alcun accesso, ricorda dove eri rimasto e per il resto non ti sta fra i piedi: appunti per i candidati che altrimenti terresti a mente, un suggerimento per la mossa che davvero non arriva, e ogni giorno uno schema nuovo per cui tornare.",
-        "features": [
-          "Uno schema nuovo ogni giorno, e nel mezzo tutti quelli generati che vuoi",
-          "Appunti a matita, per i candidati che altrimenti terresti a mente",
-          "Un suggerimento per la mossa che non arriva, non un risolutore che ti chiude lo schema",
-          "Nessun account e nessun accesso: la griglia sta sul tuo dispositivo",
-          "Installabile direttamente dal browser, e giocabile del tutto offline",
-          "Chiaro e scuro, seguendo come è impostato il sistema"
-        ],
-        "howTo": [
-          "Scegli una casella, poi la cifra che le spetta.",
-          "Passa agli appunti per segnare i candidati senza impegnarti.",
-          "Prendi un suggerimento quando la mossa dopo non arriva, e completa la griglia."
-        ]
-      },
-      "pata": {
-        "genre": "Simulazione di cura e arredo",
-        "tagline": "Una creatura piccola, e una stanza piccola in cui farla vivere.",
-        "summary": "Ti prendi cura di un animaletto e arredi la stanza in cui vive. È un unico ciclo: una stanza accogliente alza il suo umore, l'umore frutta le monete, le monete comprano altri mobili.",
-        "intro": "Pata è quello tranquillo. C'è una creatura in una stanza isometrica, e tu la nutri, la lavi, ci giochi e le fai una carezza — su tutte e quattro le cose ha le sue opinioni. La stanza è tua da arredare con sessantaquattro pezzi divisi in nove set, trascinati al loro posto e girati a mano. Arredare non è un passatempo a margine: il comfort fissa il tetto dell'umore, e dall'umore arrivano le monete.",
-        "features": [
-          "Quattro bisogni — sazia, pulita, riposata, contenta — e quattro modi di rispondere",
-          "Una stanza otto per otto e sessantaquattro mobili divisi in nove set, trascinati al loro posto",
-          "Il comfort alza il tetto dell'umore, l'umore frutta le monete, le monete comprano i mobili",
-          "Compiti giornalieri e obiettivi permanenti, azzerati al cambio di giorno",
-          "Codici amico: vai nella stanza di un altro e intanto dai da mangiare al suo animale",
-          "Guadagni offline mentre non ci sei, con un tetto di otto ore"
-        ],
-        "howTo": [
-          "Tocca l'animale per una carezza; pasto, bagno e gioco partono dalla stanza.",
-          "Tieni premuto un mobile per trascinarlo, e lascia per posarlo.",
-          "Chiudi i compiti del giorno, scrivi il diario e spendi quello che hai guadagnato."
-        ]
       }
     }
   },
@@ -301,7 +263,7 @@
   "press": {
     "title": "Kit stampa",
     "lead": "Logo, icone e screenshot a piena risoluzione, con i dati che ci vengono chiesti per primi.",
-    "metaDescription": "Cartella stampa di gamestao: dati sullo studio, logo, icone e screenshot a piena risoluzione per dodici giochi, più un contatto diretto per publishing e investimenti.",
+    "metaDescription": "Cartella stampa di gamestao: dati sullo studio, logo, icone e screenshot a piena risoluzione per dieci giochi, più un contatto diretto per publishing e investimenti.",
     "factsTitle": "Lo studio in breve",
     "facts": {
       "studio": "Studio",

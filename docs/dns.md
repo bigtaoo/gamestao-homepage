@@ -36,6 +36,12 @@ by hand from a developer machine — each is written into its repository's
 the certificate on that first deploy. Later the same day their repositories'
 own `deploy-web` jobs took over, each one observed deploying for real, so all
 twelve hosts on this zone now publish from CI.
+
+`s.` and `e.` are the two hosts with no card on the studio site: Sudoku and
+Pata were taken off it on 2026-11-21 because neither is being worked on any
+further. Nothing about the hosts changed — they serve the same build and
+answer 200 — so the rows above stay. A host on this zone is not evidence that
+the site links to it.
 Single-level names on purpose: free Universal SSL covers one level only, so
 `hexfront.gamestao.com` is certificated and `hexfront.rush.gamestao.com` would
 not be.

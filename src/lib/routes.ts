@@ -75,8 +75,6 @@ export const GAME_IDS = [
   'swarm-orbit',
   'dummy-brawl',
   'hexfront-rush',
-  'sudoku',
-  'pata',
 ] as const;
 export type GameId = (typeof GAME_IDS)[number];
 
@@ -130,7 +128,7 @@ export function translateRoute(route: Route, locale: Locale): Route {
   return { locale, page: route.page };
 }
 
-/** Every page: 11 locales x (home + press + privacy + terms + 12 games) = 176. */
+/** Every page: 11 locales x (home + press + privacy + terms + 10 games) = 154. */
 export function allRoutes(): Route[] {
   const routes: Route[] = [];
   for (const locale of LOCALES) {

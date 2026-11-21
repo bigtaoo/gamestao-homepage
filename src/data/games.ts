@@ -35,14 +35,14 @@ export type Game = {
    * button face. Every entry below clears 5.3:1 on both.
    *
    * What is NOT a requirement any more is a minimum hue separation. With three
-   * games this table asked for 54 degrees between them; twelve games cannot
+   * games this table asked for 54 degrees between them; ten games cannot
    * each own a 54-degree slice of a 360-degree wheel, and forcing it would mean
    * inventing colours no player has seen — which is the one thing this field
-   * exists to prevent. Real art clusters: three of these games are warm gold,
-   * three are blue, two are green. So the cards are told apart by their artwork
-   * and their name, with the accent reinforcing rather than carrying the
-   * distinction, and the order below keeps same-family hues off each other's
-   * heels in the grid.
+   * exists to prevent. Real art clusters: three of these games are warm gold
+   * and two are green. So the cards are told apart by their artwork and their
+   * name, with the accent reinforcing rather than carrying the distinction,
+   * and the order below keeps same-family hues off each other's heels in the
+   * grid.
    */
   accent: string;
   /** How many screenshots exist at public/assets/games/<id>/shot-<n>.webp */
@@ -58,12 +58,20 @@ export type Game = {
  * `url`. Nothing else in the site needs touching — the badges, the game page's
  * download row and the structured data all read this table.
  *
- * All twelve are `live` on the web, and every one of them now publishes from
+ * All ten are `live` on the web, and every one of them now publishes from
  * its own repository. The four newest hostnames — tidehook., swarmorbit.,
  * dummybrawl. and hexfront. — were provisioned by hand on 2026-11-21 and their
  * repositories' `deploy-web` jobs took over the same day, each one observed
  * deploying and answering 200 from the outside. A push to any of these games
  * now reaches its hostname on its own.
+ *
+ * Sudoku (`s.gamestao.com`) and Pata (`e.gamestao.com`) were in this table for
+ * about an hour on 2026-11-21 and were then taken out. Neither is being worked
+ * on any further, and a studio page is a claim about what the studio is doing.
+ * Their hosts were left exactly as they are and still answer 200, so no link
+ * anyone holds breaks; what went away is this site's pages for them, which had
+ * been live for an hour and were in no index yet — which is why `_redirects`
+ * next door gained nothing for them while `daydayup` did.
  *
  * No Playgama entry carries a URL. Several of these games are uploaded there,
  * but a catalog URL has to come from the console rather than be assembled from
@@ -239,31 +247,6 @@ export const GAMES: Game[] = [
       { platform: 'web', status: 'live', url: 'https://hexfront.gamestao.com' },
       { platform: 'playgama', status: 'soon' },
     ],
-  },
-  {
-    id: 'sudoku',
-    name: 'Sudoku',
-    // The board's own `--accent` in dark mode, #6e9cff, read off the deployed
-    // stylesheet. The page's theme-color is paper and ink with no chroma at
-    // all, which is right for a Sudoku grid and useless as an accent.
-    accent: '#6e9cff',
-    screenshots: 4,
-    links: [
-      { platform: 'web', status: 'live', url: 'https://s.gamestao.com' },
-      // Installable as a PWA today; the Capacitor shells are planned, not built.
-      { platform: 'ios', status: 'soon' },
-      { platform: 'android', status: 'soon' },
-    ],
-  },
-  {
-    id: 'pata',
-    name: 'Pata',
-    // The game's own declared `theme-color`, #5cc8f2 — the sky of the room it
-    // opens in. Taken from the deployed page rather than from source, because
-    // every pixel in this one is drawn in code and there is no art file to read.
-    accent: '#5cc8f2',
-    screenshots: 4,
-    links: [{ platform: 'web', status: 'live', url: 'https://e.gamestao.com' }],
   },
 ];
 

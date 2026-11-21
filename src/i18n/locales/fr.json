@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Studio de jeux indépendant",
     "homeTitle": "gamestao — Studio de jeux indépendant",
-    "homeDescription": "Les jeux de compétition en temps réel de gamestao : Nivara, un duel dessiné à la main contre le chrono ; Hexfront Rush, une ligne de front qui bouge sous vos yeux ; Holy Kicker, un moine et sa boule magique. Douze jeux, chacun conçu pour s'ouvrir dans un navigateur.",
+    "homeDescription": "Les jeux de compétition en temps réel de gamestao : Nivara, un duel dessiné à la main contre le chrono ; Hexfront Rush, une ligne de front qui bouge sous vos yeux ; Holy Kicker, un moine et sa boule magique. Dix jeux, chacun conçu pour s'ouvrir dans un navigateur.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Jouez à {game} directement dans votre navigateur, par le studio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Studio de jeux indépendant",
     "title": "Des jeux qui démarrent dès le clic.",
-    "lead": "gamestao est un studio de jeux indépendant qui fait de la compétition en temps réel : un duel dessiné à la main contre le chrono, un front hexagonal qui bouge sous vos yeux, un anneau tenu par un héros et une pression du doigt. Douze jeux à ce jour, et pas un installeur ni un lanceur parmi eux — chacun est conçu pour tourner d'abord dans le navigateur.",
+    "lead": "gamestao est un studio de jeux indépendant qui fait de la compétition en temps réel : un duel dessiné à la main contre le chrono, un front hexagonal qui bouge sous vos yeux, un anneau tenu par un héros et une pression du doigt. Dix jeux à ce jour, et pas un installeur ni un lanceur parmi eux — chacun est conçu pour tourner d'abord dans le navigateur.",
     "ctaGames": "Voir les jeux",
     "ctaAbout": "À propos du studio"
   },
@@ -28,8 +28,8 @@
     "installs": "installation requise"
   },
   "games": {
-    "title": "Douze jeux",
-    "lead": "Une douzaine de genres sur une seule base technique — et la plupart déjà à un clic.",
+    "title": "Dix jeux",
+    "lead": "Dix genres sur une seule base technique — et la plupart déjà à un clic.",
     "details": "En savoir plus",
     "entries": {
       "nivara": {
@@ -221,44 +221,6 @@
           "Les mines paient, les casernes poussent, les tours tiennent — voyez ce qu'il faut au front.",
           "Prenez assez de terrain pour que leur production ne puisse plus répondre à la vôtre."
         ]
-      },
-      "sudoku": {
-        "genre": "Casse-tête de chiffres",
-        "tagline": "Un sudoku avec indices, notes et une nouvelle grille chaque jour.",
-        "summary": "Une grille de sudoku nette qui s'ouvre tout de suite et marche sans connexion : des notes au crayon, un indice quand l'étape suivante ne vient pas, et une nouvelle grille par jour.",
-        "intro": "Sudoku est ce que le studio fait de plus simple, et c'est voulu. Il ouvre directement sur une grille, ne tient aucun compte et ne demande aucune connexion, se souvient d'où vous en étiez, et pour le reste ne vous encombre pas : des notes pour les candidats que vous garderiez sinon en tête, un indice pour l'étape qui vraiment ne vient pas, et chaque jour une nouvelle grille pour revenir.",
-        "features": [
-          "Une nouvelle grille chaque jour, et autant de grilles générées que vous voulez entre-temps",
-          "Des notes au crayon, pour les candidats que vous gardiez en tête",
-          "Un indice pour l'étape qui ne vient pas, plutôt qu'un solveur qui termine la grille",
-          "Ni compte ni connexion : la grille vit sur votre appareil",
-          "Installable depuis le navigateur, et jouable entièrement hors ligne",
-          "Clair et sombre, selon le réglage du système"
-        ],
-        "howTo": [
-          "Choisissez une case, puis le chiffre qui lui revient.",
-          "Passez en notes pour inscrire les candidats sans vous engager.",
-          "Prenez un indice quand l'étape suivante ne vient pas, et finissez la grille."
-        ]
-      },
-      "pata": {
-        "genre": "Simulation d'animal et de chambre",
-        "tagline": "Une petite créature, et une petite chambre où elle habite.",
-        "summary": "Occupez-vous d'un animal et meublez la chambre où il vit. C'est une seule boucle : une chambre confortable remonte son humeur, son humeur rapporte les pièces, les pièces achètent d'autres meubles.",
-        "intro": "Pata est le jeu calme du lot. Il y a une créature dans une chambre isométrique, et vous la nourrissez, la lavez, jouez avec elle et la caressez — elle a un avis sur les quatre. La chambre est à vous, à meubler avec soixante-quatre pièces réparties en neuf ensembles, posées et tournées à la main. Décorer n'est pas une activité annexe : le confort fixe le plafond de l'humeur, et c'est de l'humeur que viennent les pièces.",
-        "features": [
-          "Quatre besoins — nourri, propre, reposé, content — et quatre façons d'y répondre",
-          "Une chambre de huit sur huit et soixante-quatre meubles répartis en neuf ensembles, posés à la main",
-          "Le confort relève le plafond d'humeur, l'humeur rapporte les pièces, les pièces achètent les meubles",
-          "Des tâches quotidiennes et des succès permanents, remis à zéro au changement de jour",
-          "Des codes d'ami : visitez la chambre d'un autre et nourrissez son animal au passage",
-          "Des gains hors ligne pendant votre absence, plafonnés à huit heures"
-        ],
-        "howTo": [
-          "Touchez l'animal pour une caresse ; le repas, le bain et le jeu se lancent depuis la chambre.",
-          "Maintenez un meuble pour le déplacer, et relâchez pour le poser.",
-          "Terminez les tâches du jour, écrivez le journal, et dépensez ce que vous avez gagné."
-        ]
       }
     }
   },
@@ -301,7 +263,7 @@
   "press": {
     "title": "Kit presse",
     "lead": "Logos, icônes et captures en pleine résolution, avec les informations qu'on nous demande en premier.",
-    "metaDescription": "Dossier de presse gamestao : les faits sur le studio, logos, icônes et captures en pleine résolution pour douze jeux, et un contact direct pour l'édition et l'investissement.",
+    "metaDescription": "Dossier de presse gamestao : les faits sur le studio, logos, icônes et captures en pleine résolution pour dix jeux, et un contact direct pour l'édition et l'investissement.",
     "factsTitle": "Le studio en bref",
     "facts": {
       "studio": "Studio",

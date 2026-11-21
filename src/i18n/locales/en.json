@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Independent game studio",
     "homeTitle": "gamestao — Independent game studio",
-    "homeDescription": "Real-time competitive games from gamestao: Nivara, a hand-drawn duel against the clock; Hexfront Rush, a front line that moves while you watch it; Holy Kicker, a monk with a magic ball. Twelve games, each one built to open in a browser.",
+    "homeDescription": "Real-time competitive games from gamestao: Nivara, a hand-drawn duel against the clock; Hexfront Rush, a front line that moves while you watch it; Holy Kicker, a monk with a magic ball. Ten games, each one built to open in a browser.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Play {game} in your browser, from the gamestao studio."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Independent game studio",
     "title": "Games that start the moment you click.",
-    "lead": "gamestao is an independent game studio building real-time competitive games: a hand-drawn duel fought against the clock, a hex front that moves while you watch it, a ring held by one hero and one tap. Twelve games now, and no installer and no launcher among them — each is built to run in the browser first.",
+    "lead": "gamestao is an independent game studio building real-time competitive games: a hand-drawn duel fought against the clock, a hex front that moves while you watch it, a ring held by one hero and one tap. Ten games now, and no installer and no launcher among them — each is built to run in the browser first.",
     "ctaGames": "See the games",
     "ctaAbout": "About the studio"
   },
@@ -28,8 +28,8 @@
     "installs": "installs required"
   },
   "games": {
-    "title": "Twelve games",
-    "lead": "A dozen genres on one technical foundation — and most of them already a click away.",
+    "title": "Ten games",
+    "lead": "Ten genres on one technical foundation — and most of them already a click away.",
     "details": "Read more",
     "entries": {
       "nivara": {
@@ -221,44 +221,6 @@
           "Mines pay, barracks push, towers hold — read which one the front needs.",
           "Take enough ground that their production cannot answer yours."
         ]
-      },
-      "sudoku": {
-        "genre": "Number puzzle",
-        "tagline": "Sudoku with hints, notes and a new puzzle every day.",
-        "summary": "A clean Sudoku board that opens instantly and works with nothing connected: pencil notes, a hint for when the next step will not come, and one fresh puzzle a day.",
-        "intro": "Sudoku is the plainest thing the studio makes, and deliberately so. It opens straight onto a board, keeps no account and asks for no sign-in, remembers where you left off, and otherwise stays out of the way: notes for the candidates you are holding in your head, a hint for the step that genuinely will not come, and a new puzzle every day to come back for.",
-        "features": [
-          "A new puzzle every day, and as many generated ones as you want between them",
-          "Pencil notes, for the candidates you would otherwise be holding in your head",
-          "A hint for the step that will not come, rather than a solver that ends the puzzle",
-          "No account and no sign-in: the board lives on your own device",
-          "Installable straight from the browser, and playable with nothing connected",
-          "Light and dark, following whatever the system is set to"
-        ],
-        "howTo": [
-          "Pick a cell, then pick the digit that belongs in it.",
-          "Switch to notes to pencil in the candidates instead of committing.",
-          "Take a hint when the next step will not come, and finish the grid."
-        ]
-      },
-      "pata": {
-        "genre": "Pet and room sim",
-        "tagline": "Keep a small creature, and a small room for it to live in.",
-        "summary": "Look after a pet and furnish the room it lives in. They are one loop rather than two: a comfortable room lifts its mood, its mood pays the coins, the coins buy more furniture.",
-        "intro": "Pata is the quiet one. There is a creature in an isometric room, and you feed it, wash it, play with it and give it a scratch — it has opinions about all four. The room is yours to furnish from sixty-four pieces across nine sets, dragged into place and turned by hand. Decorating is not a side activity here: comfort sets the ceiling on the pet's mood, and mood is where the coins come from.",
-        "features": [
-          "Four needs — fed, clean, rested, happy — and four ways to answer them",
-          "An eight-by-eight room and sixty-four pieces of furniture across nine sets, dragged into place",
-          "Comfort raises the mood ceiling, mood pays the coins, coins buy the furniture",
-          "Daily tasks and lifetime achievements, reset on the calendar day",
-          "Friend codes: visit someone else's room and feed their pet while you are there",
-          "Offline earnings while you are away, capped at eight hours"
-        ],
-        "howTo": [
-          "Tap the pet for a scratch; feed, wash and play with it from the room.",
-          "Hold a piece of furniture to drag it, and let go to set it down.",
-          "Clear the day's tasks, write the diary, and spend what you earned."
-        ]
       }
     }
   },
@@ -301,7 +263,7 @@
   "press": {
     "title": "Press kit",
     "lead": "Logos, icons and full-resolution screenshots, with the facts people ask for first.",
-    "metaDescription": "Press kit for gamestao: studio facts, logos, icons and full-resolution screenshots for twelve games, and a direct contact for publishing and investment.",
+    "metaDescription": "Press kit for gamestao: studio facts, logos, icons and full-resolution screenshots for ten games, and a direct contact for publishing and investment.",
     "factsTitle": "The studio at a glance",
     "facts": {
       "studio": "Studio",

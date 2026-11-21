@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Estudio de videojuegos independiente",
     "homeTitle": "gamestao — Estudio de videojuegos independiente",
-    "homeDescription": "Juegos competitivos en tiempo real de gamestao: Nivara, un duelo dibujado a mano contra el reloj; Hexfront Rush, un frente que se mueve mientras lo miras; Holy Kicker, un monje con una bola mágica. Doce juegos, todos hechos para abrirse en un navegador.",
+    "homeDescription": "Juegos competitivos en tiempo real de gamestao: Nivara, un duelo dibujado a mano contra el reloj; Hexfront Rush, un frente que se mueve mientras lo miras; Holy Kicker, un monje con una bola mágica. Diez juegos, todos hechos para abrirse en un navegador.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Juega a {game} directamente en tu navegador, del estudio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Estudio de videojuegos independiente",
     "title": "Juegos que arrancan en el momento del clic.",
-    "lead": "gamestao es un estudio independiente que hace juegos competitivos en tiempo real: un duelo dibujado a mano contra el reloj, un frente hexagonal que se mueve mientras lo miras, un anillo que sostiene a un héroe con un solo toque. Doce juegos ya, sin instalador ni lanzador de por medio: cada uno está hecho para correr primero en el navegador.",
+    "lead": "gamestao es un estudio independiente que hace juegos competitivos en tiempo real: un duelo dibujado a mano contra el reloj, un frente hexagonal que se mueve mientras lo miras, un anillo que sostiene a un héroe con un solo toque. Diez juegos ya, sin instalador ni lanzador de por medio: cada uno está hecho para correr primero en el navegador.",
     "ctaGames": "Ver los juegos",
     "ctaAbout": "Sobre el estudio"
   },
@@ -28,8 +28,8 @@
     "installs": "instalaciones necesarias"
   },
   "games": {
-    "title": "Doce juegos",
-    "lead": "Una docena de géneros sobre una misma base técnica, y casi todos ya a un clic.",
+    "title": "Diez juegos",
+    "lead": "Diez géneros sobre una misma base técnica, y casi todos ya a un clic.",
     "details": "Saber más",
     "entries": {
       "nivara": {
@@ -221,44 +221,6 @@
           "Las minas pagan, los cuarteles empujan, las torres sostienen: lee lo que pide el frente.",
           "Toma terreno suficiente para que su producción ya no pueda responder a la tuya."
         ]
-      },
-      "sudoku": {
-        "genre": "Puzle numérico",
-        "tagline": "Sudoku con pistas, notas y un puzle nuevo cada día.",
-        "summary": "Un tablero de sudoku limpio que abre al instante y funciona sin conexión: notas a lápiz, una pista para cuando el siguiente paso no llega, y un puzle nuevo cada día.",
-        "intro": "Sudoku es lo más sencillo que hace el estudio, y lo es a propósito. Abre directamente en un tablero, no lleva cuenta ni pide registro, recuerda dónde lo dejaste y no se mete por medio: notas para los candidatos que si no llevarías en la cabeza, una pista para el paso que de verdad no llega, y un puzle nuevo cada día por el que volver.",
-        "features": [
-          "Un puzle nuevo cada día, y entre medias todos los generados que quieras",
-          "Notas a lápiz para los candidatos que si no llevarías en la cabeza",
-          "Una pista para el paso que no llega, no un solucionador que acabe el puzle",
-          "Sin cuenta y sin registro: el tablero vive en tu propio dispositivo",
-          "Se instala desde el navegador y se juega entero sin conexión",
-          "Claro y oscuro, según lo que tenga puesto el sistema"
-        ],
-        "howTo": [
-          "Elige una casilla y después el número que va en ella.",
-          "Cambia a notas para apuntar candidatos sin comprometerte.",
-          "Pide una pista si el siguiente paso no llega, y termina la cuadrícula."
-        ]
-      },
-      "pata": {
-        "genre": "Simulación de mascota y habitación",
-        "tagline": "Cuida a una criatura pequeña, y una habitación pequeña donde viva.",
-        "summary": "Cuida a una mascota y decora la habitación en la que vive. Es un solo bucle y no dos: una habitación acogedora sube su ánimo, el ánimo da monedas, las monedas compran más muebles.",
-        "intro": "Pata es el juego tranquilo. En una habitación isométrica vive una criatura pequeña, y tú la alimentas, la bañas, juegas con ella y la acaricias; sobre las cuatro cosas tiene opinión. La habitación es tuya para decorarla con sesenta y cuatro piezas en nueve juegos, colocadas y giradas a mano. Decorar no es aquí un extra: la comodidad marca el techo del ánimo, y del ánimo salen las monedas.",
-        "features": [
-          "Cuatro necesidades —comida, limpieza, descanso, ánimo— y cuatro formas de atenderlas",
-          "Una habitación de ocho por ocho y sesenta y cuatro muebles en nueve juegos, colocados a mano",
-          "La comodidad sube el techo del ánimo, el ánimo da monedas, las monedas compran los muebles",
-          "Tareas diarias y logros permanentes, que se reinician con el día del calendario",
-          "Códigos de amistad: visita la habitación de otro y dale de comer a su mascota de paso",
-          "Ganancias sin conexión mientras no estás, con un tope de ocho horas"
-        ],
-        "howTo": [
-          "Toca a la mascota para acariciarla; alimentar, bañar y jugar salen de la habitación.",
-          "Mantén pulsado un mueble para arrastrarlo, y suelta para colocarlo.",
-          "Termina las tareas del día, escribe el diario y gasta lo ganado."
-        ]
       }
     }
   },
@@ -301,7 +263,7 @@
   "press": {
     "title": "Kit de prensa",
     "lead": "Logotipos, iconos y capturas a resolución completa, con los datos que suelen pedirse primero.",
-    "metaDescription": "Kit de prensa de gamestao: datos del estudio, logotipos, iconos y capturas a resolución completa de doce juegos, y un contacto directo para publishing e inversión.",
+    "metaDescription": "Kit de prensa de gamestao: datos del estudio, logotipos, iconos y capturas a resolución completa de diez juegos, y un contacto directo para publishing e inversión.",
     "factsTitle": "El estudio de un vistazo",
     "facts": {
       "studio": "Estudio",

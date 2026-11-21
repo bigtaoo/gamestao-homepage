@@ -4,14 +4,14 @@ The studio site for [gamestao](https://gamestao.com) — one page per game, a
 press kit, the studio's own privacy notice and terms, and an about and contact
 section, in eleven languages.
 
-React + TypeScript, **prerendered at build time** into 176 static documents and
+React + TypeScript, **prerendered at build time** into 154 static documents and
 served from Cloudflare Workers static assets. No server runs at request time.
 
 | | |
 |---|---|
-| Games | Twelve, listed in [src/data/games.ts](src/data/games.ts) — all twelve live on the zone, each publishing from its own repository's CI |
+| Games | Ten, listed in [src/data/games.ts](src/data/games.ts) — all ten live on the zone, each publishing from its own repository's CI |
 | Languages | en · zh · de · fr · it · nl · es · pt · ja · ko · ru |
-| Pages built | 11 locales x (home + press + privacy + terms + 12 game pages) = 176, plus `404.html` |
+| Pages built | 11 locales x (home + press + privacy + terms + 10 game pages) = 154, plus `404.html` |
 | Contact | `support@gamestao.com` (players) · `contact@gamestao.com` (publishing, investment, press) |
 | Hosting | Cloudflare Worker `gamestao-site`, zone `gamestao.com` |
 
@@ -46,7 +46,7 @@ screenshot strip (CSS scroll-snap).
 ```bash
 npm install
 npm run dev        # vite dev server; renders client-side, route taken from the URL
-npm run build      # client bundle -> SSR renderer -> 176 pages into dist/
+npm run build      # client bundle -> SSR renderer -> 154 pages into dist/
 npm run preview    # serve dist/ exactly as it will be served in production
 npm run typecheck
 npm test           # locale parity + route/head invariants
@@ -69,7 +69,7 @@ src/
                        Open Graph, JSON-LD, and the first-visit language redirect.
   lib/serialize.ts     Escaping for data embedded in a <script>.
   lib/page.tsx         PageData + the context every component reads.
-  data/games.ts        The twelve games: names, accent colours, platform links,
+  data/games.ts        The ten games: names, accent colours, platform links,
                        and the two contact addresses.
   data/press.ts        The press kit's downloads, read from the manifest below.
   data/legal/          The privacy notice and terms, one file per locale. Read
@@ -132,12 +132,11 @@ edit in here: [docs/assets.md](docs/assets.md).
   game's own art — a store icon, a locked palette document, a logo, a deployed
   stylesheet's `--accent` — and lifted only as far as it must be to clear 4.5:1
   as small text and as a button background. `src/data/games.ts` records the
-  source and the rejected candidate for each. With twelve cards the old rule of
+  source and the rejected candidate for each. With ten cards the old rule of
   keeping every hue 54 degrees from every other one no longer fits in a circle,
   so it was dropped rather than faked: Holy Kicker and Dummy Brawl share a hue
-  and separate on saturation, as do Nivara and Sudoku, and Brushblade and
-  Hexfront Rush. None of those pairs is adjacent in `GAME_IDS`, which is the
-  order the cards are laid out in.
+  and separate on saturation, as do Brushblade and Hexfront Rush. Neither pair
+  is adjacent in `GAME_IDS`, which is the order the cards are laid out in.
 - **No web fonts.** The studio ships WeChat Mini Games and so has players in
   China, where `fonts.googleapis.com` is blocked and would stall the first paint
   until it times out. System font stacks, with a separate one for CJK.

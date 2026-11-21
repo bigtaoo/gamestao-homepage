@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Estúdio de jogos independente",
     "homeTitle": "gamestao — Estúdio de jogos independente",
-    "homeDescription": "Jogos competitivos em tempo real da gamestao: Nivara, um duelo desenhado à mão contra o relógio; Hexfront Rush, uma frente que se move enquanto você olha; Holy Kicker, um monge com uma bola mágica. Doze jogos, todos feitos para abrir num navegador.",
+    "homeDescription": "Jogos competitivos em tempo real da gamestao: Nivara, um duelo desenhado à mão contra o relógio; Hexfront Rush, uma frente que se move enquanto você olha; Holy Kicker, um monge com uma bola mágica. Dez jogos, todos feitos para abrir num navegador.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Jogue {game} direto no navegador, do estúdio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Estúdio de jogos independente",
     "title": "Jogos que começam no instante do clique.",
-    "lead": "A gamestao é um estúdio independente que faz jogos competitivos em tempo real: um duelo desenhado à mão contra o relógio, uma frente hexagonal que se move enquanto você olha, um anel que sustenta um herói com um toque só. Já são doze jogos, sem instalador nem launcher no caminho — cada um foi feito para rodar primeiro no navegador.",
+    "lead": "A gamestao é um estúdio independente que faz jogos competitivos em tempo real: um duelo desenhado à mão contra o relógio, uma frente hexagonal que se move enquanto você olha, um anel que sustenta um herói com um toque só. Já são dez jogos, sem instalador nem launcher no caminho — cada um foi feito para rodar primeiro no navegador.",
     "ctaGames": "Ver os jogos",
     "ctaAbout": "Sobre o estúdio"
   },
@@ -28,8 +28,8 @@
     "installs": "instalações necessárias"
   },
   "games": {
-    "title": "Doze jogos",
-    "lead": "Uma dúzia de gêneros sobre a mesma base técnica — e quase todos já a um clique.",
+    "title": "Dez jogos",
+    "lead": "Dez gêneros sobre a mesma base técnica — e quase todos já a um clique.",
     "details": "Saiba mais",
     "entries": {
       "nivara": {
@@ -221,44 +221,6 @@
           "Minas pagam, quartéis empurram, torres seguram — leia o que a frente pede.",
           "Tome terreno o bastante para que a produção deles não consiga mais responder à sua."
         ]
-      },
-      "sudoku": {
-        "genre": "Quebra-cabeça numérico",
-        "tagline": "Sudoku com dicas, anotações e um quebra-cabeça novo todo dia.",
-        "summary": "Um tabuleiro de sudoku limpo que abre na hora e funciona sem conexão: anotações a lápis, uma dica para quando o próximo passo não vem, e um quebra-cabeça novo todo dia.",
-        "intro": "Sudoku é a coisa mais simples que o estúdio faz, e é de propósito. Abre direto num tabuleiro, não mantém conta nem pede cadastro, lembra onde você parou e não fica no caminho: anotações para os candidatos que você senão guardaria de cabeça, uma dica para o passo que realmente não vem, e um quebra-cabeça novo todo dia para você voltar.",
-        "features": [
-          "Um quebra-cabeça novo todo dia, e entre eles quantos gerados você quiser",
-          "Anotações a lápis para os candidatos que você senão guardaria de cabeça",
-          "Uma dica para o passo que não vem, não um resolvedor que termina o quebra-cabeça",
-          "Sem conta e sem cadastro: o tabuleiro fica no seu próprio aparelho",
-          "Instalável direto do navegador, e jogável inteiro sem conexão",
-          "Claro e escuro, conforme o que o sistema estiver usando"
-        ],
-        "howTo": [
-          "Escolha uma casa e depois o número que vai nela.",
-          "Mude para anotações para marcar candidatos sem se comprometer.",
-          "Peça uma dica se o próximo passo não vier, e termine a grade."
-        ]
-      },
-      "pata": {
-        "genre": "Simulação de bicho e quarto",
-        "tagline": "Cuide de uma criaturinha, e de um quartinho para ela morar.",
-        "summary": "Cuide de um bicho e decore o quarto em que ele mora. É um ciclo só e não dois: um quarto aconchegante levanta o humor, o humor rende moedas, as moedas compram mais móveis.",
-        "intro": "Pata é o jogo quieto. Num quarto isométrico mora uma criaturinha, e você a alimenta, a lava, brinca com ela e a faz carinho — sobre as quatro coisas ela tem opinião. O quarto é seu para decorar com sessenta e quatro peças em nove conjuntos, colocadas e giradas à mão. Decorar aqui não é um extra: o conforto define o teto do humor, e do humor saem as moedas.",
-        "features": [
-          "Quatro necessidades — comida, limpeza, descanso, alegria — e quatro formas de atendê-las",
-          "Um quarto de oito por oito e sessenta e quatro móveis em nove conjuntos, colocados à mão",
-          "O conforto levanta o teto do humor, o humor rende moedas, as moedas compram os móveis",
-          "Tarefas diárias e conquistas permanentes, reiniciadas com o dia do calendário",
-          "Códigos de amizade: visite o quarto de outra pessoa e alimente o bicho dela de passagem",
-          "Ganhos off-line enquanto você está fora, com um teto de oito horas"
-        ],
-        "howTo": [
-          "Toque no bicho para fazer carinho; alimentar, lavar e brincar saem do quarto.",
-          "Segure um móvel para arrastá-lo, e solte para posicioná-lo.",
-          "Termine as tarefas do dia, escreva o diário e gaste o que ganhou."
-        ]
       }
     }
   },
@@ -301,7 +263,7 @@
   "press": {
     "title": "Kit de imprensa",
     "lead": "Logotipos, ícones e capturas em resolução total, com os dados que costumam ser pedidos primeiro.",
-    "metaDescription": "Kit de imprensa da gamestao: dados do estúdio, logos, ícones e capturas em resolução total de doze jogos, e um contato direto para publishing e investimento.",
+    "metaDescription": "Kit de imprensa da gamestao: dados do estúdio, logos, ícones e capturas em resolução total de dez jogos, e um contato direto para publishing e investimento.",
     "factsTitle": "O estúdio em resumo",
     "facts": {
       "studio": "Estúdio",
