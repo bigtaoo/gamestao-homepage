@@ -125,7 +125,14 @@ export type Messages = {
   };
   a11y: {
     skipToContent: string;
-    /** `{game}` and `{n}` are substituted. */
+    /**
+     * `{game}` and `{n}` are substituted, and neither can be assumed to come
+     * first. English stacks the two nouns (`Nivara screenshot 1`); French,
+     * Italian, Spanish and Portuguese cannot, so they invert it and join with
+     * a preposition (`Capture d'ecran 1 de Nivara`). German and Dutch invert
+     * it too, because the compound a game name would need is unwritable when
+     * the name is two words.
+     */
     screenshotAlt: string;
   };
 };

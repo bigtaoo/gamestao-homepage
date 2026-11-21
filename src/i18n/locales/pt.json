@@ -298,6 +298,6 @@
   },
   "a11y": {
     "skipToContent": "Pular para o conteúdo",
-    "screenshotAlt": "{game} captura {n}"
+    "screenshotAlt": "Captura {n} de {game}"
   }
 }

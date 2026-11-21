@@ -298,6 +298,6 @@
   },
   "a11y": {
     "skipToContent": "Naar de inhoud",
-    "screenshotAlt": "{game} schermafbeelding {n}"
+    "screenshotAlt": "Schermafbeelding {n} van {game}"
   }
 }
