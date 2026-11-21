@@ -58,11 +58,15 @@ export type Game = {
  * `url`. Nothing else in the site needs touching — the badges, the game page's
  * download row and the structured data all read this table.
  *
- * Four games are `soon` on the web and on nothing else: Tidehook, Swarm Orbit,
- * Dummy Brawl and Hexfront Rush. Each one's repository now has a `deploy-web`
- * job and a `wrangler/web.jsonc` pointing at the hostname named in its comment,
- * but no deploy has run yet, so none of those hostnames resolves. They become
- * one-line edits here the moment the first green run provisions them.
+ * All twelve are `live` on the web. The four newest hostnames — tidehook.,
+ * swarmorbit., dummybrawl. and hexfront. — were provisioned on 2026-11-21 by
+ * running `wrangler deploy` by hand from a developer machine, against each
+ * repository's committed `main` rather than its working tree. Each of those
+ * repositories carries a `deploy-web` job that would do the same on every push,
+ * but it stays skipped until someone sets `WEB_DEPLOY_ENABLED` and the two
+ * Cloudflare secrets there (docs/deploy.md). Until that happens a push to one
+ * of those games does NOT reach its hostname, and the next deploy is another
+ * manual one.
  *
  * No Playgama entry carries a URL. Several of these games are uploaded there,
  * but a catalog URL has to come from the console rather than be assembled from
@@ -196,8 +200,7 @@ export const GAMES: Game[] = [
     accent: '#26b2b0',
     screenshots: 3,
     links: [
-      // tidehook.gamestao.com, once the repository's new deploy-web job runs.
-      { platform: 'web', status: 'soon' },
+      { platform: 'web', status: 'live', url: 'https://tidehook.gamestao.com' },
       { platform: 'playgama', status: 'soon' },
     ],
   },
@@ -210,8 +213,7 @@ export const GAMES: Game[] = [
     accent: '#8fb63c',
     screenshots: 4,
     links: [
-      // swarmorbit.gamestao.com, once the repository's new deploy-web job runs.
-      { platform: 'web', status: 'soon' },
+      { platform: 'web', status: 'live', url: 'https://swarmorbit.gamestao.com' },
       { platform: 'playgama', status: 'soon' },
     ],
   },
@@ -223,8 +225,7 @@ export const GAMES: Game[] = [
     accent: '#f2c230',
     screenshots: 4,
     links: [
-      // dummybrawl.gamestao.com, once the repository's new deploy-web job runs.
-      { platform: 'web', status: 'soon' },
+      { platform: 'web', status: 'live', url: 'https://dummybrawl.gamestao.com' },
       { platform: 'playgama', status: 'soon' },
     ],
   },
@@ -236,10 +237,9 @@ export const GAMES: Game[] = [
     accent: '#ef7a52',
     screenshots: 2,
     links: [
-      // hexfront.gamestao.com, once the repository's new deploy-web job runs.
       // Not hf., which already belongs to this game's replay collector — one
       // hostname cannot be both, and the one players see should say the name.
-      { platform: 'web', status: 'soon' },
+      { platform: 'web', status: 'live', url: 'https://hexfront.gamestao.com' },
       { platform: 'playgama', status: 'soon' },
     ],
   },

@@ -9,7 +9,7 @@ served from Cloudflare Workers static assets. No server runs at request time.
 
 | | |
 |---|---|
-| Games | Twelve, listed in [src/data/games.ts](src/data/games.ts) — eight already on the zone, four waiting on their first `deploy-web` run |
+| Games | Twelve, listed in [src/data/games.ts](src/data/games.ts) — all twelve live on the zone, four of them deployed by hand rather than by their own CI |
 | Languages | en · zh · de · fr · it · nl · es · pt · ja · ko · ru |
 | Pages built | 11 locales x (home + press + privacy + terms + 12 game pages) = 176, plus `404.html` |
 | Contact | `support@gamestao.com` (players) · `contact@gamestao.com` (publishing, investment, press) |

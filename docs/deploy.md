@@ -174,8 +174,13 @@ gh variable set WEB_DEPLOY_ENABLED --body true --repo bigtaoo/Tidehook
 ```
 
 Until the variable is set the job is skipped and CI stays green, so the job can
-be merged long before anyone is ready to publish. The site already lists all
-four games with their web link marked *soon*; flipping the switch and letting
-one run finish is what makes that link real, and the link in
-`src/data/games.ts` has to be changed from `status: 'soon'` to a `'live'` entry
-with the URL in the same pass.
+be merged long before anyone is ready to publish — which is exactly where these
+four still are.
+
+All four hostnames already exist and serve the game: they were provisioned on
+2026-11-21 by running `wrangler deploy -c wrangler/web.jsonc` by hand, from a
+clean clone of each repository's `main`, and `src/data/games.ts` lists them as
+`live`. So setting the variable and the secrets does not launch anything now;
+it stops the next push from being a build nobody ships. Do it, then push a
+trivial commit and confirm the run's `deploy-web` job actually ran rather than
+reporting success with the job skipped.

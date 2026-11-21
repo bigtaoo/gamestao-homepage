@@ -40,19 +40,23 @@ records the slug — searched across this repo and every game checkout on this
 machine, there is no itch URL anywhere to copy. CrazyGames and iOS read
 `soon` correctly: both are genuinely still in review (`D:\number\docs\distribution.md`).
 
-## Four games are listed with a play link that does not resolve yet
+## Four games deploy by hand, not from their own CI
 
-Tidehook, Swarm Orbit, Dummy Brawl and Hexfront Rush are on the site with their
-web link marked *soon*. Each repository now carries a `deploy-web` job and a
-`wrangler/web.jsonc` naming its host, but the job is skipped until someone sets
-`WEB_DEPLOY_ENABLED` and the two Cloudflare secrets in that repository — the
-three commands are in [deploy.md](deploy.md). Cloudflare provisions the
-hostname and its certificate on the first successful run.
+Tidehook, Swarm Orbit, Dummy Brawl and Hexfront Rush are live — tidehook.,
+swarmorbit., dummybrawl. and hexfront.gamestao.com all answered 200 on
+2026-11-21 — but each hostname was provisioned by running `wrangler deploy`
+from a developer machine, not by the repository. Their `deploy-web` jobs exist
+and are correct; they stay skipped because no one has set `WEB_DEPLOY_ENABLED`
+or the two Cloudflare secrets in those four repositories. The three commands
+per repository are in [deploy.md](deploy.md), and they need a Cloudflare API
+token, which is why this could not be finished from the machine that did the
+deploys.
 
-When a run lands, the entry in `src/data/games.ts` has to change from
-`{ platform: 'web', status: 'soon' }` to a `'live'` entry with the URL, and the
-site redeployed; nothing updates that by itself, and a *soon* badge over a host
-that already answers is the kind of wrong that nobody reports.
+Until that is done, **a push to any of those four games does not reach
+players.** The code lands on `main`, CI goes green, and the hostname keeps
+serving the build someone pushed by hand — which is worse than a red build,
+because nothing says anything is wrong. Whoever sets the secrets should push a
+trivial commit afterwards and watch the run actually deploy.
 
 ## Six games are still showing generated stand-in art
 

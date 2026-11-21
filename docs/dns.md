@@ -19,10 +19,10 @@ way are the kind that look like something else entirely.
 | `f.gamestao.com` | Brushblade | `bigtaoo/fight` |
 | `s.gamestao.com` | Sudoku | `bigtaoo/sudoku` |
 | `e.gamestao.com` | Pata | `bigtaoo/e.gamestao` |
-| `tidehook.gamestao.com` | Tidehook | `bigtaoo/Tidehook`, pending its first `deploy-web` |
-| `swarmorbit.gamestao.com` | Swarm Orbit | `bigtaoo/fruit-fort`, pending its first `deploy-web` |
-| `dummybrawl.gamestao.com` | Dummy Brawl | `bigtaoo/moto`, pending its first `deploy-web` |
-| `hexfront.gamestao.com` | Hexfront Rush | `bigtaoo/hexfront-rush`, pending its first `deploy-web` |
+| `tidehook.gamestao.com` | Tidehook | `bigtaoo/Tidehook`, deployed by hand |
+| `swarmorbit.gamestao.com` | Swarm Orbit | `bigtaoo/fruit-fort`, deployed by hand |
+| `dummybrawl.gamestao.com` | Dummy Brawl | `bigtaoo/moto`, deployed by hand |
+| `hexfront.gamestao.com` | Hexfront Rush | `bigtaoo/hexfront-rush`, deployed by hand |
 
 The repository name is not the game name in six of these: `funny` is Nivara,
 `PIXIJSGAME` is SumQuest, `blightbloom` was `daydayup` until the rename,
@@ -30,10 +30,13 @@ The repository name is not the game name in six of these: `funny` is Nivara,
 Worker names, save keys and bundle ids inside those repositories still carry
 the old codename on purpose — renaming them would strand live players' saves.
 
-The last four hosts do not exist yet. Each is written into its repository's
-`wrangler/web.jsonc` as a custom domain, and Cloudflare creates the record and
-the certificate the first time that repository's `deploy-web` job runs, which
-needs `WEB_DEPLOY_ENABLED=true` and the two Cloudflare secrets set there.
+The last four hosts were provisioned on 2026-11-21 by running `wrangler deploy`
+by hand from a developer machine — each is written into its repository's
+`wrangler/web.jsonc` as a custom domain, and Cloudflare created the record and
+the certificate on that first deploy. The repositories' own `deploy-web` jobs
+have never run: they stay skipped until `WEB_DEPLOY_ENABLED=true` and the two
+Cloudflare secrets are set there, so for now these four hosts only change when
+someone deploys them by hand.
 Single-level names on purpose: free Universal SSL covers one level only, so
 `hexfront.gamestao.com` is certificated and `hexfront.rush.gamestao.com` would
 not be.
