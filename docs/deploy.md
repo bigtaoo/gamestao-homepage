@@ -150,21 +150,26 @@ then curls the public host in a retry loop so a green run means the outside
 world really saw the new build.
 
 Four repositories got that job for the first time with this change, each with
-its hostname written into `wrangler/web.jsonc` as a custom domain. None of
-those jobs has ever run:
+its hostname written into `wrangler/web.jsonc` as a custom domain. All four are
+switched on and have been observed deploying:
 
-| Repository | Game | Host (provisioned 2026-11-21, by hand) |
+| Repository | Game | Host |
 |---|---|---|
 | `bigtaoo/Tidehook` | Tidehook | `tidehook.gamestao.com` |
 | `bigtaoo/fruit-fort` | Swarm Orbit | `swarmorbit.gamestao.com` |
 | `bigtaoo/moto` | Dummy Brawl | `dummybrawl.gamestao.com` |
 | `bigtaoo/hexfront-rush` | Hexfront Rush | `hexfront.gamestao.com` |
 
-`CLOUDFLARE_ACCOUNT_ID` is already set in all four, copied from the account the
-manual deploys ran against. What is missing is the API token, which cannot be
-minted from a wrangler OAuth session — it has to be created in the Cloudflare
-dashboard (Workers Scripts:Edit is enough) — and the switch. So two commands
-per repository, not three:
+All three pieces are in place in all four repositories as of 2026-11-21:
+`CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN` and `WEB_DEPLOY_ENABLED=true`.
+The token is the same one the older game repositories use — one account-wide
+token serves the whole zone, and reusing it beat minting a new one, since a
+wrangler OAuth session cannot mint one anyway. It is the token described under
+*The API token* above: the plain *Edit Cloudflare Workers* template, Zone
+Resources narrowed to `gamestao.com`, and deliberately **no** DNS permission.
+
+To bring a fifth repository in, that is two commands, not three — the account
+id and the token both come from an existing repository's setup:
 
 ```bash
 gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/Tidehook
@@ -175,13 +180,16 @@ gh variable set WEB_DEPLOY_ENABLED --body true --repo bigtaoo/Tidehook
 ```
 
 Until the variable is set the job is skipped and CI stays green, so the job can
-be merged long before anyone is ready to publish — which is exactly where these
-four still are.
+be merged long before anyone is ready to publish. That is a useful property and
+a trap in equal measure: a skipped job makes the whole run report success, so
+**read the job's own conclusion, never the run's.** `gh run view <id>` shows it,
+or `gh api repos/<repo>/actions/runs/<id>/jobs --jq '.jobs[].conclusion'`.
 
-All four hostnames already exist and serve the game: they were provisioned on
-2026-11-21 by running `wrangler deploy -c wrangler/web.jsonc` by hand, from a
-clean clone of each repository's `main`, and `src/data/games.ts` lists them as
-`live`. So setting the variable and the secrets does not launch anything now;
-it stops the next push from being a build nobody ships. Do it, then push a
-trivial commit and confirm the run's `deploy-web` job actually ran rather than
-reporting success with the job skipped.
+That is how these four were confirmed on 2026-11-21. Each hostname had been
+provisioned by hand earlier the same day — `wrangler deploy -c
+wrangler/web.jsonc` from a clean clone of `main` — and once the token and the
+switch landed, re-running each repository's latest `main` workflow showed
+`deploy-web = success` with its *deploy to Cloudflare* and *verify from the
+outside* steps both green. Two of the four served slightly different bytes
+afterwards: same commit, but CI builds on ubuntu and the hand deploys were
+built on Windows, so CI's output is the one to treat as canonical.

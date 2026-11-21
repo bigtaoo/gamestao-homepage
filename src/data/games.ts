@@ -58,15 +58,12 @@ export type Game = {
  * `url`. Nothing else in the site needs touching — the badges, the game page's
  * download row and the structured data all read this table.
  *
- * All twelve are `live` on the web. The four newest hostnames — tidehook.,
- * swarmorbit., dummybrawl. and hexfront. — were provisioned on 2026-11-21 by
- * running `wrangler deploy` by hand from a developer machine, against each
- * repository's committed `main` rather than its working tree. Each of those
- * repositories carries a `deploy-web` job that would do the same on every push,
- * but it stays skipped until someone sets `WEB_DEPLOY_ENABLED` and the two
- * Cloudflare secrets there (docs/deploy.md). Until that happens a push to one
- * of those games does NOT reach its hostname, and the next deploy is another
- * manual one.
+ * All twelve are `live` on the web, and every one of them now publishes from
+ * its own repository. The four newest hostnames — tidehook., swarmorbit.,
+ * dummybrawl. and hexfront. — were provisioned by hand on 2026-11-21 and their
+ * repositories' `deploy-web` jobs took over the same day, each one observed
+ * deploying and answering 200 from the outside. A push to any of these games
+ * now reaches its hostname on its own.
  *
  * No Playgama entry carries a URL. Several of these games are uploaded there,
  * but a catalog URL has to come from the console rather than be assembled from

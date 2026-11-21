@@ -9,7 +9,7 @@ served from Cloudflare Workers static assets. No server runs at request time.
 
 | | |
 |---|---|
-| Games | Twelve, listed in [src/data/games.ts](src/data/games.ts) — all twelve live on the zone, four of them deployed by hand rather than by their own CI |
+| Games | Twelve, listed in [src/data/games.ts](src/data/games.ts) — all twelve live on the zone, each publishing from its own repository's CI |
 | Languages | en · zh · de · fr · it · nl · es · pt · ja · ko · ru |
 | Pages built | 11 locales x (home + press + privacy + terms + 12 game pages) = 176, plus `404.html` |
 | Contact | `support@gamestao.com` (players) · `contact@gamestao.com` (publishing, investment, press) |
@@ -22,7 +22,7 @@ looking for.
 | | |
 |---|---|
 | [docs/assets.md](docs/assets.md) | Game art and the press kit — importing real art, the stand-in generator, what is real today |
-| [docs/deploy.md](docs/deploy.md) | The CI pipeline, the deploy switch, the Cloudflare token, deploying by hand |
+| [docs/deploy.md](docs/deploy.md) | The CI pipeline, the deploy switch, the shared Cloudflare token, deploying by hand |
 | [docs/dns.md](docs/dns.md) | Which hostname serves what, how the apex was taken over, and two failures that lie about their cause |
 | [docs/todo.md](docs/todo.md) | What is still unfinished on the zone and in the store listings |
 

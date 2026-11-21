@@ -40,25 +40,6 @@ records the slug — searched across this repo and every game checkout on this
 machine, there is no itch URL anywhere to copy. CrazyGames and iOS read
 `soon` correctly: both are genuinely still in review (`D:\number\docs\distribution.md`).
 
-## Four games deploy by hand, not from their own CI
-
-Tidehook, Swarm Orbit, Dummy Brawl and Hexfront Rush are live — tidehook.,
-swarmorbit., dummybrawl. and hexfront.gamestao.com all answered 200 on
-2026-11-21 — but each hostname was provisioned by running `wrangler deploy`
-from a developer machine, not by the repository. Their `deploy-web` jobs exist
-and are correct; they stay skipped because no one has set `WEB_DEPLOY_ENABLED`
-or the API token in those four repositories. `CLOUDFLARE_ACCOUNT_ID` is already
-set in all four; the token is the piece that is missing, and it has to be made
-in the Cloudflare dashboard rather than from a wrangler OAuth session, which is
-why this could not be finished from the machine that did the deploys. The two
-remaining commands per repository are in [deploy.md](deploy.md).
-
-Until that is done, **a push to any of those four games does not reach
-players.** The code lands on `main`, CI goes green, and the hostname keeps
-serving the build someone pushed by hand — which is worse than a red build,
-because nothing says anything is wrong. Whoever sets the secrets should push a
-trivial commit afterwards and watch the run actually deploy.
-
 ## Six games are still showing generated stand-in art
 
 Blightbloom, Brushblade, Swarm Orbit, Sudoku and Pata have no importable store

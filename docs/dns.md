@@ -19,10 +19,10 @@ way are the kind that look like something else entirely.
 | `f.gamestao.com` | Brushblade | `bigtaoo/fight` |
 | `s.gamestao.com` | Sudoku | `bigtaoo/sudoku` |
 | `e.gamestao.com` | Pata | `bigtaoo/e.gamestao` |
-| `tidehook.gamestao.com` | Tidehook | `bigtaoo/Tidehook`, deployed by hand |
-| `swarmorbit.gamestao.com` | Swarm Orbit | `bigtaoo/fruit-fort`, deployed by hand |
-| `dummybrawl.gamestao.com` | Dummy Brawl | `bigtaoo/moto`, deployed by hand |
-| `hexfront.gamestao.com` | Hexfront Rush | `bigtaoo/hexfront-rush`, deployed by hand |
+| `tidehook.gamestao.com` | Tidehook | `bigtaoo/Tidehook` |
+| `swarmorbit.gamestao.com` | Swarm Orbit | `bigtaoo/fruit-fort` |
+| `dummybrawl.gamestao.com` | Dummy Brawl | `bigtaoo/moto` |
+| `hexfront.gamestao.com` | Hexfront Rush | `bigtaoo/hexfront-rush` |
 
 The repository name is not the game name in six of these: `funny` is Nivara,
 `PIXIJSGAME` is SumQuest, `blightbloom` was `daydayup` until the rename,
@@ -33,10 +33,9 @@ the old codename on purpose — renaming them would strand live players' saves.
 The last four hosts were provisioned on 2026-11-21 by running `wrangler deploy`
 by hand from a developer machine — each is written into its repository's
 `wrangler/web.jsonc` as a custom domain, and Cloudflare created the record and
-the certificate on that first deploy. The repositories' own `deploy-web` jobs
-have never run: they stay skipped until `WEB_DEPLOY_ENABLED=true` and the two
-Cloudflare secrets are set there, so for now these four hosts only change when
-someone deploys them by hand.
+the certificate on that first deploy. Later the same day their repositories'
+own `deploy-web` jobs took over, each one observed deploying for real, so all
+twelve hosts on this zone now publish from CI.
 Single-level names on purpose: free Universal SSL covers one level only, so
 `hexfront.gamestao.com` is certificated and `hexfront.rush.gamestao.com` would
 not be.
