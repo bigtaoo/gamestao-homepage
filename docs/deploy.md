@@ -141,7 +141,8 @@ cannot change what a deploy does without a commit here. Bump the two together.
 
 This repository publishes the studio site. Each game publishes itself, from its
 own repository, with a `deploy-web` job that follows the same shape as the one
-here: it `needs: [check, smoke]`, it is gated on
+here: it `needs: check` (those repositories have no separate smoke job), it is
+gated on
 `vars.WEB_DEPLOY_ENABLED == 'true' && github.event_name != 'pull_request' &&
 github.ref == 'refs/heads/main'`, it re-checks that the commit is still main's
 tip before it ships, it runs `wrangler deploy -c wrangler/web.jsonc`, and it
@@ -149,24 +150,24 @@ then curls the public host in a retry loop so a green run means the outside
 world really saw the new build.
 
 Four repositories got that job for the first time with this change, each with
-its hostname written into `wrangler/web.jsonc` as a custom domain:
+its hostname written into `wrangler/web.jsonc` as a custom domain. None of
+those jobs has ever run:
 
-| Repository | Game | Host it will provision |
+| Repository | Game | Host (provisioned 2026-11-21, by hand) |
 |---|---|---|
 | `bigtaoo/Tidehook` | Tidehook | `tidehook.gamestao.com` |
 | `bigtaoo/fruit-fort` | Swarm Orbit | `swarmorbit.gamestao.com` |
 | `bigtaoo/moto` | Dummy Brawl | `dummybrawl.gamestao.com` |
 | `bigtaoo/hexfront-rush` | Hexfront Rush | `hexfront.gamestao.com` |
 
-Nothing deploys until each of those has the two Cloudflare secrets and the
-switch, which is three commands per repository:
+`CLOUDFLARE_ACCOUNT_ID` is already set in all four, copied from the account the
+manual deploys ran against. What is missing is the API token, which cannot be
+minted from a wrangler OAuth session — it has to be created in the Cloudflare
+dashboard (Workers Scripts:Edit is enough) — and the switch. So two commands
+per repository, not three:
 
 ```bash
 gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/Tidehook
-```
-
-```bash
-gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/Tidehook
 ```
 
 ```bash

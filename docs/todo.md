@@ -47,10 +47,11 @@ swarmorbit., dummybrawl. and hexfront.gamestao.com all answered 200 on
 2026-11-21 — but each hostname was provisioned by running `wrangler deploy`
 from a developer machine, not by the repository. Their `deploy-web` jobs exist
 and are correct; they stay skipped because no one has set `WEB_DEPLOY_ENABLED`
-or the two Cloudflare secrets in those four repositories. The three commands
-per repository are in [deploy.md](deploy.md), and they need a Cloudflare API
-token, which is why this could not be finished from the machine that did the
-deploys.
+or the API token in those four repositories. `CLOUDFLARE_ACCOUNT_ID` is already
+set in all four; the token is the piece that is missing, and it has to be made
+in the Cloudflare dashboard rather than from a wrangler OAuth session, which is
+why this could not be finished from the machine that did the deploys. The two
+remaining commands per repository are in [deploy.md](deploy.md).
 
 Until that is done, **a push to any of those four games does not reach
 players.** The code lands on `main`, CI goes green, and the hostname keeps
