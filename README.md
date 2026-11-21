@@ -119,8 +119,20 @@ cannot be advertised as playable without somewhere to send people.
 
 **A new language** is `LOCALES` in `src/lib/routes.ts` plus an `HREFLANG` entry,
 an endonym in `LOCALE_NAMES`, a locale file, and a file in `src/data/legal/`.
-The build picks it up and emits sixteen more pages; `npm run typecheck` names both
-files it still needs.
+The build picks it up and emits fourteen more pages; `npm run typecheck` names
+both files it still needs.
+
+**A game joining or leaving** is `GAME_IDS` in `src/lib/routes.ts` and an entry
+in `src/data/games.ts`. The copy is the part that does not follow. Each locale
+file carries that game's own block under `games.entries`, which `npm run
+typecheck` names for you — but it also carries the *count* spelled out in five
+places nothing checks: `games.title`, `games.lead`, `hero.lead`,
+`meta.homeDescription` and `press.metaDescription`. Those are prose, not
+`GAMES.length`, and the numeral inflects differently in every language, so they
+have to be rewritten one language at a time. Grepping for the English numeral
+finds none of them; grep each language's own word, and note that Japanese writes
+it in digits. Holy Kicker's copy says "twelve minutes" about the length of a
+run, which counts nothing and has to survive the sweep.
 
 **Artwork and the press kit** have a runbook of their own, because importing
 real art is a command with paths into another game's checkout rather than an
