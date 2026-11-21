@@ -1,4 +1,108 @@
 {
+  "dummy-brawl": [
+    {
+      "kind": "feature",
+      "file": "/assets/press/dummy-brawl/dummy-brawl-feature.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 398331
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/dummy-brawl/dummy-brawl-screenshot-1.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 328726
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/dummy-brawl/dummy-brawl-screenshot-2.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 390150
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/dummy-brawl/dummy-brawl-screenshot-3.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 352396
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/dummy-brawl/dummy-brawl-screenshot-4.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 377303
+    }
+  ],
+  "hexfront-rush": [
+    {
+      "kind": "feature",
+      "file": "/assets/press/hexfront-rush/hexfront-rush-feature.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2574997
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/hexfront-rush/hexfront-rush-screenshot-1.png",
+      "width": 1553,
+      "height": 903,
+      "bytes": 610891
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/hexfront-rush/hexfront-rush-screenshot-2.png",
+      "width": 1500,
+      "height": 760,
+      "bytes": 729447
+    }
+  ],
+  "holy-kicker": [
+    {
+      "kind": "logo",
+      "file": "/assets/press/holy-kicker/holy-kicker-logo.png",
+      "width": 1200,
+      "height": 561,
+      "bytes": 231085
+    },
+    {
+      "kind": "feature",
+      "file": "/assets/press/holy-kicker/holy-kicker-feature.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 2433602
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/holy-kicker/holy-kicker-screenshot-1.png",
+      "width": 1179,
+      "height": 2556,
+      "bytes": 1861891
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/holy-kicker/holy-kicker-screenshot-2.png",
+      "width": 1179,
+      "height": 2556,
+      "bytes": 1024018
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/holy-kicker/holy-kicker-screenshot-3.png",
+      "width": 1179,
+      "height": 2556,
+      "bytes": 1250113
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/holy-kicker/holy-kicker-screenshot-4.png",
+      "width": 1179,
+      "height": 2556,
+      "bytes": 2406747
+    }
+  ],
   "nivara": [
     {
       "kind": "logo",
@@ -50,6 +154,15 @@
       "bytes": 320500
     }
   ],
+  "potion-siege": [
+    {
+      "kind": "icon",
+      "file": "/assets/press/potion-siege/potion-siege-icon.png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 829777
+    }
+  ],
   "sumquest": [
     {
       "kind": "icon",
@@ -92,6 +205,36 @@
       "width": 1290,
       "height": 2796,
       "bytes": 755468
+    }
+  ],
+  "tidehook": [
+    {
+      "kind": "feature",
+      "file": "/assets/press/tidehook/tidehook-feature.png",
+      "width": 1920,
+      "height": 1080,
+      "bytes": 1970886
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/tidehook/tidehook-screenshot-1.png",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 2437287
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/tidehook/tidehook-screenshot-2.png",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 770260
+    },
+    {
+      "kind": "screenshot",
+      "file": "/assets/press/tidehook/tidehook-screenshot-3.png",
+      "width": 2560,
+      "height": 1440,
+      "bytes": 1165226
     }
   ]
 }

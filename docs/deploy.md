@@ -68,7 +68,7 @@ is never typed into a shell history or a file. The account is
 ### The API token
 
 GitHub cannot read a secret back out, so the value cannot be lifted off
-`bigtaoo/daydayup` even though the same two secrets are already set there.
+`bigtaoo/blightbloom` even though the same two secrets are already set there.
 Make one at **dash.cloudflare.com → My Profile → API Tokens → Create Token**,
 then **Custom → Edit Cloudflare Workers** — the template Cloudflare's own
 GitHub Actions guide points at. It grants:
@@ -136,3 +136,46 @@ npm run deploy
 
 The `deploy` script and CI pin the same wrangler version, so a wrangler release
 cannot change what a deploy does without a commit here. Bump the two together.
+
+## The game repositories' own `deploy-web`
+
+This repository publishes the studio site. Each game publishes itself, from its
+own repository, with a `deploy-web` job that follows the same shape as the one
+here: it `needs: [check, smoke]`, it is gated on
+`vars.WEB_DEPLOY_ENABLED == 'true' && github.event_name != 'pull_request' &&
+github.ref == 'refs/heads/main'`, it re-checks that the commit is still main's
+tip before it ships, it runs `wrangler deploy -c wrangler/web.jsonc`, and it
+then curls the public host in a retry loop so a green run means the outside
+world really saw the new build.
+
+Four repositories got that job for the first time with this change, each with
+its hostname written into `wrangler/web.jsonc` as a custom domain:
+
+| Repository | Game | Host it will provision |
+|---|---|---|
+| `bigtaoo/Tidehook` | Tidehook | `tidehook.gamestao.com` |
+| `bigtaoo/fruit-fort` | Swarm Orbit | `swarmorbit.gamestao.com` |
+| `bigtaoo/moto` | Dummy Brawl | `dummybrawl.gamestao.com` |
+| `bigtaoo/hexfront-rush` | Hexfront Rush | `hexfront.gamestao.com` |
+
+Nothing deploys until each of those has the two Cloudflare secrets and the
+switch, which is three commands per repository:
+
+```bash
+gh secret set CLOUDFLARE_API_TOKEN --repo bigtaoo/Tidehook
+```
+
+```bash
+gh secret set CLOUDFLARE_ACCOUNT_ID --repo bigtaoo/Tidehook
+```
+
+```bash
+gh variable set WEB_DEPLOY_ENABLED --body true --repo bigtaoo/Tidehook
+```
+
+Until the variable is set the job is skipped and CI stays green, so the job can
+be merged long before anyone is ready to publish. The site already lists all
+four games with their web link marked *soon*; flipping the switch and letting
+one run finish is what makes that link real, and the link in
+`src/data/games.ts` has to be changed from `status: 'soon'` to a `'live'` entry
+with the URL in the same pass.

@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Onafhankelijke gamestudio",
     "homeTitle": "gamestao — Onafhankelijke gamestudio",
-    "homeDescription": "Realtime competitiespellen van gamestao: Nivara, een met de hand getekend duel tegen de klok; DayDayUp, een roguelite-arena die de uitrusting uitdeelt; en SumQuest, een cijferpuzzel. Alle drie spelen direct in de browser.",
+    "homeDescription": "Realtime competitieve games van gamestao: Nivara, een met de hand getekend duel tegen de klok; Hexfront Rush, een frontlinie die beweegt terwijl je kijkt; Holy Kicker, een monnik met een magische bal. Twaalf games, stuk voor stuk gebouwd om in een browser te openen.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Speel {game} direct in je browser, van studio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Onafhankelijke gamestudio",
     "title": "Games die beginnen zodra je klikt.",
-    "lead": "gamestao is een onafhankelijke gamestudio die realtime competitiespellen bouwt: een met de hand getekend duel tegen de klok, een roguelite-arena die de uitrusting uitdeelt in plaats van ze te laten meenemen, en een cijferpuzzel die helemaal geen tegenstander nodig heeft. Geen installatie, geen launcher — ze draaien allemaal eerst in de browser.",
+    "lead": "gamestao is een onafhankelijke gamestudio die realtime competitieve games maakt: een met de hand getekend duel tegen de klok, een hexfront dat beweegt terwijl je kijkt, een ring die één held met één tik overeind houdt. Twaalf games inmiddels, en geen installer of launcher ertussen — elk is gebouwd om eerst in de browser te draaien.",
     "ctaGames": "Bekijk de games",
     "ctaAbout": "Over de studio"
   },
@@ -28,8 +28,8 @@
     "installs": "installaties nodig"
   },
   "games": {
-    "title": "Drie games",
-    "lead": "Verschillende genres, één technische basis — en alle drie op één klik afstand.",
+    "title": "Twaalf games",
+    "lead": "Een dozijn genres op één technisch fundament — en de meeste al één klik ver.",
     "details": "Lees meer",
     "entries": {
       "nivara": {
@@ -51,25 +51,6 @@
           "Vernietig de vijandelijke basis voordat de klok de partij op remise zet."
         ]
       },
-      "daydayup": {
-        "genre": "Roguelite shooter",
-        "tagline": "Hamster wapens. Kaats kogels terug met een zwaard. Nog een run.",
-        "summary": "Een top-down roguelite die om zijn wapens is gebouwd. Vuurwapens doen wat je verwacht; meleewapens blokkeren en kaatsen inkomend vuur terug, en daarmee wordt elke gang een vraag: welke hand nu?",
-        "intro": "DayDayUp is een 2D top-down roguelite waarin het wapenrek het hele spel is. Vuurwapens, klingen, en alles daartussenin — en omdat meleewapens kogels kunnen blokkeren en terugkaatsen, is een zwaard een verdedigende optie en geen langzaam pistool. Personages zijn skins: wat een run bepaalt, is wat je erin hebt opgepakt. Speel alleen, of haal vrienden erbij via de coöpserver.",
-        "features": [
-          "Een wapensysteem, geen wapenlijst — afstand en melee gedragen zich verschillend genoeg om je manier van bewegen te veranderen",
-          "Melee blokkeert en kaatst kogels terug, dus de afstand verkleinen is een echt antwoord op beschoten worden",
-          "Personages zijn puur cosmetisch; een run wordt bepaald door wat je vindt, niet door wie je koos",
-          "Een deterministische simulatiekern — die maakt coöp en het opnemen van replays überhaupt mogelijk",
-          "Coöp via een frame-broadcastserver, met matchmaking",
-          "Een PvP-arena, De Zeven Districten, naast de PvE-kerkerverdiepingen"
-        ],
-        "howTo": [
-          "Beweeg en mik; vuur met je afstandswapen, sla of blokkeer met je melee.",
-          "Blokkeer op het juiste moment om kogels terug te kaatsen in plaats van ze te ontwijken.",
-          "Ruim de verdieping leeg, pak op wat is gevallen, en ga er één dieper in."
-        ]
-      },
       "sumquest": {
         "genre": "Cijferpuzzel",
         "tagline": "Tik twee getallen aan die samen het doel vormen. Versla de klok.",
@@ -88,6 +69,196 @@
           "Tik twee tegels aan waarvan de waarden dat getal vormen — ze verdwijnen.",
           "Maak het bord leeg voordat de timer nul bereikt."
         ]
+      },
+      "blightbloom": {
+        "genre": "Roguelite-shooter",
+        "tagline": "Sleep wapens. Kaats kogels terug met een zwaard. Nog een ronde.",
+        "summary": "Een roguelite van bovenaf, gebouwd rond zijn wapens. Vuurwapens doen wat je verwacht; wapens voor dichtbij blokkeren en kaatsen inkomend vuur terug, waardoor elke gang een kwestie wordt van welke hand je gebruikt.",
+        "intro": "Blightbloom is een 2D-roguelite van bovenaf waarin het wapenrek het hele spel is. Vuurwapens, klingen en alles ertussenin — en omdat wapens voor dichtbij kogels kunnen blokkeren en terugkaatsen, is een zwaard een defensieve keuze en geen traag pistool. De personages zijn geen skins: elk heeft zijn eigen leven, schild en energie, plus één passief dat afgaat zodra dat schild breekt. Speel alleen, of haal vrienden erbij via de coöpserver.",
+        "features": [
+          "Een wapensysteem in plaats van een wapenlijst — afstand en dichtbij gedragen zich verschillend genoeg om je bewegingen te veranderen",
+          "Dichtbij blokkeert en kaatst kogels terug, dus de afstand verkleinen is een echt antwoord op beschoten worden",
+          "Personages zijn uitgebalanceerde alternatieven, geen skins: eigen leven, schild en energie, plus één passief bij schildbreuk",
+          "Een deterministische simulatiekern — die maakt coöp en het opnemen van replays überhaupt mogelijk",
+          "Coöp via een frame-broadcastserver, met matchmaking",
+          "Een PvP-arena, de Zeven Districten, naast de PvE-kerkerverdiepingen"
+        ],
+        "howTo": [
+          "Beweeg en richt; vuur met je wapen op afstand, sla of blokkeer met je wapen voor dichtbij.",
+          "Blokkeer op het juiste moment om kogels terug te kaatsen in plaats van ze te ontwijken.",
+          "Ruim de verdieping op, pak wat er viel, en ga één dieper."
+        ]
+      },
+      "potion-siege": {
+        "genre": "Merge-tower-defense",
+        "tagline": "Voeg drankjes samen, brouw grotere, en houd de muur tien golven.",
+        "summary": "Een tower defense die je speelt door samen te voegen. Zes soorten drankjes landen op het bord onder de muur; sleep er twee van dezelfde bij elkaar en je krijgt iets dat harder slaat. Tien golven per level, met een baas bij de vijfde en de tiende.",
+        "intro": "Potion Siege is een merge-tower-defense in het werkplaatsje van een alchemist. Elk level is tien golven van een uurwerkleger dat op je muur afloopt, en je antwoordt op het bord eronder, waar twee gelijke drankjes samen één van de volgende soort worden. De commandant heeft twee eigen handen — een kolf om te gooien en een brouwsel om op te zetten — en vijftig levels over vijf hoofdstukken blijven opschroeven wat dat bord moet leveren.",
+        "features": [
+          "Zes soorten drankjes die omhoog samenvoegen — het bord is de techboom, en het vult zichzelf aan tijdens het gevecht",
+          "Tien golven per level, met een baas bij de vijfde en nog een bij de tiende",
+          "Een commandant met twee stukken gereedschap: een kolf voor de drukte en een brouwsel voor de rust ertussen",
+          "Een uurwerkleger dat in soorten komt, dus het bord dat de vorige golf versloeg is verkeerd voor de volgende",
+          "Vijftig levels over vijf hoofdstukken en vijf bazen",
+          "Een balanscontrole bij elke commit, zodat geen level stilletjes onhaalbaar wordt"
+        ],
+        "howTo": [
+          "Sleep een drankje op een ander van dezelfde soort om er een sterker van te maken.",
+          "Gooi de kolf van de commandant als een golf samenklontert, en zet anders een brouwsel op.",
+          "Houd de muur tien golven; de vijfde en de tiende brengen een baas."
+        ]
+      },
+      "holy-kicker": {
+        "genre": "Actie-roguelite",
+        "tagline": "Trap je als monnik met magische bal door een horde geesten heen.",
+        "summary": "Eén run is één hoofdstuk: vijftig golven, zo'n twaalf minuten, staand, met één duim. Een monnik, een bal, en een horde die uit zichzelf niet ophoudt.",
+        "intro": "Holy Kicker is een actie-roguelite die je met één duim speelt. Een kungfu-monnik trapt een magische bal door golven geesten heen over vijf landen, en tussen de golven pak je een spreuk, een relikwie of een passief: de bal waarmee je begon is niet de bal waarmee je eindigt. Geen energiebalk, geen gacha — een run kost twaalf minuten, en dan is hij voorbij.",
+        "features": [
+          "Twintig hoofdstukken over vijf landen, elk een eigen run van vijftig golven",
+          "Elf spreuken, vijf relikwieën, acht passieven en zestien evoluties om een run mee op te bouwen",
+          "Drie monniken, die je elk ergens anders laten beginnen",
+          "Een dozijn soorten geesten, vier elites en zes bazen",
+          "Drie sterren per hoofdstuk, en een zware stand zodra je ze hebt",
+          "Geen energiebalk en geen gacha — een run kost twaalf minuten en verder niets"
+        ],
+        "howTo": [
+          "Houd vast en sleep om de trap te richten, laat dan los om de bal te sturen.",
+          "Pak tussen de golven een van de aangeboden kaarten en laat de build zich opstapelen.",
+          "Overleef vijftig golven om het hoofdstuk uit te spelen."
+        ]
+      },
+      "brushblade": {
+        "genre": "Actie met zijwaartse scroll",
+        "tagline": "Een inktwas-knokspel waarin elke klap valt als een penseelstreek.",
+        "summary": "Een 2.5D-actiespel met zijwaartse scroll, getekend in inktwas. Rijg een combo aaneen, annuleer hem in een vaardigheid, en lees de opening die de volgende vijand je laat.",
+        "intro": "Brushblade is een 2.5D-actiespel met zijwaartse scroll in de traditie van de inktwasschildering — zwart, wit en één stempel vermiljoen. Het vechten begint bij de combo: een lichte reeks die je in een vaardigheid annuleert, een vaardigheid waar je uitstapt voor ze je vastzet. Eronder draait een vaste simulatie op dertig ticks met rollback, en juist dat zorgt dat twee mensen hetzelfde gevecht zien in plaats van twee die op elkaar lijken.",
+        "features": [
+          "Eerst de combo: lichte reeksen, vaardigheidsannuleringen, en een ontwijking die je positie kost",
+          "Inktwaskunst — zwart, wit en één rood zegel, getekend in plaats van gefilterd",
+          "Een deterministische simulatie op dertig ticks met rollback onder de actie",
+          "Liggend op 1920 bij 1080, voor een toetsenbord of een telefoon die je dwars houdt",
+          "Eerst de browser, met een WeChat Mini Game-build uit dezelfde codebase",
+          "TypeScript op PixiJS v8, net als alles wat de studio uitbrengt"
+        ],
+        "howTo": [
+          "Beweeg met de ene hand en val aan met de andere; herhaald tikken geeft een reeks.",
+          "Annuleer een reeks in een vaardigheid vóór de laatste klap om de druk vast te houden.",
+          "Ontwijk dwars door een aanval heen in plaats van ervandaan."
+        ]
+      },
+      "tidehook": {
+        "genre": "Golvenverdediging",
+        "tagline": "Bedien de kraan op de pier: vissen, schatten en wat er verder bijt.",
+        "summary": "Jij bedient de kraan aan het eind van een pier. Werp de haak uit, hijs vissen en kisten op, en sleep de zeemonsters van de steiger voor ze hem slopen. Zo'n tien minuten per run.",
+        "intro": "Tidehook zet je op een pier met een kraan en een haak, en stuurt een stuk of vijftien golven van het water af: vissen die geld opleveren, kisten die meer opleveren, en monsters die de steiger slopen als je ze laat. Tussen de golven is er een winkel, en terug in de haven een rij upgrades die gekocht blijven. Elke vijfde golf komt er iets groters boven, en aan het eind van die rij de oude schildpadkoning.",
+        "features": [
+          "Werpen en hijsen — één handeling voor de vangst en voor het gevecht",
+          "Vijftien golven of meer per run, zo'n tien minuten van de eerste worp tot de laatste",
+          "Elke vijfde golf een baas, en de oude schildpadkoning aan het eind",
+          "Een winkel tussen de golven, en een haven die bewaart wat je kocht",
+          "Drie zeedieptes, geschilderd in plaats van getint, van het ondiepe tot open water",
+          "Staand of liggend, met één hand in beide gevallen"
+        ],
+        "howTo": [
+          "Laat de haak zakken waar iets voorbijkomt dat de moeite waard is.",
+          "Hijs hem op voor er iets zwaarders in de lijn komt.",
+          "Geef tussen de golven uit; wat je in de haven koopt gaat mee naar de volgende run."
+        ]
+      },
+      "swarm-orbit": {
+        "genre": "Ring-tower-defense",
+        "tagline": "Eén held, één houten treintje, één ring om te houden.",
+        "summary": "Een tower defense met precies één toren, en die rijdt. Je held rijdt op een houten treintje rond een ring; één tik stuurt hem de andere kant op. Al het andere is waar het goud heen gaat.",
+        "intro": "Swarm Orbit is een tower defense met één held en een rond spoor. De zwerm komt van buiten de ring; je held rijdt aan de binnenkant op een houten treintje, en één tik keert dat treintje om, wat de hele besturing is. De keuzes vallen tussen de golven: nu schade, snelheid of bereik omhoog, of sparen voor de rij permanente upgrades die de run overleeft.",
+        "features": [
+          "Eén held op een ring in plaats van een kaart vol torens",
+          "Eén tik om te keren — de hele besturing, op een telefoon net zo goed als op een toetsenbord",
+          "Goud tussen de golven: nu een waarde omhoog, of sparen voor degene die later loont",
+          "Hoofdstuklevels om uit te spelen, en een eindeloze stand die na het eerste hoofdstuk opengaat",
+          "Permanente upgrades, zodat ook een verloren run je verder brengt",
+          "Staand, gebouwd voor één hand"
+        ],
+        "howTo": [
+          "Tik ergens om het treintje de andere kant op de ring te sturen.",
+          "Houd de held aan de kant waar de zwerm vandaan komt.",
+          "Geef het goud uit tussen de golven, voor de volgende begint."
+        ]
+      },
+      "dummy-brawl": {
+        "genre": "Racen en knokken",
+        "tagline": "Race, en sla de anderen onderweg van hun scooter af.",
+        "summary": "Een race van twee minuten waarin de volgorde niet alleen door snelheid wordt bepaald. Rij ernaast, deel een klap uit, pak af wat ze vasthielden, en rij door.",
+        "intro": "Dummy Brawl is een racespel waarin de andere rijders het obstakel zijn. Verkeer, hekken en een politiewagen staan in de weg, en zes tot acht crashtestdummy's ook, die je maar al te graag op het asfalt leggen. Eén tik haalt uit naar wie naast je rijdt — een treffer kost hem meer snelheid dan de klap jou kost, en dat is de hele rekensom. Een race duurt twee tot drie minuten, en het prijzengeld koopt de volgende scooter.",
+        "features": [
+          "Vechten terwijl je racet: een klap verandert de volgorde betrouwbaarder dan een betere lijn",
+          "Pak op wat je iemand anders uit handen slaat",
+          "Onderuitgaan is luid, grappig, en kost je seconden in plaats van de race",
+          "Verkeer, hekken en een politiewagen die om dezelfde aandacht vechten",
+          "Twee tot drie minuten per race, daarna prijzengeld en een garage",
+          "Eén vinger, staand of liggend, met een toetsenbord als optie op een desktop"
+        ],
+        "howTo": [
+          "Sleep naar links en rechts om van baan te wisselen; het gas regelt zichzelf.",
+          "Tik als iemand naast je rijdt om naar hem uit te halen.",
+          "Veeg omlaag om te remmen — voor de politie, of om een knokpartij voorbij te laten gaan."
+        ]
+      },
+      "hexfront-rush": {
+        "genre": "Realtime strategie",
+        "tagline": "Leg een kaart, pak een hex, en verschuif het front voor zij het doen.",
+        "summary": "Realtime territoriumstrategie op een hexkaart. Kaarten worden mijnen, torens en kazernes; de grond die je houdt betaalt de volgende die je legt.",
+        "intro": "Hexfront Rush is een realtime strategiespel over een frontlinie die niet stil wil staan. Je legt kaarten op hexen die je al houdt en maakt er mijnen, torens of kazernes van, en het gebied dat je pakt betaalt de volgende kaart. Er is een campagne in je eentje tegen de AI, met een tutorial ervoor, en een online 1-tegen-1 die deterministische lockstep via een relay draait, zodat beide spelers dezelfde slag zien en niet twee die op elkaar lijken.",
+        "features": [
+          "Een frontlinie die beweegt, in plaats van een basis om je in te graven",
+          "Kaarten worden mijnen, torens of kazernes — economie en leger uit dezelfde hand",
+          "Alleen tegen een AI, met een tutorial die al spelend uitlegt",
+          "Online 1-tegen-1 in deterministische lockstep via een WebSocket-relay",
+          "Replays die bij de relay worden opgenomen, waarmee ook de balans wordt nagelopen",
+          "Een hexkaart, getekende sprites, en een potje dat binnen minuten beslist is"
+        ],
+        "howTo": [
+          "Leg een kaart op een hex die je al houdt.",
+          "Mijnen betalen, kazernes duwen, torens houden — lees wat het front nodig heeft.",
+          "Pak zoveel grond dat hun productie de jouwe niet meer kan beantwoorden."
+        ]
+      },
+      "sudoku": {
+        "genre": "Getallenpuzzel",
+        "tagline": "Sudoku met hints, notities en elke dag een nieuwe puzzel.",
+        "summary": "Een opgeruimd sudokubord dat meteen opent en zonder verbinding werkt: potloodnotities, een hint voor als de volgende stap niet komt, en elke dag een verse puzzel.",
+        "intro": "Sudoku is het eenvoudigste wat de studio maakt, en dat met opzet. Het opent rechtstreeks op een bord, houdt geen account bij en vraagt niet om aanmelden, onthoudt waar je gebleven was, en zit je verder niet in de weg: notities voor de kandidaten die je anders uit je hoofd zou bijhouden, een hint voor de stap die echt niet komt, en elke dag een nieuwe puzzel om voor terug te komen.",
+        "features": [
+          "Elke dag een nieuwe puzzel, en daartussen zoveel gegenereerde als je wilt",
+          "Potloodnotities voor de kandidaten die je anders uit je hoofd bijhoudt",
+          "Een hint voor de stap die niet komt, geen oplosser die de puzzel afmaakt",
+          "Geen account en geen aanmelden: het bord staat op je eigen apparaat",
+          "Rechtstreeks vanuit de browser te installeren, en volledig offline te spelen",
+          "Licht en donker, naar wat het systeem ingesteld heeft"
+        ],
+        "howTo": [
+          "Kies een vakje en daarna het cijfer dat erin hoort.",
+          "Schakel naar notities om kandidaten in te vullen zonder je vast te leggen.",
+          "Neem een hint als de volgende stap niet komt, en maak het rooster af."
+        ]
+      },
+      "pata": {
+        "genre": "Huisdier- en kamersimulatie",
+        "tagline": "Houd een klein wezen, en een kleine kamer om in te wonen.",
+        "summary": "Zorg voor een huisdier en richt de kamer in waarin het woont. Dat is één lus en geen twee: een behaaglijke kamer tilt zijn humeur op, het humeur levert de munten, de munten kopen meer meubels.",
+        "intro": "Pata is de rustige. In een isometrische kamer zit een klein wezen, en jij voert het, wast het, speelt met het en aait het — over alle vier heeft het een mening. De kamer is van jou om in te richten met vierenzestig stukken in negen sets, met de hand op hun plek gesleept en gedraaid. Inrichten is hier geen bijzaak: het comfort bepaalt het plafond van het humeur, en uit het humeur komen de munten.",
+        "features": [
+          "Vier behoeften — gevoed, schoon, uitgerust, blij — en vier manieren om ze te beantwoorden",
+          "Een kamer van acht bij acht en vierenzestig meubelstukken in negen sets, met de hand geplaatst",
+          "Comfort tilt het humeurplafond op, humeur levert munten, munten kopen de meubels",
+          "Dagelijkse taken en blijvende prestaties, die met de kalenderdag opnieuw beginnen",
+          "Vriendencodes: ga langs in andermans kamer en voer hun huisdier meteen even",
+          "Offline-inkomsten terwijl je weg bent, met een plafond van acht uur"
+        ],
+        "howTo": [
+          "Tik het huisdier aan voor een aai; voeren, wassen en spelen gaan vanuit de kamer.",
+          "Houd een meubelstuk vast om het te slepen, en laat los om het neer te zetten.",
+          "Werk de taken van de dag af, schrijf het dagboek, en geef uit wat je verdiende."
+        ]
       }
     }
   },
@@ -97,7 +268,8 @@
     "android": "Google Play",
     "wechat": "WeChat Mini Game",
     "crazygames": "CrazyGames",
-    "itch": "itch.io"
+    "itch": "itch.io",
+    "playgama": "Playgama"
   },
   "platformSoon": "Binnenkort",
   "gamePage": {
@@ -113,7 +285,7 @@
     "title": "Over de studio",
     "lead": "Realtime competitie — en een stack die daar nooit in de weg staat.",
     "body": [
-      "gamestao is een onafhankelijke gamestudio, en de lijn is realtime competitie. Nivara is een 1v1 waarin een klok een uitslag afdwingt. DayDayUp zet spelers in een arena die de uitrusting uitdeelt in plaats van ze die te laten meenemen: een partij draait om spel, niet om wie het langst gegrind heeft. Cijferpuzzel SumQuest is de uitzondering, en dat met opzet — niet elk idee heeft een tegenstander nodig.",
+      "gamestao is een onafhankelijke gamestudio, en de lijn is realtime competitie. Nivara is een 1-tegen-1 waarin een klok een uitslag afdwingt. Blightbloom zet spelers in een arena die de uitrusting uitdeelt in plaats van ze er een te laten meebrengen, zodat een partij draait om het spel en niet om wie langer heeft gegrind. Hexfront Rush zet twee spelers op dezelfde hexkaart en houdt beide simulaties in de pas. SumQuest, de getallenpuzzel, is de uitzondering, en dat met opzet: niet elk idee heeft een tegenstander nodig.",
       "Realtime competitie is eerst een serverprobleem en pas daarna een ontwerpprobleem. De competitieve games draaien op een deterministische simulatiekern met autoritatieve servers erachter. Dat is wat matchmaking, co-op, replay-opname en een uitslag die te vertrouwen is überhaupt mogelijk maakt — en het is het deel dat je er later niet meer bij bouwt.",
       "Alles deelt één technische basis: TypeScript en PixiJS op WebGL. Eén codebase bereikt de browser, iOS, Android en WeChat Mini Games zonder per platform te herschrijven, en een browserbuild betekent dat een game één klik van gespeeld worden af staat in plaats van één download. Niets hier is een prototype dat online is achtergelaten."
     ]
@@ -129,7 +301,7 @@
   "press": {
     "title": "Perskit",
     "lead": "Logo's, iconen en schermafbeeldingen op volle resolutie, met de feiten waar het eerst naar gevraagd wordt.",
-    "metaDescription": "Perskit van gamestao: feiten over de studio, logo's, iconen en schermafbeeldingen op volle resolutie van Nivara, DayDayUp en SumQuest, en een direct contact voor publishing en investering.",
+    "metaDescription": "Perskit van gamestao: feiten over de studio, logo's, iconen en screenshots op volle resolutie voor twaalf games, en een direct contact voor publishing en investering.",
     "factsTitle": "De studio in het kort",
     "facts": {
       "studio": "Studio",

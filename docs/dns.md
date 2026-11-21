@@ -13,7 +13,30 @@ way are the kind that look like something else entirely.
 | `c.gamestao.com` | SumQuest | `bigtaoo/PIXIJSGAME`, `wrangler/client.jsonc` |
 | `sumquest.gamestao.com` | SumQuest, brand host for store listings | same |
 | `a.` / `nivara.gamestao.com` | Nivara | `bigtaoo/funny` |
-| `b.gamestao.com` | DayDayUp | `bigtaoo/daydayup` |
+| `b.gamestao.com` | Blightbloom | `bigtaoo/blightbloom` |
+| `p.gamestao.com` | Potion Siege | `bigtaoo/potion-siege` |
+| `h.gamestao.com` | Holy Kicker | `bigtaoo/holy-kicker` |
+| `f.gamestao.com` | Brushblade | `bigtaoo/fight` |
+| `s.gamestao.com` | Sudoku | `bigtaoo/sudoku` |
+| `e.gamestao.com` | Pata | `bigtaoo/e.gamestao` |
+| `tidehook.gamestao.com` | Tidehook | `bigtaoo/Tidehook`, pending its first `deploy-web` |
+| `swarmorbit.gamestao.com` | Swarm Orbit | `bigtaoo/fruit-fort`, pending its first `deploy-web` |
+| `dummybrawl.gamestao.com` | Dummy Brawl | `bigtaoo/moto`, pending its first `deploy-web` |
+| `hexfront.gamestao.com` | Hexfront Rush | `bigtaoo/hexfront-rush`, pending its first `deploy-web` |
+
+The repository name is not the game name in six of these: `funny` is Nivara,
+`PIXIJSGAME` is SumQuest, `blightbloom` was `daydayup` until the rename,
+`fight` is Brushblade, `fruit-fort` is Swarm Orbit, `moto` is Dummy Brawl. The
+Worker names, save keys and bundle ids inside those repositories still carry
+the old codename on purpose — renaming them would strand live players' saves.
+
+The last four hosts do not exist yet. Each is written into its repository's
+`wrangler/web.jsonc` as a custom domain, and Cloudflare creates the record and
+the certificate the first time that repository's `deploy-web` job runs, which
+needs `WEB_DEPLOY_ENABLED=true` and the two Cloudflare secrets set there.
+Single-level names on purpose: free Universal SSL covers one level only, so
+`hexfront.gamestao.com` is certificated and `hexfront.rush.gamestao.com` would
+not be.
 
 Cloudflare writes and owns the DNS record for every one of these except `www` —
 each of the rest is a Worker custom domain, proxied, with a certificate

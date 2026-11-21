@@ -36,9 +36,37 @@ the same reason.
 
 While in the itch.io dashboard, grab the page URL and put it in
 `src/data/games.ts`; that platform reads `soon` only because no file in any repo
-records the slug — searched across this repo and all three game repos, there is
-no itch URL anywhere to copy. CrazyGames and iOS read `soon` correctly: both are
-genuinely still in review (`D:\number\docs\distribution.md`).
+records the slug — searched across this repo and every game checkout on this
+machine, there is no itch URL anywhere to copy. CrazyGames and iOS read
+`soon` correctly: both are genuinely still in review (`D:\number\docs\distribution.md`).
+
+## Four games are listed with a play link that does not resolve yet
+
+Tidehook, Swarm Orbit, Dummy Brawl and Hexfront Rush are on the site with their
+web link marked *soon*. Each repository now carries a `deploy-web` job and a
+`wrangler/web.jsonc` naming its host, but the job is skipped until someone sets
+`WEB_DEPLOY_ENABLED` and the two Cloudflare secrets in that repository — the
+three commands are in [deploy.md](deploy.md). Cloudflare provisions the
+hostname and its certificate on the first successful run.
+
+When a run lands, the entry in `src/data/games.ts` has to change from
+`{ platform: 'web', status: 'soon' }` to a `'live'` entry with the URL, and the
+site redeployed; nothing updates that by itself, and a *soon* badge over a host
+that already answers is the kind of wrong that nobody reports.
+
+## Six games are still showing generated stand-in art
+
+Blightbloom, Brushblade, Swarm Orbit, Sudoku and Pata have no importable store
+art at all, and Potion Siege has only its app icon — the rest of its
+`art/shots/` is backdrop plates and sprite renders rather than captured play.
+Their cards and galleries are the accent-coloured stand-ins the generator
+makes, which is honest (`asset-provenance.json` records it, and the press page
+says the kit is not published) but it is the weakest thing on the site.
+
+The fix is to run each game and capture real screenshots, then
+`import-shots.mjs` and `import-press.mjs` with the same scenes in the same
+order. Sudoku and Pata additionally have no checkout on this machine; they
+would have to be cloned from `bigtaoo/sudoku` and `bigtaoo/e.gamestao` first.
 
 ## The mobile hot-update channel: fixed at HEAD, stale in installed builds
 

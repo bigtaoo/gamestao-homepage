@@ -50,7 +50,34 @@ export const LOCALE_NAMES: Record<Locale, string> = {
 /** Locales that need a CJK-aware font stack and looser line height. */
 export const CJK_LOCALES: ReadonlySet<Locale> = new Set<Locale>(['zh', 'ja', 'ko']);
 
-export const GAME_IDS = ['nivara', 'daydayup', 'sumquest'] as const;
+/**
+ * Every game that has a page here, in the order the home page lists them.
+ *
+ * The id is a URL segment, so it is the game's shipping name lowercased and
+ * hyphenated — never its repository name or its codename. Two of those drifted
+ * apart and the URL followed the name, not the repo: `blightbloom` lives in
+ * `bigtaoo/blightbloom` but kept `daydayup` in its own save keys, Worker names
+ * and bundle id on purpose (a rename there is a migration), and `swarm-orbit`
+ * still lives in `bigtaoo/fruit-fort`.
+ *
+ * `blightbloom` used to be `daydayup` here too, which was the codename rather
+ * than the name on the game. The old paths are 301s in `public/_redirects`, one
+ * per locale, because the previous ones were live and indexed.
+ */
+export const GAME_IDS = [
+  'nivara',
+  'sumquest',
+  'blightbloom',
+  'potion-siege',
+  'holy-kicker',
+  'brushblade',
+  'tidehook',
+  'swarm-orbit',
+  'dummy-brawl',
+  'hexfront-rush',
+  'sudoku',
+  'pata',
+] as const;
 export type GameId = (typeof GAME_IDS)[number];
 
 export type Route =
@@ -103,7 +130,7 @@ export function translateRoute(route: Route, locale: Locale): Route {
   return { locale, page: route.page };
 }
 
-/** Every page: 11 locales x (home + press + privacy + terms + 3 games) = 77. */
+/** Every page: 11 locales x (home + press + privacy + terms + 12 games) = 176. */
 export function allRoutes(): Route[] {
   const routes: Route[] = [];
   for (const locale of LOCALES) {

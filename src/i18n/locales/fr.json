@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Studio de jeux indépendant",
     "homeTitle": "gamestao — Studio de jeux indépendant",
-    "homeDescription": "Jeux de compétition en temps réel signés gamestao : Nivara, un duel dessiné à la main contre le chrono ; DayDayUp, une arène roguelite qui fournit l'équipement ; et SumQuest, un casse-tête de chiffres. Les trois se jouent directement dans le navigateur.",
+    "homeDescription": "Les jeux de compétition en temps réel de gamestao : Nivara, un duel dessiné à la main contre le chrono ; Hexfront Rush, une ligne de front qui bouge sous vos yeux ; Holy Kicker, un moine et sa boule magique. Douze jeux, chacun conçu pour s'ouvrir dans un navigateur.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Jouez à {game} directement dans votre navigateur, par le studio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Studio de jeux indépendant",
     "title": "Des jeux qui démarrent dès le clic.",
-    "lead": "gamestao est un studio de jeux indépendant qui fabrique des jeux de compétition en temps réel : un duel dessiné à la main contre le chrono, une arène roguelite qui fournit l'équipement au lieu de le laisser apporter, et un casse-tête de chiffres qui n'a besoin d'aucun adversaire. Pas d'installateur, pas de lanceur — chacun tourne d'abord dans le navigateur.",
+    "lead": "gamestao est un studio de jeux indépendant qui fait de la compétition en temps réel : un duel dessiné à la main contre le chrono, un front hexagonal qui bouge sous vos yeux, un anneau tenu par un héros et une pression du doigt. Douze jeux à ce jour, et pas un installeur ni un lanceur parmi eux — chacun est conçu pour tourner d'abord dans le navigateur.",
     "ctaGames": "Voir les jeux",
     "ctaAbout": "À propos du studio"
   },
@@ -28,8 +28,8 @@
     "installs": "installation requise"
   },
   "games": {
-    "title": "Trois jeux",
-    "lead": "Des genres différents, une seule base technique — et tous à un clic.",
+    "title": "Douze jeux",
+    "lead": "Une douzaine de genres sur une seule base technique — et la plupart déjà à un clic.",
     "details": "En savoir plus",
     "entries": {
       "nivara": {
@@ -51,25 +51,6 @@
           "Détruisez la base adverse avant que l'horloge ne mène la partie au nul."
         ]
       },
-      "daydayup": {
-        "genre": "Roguelite de tir",
-        "tagline": "Amassez des armes. Renvoyez les balles à l'épée. Recommencez.",
-        "summary": "Un roguelite en vue de dessus bâti sur ses armes. Les armes à feu font ce qu'on attend d'elles ; les armes de mêlée bloquent et renvoient les tirs, ce qui transforme chaque couloir en une question : quelle main utiliser ?",
-        "intro": "DayDayUp est un roguelite 2D en vue de dessus où le râtelier d'armes est tout le jeu. Des armes à feu, des lames, et tout ce qu'il y a entre les deux — et comme les armes de mêlée peuvent bloquer et renvoyer les balles, une épée est une option défensive et non un pistolet lent. Les personnages sont des habillages : ce qui définit une partie, c'est ce que vous y avez ramassé. Jouez en solo, ou faites venir des amis via le serveur coopératif.",
-        "features": [
-          "Un système d'armes, pas une liste d'armes — la distance et la mêlée se comportent assez différemment pour changer vos déplacements",
-          "La mêlée bloque et renvoie les balles : réduire la distance devient une vraie réponse au fait d'être pris pour cible",
-          "Les personnages sont purement cosmétiques ; une partie se définit par ce que vous trouvez, pas par qui vous avez choisi",
-          "Un cœur de simulation déterministe — c'est lui qui rend possibles la coopération et l'enregistrement des parties",
-          "Coopération via un serveur de diffusion de trames, avec matchmaking",
-          "Une arène PvP, Les Sept Districts, à côté des étages de donjon en PvE"
-        ],
-        "howTo": [
-          "Déplacez-vous et visez ; tirez avec votre arme à distance, frappez ou bloquez avec votre arme de mêlée.",
-          "Bloquez au bon moment pour renvoyer les balles au lieu de les esquiver.",
-          "Nettoyez l'étage, prenez ce qui est tombé, et descendez d'un cran."
-        ]
-      },
       "sumquest": {
         "genre": "Casse-tête de chiffres",
         "tagline": "Touchez deux nombres dont la somme fait la cible. Battez l'horloge.",
@@ -88,6 +69,196 @@
           "Touchez deux tuiles dont les valeurs le donnent — elles s'effacent.",
           "Videz le plateau avant que le minuteur n'atteigne zéro."
         ]
+      },
+      "blightbloom": {
+        "genre": "Roguelite de tir",
+        "tagline": "Amassez des armes. Renvoyez les balles à l'épée. Recommencez.",
+        "summary": "Un roguelite en vue de dessus construit autour de ses armes. Les armes à feu font ce qu'on attend d'elles ; les armes de mêlée bloquent et renvoient les tirs, ce qui fait de chaque couloir une question de main à choisir.",
+        "intro": "Blightbloom est un roguelite 2D en vue de dessus où le râtelier d'armes est tout le jeu. Des flingues, des lames, et tout ce qu'il y a entre les deux — et comme une arme de mêlée bloque et renvoie les balles, une épée est une option défensive plutôt qu'un pistolet lent. Les personnages ne sont pas des skins : chacun a ses propres points de vie, son bouclier et son énergie, plus un passif qui se déclenche quand ce bouclier cède. Jouez seul, ou faites venir des amis via le serveur coopératif.",
+        "features": [
+          "Un système d'armes plutôt qu'une liste d'armes — la distance et la mêlée se comportent assez différemment pour changer vos déplacements",
+          "La mêlée bloque et renvoie les balles : se rapprocher devient une vraie réponse au fait d'être pris pour cible",
+          "Les personnages sont des variantes équilibrées, pas des skins : vie, bouclier et énergie propres, plus un passif à la rupture du bouclier",
+          "Un cœur de simulation déterministe — c'est lui qui rend possibles la coopération et l'enregistrement des parties",
+          "Coopération via un serveur de diffusion d'images, avec matchmaking",
+          "Une arène PvP, les Sept Districts, à côté des étages de donjon en PvE"
+        ],
+        "howTo": [
+          "Déplacez-vous et visez ; tirez avec l'arme à distance, frappez ou bloquez avec la mêlée.",
+          "Bloquez au bon moment pour renvoyer les balles au lieu de les esquiver.",
+          "Nettoyez l'étage, ramassez ce qui est tombé, et descendez d'un cran."
+        ]
+      },
+      "potion-siege": {
+        "genre": "Tower defense à fusion",
+        "tagline": "Fusionnez des potions, brassez plus gros, tenez le mur dix vagues.",
+        "summary": "Un tower defense qui se joue en fusionnant. Six sortes de potions tombent sur le plateau sous le mur ; rapprochez-en deux identiques et vous obtenez quelque chose qui frappe plus fort. Dix vagues par niveau, avec un boss à la cinquième et à la dixième.",
+        "intro": "Potion Siege est un tower defense à fusion installé dans l'atelier d'un alchimiste. Chaque niveau, c'est dix vagues d'une armée mécanique qui marche sur votre mur, et la réponse se joue sur le plateau en dessous, où deux potions identiques en donnent une du rang supérieur. Le commandant a ses deux mains à lui — une fiole à lancer et une décoction à mettre en route — et cinquante niveaux répartis sur cinq chapitres relèvent sans cesse ce que le plateau doit produire.",
+        "features": [
+          "Six sortes de potions qui fusionnent vers le haut — le plateau est l'arbre technologique, et il se remplit pendant le combat",
+          "Dix vagues par niveau, avec un boss à la cinquième et un autre à la dixième",
+          "Un commandant à deux outils : une fiole pour la foule, une décoction pour les moments calmes",
+          "Une armée mécanique qui vient par types : le plateau qui a battu la vague précédente est mauvais pour la suivante",
+          "Cinquante niveaux sur cinq chapitres et cinq boss",
+          "Un garde-fou d'équilibrage à chaque commit, pour qu'aucun niveau ne devienne discrètement infaisable"
+        ],
+        "howTo": [
+          "Faites glisser une potion sur une autre du même type pour en fusionner une plus forte.",
+          "Lancez la fiole du commandant quand une vague se regroupe, et lancez une décoction sinon.",
+          "Tenez le mur dix vagues ; la cinquième et la dixième amènent un boss."
+        ]
+      },
+      "holy-kicker": {
+        "genre": "Roguelite d'action",
+        "tagline": "Traversez une horde de fantômes en moine armé d'une boule magique.",
+        "summary": "Une partie, c'est un chapitre : cinquante vagues, environ douze minutes, en portrait, avec un pouce. Un moine, une boule, et une horde qui ne s'arrête pas d'elle-même.",
+        "intro": "Holy Kicker est un roguelite d'action qui se joue d'un seul pouce. Un moine de kung-fu envoie une boule magique à travers des vagues de fantômes sur cinq contrées, et entre deux vagues vous prenez un sort, une relique ou un passif : la boule du début n'est plus celle de la fin. Pas d'énergie à attendre, pas de gacha — une partie coûte douze minutes, et puis elle se termine.",
+        "features": [
+          "Vingt chapitres sur cinq contrées, chacun une partie complète de cinquante vagues",
+          "Onze sorts, cinq reliques, huit passifs et seize évolutions pour construire une partie",
+          "Trois moines, chacun vous faisant commencer ailleurs",
+          "Une douzaine de sortes de fantômes, quatre élites et six boss",
+          "Trois étoiles par chapitre, et un mode difficile une fois qu'elles sont acquises",
+          "Ni énergie ni gacha — une partie coûte douze minutes et rien d'autre"
+        ],
+        "howTo": [
+          "Maintenez et faites glisser pour viser le coup de pied, puis relâchez pour envoyer la boule.",
+          "Prenez l'une des cartes proposées entre les vagues et laissez la build s'empiler.",
+          "Survivez à cinquante vagues pour terminer le chapitre."
+        ]
+      },
+      "brushblade": {
+        "genre": "Action à défilement latéral",
+        "tagline": "Un beat'em up à l'encre où chaque coup tombe comme un trait de pinceau.",
+        "summary": "Un jeu d'action 2.5D à défilement latéral, dessiné au lavis d'encre. Enchaînez un combo, annulez-le dans une compétence, et lisez l'ouverture que vous laisse l'ennemi suivant.",
+        "intro": "Brushblade est un jeu d'action 2.5D à défilement latéral dans la tradition du lavis d'encre — du noir, du blanc, et un sceau de cinabre. Le combat passe par le combo : une chaîne légère que vous annulez dans une compétence, une compétence dont vous sortez avant qu'elle ne vous engage. Dessous tourne une simulation déterministe à trente ticks avec rollback, et c'est précisément ce qui fait que deux joueurs voient le même combat plutôt que deux combats qui se ressemblent.",
+        "features": [
+          "Le combo d'abord : chaînes légères, annulations en compétence, et une esquive qui vous coûte votre place",
+          "Un art au lavis — noir, blanc et un sceau rouge, dessiné et non filtré",
+          "Une simulation déterministe à trente ticks avec rollback sous l'action",
+          "Paysage en 1920 par 1080, pour un clavier ou un téléphone tenu en travers",
+          "Le navigateur d'abord, avec une version Mini Jeu WeChat issue du même code",
+          "TypeScript sur PixiJS v8, comme tout le reste du studio"
+        ],
+        "howTo": [
+          "Déplacez-vous d'une main, frappez de l'autre ; une chaîne sort des appuis répétés.",
+          "Annulez une chaîne dans une compétence avant son dernier coup pour garder la pression.",
+          "Esquivez à travers une attaque plutôt qu'en vous en éloignant."
+        ]
+      },
+      "tidehook": {
+        "genre": "Défense par vagues",
+        "tagline": "Manœuvrez la grue du ponton : poissons, trésors et ce qui mord.",
+        "summary": "Vous tenez la grue au bout d'un ponton. Lancez le crochet, remontez poissons et caisses, et dégagez les monstres marins avant qu'ils ne démontent le quai. Une partie dure une dizaine de minutes.",
+        "intro": "Tidehook vous installe sur un ponton avec une grue et un crochet, et envoie une quinzaine de vagues venues du large : des poissons qui rapportent, des caisses qui rapportent plus, et des monstres qui démonteront le quai si vous les laissez faire. Entre les vagues il y a une boutique, et au port une rangée d'améliorations qui restent acquises. Toutes les cinq vagues, quelque chose de plus gros remonte, et au bout de tout cela, le vieux roi tortue.",
+        "features": [
+          "Lancer et remonter — un seul geste pour la pêche comme pour le combat",
+          "Quinze vagues ou plus par partie, une dizaine de minutes du premier lancer au dernier",
+          "Un boss toutes les cinq vagues, et le vieux roi tortue pour finir",
+          "Une boutique entre les vagues, et un port qui garde vos achats pour la partie suivante",
+          "Trois profondeurs de mer, peintes et non teintées, du haut-fond au large",
+          "Portrait ou paysage, à une main dans les deux cas"
+        ],
+        "howTo": [
+          "Lâchez le crochet là où passe quelque chose qui vaut la peine.",
+          "Remontez-le avant que plus lourd ne vienne encombrer la ligne.",
+          "Dépensez entre les vagues ; ce que vous achetez au port repart avec vous."
+        ]
+      },
+      "swarm-orbit": {
+        "genre": "Tower defense circulaire",
+        "tagline": "Un héros, un petit train en bois, un anneau à tenir.",
+        "summary": "Un tower defense avec exactement une tour, et elle se déplace. Votre héros fait le tour d'un anneau sur un petit train en bois ; une pression l'envoie dans l'autre sens. Tout le reste tient à l'emploi de l'or.",
+        "intro": "Swarm Orbit est un tower defense à un seul héros sur une voie circulaire. L'essaim arrive de l'extérieur de l'anneau ; votre héros longe l'intérieur sur un petit train en bois, et une pression inverse le train, ce qui constitue toute la commande. Les décisions se prennent entre les vagues : monter les dégâts, la cadence ou la portée maintenant, ou économiser pour la rangée d'améliorations permanentes qui survit à la partie.",
+        "features": [
+          "Un héros sur un anneau plutôt qu'une carte couverte de tours",
+          "Une pression pour faire demi-tour — toute la commande, au téléphone comme au clavier",
+          "De l'or entre les vagues : monter une caractéristique tout de suite, ou garder pour celle qui paiera plus tard",
+          "Des niveaux de chapitre à terminer, et un mode sans fin qui s'ouvre après le premier chapitre",
+          "Des améliorations permanentes : une partie perdue vous avance quand même",
+          "En portrait, pensé pour une seule main"
+        ],
+        "howTo": [
+          "Touchez n'importe où pour envoyer le train dans l'autre sens.",
+          "Gardez le héros du côté d'où arrive l'essaim.",
+          "Dépensez l'or entre les vagues, avant que la suivante ne démarre."
+        ]
+      },
+      "dummy-brawl": {
+        "genre": "Course et castagne",
+        "tagline": "Courez, et faites tomber les autres de leur scooter au passage.",
+        "summary": "Une course de deux minutes où l'ordre d'arrivée ne se règle pas qu'à la vitesse. Remontez à leur hauteur, placez un coup, prenez ce qu'ils tenaient, et continuez.",
+        "intro": "Dummy Brawl est un jeu de course où les autres pilotes sont l'obstacle. La circulation, les barrières et une patrouille de police sont sur le chemin, et six à huit mannequins de crash-test aussi, trop heureux de vous coucher sur le bitume. Une pression frappe celui qui roule à côté de vous — un coup lui coûte plus de vitesse qu'il ne vous en coûte, et tout le calcul est là. Une course dure deux à trois minutes, et les gains achètent le scooter suivant.",
+        "features": [
+          "Se battre en roulant : un coup change le classement plus sûrement qu'une meilleure trajectoire",
+          "Ramassez ce que vous arrachez des mains d'un autre",
+          "La chute est bruyante, drôle, et vous coûte des secondes plutôt que la course",
+          "Circulation, barrières et police se disputent la même attention",
+          "Deux à trois minutes par course, puis les gains et le garage",
+          "Un doigt, en portrait ou en paysage, avec le clavier en option sur ordinateur"
+        ],
+        "howTo": [
+          "Glissez à gauche et à droite pour changer de file ; les gaz se gèrent tout seuls.",
+          "Touchez l'écran quand quelqu'un est à côté de vous pour le frapper.",
+          "Glissez vers le bas pour freiner — pour la police, ou pour laisser passer une bagarre."
+        ]
+      },
+      "hexfront-rush": {
+        "genre": "Stratégie en temps réel",
+        "tagline": "Posez une carte, prenez un hexagone, avancez le front avant eux.",
+        "summary": "De la stratégie territoriale en temps réel sur carte hexagonale. Les cartes deviennent mines, tours et casernes ; le terrain tenu paie la carte suivante.",
+        "intro": "Hexfront Rush est un jeu de stratégie en temps réel sur une ligne de front qui refuse de tenir en place. Vous posez des cartes sur les hexagones déjà tenus pour en faire des mines, des tours ou des casernes, et le territoire pris paie la carte suivante. Il y a une campagne solo contre l'IA, précédée d'un tutoriel, et un 1 contre 1 en ligne en lockstep déterministe via un relais, pour que les deux joueurs regardent la même bataille et non deux batailles qui se ressemblent.",
+        "features": [
+          "Une ligne de front qui bouge, plutôt qu'une base où se retrancher",
+          "Les cartes deviennent mines, tours ou casernes — l'économie et l'armée sortent de la même main",
+          "Solo contre une IA, avec un tutoriel qui enseigne en jouant",
+          "1 contre 1 en ligne, en lockstep déterministe via un relais WebSocket",
+          "Des rediffusions enregistrées au relais, qui servent aussi à vérifier l'équilibrage",
+          "Une carte hexagonale, des sprites dessinés, et une manche qui se tranche en quelques minutes"
+        ],
+        "howTo": [
+          "Posez une carte sur un hexagone que vous tenez déjà.",
+          "Les mines paient, les casernes poussent, les tours tiennent — voyez ce qu'il faut au front.",
+          "Prenez assez de terrain pour que leur production ne puisse plus répondre à la vôtre."
+        ]
+      },
+      "sudoku": {
+        "genre": "Casse-tête de chiffres",
+        "tagline": "Un sudoku avec indices, notes et une nouvelle grille chaque jour.",
+        "summary": "Une grille de sudoku nette qui s'ouvre tout de suite et marche sans connexion : des notes au crayon, un indice quand l'étape suivante ne vient pas, et une nouvelle grille par jour.",
+        "intro": "Sudoku est ce que le studio fait de plus simple, et c'est voulu. Il ouvre directement sur une grille, ne tient aucun compte et ne demande aucune connexion, se souvient d'où vous en étiez, et pour le reste ne vous encombre pas : des notes pour les candidats que vous garderiez sinon en tête, un indice pour l'étape qui vraiment ne vient pas, et chaque jour une nouvelle grille pour revenir.",
+        "features": [
+          "Une nouvelle grille chaque jour, et autant de grilles générées que vous voulez entre-temps",
+          "Des notes au crayon, pour les candidats que vous gardiez en tête",
+          "Un indice pour l'étape qui ne vient pas, plutôt qu'un solveur qui termine la grille",
+          "Ni compte ni connexion : la grille vit sur votre appareil",
+          "Installable depuis le navigateur, et jouable entièrement hors ligne",
+          "Clair et sombre, selon le réglage du système"
+        ],
+        "howTo": [
+          "Choisissez une case, puis le chiffre qui lui revient.",
+          "Passez en notes pour inscrire les candidats sans vous engager.",
+          "Prenez un indice quand l'étape suivante ne vient pas, et finissez la grille."
+        ]
+      },
+      "pata": {
+        "genre": "Simulation d'animal et de chambre",
+        "tagline": "Une petite créature, et une petite chambre où elle habite.",
+        "summary": "Occupez-vous d'un animal et meublez la chambre où il vit. C'est une seule boucle : une chambre confortable remonte son humeur, son humeur rapporte les pièces, les pièces achètent d'autres meubles.",
+        "intro": "Pata est le jeu calme du lot. Il y a une créature dans une chambre isométrique, et vous la nourrissez, la lavez, jouez avec elle et la caressez — elle a un avis sur les quatre. La chambre est à vous, à meubler avec soixante-quatre pièces réparties en neuf ensembles, posées et tournées à la main. Décorer n'est pas une activité annexe : le confort fixe le plafond de l'humeur, et c'est de l'humeur que viennent les pièces.",
+        "features": [
+          "Quatre besoins — nourri, propre, reposé, content — et quatre façons d'y répondre",
+          "Une chambre de huit sur huit et soixante-quatre meubles répartis en neuf ensembles, posés à la main",
+          "Le confort relève le plafond d'humeur, l'humeur rapporte les pièces, les pièces achètent les meubles",
+          "Des tâches quotidiennes et des succès permanents, remis à zéro au changement de jour",
+          "Des codes d'ami : visitez la chambre d'un autre et nourrissez son animal au passage",
+          "Des gains hors ligne pendant votre absence, plafonnés à huit heures"
+        ],
+        "howTo": [
+          "Touchez l'animal pour une caresse ; le repas, le bain et le jeu se lancent depuis la chambre.",
+          "Maintenez un meuble pour le déplacer, et relâchez pour le poser.",
+          "Terminez les tâches du jour, écrivez le journal, et dépensez ce que vous avez gagné."
+        ]
       }
     }
   },
@@ -97,7 +268,8 @@
     "android": "Google Play",
     "wechat": "Mini-jeu WeChat",
     "crazygames": "CrazyGames",
-    "itch": "itch.io"
+    "itch": "itch.io",
+    "playgama": "Playgama"
   },
   "platformSoon": "Bientôt disponible",
   "gamePage": {
@@ -113,7 +285,7 @@
     "title": "À propos du studio",
     "lead": "La compétition en temps réel — et une pile technique choisie pour ne jamais lui faire obstacle.",
     "body": [
-      "gamestao est un studio de jeux indépendant, et sa ligne est la compétition en temps réel. Nivara est un duel 1c1 où le chrono impose un résultat. DayDayUp place les joueurs dans une arène qui fournit l'équipement au lieu de les laisser apporter le leur : une partie se joue sur le jeu, pas sur le temps passé à farmer. Le casse-tête de chiffres SumQuest est l'exception, et c'est volontaire — toute idée n'a pas besoin d'un adversaire.",
+      "gamestao est un studio de jeux indépendant, et sa ligne, c'est la compétition en temps réel. Nivara est un duel en 1 contre 1 où le chrono force un résultat. Blightbloom lâche les joueurs dans une arène qui distribue l'équipement au lieu de le laisser apporter, si bien qu'une partie se joue sur le jeu et non sur le temps passé à farmer. Hexfront Rush met deux joueurs sur la même carte hexagonale et garde les deux simulations au même pas. SumQuest, le casse-tête de chiffres, est l'exception, et c'est voulu : toutes les idées n'ont pas besoin d'un adversaire.",
       "La compétition en temps réel est d'abord un problème de serveur, ensuite seulement un problème de game design. Les jeux compétitifs tournent sur un cœur de simulation déterministe avec des serveurs autoritaires derrière. C'est ce qui rend possibles le matchmaking, la coop, l'enregistrement des replays et un résultat digne de confiance — et c'est la partie qu'on ne peut pas ajouter après coup.",
       "Tout cela partage une même base technique : TypeScript et PixiJS sur WebGL. Une seule base de code atteint le navigateur, iOS, Android et les mini-jeux WeChat sans réécriture par plateforme, et une version navigateur signifie qu'un jeu est à un clic d'être joué plutôt qu'à un téléchargement. Rien ici n'est un prototype laissé en ligne à l'abandon."
     ]
@@ -129,7 +301,7 @@
   "press": {
     "title": "Kit presse",
     "lead": "Logos, icônes et captures en pleine résolution, avec les informations qu'on nous demande en premier.",
-    "metaDescription": "Kit presse de gamestao : informations sur le studio, logos, icônes et captures en pleine résolution de Nivara, DayDayUp et SumQuest, et un contact direct pour l'édition et l'investissement.",
+    "metaDescription": "Dossier de presse gamestao : les faits sur le studio, logos, icônes et captures en pleine résolution pour douze jeux, et un contact direct pour l'édition et l'investissement.",
     "factsTitle": "Le studio en bref",
     "facts": {
       "studio": "Studio",

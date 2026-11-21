@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Estudio de videojuegos independiente",
     "homeTitle": "gamestao — Estudio de videojuegos independiente",
-    "homeDescription": "Juegos de competición en tiempo real de gamestao: Nivara, un duelo dibujado a mano contra el reloj; DayDayUp, una arena roguelite que reparte el equipo; y SumQuest, un rompecabezas numérico. Los tres se juegan directamente en el navegador.",
+    "homeDescription": "Juegos competitivos en tiempo real de gamestao: Nivara, un duelo dibujado a mano contra el reloj; Hexfront Rush, un frente que se mueve mientras lo miras; Holy Kicker, un monje con una bola mágica. Doce juegos, todos hechos para abrirse en un navegador.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Juega a {game} directamente en tu navegador, del estudio gamestao."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Estudio de videojuegos independiente",
     "title": "Juegos que arrancan en el momento del clic.",
-    "lead": "gamestao es un estudio de videojuegos independiente que hace juegos de competición en tiempo real: un duelo dibujado a mano contra el reloj, una arena roguelite que reparte el equipo en lugar de dejar que lo traigan, y un rompecabezas numérico que no necesita rival. Sin instalador y sin lanzador: cada uno corre primero en el navegador.",
+    "lead": "gamestao es un estudio independiente que hace juegos competitivos en tiempo real: un duelo dibujado a mano contra el reloj, un frente hexagonal que se mueve mientras lo miras, un anillo que sostiene a un héroe con un solo toque. Doce juegos ya, sin instalador ni lanzador de por medio: cada uno está hecho para correr primero en el navegador.",
     "ctaGames": "Ver los juegos",
     "ctaAbout": "Sobre el estudio"
   },
@@ -28,8 +28,8 @@
     "installs": "instalaciones necesarias"
   },
   "games": {
-    "title": "Tres juegos",
-    "lead": "Géneros distintos, una sola base técnica, y todos a un clic de distancia.",
+    "title": "Doce juegos",
+    "lead": "Una docena de géneros sobre una misma base técnica, y casi todos ya a un clic.",
     "details": "Saber más",
     "entries": {
       "nivara": {
@@ -51,25 +51,6 @@
           "Destruye la base enemiga antes de que el reloj lleve la partida al empate."
         ]
       },
-      "daydayup": {
-        "genre": "Roguelite de disparos",
-        "tagline": "Acumula armas. Devuelve las balas con la espada. Otra partida.",
-        "summary": "Un roguelite de vista superior construido alrededor de sus armas. Las armas de fuego hacen lo que esperas; las de cuerpo a cuerpo bloquean y desvían el fuego entrante, y eso convierte cada pasillo en una pregunta: ¿qué mano usar?",
-        "intro": "DayDayUp es un roguelite 2D de vista superior en el que el armero es todo el juego. Armas de fuego, filos y todo lo que hay en medio; y como las armas de cuerpo a cuerpo pueden bloquear y desviar balas, una espada es una opción defensiva y no una pistola lenta. Los personajes son aspectos: lo que define una partida es lo que has recogido en ella. Juega en solitario o trae amigos a través del servidor cooperativo.",
-        "features": [
-          "Un sistema de armas, no una lista de armas: la distancia y el cuerpo a cuerpo se comportan de forma lo bastante distinta para cambiar cómo te mueves",
-          "El cuerpo a cuerpo bloquea y desvía balas, así que acortar la distancia es una respuesta real a que te disparen",
-          "Los personajes son puramente estéticos; una partida la define lo que encuentras, no a quién elegiste",
-          "Un núcleo de simulación determinista: es lo que hace posibles el cooperativo y la grabación de repeticiones",
-          "Cooperativo sobre un servidor de difusión de fotogramas, con emparejamiento",
-          "Una arena PvP, Los Siete Distritos, junto a los pisos de mazmorra en PvE"
-        ],
-        "howTo": [
-          "Muévete y apunta; dispara con el arma a distancia, golpea o bloquea con la de cuerpo a cuerpo.",
-          "Bloquea en el momento justo para desviar las balas en lugar de esquivarlas.",
-          "Limpia el piso, coge lo que haya caído y baja uno más."
-        ]
-      },
       "sumquest": {
         "genre": "Rompecabezas numérico",
         "tagline": "Toca dos números que sumen el objetivo. Vence al reloj.",
@@ -88,6 +69,196 @@
           "Toca dos fichas cuyos valores lo sumen: se eliminan.",
           "Vacía el tablero antes de que el temporizador llegue a cero."
         ]
+      },
+      "blightbloom": {
+        "genre": "Roguelite de disparos",
+        "tagline": "Recoge armas. Devuelve balas con la espada. Otra planta más.",
+        "summary": "Un roguelite en vista cenital construido alrededor de sus armas. Las de fuego hacen lo que esperas; las de cuerpo a cuerpo bloquean y devuelven el fuego entrante, así que cada pasillo depende de con qué mano respondes.",
+        "intro": "Blightbloom es un roguelite 2D en vista cenital donde el arsenal es el juego entero. Armas de fuego, hojas y todo lo que hay entre medias; y como el cuerpo a cuerpo puede bloquear y devolver balas, una espada es una decisión defensiva y no una pistola lenta. Los personajes no son skins: cada uno tiene su vida, su escudo y su energía, más un pasivo que salta cuando ese escudo cede. Juega en solitario o llama a tus amigos al servidor cooperativo.",
+        "features": [
+          "Un sistema de armas y no una lista: distancia y cuerpo a cuerpo se comportan lo bastante distinto como para cambiar cómo te mueves",
+          "El cuerpo a cuerpo bloquea y devuelve balas, así que acortar la distancia es una respuesta real a que te disparen",
+          "Los personajes son alternativas equilibradas, no skins: vida, escudo y energía propios, más un pasivo al romperse el escudo",
+          "Un núcleo de simulación determinista, que es lo que hace posibles el cooperativo y las repeticiones",
+          "Cooperativo mediante un servidor que difunde fotogramas, con emparejamiento",
+          "Una arena PvP, los Siete Distritos, junto a las plantas PvE de la mazmorra"
+        ],
+        "howTo": [
+          "Muévete y apunta; dispara con el arma a distancia, golpea o bloquea con la de cuerpo a cuerpo.",
+          "Bloquea en el momento justo para devolver las balas en lugar de esquivarlas.",
+          "Limpia la planta, recoge lo que soltó y baja una más."
+        ]
+      },
+      "potion-siege": {
+        "genre": "Defensa de torres con fusiones",
+        "tagline": "Fusiona pociones, prepara otras mayores y aguanta el muro diez oleadas.",
+        "summary": "Una defensa de torres que se juega fusionando. Seis tipos de poción caen en el tablero bajo el muro; junta dos iguales y obtienes algo que pega más fuerte. Diez oleadas por nivel, con jefe en la quinta y en la décima.",
+        "intro": "Potion Siege es una defensa de torres con fusiones en el taller de un alquimista. Cada nivel son diez oleadas de un ejército de relojería que avanza hacia tu muro, y respondes en el tablero de abajo, donde dos pociones iguales se convierten en una del tipo siguiente. La comandante tiene además dos herramientas propias —un matraz que lanzar y un brebaje que preparar— y cincuenta niveles repartidos en cinco capítulos no dejan de subir lo que ese tablero tiene que producir.",
+        "features": [
+          "Seis tipos de poción que se fusionan hacia arriba: el tablero es el árbol tecnológico y se rellena solo durante el combate",
+          "Diez oleadas por nivel, con un jefe en la quinta y otro en la décima",
+          "Una comandante con dos herramientas: el matraz para el agobio y el brebaje para la calma entre medias",
+          "Un ejército de relojería que llega por tipos, así que el tablero que ganó la oleada anterior no sirve para la siguiente",
+          "Cincuenta niveles en cinco capítulos y cinco jefes",
+          "Una comprobación de equilibrio en cada commit, para que ningún nivel se vuelva imposible en silencio"
+        ],
+        "howTo": [
+          "Arrastra una poción sobre otra del mismo tipo para obtener una más fuerte.",
+          "Lanza el matraz de la comandante cuando una oleada se amontone, y prepara un brebaje el resto del tiempo.",
+          "Aguanta el muro diez oleadas; la quinta y la décima traen jefe."
+        ]
+      },
+      "holy-kicker": {
+        "genre": "Roguelite de acción",
+        "tagline": "Un monje con una bola mágica se abre paso a patadas entre fantasmas.",
+        "summary": "Una partida es un capítulo: cincuenta oleadas, unos doce minutos, en vertical y con un solo pulgar. Un monje, una bola y una horda que no se detiene sola.",
+        "intro": "Holy Kicker es un roguelite de acción que se juega con un pulgar. Un monje de kung-fu lanza a patadas una bola mágica contra oleadas de fantasmas por cinco tierras, y entre oleada y oleada eliges un hechizo, una reliquia o un pasivo: la bola con la que empiezas no es la bola con la que acabas. Sin barra de energía y sin gacha: una partida dura doce minutos y luego se acabó.",
+        "features": [
+          "Veinte capítulos por cinco tierras, cada uno una partida propia de cincuenta oleadas",
+          "Once hechizos, cinco reliquias, ocho pasivos y dieciséis evoluciones con los que montar una partida",
+          "Tres monjes, cada uno con un punto de partida distinto",
+          "Una docena de tipos de fantasma, cuatro élites y seis jefes",
+          "Tres estrellas por capítulo y un modo duro en cuanto las consigues",
+          "Sin barra de energía y sin gacha: una partida cuesta doce minutos y nada más"
+        ],
+        "howTo": [
+          "Mantén y arrastra para apuntar la patada, y suelta para lanzar la bola.",
+          "Entre oleadas, elige una de las cartas ofrecidas y deja que la construcción se acumule.",
+          "Sobrevive a cincuenta oleadas para terminar el capítulo."
+        ]
+      },
+      "brushblade": {
+        "genre": "Acción de desplazamiento lateral",
+        "tagline": "Un juego de lucha a la tinta donde cada golpe cae como una pincelada.",
+        "summary": "Un juego de acción 2.5D de desplazamiento lateral pintado a la aguada. Encadena un combo, cancélalo en una habilidad y lee el hueco que te deja el siguiente enemigo.",
+        "intro": "Brushblade es un juego de acción 2.5D de desplazamiento lateral en la tradición de la pintura a la tinta: negro, blanco y un sello bermellón. El combate empieza por el combo: una cadena ligera que cancelas en una habilidad, y una habilidad de la que sales antes de que te deje clavado. Debajo corre una simulación fija de treinta ticks con rollback, y es justo eso lo que hace que dos personas vean el mismo combate y no dos parecidos.",
+        "features": [
+          "El combo primero: cadenas ligeras, cancelaciones en habilidad y una esquiva que cuesta posición",
+          "Arte a la aguada: negro, blanco y un sello rojo, dibujado y no filtrado",
+          "Una simulación determinista de treinta ticks con rollback bajo la acción",
+          "Horizontal a 1920 por 1080, para un teclado o un móvil girado",
+          "Primero el navegador, con una build de Mini Juego de WeChat desde el mismo código",
+          "TypeScript sobre PixiJS v8, como todo lo que publica el estudio"
+        ],
+        "howTo": [
+          "Muévete con una mano y ataca con la otra; tocar repetido encadena.",
+          "Cancela la cadena en una habilidad antes del último golpe para mantener la presión.",
+          "Esquiva atravesando el ataque, no alejándote de él."
+        ]
+      },
+      "tidehook": {
+        "genre": "Defensa por oleadas",
+        "tagline": "Maneja la grúa del muelle: peces, tesoros y lo que venga a morder.",
+        "summary": "Manejas la grúa del extremo de un muelle. Lanza el gancho, sube peces y cofres, y aparta de las tablas a los monstruos marinos antes de que las rompan. Unos diez minutos por partida.",
+        "intro": "Tidehook te pone en un muelle con una grúa y un gancho, y manda quince oleadas o más desde el agua: peces que dan dinero, cofres que dan más y monstruos que destrozan el muelle si los dejas. Entre oleadas hay una tienda, y de vuelta en el puerto una fila de mejoras que se quedan compradas. Cada quinta oleada sube algo más grande, y al final de esa fila está el viejo rey tortuga.",
+        "features": [
+          "Lanzar y subir: una misma acción para pescar y para pelear",
+          "Quince oleadas o más por partida, unos diez minutos del primer lanzamiento al último",
+          "Un jefe cada cinco oleadas, y el viejo rey tortuga al final",
+          "Una tienda entre oleadas y un puerto que conserva lo comprado",
+          "Tres profundidades, pintadas y no tintadas, de la orilla al mar abierto",
+          "Vertical u horizontal, y con una mano en ambos casos"
+        ],
+        "howTo": [
+          "Baja el gancho donde pase algo que merezca la pena.",
+          "Súbelo antes de que algo más pesado se enganche al sedal.",
+          "Gasta entre oleadas; lo que compres en el puerto viaja a la siguiente partida."
+        ]
+      },
+      "swarm-orbit": {
+        "genre": "Defensa de torres en anillo",
+        "tagline": "Un héroe, un trenecito de madera y un anillo que defender.",
+        "summary": "Una defensa de torres con exactamente una torre, y además rueda. Tu héroe recorre un anillo en un trenecito de madera; un toque lo manda en sentido contrario. Todo lo demás es dónde va el oro.",
+        "intro": "Swarm Orbit es una defensa de torres con un solo héroe y una vía circular. El enjambre llega desde fuera del anillo; tu héroe recorre el interior en un trenecito de madera, y un toque invierte ese trenecito, que es todo el control. Las decisiones están entre oleadas: subir ahora daño, velocidad o alcance, o ahorrar para la fila de mejoras permanentes que sobrevive a la partida.",
+        "features": [
+          "Un héroe sobre un anillo en lugar de un mapa lleno de torres",
+          "Un toque para invertir: todo el control, igual en un móvil que en un teclado",
+          "Oro entre oleadas: subir un valor ahora o ahorrar para el que paga más tarde",
+          "Niveles de capítulo que completar y un modo sin fin que se abre tras el primero",
+          "Mejoras permanentes, para que incluso una partida perdida te adelante",
+          "Vertical, pensado para una mano"
+        ],
+        "howTo": [
+          "Toca en cualquier sitio para mandar el trenecito en el otro sentido del anillo.",
+          "Mantén al héroe del lado por el que llega el enjambre.",
+          "Gasta el oro entre oleadas, antes de que empiece la siguiente."
+        ]
+      },
+      "dummy-brawl": {
+        "genre": "Carreras y peleas",
+        "tagline": "Corre, y tira a los demás de su moto por el camino.",
+        "summary": "Una carrera de dos minutos donde el orden no lo decide solo la velocidad. Ponte a su altura, suelta un golpe, quédate con lo que llevaba y sigue.",
+        "intro": "Dummy Brawl es un juego de carreras donde los obstáculos son los demás corredores. Tráfico, vallas y un coche de policía se cruzan, y también seis u ocho maniquíes de pruebas encantados de dejarte en el asfalto. Un toque golpea a quien tengas al lado: acertar le cuesta más velocidad de la que a ti te cuesta el golpe, y ahí está toda la cuenta. Una carrera dura dos o tres minutos, y el premio paga la siguiente moto.",
+        "features": [
+          "Pelear mientras corres: un golpe cambia el orden con más fiabilidad que una trazada mejor",
+          "Recoge lo que le arrancas de las manos a otro",
+          "Caerse es ruidoso, es gracioso y cuesta segundos, no la carrera",
+          "Tráfico, vallas y un coche de policía compitiendo por la misma atención",
+          "Dos o tres minutos por carrera, luego premio y garaje",
+          "Un dedo, en vertical o en horizontal, con teclado opcional en escritorio"
+        ],
+        "howTo": [
+          "Arrastra a izquierda y derecha para cambiar de carril; el acelerador se encarga solo.",
+          "Toca cuando alguien esté a tu lado para golpearle.",
+          "Desliza hacia abajo para frenar, ante la policía o para dejar pasar una pelea."
+        ]
+      },
+      "hexfront-rush": {
+        "genre": "Estrategia en tiempo real",
+        "tagline": "Juega una carta, toma un hexágono y mueve el frente antes que ellos.",
+        "summary": "Estrategia territorial en tiempo real sobre un mapa hexagonal. Las cartas se convierten en minas, torres y cuarteles; el terreno que mantienes paga la siguiente que juegas.",
+        "intro": "Hexfront Rush es un juego de estrategia en tiempo real sobre un frente que no quiere quedarse quieto. Juegas cartas en hexágonos que ya controlas y las conviertes en minas, torres o cuarteles, y el territorio que tomas paga la carta siguiente. Hay una campaña en solitario contra la IA, con un tutorial delante, y un 1 contra 1 en línea en lockstep determinista a través de un relé, para que ambos jugadores vean la misma batalla y no dos parecidas.",
+        "features": [
+          "Un frente que se mueve en lugar de una base donde atrincherarse",
+          "Las cartas se vuelven minas, torres o cuarteles: economía y ejército de la misma mano",
+          "En solitario contra una IA, con un tutorial que enseña jugando",
+          "1 contra 1 en línea en lockstep determinista a través de un relé WebSocket",
+          "Repeticiones grabadas en el relé, que además sirven para revisar el equilibrio",
+          "Un mapa hexagonal, sprites dibujados y una partida que se decide en minutos"
+        ],
+        "howTo": [
+          "Juega una carta sobre un hexágono que ya controles.",
+          "Las minas pagan, los cuarteles empujan, las torres sostienen: lee lo que pide el frente.",
+          "Toma terreno suficiente para que su producción ya no pueda responder a la tuya."
+        ]
+      },
+      "sudoku": {
+        "genre": "Puzle numérico",
+        "tagline": "Sudoku con pistas, notas y un puzle nuevo cada día.",
+        "summary": "Un tablero de sudoku limpio que abre al instante y funciona sin conexión: notas a lápiz, una pista para cuando el siguiente paso no llega, y un puzle nuevo cada día.",
+        "intro": "Sudoku es lo más sencillo que hace el estudio, y lo es a propósito. Abre directamente en un tablero, no lleva cuenta ni pide registro, recuerda dónde lo dejaste y no se mete por medio: notas para los candidatos que si no llevarías en la cabeza, una pista para el paso que de verdad no llega, y un puzle nuevo cada día por el que volver.",
+        "features": [
+          "Un puzle nuevo cada día, y entre medias todos los generados que quieras",
+          "Notas a lápiz para los candidatos que si no llevarías en la cabeza",
+          "Una pista para el paso que no llega, no un solucionador que acabe el puzle",
+          "Sin cuenta y sin registro: el tablero vive en tu propio dispositivo",
+          "Se instala desde el navegador y se juega entero sin conexión",
+          "Claro y oscuro, según lo que tenga puesto el sistema"
+        ],
+        "howTo": [
+          "Elige una casilla y después el número que va en ella.",
+          "Cambia a notas para apuntar candidatos sin comprometerte.",
+          "Pide una pista si el siguiente paso no llega, y termina la cuadrícula."
+        ]
+      },
+      "pata": {
+        "genre": "Simulación de mascota y habitación",
+        "tagline": "Cuida a una criatura pequeña, y una habitación pequeña donde viva.",
+        "summary": "Cuida a una mascota y decora la habitación en la que vive. Es un solo bucle y no dos: una habitación acogedora sube su ánimo, el ánimo da monedas, las monedas compran más muebles.",
+        "intro": "Pata es el juego tranquilo. En una habitación isométrica vive una criatura pequeña, y tú la alimentas, la bañas, juegas con ella y la acaricias; sobre las cuatro cosas tiene opinión. La habitación es tuya para decorarla con sesenta y cuatro piezas en nueve juegos, colocadas y giradas a mano. Decorar no es aquí un extra: la comodidad marca el techo del ánimo, y del ánimo salen las monedas.",
+        "features": [
+          "Cuatro necesidades —comida, limpieza, descanso, ánimo— y cuatro formas de atenderlas",
+          "Una habitación de ocho por ocho y sesenta y cuatro muebles en nueve juegos, colocados a mano",
+          "La comodidad sube el techo del ánimo, el ánimo da monedas, las monedas compran los muebles",
+          "Tareas diarias y logros permanentes, que se reinician con el día del calendario",
+          "Códigos de amistad: visita la habitación de otro y dale de comer a su mascota de paso",
+          "Ganancias sin conexión mientras no estás, con un tope de ocho horas"
+        ],
+        "howTo": [
+          "Toca a la mascota para acariciarla; alimentar, bañar y jugar salen de la habitación.",
+          "Mantén pulsado un mueble para arrastrarlo, y suelta para colocarlo.",
+          "Termina las tareas del día, escribe el diario y gasta lo ganado."
+        ]
       }
     }
   },
@@ -97,7 +268,8 @@
     "android": "Google Play",
     "wechat": "Minijuego de WeChat",
     "crazygames": "CrazyGames",
-    "itch": "itch.io"
+    "itch": "itch.io",
+    "playgama": "Playgama"
   },
   "platformSoon": "Muy pronto",
   "gamePage": {
@@ -113,7 +285,7 @@
     "title": "Sobre el estudio",
     "lead": "Competición en tiempo real: y una pila técnica elegida para no estorbarla.",
     "body": [
-      "gamestao es un estudio de videojuegos independiente, y su línea es la competición en tiempo real. Nivara es un duelo 1c1 en el que el reloj obliga a que haya resultado. DayDayUp mete a los jugadores en una arena que reparte el equipo en lugar de dejar que lo traigan: la partida se decide jugando, no por quién ha farmeado más. El rompecabezas numérico SumQuest es la excepción, y es deliberada: no toda idea necesita un rival.",
+      "gamestao es un estudio de videojuegos independiente, y la línea es la competición en tiempo real. Nivara es un 1 contra 1 con un reloj que obliga a un resultado. Blightbloom deja a los jugadores en una arena que reparte el equipo en vez de dejar que lo traigan, así que la partida se decide jugando y no por quién lleva más horas de farmeo. Hexfront Rush pone a dos jugadores en el mismo mapa hexagonal y mantiene las dos simulaciones al paso. SumQuest, el puzle numérico, es la excepción, y lo es a propósito: no toda idea necesita un rival.",
       "La competición en tiempo real es antes un problema de servidor que un problema de diseño. Los juegos competitivos corren sobre un núcleo de simulación determinista con servidores autoritativos detrás. Eso es lo que hace posibles el emparejamiento, el cooperativo, la grabación de repeticiones y un resultado del que fiarse, y es la parte que no se añade después.",
       "Todo comparte una misma base técnica: TypeScript y PixiJS sobre WebGL. Un solo código llega al navegador, a iOS, a Android y a los minijuegos de WeChat sin reescribir nada por plataforma, y una versión para navegador significa que un juego está a un clic de ser jugado en lugar de a una descarga. Nada de esto es un prototipo dejado en línea para que se pudra."
     ]
@@ -129,7 +301,7 @@
   "press": {
     "title": "Kit de prensa",
     "lead": "Logotipos, iconos y capturas a resolución completa, con los datos que suelen pedirse primero.",
-    "metaDescription": "Kit de prensa de gamestao: datos del estudio, logotipos, iconos y capturas a resolución completa de Nivara, DayDayUp y SumQuest, y un contacto directo para distribución e inversión.",
+    "metaDescription": "Kit de prensa de gamestao: datos del estudio, logotipos, iconos y capturas a resolución completa de doce juegos, y un contacto directo para publishing e inversión.",
     "factsTitle": "El estudio de un vistazo",
     "facts": {
       "studio": "Estudio",

@@ -10,19 +10,43 @@ a sibling working copy.
 
 ## What is real today
 
+`src/data/asset-provenance.json` is the machine-readable version of this
+table; it is written by the import scripts and is what stops
+`placeholders.mjs --regenerate` from painting over real art.
+
 | | Site art | Press kit |
 |---|---|---|
 | Nivara | icon, cover, og, four screenshots | logo, icon, feature graphic, four screenshots |
 | SumQuest | icon, cover, og, four screenshots | icon, feature graphic, four screenshots |
-| DayDayUp | all generated stand-ins | nothing published |
+| Holy Kicker | cover, og, four screenshots | logo, feature graphic, four screenshots |
+| Dummy Brawl | cover, og, four screenshots | feature graphic, four screenshots |
+| Tidehook | cover, og, three screenshots | feature graphic, three screenshots |
+| Hexfront Rush | cover, og, two screenshots | feature graphic, two screenshots |
+| Potion Siege | icon | icon |
+| Blightbloom | all generated stand-ins | nothing published |
+| Brushblade | all generated stand-ins | nothing published |
+| Swarm Orbit | all generated stand-ins | nothing published |
+| Sudoku | all generated stand-ins | nothing published |
+| Pata | all generated stand-ins | nothing published |
 
-DayDayUp has no store art anywhere in `D:\daydayup` — no logo, no store icon,
-no captured screenshots. Its press section says so rather than hiding: a game
-with no entry in the manifest is still listed, marked as not published yet.
+Anything not named above is a generated stand-in. Five games have no store
+art to import at all — Blightbloom (`D:\daydayup`) has no logo, no store icon
+and no captured screenshots; Brushblade (`D:\dnf`) and Swarm Orbit
+(`D:\jump`) have only concept sheets and model renders, which are not
+screenshots and must not be passed off as them; Sudoku and Pata have no local
+checkout at all. Potion Siege (`D:\fang`) has a real app icon but its
+`art/shots/` holds backdrop plates and sprite renders rather than captured
+play, so only the icon was imported. The press section of a game with no entry
+in the manifest is still listed, marked as not published yet.
+
+The honest way to finish those six is to run each game and capture real
+screenshots; nothing here will do it for you, and `--regenerate` will not
+invent them.
 
 ## Site art
 
-Each game shows a store icon, a cover and four screenshots. Real art replaces
+Each game shows a store icon, a cover and as many screenshots as its
+`screenshots` field in `games.ts` claims. Real art replaces
 the generated stand-ins one kind at a time:
 
 ```bash

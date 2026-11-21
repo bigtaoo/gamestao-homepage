@@ -84,11 +84,11 @@ test('parsePath rejects a path that is not a page', () => {
 });
 
 test('translateRoute keeps you on the same page', () => {
-  const route = { locale: 'en', page: 'game', gameId: 'daydayup' };
+  const route = { locale: 'en', page: 'game', gameId: 'blightbloom' };
   for (const locale of LOCALES) {
     const moved = translateRoute(route, locale);
     assert.equal(moved.page, 'game');
-    assert.equal(moved.gameId, 'daydayup');
+    assert.equal(moved.gameId, 'blightbloom');
     assert.equal(moved.locale, locale);
   }
 });

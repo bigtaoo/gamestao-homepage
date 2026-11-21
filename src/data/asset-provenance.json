@@ -1,12 +1,35 @@
 {
+  "dummy-brawl": {
+    "cover": "real",
+    "og": "real",
+    "shot": "real"
+  },
+  "hexfront-rush": {
+    "cover": "real",
+    "og": "real",
+    "shot": "real"
+  },
+  "holy-kicker": {
+    "cover": "real",
+    "og": "real",
+    "shot": "real"
+  },
   "nivara": {
     "icon": "real",
     "cover": "real",
     "og": "real",
     "shot": "real"
   },
+  "potion-siege": {
+    "icon": "real"
+  },
   "sumquest": {
     "icon": "real",
+    "cover": "real",
+    "og": "real",
+    "shot": "real"
+  },
+  "tidehook": {
     "cover": "real",
     "og": "real",
     "shot": "real"

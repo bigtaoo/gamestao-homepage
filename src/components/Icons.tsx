@@ -16,6 +16,10 @@ const PATHS: Record<PlatformId, string> = {
   wechat: 'M12 4.5c4.4 0 8 2.7 8 6s-3.6 6-8 6a10 10 0 01-2.3-.26L6 18.5l.8-2.7A6.6 6.6 0 014 10.5c0-3.3 3.6-6 8-6zM9 9.75h.01M15 9.75h.01',
   // Gamepad
   crazygames: 'M7 8.5h10a4 4 0 013.9 4.85l-.6 2.8A2.4 2.4 0 0118 18a2.4 2.4 0 01-1.9-.95L15 15.5H9l-1.1 1.55A2.4 2.4 0 016 18a2.4 2.4 0 01-2.3-1.85l-.6-2.8A4 4 0 017 8.5zM8.5 11v2.5M7.25 12.25h2.5M15 12h.01M16.75 13.5h.01',
+  // A browser window with a play button. Playgama's own mark is a wordmark, and the
+  // gamepad is already spoken for by CrazyGames, so the portal gets the window it
+  // plays in.
+  playgama: 'M4 5.25h16a1.25 1.25 0 011.25 1.25v11a1.25 1.25 0 01-1.25 1.25H4a1.25 1.25 0 01-1.25-1.25v-11A1.25 1.25 0 014 5.25zM2.75 9h18.5M10.25 11.75l4 2.4-4 2.4v-4.8z',
   // Stacked tiles, itch.io's own shape is a wordmark so this stands in for it
   itch: 'M4 7.5l2-3h12l2 3v2.25a1.75 1.75 0 01-3.2 1 1.75 1.75 0 01-3.2 0 1.75 1.75 0 01-3.2 0 1.75 1.75 0 01-3.2 0A1.75 1.75 0 014 9.75V7.5zM5.5 11.5V18a1.5 1.5 0 001.5 1.5h10a1.5 1.5 0 001.5-1.5v-6.5M10 15.5h4',
 };

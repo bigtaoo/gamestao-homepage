@@ -1,0 +1,23 @@
+# Cloudflare Workers static assets reads this file from the build output (Vite
+# copies public/ into dist/). Same mechanism as _headers next door.
+#
+# The game at b.gamestao.com was called DayDayUp while it was a codename and is
+# called Blightbloom now (renamed 2026-09-06 in its own repo). Its page here
+# moved with the name: /daydayup/ -> /blightbloom/. These URLs were live and in
+# the sitemap, so they are 301s rather than 404s — a permanent redirect carries
+# the ranking across, while a dead URL spends it.
+#
+# Written out per locale rather than as /:lang/daydayup/ because a placeholder
+# would also match a segment that is not a locale and redirect it to a page that
+# 404s, which turns one honest error into a redirect chain ending in another.
+/daydayup/      /blightbloom/      301
+/zh/daydayup/   /zh/blightbloom/   301
+/de/daydayup/   /de/blightbloom/   301
+/fr/daydayup/   /fr/blightbloom/   301
+/it/daydayup/   /it/blightbloom/   301
+/nl/daydayup/   /nl/blightbloom/   301
+/es/daydayup/   /es/blightbloom/   301
+/pt/daydayup/   /pt/blightbloom/   301
+/ja/daydayup/   /ja/blightbloom/   301
+/ko/daydayup/   /ko/blightbloom/   301
+/ru/daydayup/   /ru/blightbloom/   301

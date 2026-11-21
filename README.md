@@ -4,14 +4,14 @@ The studio site for [gamestao](https://gamestao.com) — one page per game, a
 press kit, the studio's own privacy notice and terms, and an about and contact
 section, in eleven languages.
 
-React + TypeScript, **prerendered at build time** into 77 static documents and
+React + TypeScript, **prerendered at build time** into 176 static documents and
 served from Cloudflare Workers static assets. No server runs at request time.
 
 | | |
 |---|---|
-| Games | [Nivara](https://nivara.gamestao.com) · [DayDayUp](https://b.gamestao.com) · [SumQuest](https://c.gamestao.com) |
+| Games | Twelve, listed in [src/data/games.ts](src/data/games.ts) — eight already on the zone, four waiting on their first `deploy-web` run |
 | Languages | en · zh · de · fr · it · nl · es · pt · ja · ko · ru |
-| Pages built | 11 locales x (home + press + privacy + terms + 3 game pages) = 77, plus `404.html` |
+| Pages built | 11 locales x (home + press + privacy + terms + 12 game pages) = 176, plus `404.html` |
 | Contact | `support@gamestao.com` (players) · `contact@gamestao.com` (publishing, investment, press) |
 | Hosting | Cloudflare Worker `gamestao-site`, zone `gamestao.com` |
 
@@ -46,7 +46,7 @@ screenshot strip (CSS scroll-snap).
 ```bash
 npm install
 npm run dev        # vite dev server; renders client-side, route taken from the URL
-npm run build      # client bundle -> SSR renderer -> 77 pages into dist/
+npm run build      # client bundle -> SSR renderer -> 176 pages into dist/
 npm run preview    # serve dist/ exactly as it will be served in production
 npm run typecheck
 npm test           # locale parity + route/head invariants
@@ -69,7 +69,7 @@ src/
                        Open Graph, JSON-LD, and the first-visit language redirect.
   lib/serialize.ts     Escaping for data embedded in a <script>.
   lib/page.tsx         PageData + the context every component reads.
-  data/games.ts        The three games: names, accent colours, platform links,
+  data/games.ts        The twelve games: names, accent colours, platform links,
                        and the two contact addresses.
   data/press.ts        The press kit's downloads, read from the manifest below.
   data/legal/          The privacy notice and terms, one file per locale. Read
@@ -119,7 +119,7 @@ cannot be advertised as playable without somewhere to send people.
 
 **A new language** is `LOCALES` in `src/lib/routes.ts` plus an `HREFLANG` entry,
 an endonym in `LOCALE_NAMES`, a locale file, and a file in `src/data/legal/`.
-The build picks it up and emits seven more pages; `npm run typecheck` names both
+The build picks it up and emits sixteen more pages; `npm run typecheck` names both
 files it still needs.
 
 **Artwork and the press kit** have a runbook of their own, because importing
@@ -128,12 +128,16 @@ edit in here: [docs/assets.md](docs/assets.md).
 
 ## Notes worth knowing
 
-- **The accent colours are not decorative choices.** Nivara's and SumQuest's
-  come from the dominant colour of their real store icons, DayDayUp's from the
-  locked element palette in its own `design/13-worldview-art-direction.md`. All
-  three clear 4.5:1 as small text and as a button background, and sit at least
-  54 degrees apart in hue so the three cards stay distinct. `src/data/games.ts`
-  records the reasoning per game.
+- **The accent colours are not decorative choices.** Every one is read off the
+  game's own art — a store icon, a locked palette document, a logo, a deployed
+  stylesheet's `--accent` — and lifted only as far as it must be to clear 4.5:1
+  as small text and as a button background. `src/data/games.ts` records the
+  source and the rejected candidate for each. With twelve cards the old rule of
+  keeping every hue 54 degrees from every other one no longer fits in a circle,
+  so it was dropped rather than faked: Holy Kicker and Dummy Brawl share a hue
+  and separate on saturation, as do Nivara and Sudoku, and Brushblade and
+  Hexfront Rush. None of those pairs is adjacent in `GAME_IDS`, which is the
+  order the cards are laid out in.
 - **No web fonts.** The studio ships WeChat Mini Games and so has players in
   China, where `fonts.googleapis.com` is blocked and would stall the first paint
   until it times out. System font stacks, with a separate one for CJK.

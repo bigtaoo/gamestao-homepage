@@ -2,7 +2,7 @@
   "meta": {
     "tagline": "Independent game studio",
     "homeTitle": "gamestao — Independent game studio",
-    "homeDescription": "Real-time competitive games from gamestao: Nivara, a hand-drawn duel against the clock; DayDayUp, a roguelite arena that hands out the kit; and SumQuest, a number puzzle. Every one of them plays in your browser.",
+    "homeDescription": "Real-time competitive games from gamestao: Nivara, a hand-drawn duel against the clock; Hexfront Rush, a front line that moves while you watch it; Holy Kicker, a monk with a magic ball. Twelve games, each one built to open in a browser.",
     "gameTitle": "{game} — gamestao",
     "gameDescription": "{tagline} Play {game} in your browser, from the gamestao studio."
   },
@@ -18,7 +18,7 @@
   "hero": {
     "kicker": "Independent game studio",
     "title": "Games that start the moment you click.",
-    "lead": "gamestao is an independent game studio building real-time competitive games: a hand-drawn duel fought against the clock, a roguelite arena where the kit is handed out rather than brought, and a number puzzle that needs no opponent at all. No installer, no launcher — each of them runs in the browser first.",
+    "lead": "gamestao is an independent game studio building real-time competitive games: a hand-drawn duel fought against the clock, a hex front that moves while you watch it, a ring held by one hero and one tap. Twelve games now, and no installer and no launcher among them — each is built to run in the browser first.",
     "ctaGames": "See the games",
     "ctaAbout": "About the studio"
   },
@@ -28,8 +28,8 @@
     "installs": "installs required"
   },
   "games": {
-    "title": "Three games",
-    "lead": "Different genres, one technical foundation — and all of them a click away.",
+    "title": "Twelve games",
+    "lead": "A dozen genres on one technical foundation — and most of them already a click away.",
     "details": "Read more",
     "entries": {
       "nivara": {
@@ -51,25 +51,6 @@
           "Destroy the enemy base before the clock runs the match to a draw."
         ]
       },
-      "daydayup": {
-        "genre": "Roguelite shooter",
-        "tagline": "Hoard weapons. Deflect bullets with a sword. Run it again.",
-        "summary": "A top-down roguelite built around its weapons. Guns do what you expect; melee weapons block and deflect incoming fire, which turns every corridor into a question of which hand to use.",
-        "intro": "DayDayUp is a 2D top-down roguelite where the weapon rack is the whole game. Guns, blades, and everything in between — and because melee weapons can block and deflect bullets, a sword is a defensive option rather than a slow gun. Characters are skins: what defines a run is what you picked up in it. Play solo, or bring friends in over the co-op server.",
-        "features": [
-          "A weapon system rather than a weapon list — ranged and melee behave differently enough to change how you move",
-          "Melee blocks and deflects bullets, so closing the distance is a real answer to being shot at",
-          "Characters are cosmetic; a run is defined by what you find, not who you picked",
-          "A deterministic simulation core — which is what makes co-op and replay recording possible at all",
-          "Co-op over a frame-broadcast server, with matchmaking",
-          "A PvP arena, The Seven Districts, alongside the PvE dungeon floors"
-        ],
-        "howTo": [
-          "Move and aim; fire with your ranged weapon, swing or block with your melee.",
-          "Block at the right moment to deflect incoming bullets instead of dodging them.",
-          "Clear the floor, take what dropped, and go one deeper."
-        ]
-      },
       "sumquest": {
         "genre": "Number puzzle",
         "tagline": "Tap two numbers that add up to the target. Beat the clock.",
@@ -88,6 +69,196 @@
           "Tap two tiles whose values add up to it — they clear.",
           "Empty the board before the timer reaches zero."
         ]
+      },
+      "blightbloom": {
+        "genre": "Roguelite shooter",
+        "tagline": "Hoard weapons. Deflect bullets with a sword. Run it again.",
+        "summary": "A top-down roguelite built around its weapons. Guns do what you expect; melee weapons block and deflect incoming fire, which turns every corridor into a question of which hand to use.",
+        "intro": "Blightbloom is a 2D top-down roguelite where the weapon rack is the whole game. Guns, blades, and everything in between — and because melee weapons can block and deflect bullets, a sword is a defensive option rather than a slow gun. The characters are not skins: each is a side-grade with its own health, shield and energy, and one passive that fires when its shield breaks. Play solo, or bring friends in over the co-op server.",
+        "features": [
+          "A weapon system rather than a weapon list — ranged and melee behave differently enough to change how you move",
+          "Melee blocks and deflects bullets, so closing the distance is a real answer to being shot at",
+          "Characters are balanced side-grades, not skins: each has its own health, shield and energy, plus one shield-break passive",
+          "A deterministic simulation core — which is what makes co-op and replay recording possible at all",
+          "Co-op over a frame-broadcast server, with matchmaking",
+          "A PvP arena, The Seven Districts, alongside the PvE dungeon floors"
+        ],
+        "howTo": [
+          "Move and aim; fire with your ranged weapon, swing or block with your melee.",
+          "Block at the right moment to deflect incoming bullets instead of dodging them.",
+          "Clear the floor, take what dropped, and go one deeper."
+        ]
+      },
+      "potion-siege": {
+        "genre": "Merge tower defense",
+        "tagline": "Merge potions, brew bigger ones, hold the wall for ten waves.",
+        "summary": "A tower defense you play by merging. Potions of six kinds land on the board below the wall; drag two of a kind together and they become something that hits harder. Ten waves a stage, with a boss on the fifth and the tenth.",
+        "intro": "Potion Siege is a merge tower defense set in an alchemist's workshop. Every stage is ten waves of a clockwork army walking at your wall, and you answer them on the board underneath it, where two potions of a kind merge into one of the next sort. The commander has two hands of their own — a flask to throw and a brew to start — and fifty stages across five chapters keep raising what the board has to produce.",
+        "features": [
+          "Six kinds of potion that merge upward — the board is the tech tree, and it refills while you fight",
+          "Ten waves a stage, with a boss waiting on the fifth and again on the tenth",
+          "A commander with two tools: a flask to throw into a crowd, and a brew to start when there is none",
+          "A clockwork army that comes in kinds, so the board that beat the last wave is wrong for the next",
+          "Fifty stages across five chapters and five bosses",
+          "A balance guard that runs on every commit, so a stage is never quietly made unwinnable"
+        ],
+        "howTo": [
+          "Drag one potion onto another of the same kind to merge it into a stronger one.",
+          "Throw the commander's flask when a wave bunches up, and start a brew when it does not.",
+          "Hold the wall for ten waves; the fifth and the tenth bring a boss."
+        ]
+      },
+      "holy-kicker": {
+        "genre": "Action roguelite",
+        "tagline": "Kick your way through a horde of ghosts as a monk with a magic ball.",
+        "summary": "One run is one chapter: fifty waves, about twelve minutes, portrait, one thumb. A monk, a ball, and a horde that keeps coming until one of you stops.",
+        "intro": "Holy Kicker is an action roguelite you play with one thumb. A kung-fu monk kicks a magic ball through waves of ghosts across five lands, and between waves you take a spell, a relic or a passive, so the ball you started with is not the one you finish with. No stamina and no gacha: what a run costs is twelve minutes, and then it ends.",
+        "features": [
+          "Twenty chapters across five lands, each a self-contained run of fifty waves",
+          "Eleven spells, five relics, eight passives and sixteen evolutions to build a run out of",
+          "Three monks, each starting you somewhere different",
+          "A dozen kinds of ghost, four elites and six bosses",
+          "Three stars to take from a chapter, and a hard mode once you have them",
+          "No stamina and no gacha — a run costs twelve minutes and nothing else"
+        ],
+        "howTo": [
+          "Hold and drag to aim the kick, then let go to send the ball.",
+          "Take one of the cards offered between waves and let the build compound.",
+          "Survive fifty waves to clear the chapter."
+        ]
+      },
+      "brushblade": {
+        "genre": "Side-scrolling action",
+        "tagline": "An ink-wash brawler where every hit lands like a brush stroke.",
+        "summary": "A 2.5D side-scrolling action game drawn in ink wash. Chain a combo, cancel it into a skill, and read the opening the next enemy leaves you.",
+        "intro": "Brushblade is a 2.5D side-scrolling action game in the ink-wash tradition — black, white, and one stamp of cinnabar red. The fighting is combo-first: a light chain you cancel into a skill, a skill you cancel out of before it commits you. Underneath it runs a fixed thirty-tick simulation with rollback, which is the part that lets two people watch the same fight rather than two similar ones.",
+        "features": [
+          "Combo-first fighting: light chains, skill cancels, and a dodge that costs you position",
+          "Ink-wash art — black, white and one red seal, drawn rather than filtered",
+          "A deterministic thirty-tick simulation with rollback underneath the action",
+          "Landscape at 1920 by 1080, for a keyboard or for a phone held sideways",
+          "Browser first, with a WeChat Mini Game build out of the same codebase",
+          "TypeScript on PixiJS v8, like everything else the studio ships"
+        ],
+        "howTo": [
+          "Move with one hand and attack with the other; a chain comes out of repeated taps.",
+          "Cancel a chain into a skill before its last hit to keep the pressure on.",
+          "Dodge through an attack rather than away from it."
+        ]
+      },
+      "tidehook": {
+        "genre": "Wave defense",
+        "tagline": "Work the crane at the pier: haul in fish, treasure, and whatever bites.",
+        "summary": "You run the crane at the end of a pier. Cast the hook, haul up fish and crates, and drag the sea monsters off the dock before they take it apart. About ten minutes a run.",
+        "intro": "Tidehook puts you on a pier with a crane and a hook, and sends fifteen-odd waves in off the water: fish worth money, crates worth more, and monsters that will have the dock down if you let them. Between waves there is a shop, and back at the harbour a row of upgrades that stay bought. Every fifth wave something bigger surfaces, and at the end of them the old turtle king.",
+        "features": [
+          "Cast and haul — one verb for the catch and for the fight",
+          "Fifteen or more waves a run, about ten minutes from the first cast to the last",
+          "A boss every fifth wave, and the old turtle king at the end of them",
+          "A shop between waves, and a harbour that keeps what you bought for the next run",
+          "Three depths of sea, painted rather than tinted, from the shallows to the open water",
+          "Portrait or landscape, one hand either way"
+        ],
+        "howTo": [
+          "Drop the hook where something worth taking is passing underneath.",
+          "Haul it up before something heavier fouls the line.",
+          "Spend between waves; what you buy at the harbour carries into the next run."
+        ]
+      },
+      "swarm-orbit": {
+        "genre": "Ring tower defense",
+        "tagline": "One hero, one wooden train, one ring to hold.",
+        "summary": "A tower defense with exactly one tower, and it moves. Your hero rides a wooden train around a ring; one tap sends it the other way. Everything else is where the gold goes.",
+        "intro": "Swarm Orbit is a tower defense with a single hero and a circular track. The swarm comes in from outside the ring; your hero rides a wooden train around the inside of it, and one tap reverses the train, which is the whole control scheme. The decisions are all between waves: raise damage, rate or range now, or save for the row of permanent upgrades that outlives the run.",
+        "features": [
+          "One hero on a ring instead of a map covered in towers",
+          "One tap to reverse — the entire control scheme, on a phone or a keyboard",
+          "Gold between waves: raise a stat now, or save for the one that pays later",
+          "Chapter levels to clear, and an endless mode that opens after the first chapter",
+          "Permanent upgrades, so a lost run still leaves you further along",
+          "Portrait, built for one hand"
+        ],
+        "howTo": [
+          "Tap anywhere to send the train the other way round the ring.",
+          "Keep the hero on the side the swarm is arriving from.",
+          "Spend the gold between waves, before the next one starts."
+        ]
+      },
+      "dummy-brawl": {
+        "genre": "Racing brawler",
+        "tagline": "Race, and knock the others off their scooters on the way past.",
+        "summary": "A two-minute race where the finishing order is not settled by speed alone. Pull alongside, throw a punch, take whatever they were holding, and keep going.",
+        "intro": "Dummy Brawl is a racing game in which the other riders are the obstacle. Traffic, barriers and a police tail are all in the way, and so are six to eight crash-test dummies who will happily put you on the tarmac. One tap swings at whoever is beside you — a hit costs them more speed than the swing costs you, which is the whole calculation. A race runs two to three minutes, and the prize money buys the next scooter.",
+        "features": [
+          "Fight while you race: a punch changes the order more reliably than a better line does",
+          "Take what you knock out of someone else's hands",
+          "Crashing is loud, funny, and costs you seconds rather than the race",
+          "Traffic, barriers and a police tail, all competing for the same attention",
+          "Two to three minutes a race, then prize money and a garage",
+          "One finger, portrait or landscape, with a keyboard option on a desktop"
+        ],
+        "howTo": [
+          "Drag left and right to change lane; the throttle looks after itself.",
+          "Tap when someone is beside you to swing at them.",
+          "Swipe down to brake — for the police, or to let a fight go past."
+        ]
+      },
+      "hexfront-rush": {
+        "genre": "Real-time strategy",
+        "tagline": "Flip a card, take a hex, and move the front line before they do.",
+        "summary": "Real-time territory strategy on a hex map. Cards become mines, towers and barracks; the ground you hold pays for the next one you put down.",
+        "intro": "Hexfront Rush is a real-time strategy game about a front line that will not stay still. You flip cards onto hexes you hold, turning them into mines, towers or barracks, and the territory you take is what pays for the next card. There is a single-player campaign against the AI with a tutorial in front of it, and an online 1v1 that runs deterministic lockstep through a relay, so both players are watching the same battle rather than two that resemble each other.",
+        "features": [
+          "A front line that moves, rather than a base you dig into",
+          "Cards become mines, towers or barracks — economy and army out of the same hand",
+          "Single player against an AI, with a tutorial that teaches by playing",
+          "Online 1v1 in deterministic lockstep through a WebSocket relay",
+          "Replays recorded off the relay, which is also how the balance gets checked",
+          "A hex map, drawn sprites, and a round that resolves in minutes"
+        ],
+        "howTo": [
+          "Flip a card onto a hex you already hold.",
+          "Mines pay, barracks push, towers hold — read which one the front needs.",
+          "Take enough ground that their production cannot answer yours."
+        ]
+      },
+      "sudoku": {
+        "genre": "Number puzzle",
+        "tagline": "Sudoku with hints, notes and a new puzzle every day.",
+        "summary": "A clean Sudoku board that opens instantly and works with nothing connected: pencil notes, a hint for when the next step will not come, and one fresh puzzle a day.",
+        "intro": "Sudoku is the plainest thing the studio makes, and deliberately so. It opens straight onto a board, keeps no account and asks for no sign-in, remembers where you left off, and otherwise stays out of the way: notes for the candidates you are holding in your head, a hint for the step that genuinely will not come, and a new puzzle every day to come back for.",
+        "features": [
+          "A new puzzle every day, and as many generated ones as you want between them",
+          "Pencil notes, for the candidates you would otherwise be holding in your head",
+          "A hint for the step that will not come, rather than a solver that ends the puzzle",
+          "No account and no sign-in: the board lives on your own device",
+          "Installable straight from the browser, and playable with nothing connected",
+          "Light and dark, following whatever the system is set to"
+        ],
+        "howTo": [
+          "Pick a cell, then pick the digit that belongs in it.",
+          "Switch to notes to pencil in the candidates instead of committing.",
+          "Take a hint when the next step will not come, and finish the grid."
+        ]
+      },
+      "pata": {
+        "genre": "Pet and room sim",
+        "tagline": "Keep a small creature, and a small room for it to live in.",
+        "summary": "Look after a pet and furnish the room it lives in. They are one loop rather than two: a comfortable room lifts its mood, its mood pays the coins, the coins buy more furniture.",
+        "intro": "Pata is the quiet one. There is a creature in an isometric room, and you feed it, wash it, play with it and give it a scratch — it has opinions about all four. The room is yours to furnish from sixty-four pieces across nine sets, dragged into place and turned by hand. Decorating is not a side activity here: comfort sets the ceiling on the pet's mood, and mood is where the coins come from.",
+        "features": [
+          "Four needs — fed, clean, rested, happy — and four ways to answer them",
+          "An eight-by-eight room and sixty-four pieces of furniture across nine sets, dragged into place",
+          "Comfort raises the mood ceiling, mood pays the coins, coins buy the furniture",
+          "Daily tasks and lifetime achievements, reset on the calendar day",
+          "Friend codes: visit someone else's room and feed their pet while you are there",
+          "Offline earnings while you are away, capped at eight hours"
+        ],
+        "howTo": [
+          "Tap the pet for a scratch; feed, wash and play with it from the room.",
+          "Hold a piece of furniture to drag it, and let go to set it down.",
+          "Clear the day's tasks, write the diary, and spend what you earned."
+        ]
       }
     }
   },
@@ -97,7 +268,8 @@
     "android": "Google Play",
     "wechat": "WeChat Mini Game",
     "crazygames": "CrazyGames",
-    "itch": "itch.io"
+    "itch": "itch.io",
+    "playgama": "Playgama"
   },
   "platformSoon": "Coming soon",
   "gamePage": {
@@ -113,7 +285,7 @@
     "title": "About the studio",
     "lead": "Real-time competition — and a stack picked so that nothing gets in the way of shipping it.",
     "body": [
-      "gamestao is an independent game studio, and the line is real-time competition. Nivara is a 1v1 duel with a clock that forces a result. DayDayUp drops players into an arena that hands out the kit rather than letting them bring one, so a match turns on play instead of on who has ground longer. SumQuest, the number puzzle, is the odd one out — deliberately. Not every idea needs an opponent.",
+      "gamestao is an independent game studio, and the line is real-time competition. Nivara is a 1v1 duel with a clock that forces a result. Blightbloom drops players into an arena that hands out the kit rather than letting them bring one, so a match turns on play instead of on who has ground longer. Hexfront Rush puts two players on one hex map and keeps both simulations in step. SumQuest, the number puzzle, is the odd one out — deliberately. Not every idea needs an opponent.",
       "Real-time competition is a server problem before it is a design problem. The competitive games run on a deterministic simulation core with authoritative servers behind them, which is what makes matchmaking, co-op, replay recording and a result worth trusting possible at all — and it is the part that cannot be bolted on afterwards.",
       "All of it shares one technical foundation: TypeScript and PixiJS on WebGL. One codebase reaches the browser, iOS, Android and WeChat Mini Games without a rewrite per platform, and a browser build means a game is one click away from being played rather than one download. Nothing here is a prototype left online to rot."
     ]
@@ -129,7 +301,7 @@
   "press": {
     "title": "Press kit",
     "lead": "Logos, icons and full-resolution screenshots, with the facts people ask for first.",
-    "metaDescription": "Press kit for gamestao: studio facts, logos, icons and full-resolution screenshots for Nivara, DayDayUp and SumQuest, and a direct contact for publishing and investment.",
+    "metaDescription": "Press kit for gamestao: studio facts, logos, icons and full-resolution screenshots for twelve games, and a direct contact for publishing and investment.",
     "factsTitle": "The studio at a glance",
     "facts": {
       "studio": "Studio",
